@@ -2,4 +2,5 @@
 
 #### Project file: [ft_printf](https://github.com/mohammadbutt/42_ft_printf/blob/master/ft_printf.en.pdf)
 
-Allowed C functions: write(2), malloc(3), free(3), exit(3), stdarg(3)
+Allowed C functions: write(2), malloc(3), free(3), exit(3).
+Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
