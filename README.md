@@ -15,6 +15,12 @@ Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
 - Manage the minimum field-width.
 - Manage the precision.
 
+### Printf cheatsheet:
+Below is a cheatsheet of how different conversions and flags work.
+- For `c` conversion we only habe to manage the following flags: `-` and `' '` space.
+
+### Project summary: 
+
 # References
 1. [Variadic functions - simple_printf](https://en.cppreference.com/w/c/variadic)
 2. [Linux man stdarg](http://man7.org/linux/man-pages/man3/stdarg.3.html)
