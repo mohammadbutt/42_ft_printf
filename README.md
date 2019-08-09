@@ -17,7 +17,7 @@ Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
 
 ### Printf cheatsheet:
 Below is a cheatsheet of how different conversions and flags work.
-- For `c` conversion we only have to manage the following flags: `-` and '0'(numerical values that are greater than 0).
+- For `c` conversion we only have to manage the following flags: `-` and `0`(numerical values that are greater than 0).
 
 ### Project summary: 
 
