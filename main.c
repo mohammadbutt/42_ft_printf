@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/07 20:58:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/08 19:23:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 
 int main(void)
 {
-	//int num1 = 78876;
 
-	//printf("%s", num1 );
-	simple_printf("dcff", 3, 'a', 1.999, 2.5);
+//	simple_printf("%c this is a test %c %c %c", 'a', 'b', 'c', 'd');
+	
+	simple_printf("d c f f s", 3, 'a', 1.99, 2.5, "abcdef");
+//	ft_printf("%d %s %c %u", )
+//	printf("%3$d %3$d, %1$d %1$d, %2$d %2$+d", -1, 2, 3);
+//	printf("%s", "testing\n");
 }
