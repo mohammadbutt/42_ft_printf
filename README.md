@@ -6,6 +6,14 @@ Allowed C functions: write(2), malloc(3), free(3), exit(3).
 
 Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
 
+### Mandatory parts of the project:
+- Manage the following conversions: csp.
+- Manage the following conversions: diouxX with the following flags: hh, h, l, and ll.
+- Manage the following conversions: f with the following flags: l and L.
+- Manage %%.
+- Manage the flags # 0 - + and space.
+- Manage the minimum field-width.
+Manage the precision.
 
 # References
 1. [Variadic functions - simple_printf](https://en.cppreference.com/w/c/variadic)
