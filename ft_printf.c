@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/08 19:23:32 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/08 21:21:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,38 @@ void ft_putstr(char *str)
 		write(1, str, len);
 }
 */
-/*
+
+int ft_conversion(char c)
+{
+	if(c == 'c' || c == 's' || c == 'p')
+		return(1);
+	else if(c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X')
+		return(1);
+	else if(c == 'f')
+		return(1);
+	return(0);
+}
+
 void start_parsing(char *str)
 {
+	int i;
+	int c;
+
+	i = 0;
+	c = 0;
+	while(str[i] && ft_conversion(str[i]) == 0)
+	{
+
+	}
 
 }
-*/
+
 /*
 ** To do:
-** 1. Once you hit %, store the string.
+** 1. Parsing - Once you hit %, store the string until it hits conversion.
+** Conversions: are "csp-diouxX-f"
 */
-/*
+
 void simple_printf(const char *fmt, ...)
 {
 	va_list args;
@@ -62,7 +83,7 @@ void simple_printf(const char *fmt, ...)
 	while(fmt[i] != '\0')
 	{
 		if(fmt[i] == '%')
-			starting_parsing(fmt+i);
+			start_parsing(fmt+i);
 //		if(fmt[i] == '%' && fmt[i+1] == 'c')
 //		{
 //			c = va_arg(args, int);
@@ -72,7 +93,7 @@ void simple_printf(const char *fmt, ...)
 	}
 	va_end(args);
 }
-*/
+
 /*	
 	while(fmt[i] != '\0')
 	{
@@ -90,6 +111,7 @@ void simple_printf(const char *fmt, ...)
 	va_end(args);
 }
 */
+
 
 void simple_printf(const char *fmt, ...)
 {
