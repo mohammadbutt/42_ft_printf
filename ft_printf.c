@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/08 21:21:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/09 16:29:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,26 +50,35 @@ int ft_conversion(char c)
 	return(0);
 }
 
+/*
 void start_parsing(char *str)
 {
 	int i;
 	int c;
+	int repeat;
 
 	i = 0;
 	c = 0;
+	repeat = 0;
 	while(str[i] && ft_conversion(str[i]) == 0)
 	{
-
+		if(str[i] >= 1)
+		{
+			repeat = ft_atoi(str[i]);
+			while(repeat)
+				write(1, ' ', repeat--);
+		}
 	}
 
 }
-
+*/
 /*
 ** To do:
 ** 1. Parsing - Once you hit %, store the string until it hits conversion.
 ** Conversions: are "csp-diouxX-f"
 */
 
+/*
 void simple_printf(const char *fmt, ...)
 {
 	va_list args;
@@ -93,7 +102,7 @@ void simple_printf(const char *fmt, ...)
 	}
 	va_end(args);
 }
-
+*/
 /*	
 	while(fmt[i] != '\0')
 	{

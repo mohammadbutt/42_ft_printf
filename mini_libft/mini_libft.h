@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mini_libft.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 17:45:51 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/09 17:46:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#ifndef MINI_LIBFT_H
+# define MINI_LIBFT_H
 
-int main(void)
-{
+#include <unistd.h>
+#include <stdlib.h>
 
-//	simple_printf(" %  %c this is a test %c %c %c", 'a', 'b', 'c', 'd');
-	
-	simple_printf("d c f f s", 3, 'a', 1.99, 2.5, "abcdef");
+/*
+** Function prototypes
+*/
 
-	printf("%d\n", ft_atoi("345345345"));
-//	ft_printf("%d %s %c %u", )
-//	printf("%3$d %3$d, %1$d %1$d, %2$d %2$+d", -1, 2, 3);
-//	printf("%s", "testing\n");
-}
+int ft_isspace(int c);
+int ft_atoi(const char *str);
+
+
+#endif
