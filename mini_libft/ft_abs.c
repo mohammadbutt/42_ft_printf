@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_abs.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 19:37:14 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/09 19:58:09 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/09 20:00:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "mini_libft.h"
 
-int main(void)
+/*
+** ft_abs performs the same function as abs(3) function found in stdlib.h
+** Converts a value into an absolute value, so a negative values becomes
+** positive.
+** Return Value: Returns a postive value.
+*/
+
+int		ft_abs(int num)
 {
-
-//	simple_printf(" %  %c this is a test %c %c %c", 'a', 'b', 'c', 'd');
-	
-	simple_printf("d c f f s", 3, 'a', 1.99, 2.5, "abcdef");
-
-	printf("%d\n", ft_atoi("345345345"));
-//	ft_printf("%d %s %c %u", )
-//	printf("%3$d %3$d, %1$d %1$d, %2$d %2$+d", -1, 2, 3);
-//	printf("%s", "testing\n");
+	if (num < 0)
+		num = -1 * num;
+	return (num);
 }

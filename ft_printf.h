@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 17:45:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/09 20:15:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void ft_putchar(char c);
 //void ft_strlen(char *str);
 //void ft_putstr(char *str);
 int ft_voncersion_symbols(char c);
-void start_parsing(char *str);
+int start_parsing(char *str);
 
 void simple_printf(const char *fmt, ...);
 

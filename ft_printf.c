@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 16:29:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/09 20:32:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ int ft_conversion(char c)
 	return(0);
 }
 
-/*
-void start_parsing(char *str)
+
+int start_parsing(char *str)
 {
 	int i;
 	int c;
@@ -65,20 +65,27 @@ void start_parsing(char *str)
 		if(str[i] >= 1)
 		{
 			repeat = ft_atoi(str[i]);
+			repeat--;   // If there's 1 we should not print space, so we minus 1.
 			while(repeat)
 				write(1, ' ', repeat--);
 		}
+		else if(str[i] == '-')
+		{
+			repeat = ft_abs(ft_atoi(str[i]));
+			repeat--;
+			return(repeat);
+		}
 	}
-
+	return(0);
 }
-*/
+
 /*
 ** To do:
 ** 1. Parsing - Once you hit %, store the string until it hits conversion.
 ** Conversions: are "csp-diouxX-f"
 */
 
-/*
+
 void simple_printf(const char *fmt, ...)
 {
 	va_list args;
@@ -102,7 +109,7 @@ void simple_printf(const char *fmt, ...)
 	}
 	va_end(args);
 }
-*/
+
 /*	
 	while(fmt[i] != '\0')
 	{
@@ -121,7 +128,7 @@ void simple_printf(const char *fmt, ...)
 }
 */
 
-
+/*
 void simple_printf(const char *fmt, ...)
 {
 	va_list args;
@@ -161,4 +168,4 @@ void simple_printf(const char *fmt, ...)
 	}
 	va_end(args);
 }
-
+*/

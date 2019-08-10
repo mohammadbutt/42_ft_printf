@@ -6,9 +6,14 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/09 18:55:06 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/09 20:28:34 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+CYAN:=\033[1;36m
+YELLOW:=\033[1;33m
+GREEN:=\033[1;32m
+NC:=\033[0m
 
 NAME = libftprintf.a
 CC = gcc
@@ -21,18 +26,18 @@ OBJ = *.o
 all: $(NAME)
 
 $(NAME):
-	@echo "\033[1;36mCompiling Makefile...\033[0m"
+	@echo "${CYAN}Compiling Makefile.${NC}"
 	$(CC) $(CFLAGS) $(SRC) $(MINI_LIBFT)
 	ar rc $(NAME) $(OBJ)
-	@echo "\033[1;32mGenerated libftprintf.a static library succesfully.\033[0m"
+	@echo "${GREEN}Generated libftprintf.a static library succesfully.${NC}"
 
 clean:
 	rm -rf $(OBJ)
-	@echo "\033[1;33mRemoved Object files\033[0m"
+	@echo "${YELLOW}Removed object files.${NC}"
 
 fclean:
 	rm -rf $(NAME)
-	@echo "\033[1;33mRemoved Static library\033[0m"
+	@echo "${YELLOW}Removed static library.${NC}"
 
 re: fclean all
 .PHONY: all clean fclean re

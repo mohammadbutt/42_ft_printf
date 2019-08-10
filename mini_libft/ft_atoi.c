@@ -6,12 +6,11 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:54:58 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 16:10:53 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/09 19:58:39 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
-#include <stdio.h>
 
 int	ft_atoi(const char *str)
 {
@@ -34,6 +33,17 @@ int	ft_atoi(const char *str)
 		nb = (10 * nb) + (str[i++] - '0');
 	return (nb * sign);
 }
+
+/*
+int main(void)
+{
+	int i = 2;
+	char *num1 = "423456";
+
+	printf("%d\n", ft_atoi(&num1[i]));
+	printf("i:|%d|\n", i);
+}
+*/
 /*
 int main (void)
 {
