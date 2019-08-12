@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mini_libft.h                                       :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 19:23:06 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/11 19:17:44 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/11 19:22:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINI_LIBFT_H
-# define MINI_LIBFT_H
+#include "mini_libft.h"
 
-#include <unistd.h>
-#include <stdlib.h>
+int ft_isdigit0(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
-/*
-** mini_libft function prototypes-----------------------------------------------
-*/
-
-int		ft_abs(int num);
-int		ft_atoi(const char *str);
-int		ft_isspace(int c);
-void	ft_putchar(char c);
-void	ft_putstr(char *str);
-int		ft_strlen(char *str);
-int		ft_isdigit0(int c);
-int		ft_isdigit1(int c);
-
-
-#endif
+int ft_isdigit1(int c)
+{
+	if (c >= '1' && c <= '9')
+		return(1);
+	else
+		return (0);
+}

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 18:59:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/11 19:24:14 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int start_parsing(va_list args, const char *str)
 			repeat--;
 			return(repeat);
 		}
-		else if(ps.string[i] == '-' && (ps.string[i + 1] >= '1' && ps.string[i + 1] <= '9'))
+		else if((ps.string[i] == '-') && (ft_isdigit1(ps.string[i + 1]) == 1))
 		{
 			repeat = ft_atoi(&ps.string[i]);
 			repeat++;
