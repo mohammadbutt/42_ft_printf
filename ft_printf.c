@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 14:03:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 14:22:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,32 +76,23 @@ char determine_conversion(const char *str)
 	return('A');
 }
 
+
 int start_parsing(va_list args, const char *str)
 {
 	t_printf ps;
 	int i;
-	int c;
 	int repeat;
 
 	i = 0;
-	c = 0;
 	repeat = 0;
 	va_copy(ps.arguments, args);
 	ps.string = str;
 	while(ps.string[i] && ft_conversion(ps.string[i]) == 0)
 	{
 		if(ps.string[i] >= '1' && ps.string[i] <= '9')
-		{
-			repeat = ft_atoi(&ps.string[i]);
-			repeat--;
-			return(repeat);
-		}
+			return(ft_atoi(&ps.string[i]) - 1);
 		else if((ps.string[i] == '-') && (ft_isdigit1(ps.string[i + 1]) == 1))
-		{
-			repeat = ft_atoi(&ps.string[i]);
-			repeat++;
-			return(repeat);
-		}
+			return(ft_atoi(&ps.string[i]) + 1);
 		i++;
 	}
 	return(0);
@@ -134,13 +125,11 @@ int ft_printf_driver(va_list args, const char *str)
 	int repeat;
 	int i;
 	int temp_i;
-	int c;
 	char conversion_value;
 
 	repeat = 0;
 	i = 0;
 	temp_i = 0;
-	c = 0;
 	conversion_value = '0';
 	va_copy(ps.arguments, args);
 	ps.string = str;
