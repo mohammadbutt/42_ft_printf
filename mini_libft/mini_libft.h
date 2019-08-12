@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 19:23:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 14:00:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_putstr(char *str);
 int		ft_strlen(char *str);
 int		ft_isdigit0(int c);
 int		ft_isdigit1(int c);
+void	print_spaces(int repeat);
 
 
 #endif

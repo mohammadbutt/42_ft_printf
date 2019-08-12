@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 19:24:14 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 14:03:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,11 +106,7 @@ int start_parsing(va_list args, const char *str)
 	}
 	return(0);
 }
-void print_spaces(int repeat)
-{
-	while(repeat)
-		write(1, " ", repeat--);
-}
+
 void print_on_screen(int repeat, va_list args, char conversion_value)
 {
 	t_printf ps;
