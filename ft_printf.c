@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 14:22:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 16:22:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int ft_conversion(char c)
+int ft_conversion(const char c)
 {
 	if(c == 'c' || c == 's' || c == 'p')
 		return(1);
@@ -62,7 +62,7 @@ int start_parsing(va_list args, const char *str)
 ** If the string is "%3c", it will skip '%' and '3', and return 'c'.
 */
 
-char determine_conversion(const char *str)
+char determine_conversion(const char *str, t_variables *var)
 {
 	int i;
 
@@ -70,7 +70,10 @@ char determine_conversion(const char *str)
 	while(str[i])
 	{
 		if(ft_conversion(str[i]) == 1)
+		{
+			var->i = var->i + i;
 			return(str[i]);
+		}
 		i++;
 	}
 	return('A');
@@ -93,12 +96,14 @@ int start_parsing(va_list args, const char *str)
 			return(ft_atoi(&ps.string[i]) - 1);
 		else if((ps.string[i] == '-') && (ft_isdigit1(ps.string[i + 1]) == 1))
 			return(ft_atoi(&ps.string[i]) + 1);
+		else if(ps.string[i] == '*')
+			return(va_arg(args, int) - 1);
 		i++;
 	}
 	return(0);
 }
 
-void print_on_screen(int repeat, va_list args, char conversion_value)
+void print_c(va_list args, int repeat, const char conversion_value)
 {
 	t_printf ps;
 	int c;
@@ -119,39 +124,53 @@ void print_on_screen(int repeat, va_list args, char conversion_value)
 	}
 }
 
+void print_on_screen(int repeat, va_list args, const char conversion_value)
+{
+	t_printf ps;
+	va_copy(ps.arguments, args);
+	if(conversion_value == 'c')
+		print_c(args, repeat, conversion_value);
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf ps; // print_struct
+	t_variables var;
 	int repeat;
 	int i;
 	int temp_i;
+	int temp_i2;
 	char conversion_value;
 
 	repeat = 0;
 	i = 0;
 	temp_i = 0;
+	temp_i2 = 0;
 	conversion_value = '0';
 	va_copy(ps.arguments, args);
 	ps.string = str;
-	
-	while(ps.string[i])
+
+	var.i = 0;
+	while(ps.string[var.i])
 	{
 //		if(ps.string[i] == '%')
 //		{
 //			c = va_arg(args, int);
 //			ft_putchar(c);
 //		}
-		if(ps.string[i] == '%')
+		if(ps.string[var.i] == '%')
 		{
-			temp_i = i;
-			conversion_value = determine_conversion(ps.string + i);
-			i = temp_i;
-			repeat = start_parsing(args, ps.string + i);
+			temp_i = var.i;
+			conversion_value = determine_conversion(ps.string + var.i, &var);
+			temp_i2 = var.i;
+			var.i = temp_i;
+			repeat = start_parsing(args, ps.string + var.i);
 			print_on_screen(repeat, args, conversion_value);
-		//	conversion_value = determine_conversion(str+i);
-		
+			var.i = temp_i2;
 		}
-		i++;	
+		else
+			ft_putchar(ps.string[var.i]);
+		var.i++;	
 	}
 	return(0);
 }

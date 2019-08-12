@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 14:08:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 16:23:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,12 @@ typedef struct s_variables
 
 //void set_variables_to_zero(t_variables var);
 
-int ft_conversion_symbols(char c);
-int start_parsing(va_list args, const char *str);
-char determine_conversion(const char *str);
-int	ft_printf_driver(va_list args, const char *str);
-
-
-//void simple_printf(const char *fmt, ...);
-int	ft_printf(const char *fmt, ...);
+int 	ft_conversion(const char c);
+char	determine_conversion(const char *str, t_variables *var);
+int		start_parsing(va_list args, const char *str);
+void	print_c(va_list args, int repeat, const char conversion);
+void	print_on_screen(int repeat, va_list args, const char conversion_value);
+int		ft_printf_driver(va_list args, const char *str);
+int		ft_printf(const char *str, ...);
 
 #endif
