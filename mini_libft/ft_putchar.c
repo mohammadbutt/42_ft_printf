@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 19:00:33 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/11 15:25:39 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/11 15:38:55 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "mini_libft.h"
 
-int main(void)
+void ft_putchar(char c)
 {
-
-//	simple_printf(" %  %c this is a test %c %c %c", 'a', 'b', 'c', 'd');
-	
-//	simple_printf("d c f f s", 3, 'a', 1.99, 2.5, "abcdef");
-
-//	printf("%d\n", ft_atoi("345345345"));
-//	ft_printf("%d %s %c %u", )
-//	printf("%3$d %3$d, %1$d %1$d, %2$d %2$+d", -1, 2, 3);
-//	printf("%s", "testing\n");
-	ft_printf("  %3c", 'a');
+	write(1, &c, 1);
 }

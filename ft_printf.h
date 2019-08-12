@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/09 20:15:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/11 19:00:03 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,19 @@
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdio.h>
 
-//void ft_putstr(char *str);
+typedef struct s_printf
+{
+	va_list arguments;
+	const char *string;
+}	t_printf;
 
-void ft_putchar(char c);
-//void ft_strlen(char *str);
-//void ft_putstr(char *str);
-int ft_voncersion_symbols(char c);
-int start_parsing(char *str);
+int ft_conversion_symbols(char c);
+//int start_parsing(va_list args, const char *str);
+char determine_conversion(const char *str);
+int	ft_printf_driver(va_list args, const char *str);
 
-void simple_printf(const char *fmt, ...);
+
+//void simple_printf(const char *fmt, ...);
+int	ft_printf(const char *fmt, ...);
 
 #endif

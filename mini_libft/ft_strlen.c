@@ -1,28 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/11 19:00:33 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/11 15:50:22 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/11 15:51:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "mini_libft.h"
 
-int main(void)
+int ft_strlen(char *str)
 {
+	int i;
 
-//	simple_printf(" %  %c this is a test %c %c %c", 'a', 'b', 'c', 'd');
-	
-//	simple_printf("d c f f s", 3, 'a', 1.99, 2.5, "abcdef");
-
-//	printf("%d\n", ft_atoi("345345345"));
-//	ft_printf("%d %s %c %u", )
-//	printf("%3$d %3$d, %1$d %1$d, %2$d %2$+d", -1, 2, 3);
-//	printf("%s", "testing\n");
-	ft_printf("  %3c", 'a');
+	i = 0;
+	if (str)
+		while (str[i])
+			i++;
+	return (i);
 }
