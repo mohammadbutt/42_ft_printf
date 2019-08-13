@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 19:54:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 21:08:43 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ char determine_conversion(const char *str, t_variables *var)
 	return(str[i]);
 }
 
+//void traverse_negative_sign
 
 int start_parsing(va_list args, const char *str, t_variables *var)
 {
