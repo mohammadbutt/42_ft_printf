@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 16:22:59 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 18:28:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,8 @@ int ft_printf_driver(va_list args, const char *str)
 //			c = va_arg(args, int);
 //			ft_putchar(c);
 //		}
+
+/*
 		if(ps.string[var.i] == '%')
 		{
 			temp_i = var.i;
@@ -170,8 +172,24 @@ int ft_printf_driver(va_list args, const char *str)
 		}
 		else
 			ft_putchar(ps.string[var.i]);
-		var.i++;	
+		var.i++;
+*/
+		if(ps.string[var.i] == '%')
+		{
+		//	temp_i = var.i;
+		//	conversion_value = determine_conversion(ps.string + var.i, &var);
+		//	temp_i2 = var.i;
+		//	var.i = temp_i;
+			repeat = start_parsing(args, ps.string + var.i);
+			conversion_value = determine_conversion(ps.string + var.i, &var);
+			print_on_screen(repeat, args, conversion_value);
+//			var.i = temp_i2;
+		}
+		else
+			ft_putchar(ps.string[var.i]);
+		var.i++;
 	}
+
 	return(0);
 }
 
