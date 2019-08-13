@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 18:28:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/12 19:54:00 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,35 +59,38 @@ int start_parsing(va_list args, const char *str)
 ** Function determine_conversion traverses through a string to check what value
 ** comes after the modulo. Function will traverse through the string to skip
 ** all the elements to get to one of the onversion values: "cspdiouxXf"
-** If the string is "%3c", it will skip '%' and '3', and return 'c'.
+** If the string is "%3c", it will skip '%' and '3', and return 'c' and update
+** the index of the string.
 */
 
 char determine_conversion(const char *str, t_variables *var)
 {
+	
 	int i;
 
-	i = 0;
+	i = 0;	
 	while(str[i])
 	{
 		if(ft_conversion(str[i]) == 1)
-		{
-			var->i = var->i + i;
-			return(str[i]);
-		}
+			break ;
 		i++;
 	}
-	return('A');
+	var->i = var->i + i;
+	return(str[i]);
 }
 
 
-int start_parsing(va_list args, const char *str)
+int start_parsing(va_list args, const char *str, t_variables *var)
 {
 	t_printf ps;
 	int i;
 	int repeat;
+	int return_value;
 
 	i = 0;
+	
 	repeat = 0;
+	return_value = 0;
 	va_copy(ps.arguments, args);
 	ps.string = str;
 	while(ps.string[i] && ft_conversion(ps.string[i]) == 0)
@@ -97,8 +100,16 @@ int start_parsing(va_list args, const char *str)
 		else if((ps.string[i] == '-') && (ft_isdigit1(ps.string[i + 1]) == 1))
 			return(ft_atoi(&ps.string[i]) + 1);
 		else if(ps.string[i] == '*')
-			return(va_arg(args, int) - 1);
+		{
+			return_value = va_arg(args, int);
+			if(return_value > 0)
+				return(return_value - 1);
+			else if(return_value < 0)
+				return(return_value + 1);
+			return(0);
+		}
 		i++;
+		var->i++;
 	}
 	return(0);
 }
@@ -138,14 +149,10 @@ int ft_printf_driver(va_list args, const char *str)
 	t_variables var;
 	int repeat;
 	int i;
-	int temp_i;
-	int temp_i2;
 	char conversion_value;
 
 	repeat = 0;
 	i = 0;
-	temp_i = 0;
-	temp_i2 = 0;
 	conversion_value = '0';
 	va_copy(ps.arguments, args);
 	ps.string = str;
@@ -176,14 +183,9 @@ int ft_printf_driver(va_list args, const char *str)
 */
 		if(ps.string[var.i] == '%')
 		{
-		//	temp_i = var.i;
-		//	conversion_value = determine_conversion(ps.string + var.i, &var);
-		//	temp_i2 = var.i;
-		//	var.i = temp_i;
-			repeat = start_parsing(args, ps.string + var.i);
+			repeat = start_parsing(args, ps.string + var.i, &var);
 			conversion_value = determine_conversion(ps.string + var.i, &var);
 			print_on_screen(repeat, args, conversion_value);
-//			var.i = temp_i2;
 		}
 		else
 			ft_putchar(ps.string[var.i]);
