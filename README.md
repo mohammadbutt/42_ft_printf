@@ -37,6 +37,7 @@ Things to learn:
 
 ### Project summary: 
 
-# References
+# Resources
 1. [Variadic functions - simple_printf](https://en.cppreference.com/w/c/variadic)
 2. [Linux man stdarg](http://man7.org/linux/man-pages/man3/stdarg.3.html)
+3. [Dispatch Table/ Jump Table](https://github.com/uchicago-cs/cmsc23300/tree/master/samples/dispatch_table)
