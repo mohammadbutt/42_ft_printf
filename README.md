@@ -32,7 +32,7 @@ int main(void)
 
 }
 ```
-Things to larn:
+Things to learn:
 - Jump Table, also known as dispatch table
 
 ### Project summary: 
