@@ -32,6 +32,8 @@ int main(void)
 
 }
 ```
+Things to larn:
+- Jump Table, also known as dispatch table
 
 ### Project summary: 
 
