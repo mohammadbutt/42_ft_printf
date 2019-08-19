@@ -17,7 +17,7 @@ Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
 
 ### Flags that cancel out each other:
 - Tests were ran on flags `# 0 - +` and ` ` to determine which ones cancel out each other. Below are the flags that will cancel out each other:
-- flag ` ` is ignored when flag `+` is present.
+- flag `' '` is ignored when flag `+` is present.
 - flag '0' is ignored when flag '-' is present
 
 ### Printf cheatsheet:
