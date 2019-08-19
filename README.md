@@ -32,6 +32,38 @@ int main(void)
 
 }
 ```
+### Brainstorming
+- Flag combinations
+' ' ' ' 
+' ' # 
+' ' 0 
+' ' - 
+' ' + 
+
+# ' '
+# #
+# 0
+# -
+# +
+
+0 ' '
+0 #
+0 0
+0 -
+0 +
+
+- ' '
+- #
+- 0
+- -
+- +
+
++ ' '
++ #
++ 0
++ -
++ +
+
 Things to learn:
 - Jump Table, also known as dispatch table
 
