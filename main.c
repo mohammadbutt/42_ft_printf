@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 15:06:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 16:41:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,11 @@ int main(void)
 int main(void)
 {
 	int num;
+	int width;
 
 	num = 5;
+	width = 308;
 
-	ft_printf("%#0-+ d sdfsdfdf\n", num);
+	ft_printf("%#0-+*d sdfsdfdf\n", width,num);
 	printf("%'d", num);
 }

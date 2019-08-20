@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 15:05:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 16:47:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,13 +144,16 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 		print_c(args, repeat, conversion_value);
 }
 
-void initialize_flag_values(t_printf *pr)
+void initialize_flag_and_field_values(t_printf *pr)
 {
 	pr->flag_hash = false;
 	pr->flag_zero = false;
 	pr->flag_minus = false;
 	pr->flag_plus = false;
 	pr->flag_space = false;
+	pr->width_field = 0;
+	pr->precision_field = 0;
+	pr->length_field = 0;
 }
 
 /*
@@ -191,12 +194,26 @@ void cancel_flags(t_printf *pr)
 	if(pr->flag_minus == true)
 		pr->flag_zero = false;
 }
-/*
-void collect_width(t_printf *pr, t_variables *var)
-{
 
-}
+/*
+** Collect_width function collects width_field for each conversion
 */
+void collect_width(va_list args, t_printf *pr, t_variables *var)
+{
+	va_copy(pr->arguments, args);
+	if(ft_isdigit(pr->string[var->i]) == 1)
+	{
+		pr->width_field = ft_atoi(&pr->string[var->i]);
+		while(ft_isdigit(pr->string[var->i]) == 1)	
+			var->i++;
+	}
+	else if(pr->string[var->i] == '*')
+	{
+		pr->width_field = va_arg(args, int);
+		var->i++;
+	}
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct 
@@ -237,21 +254,21 @@ int ft_printf_driver(va_list args, const char *str)
 */
 		if(pr.string[var.i] == '%')
 		{
-			initialize_flag_values(&pr);
+			initialize_flag_and_field_values(&pr);
 			var.i++;
 			while(collect_flags(&pr, &var) != -1) // Added
 				var.i++;  // Added
 			cancel_flags(&pr);
-//			collect_width(&pr, &var);
+			collect_width(args, &pr, &var);
 
-/*
+
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
 			printf("flag_minus:|%d|\n", pr.flag_minus);
 			printf("flag_plus:|%d|\n", pr.flag_plus);
 			printf("flag_space:|%d|\n", pr.flag_space);
-*/
+			printf("width_field:|%d|\n", pr.width_field);
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);
