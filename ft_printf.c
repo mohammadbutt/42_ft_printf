@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 21:08:43 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:19:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,53 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 		print_c(args, repeat, conversion_value);
 }
 
+void initialize_flag_values(t_printf *pr)
+{
+	pr->flag_hash = false;
+	pr->flag_zero = false;
+	pr->flag_minus = false;
+	pr->flag_plus = false;
+	pr->flag_space = false;
+}
+
+/*
+** Function collect_flags gets called in a while loop and it will run as long as
+** the return value is not -1.
+** Function will return -1 if one of the characters is one of the  conversion
+** symbols, which are cspdiouxX.
+** Below are important notes on ' ' and '0' flags:
+** 1. Flag ' ' is ignored when flag '+' is present.
+** 2. Flag '0' is ignored when flag '-' is present.
+** In the above two cases if '+' is present, flag_space will be set to 0 and if
+** flag -
+*/
+
+int collect_flags(t_printf *pr, t_variables *var)
+{
+	if(pr->string[var->i] == '#')
+		return (pr->flag_hash = true);
+	else if(pr->string[var->i] == '0')
+		return(pr->flag_zero = true);
+	else if(pr->string[var->i] == '-')
+		return (pr->flag_minus = true);
+	else if(pr->string[var->i] == '+')
+		return (pr->flag_plus = true);
+	else if(pr->string[var->i] == ' ')
+		return(pr->flag_space = true);
+	return(-1);
+}
+
+void cancel_flags(t_printf *pr)
+{
+	if(pr->flag_plus == true)
+		pr->flag_space = false;
+	if(pr->flag_minus == true)
+		pr->flag_zero = false;
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
-	t_printf ps; // print_struct
+	t_printf pr; // print_struct 
 	t_variables var;
 	int repeat;
 	int i;
@@ -155,11 +199,11 @@ int ft_printf_driver(va_list args, const char *str)
 	repeat = 0;
 	i = 0;
 	conversion_value = '0';
-	va_copy(ps.arguments, args);
-	ps.string = str;
+	va_copy(pr.arguments, args);
+	pr.string = str;
 
 	var.i = 0;
-	while(ps.string[var.i])
+	while(pr.string[var.i])
 	{
 //		if(ps.string[i] == '%')
 //		{
@@ -182,14 +226,25 @@ int ft_printf_driver(va_list args, const char *str)
 			ft_putchar(ps.string[var.i]);
 		var.i++;
 */
-		if(ps.string[var.i] == '%')
+		if(pr.string[var.i] == '%')
 		{
-			repeat = start_parsing(args, ps.string + var.i, &var);
-			conversion_value = determine_conversion(ps.string + var.i, &var);
-			print_on_screen(repeat, args, conversion_value);
+			initialize_flag_values(&pr);
+			var.i++;
+			while(collect_flags(&pr, &var) != -1) // Added
+				var.i++;  // Added
+			cancel_flags(&pr);
+			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
+			printf("flag_hash:|%d|\n", pr.flag_hash);
+			printf("flag_zero:|%d|\n", pr.flag_zero);
+			printf("flag_minus:|%d|\n", pr.flag_minus);
+			printf("flag_plus:|%d|\n", pr.flag_plus);
+			printf("flag_space:|%d|\n", pr.flag_space);
+//			repeat = start_parsing(args, pr.string + var.i, &var);
+//			conversion_value = determine_conversion(pr.string + var.i, &var);
+//			print_on_screen(repeat, args, conversion_value);
 		}
 		else
-			ft_putchar(ps.string[var.i]);
+			ft_putchar(pr.string[var.i]);
 		var.i++;
 	}
 

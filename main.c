@@ -6,13 +6,15 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 21:08:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/19 19:19:32 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <stdio.h>
+#include <stdbool.h>
 
+/*
 int main(void)
 {
 	int repeat;
@@ -35,4 +37,14 @@ int main(void)
 	ft_printf("   |٪0c||%0c|\n", c); // Works
 	ft_printf("  |٪00c||%00c|\n", c); // Works
 	ft_printf("%");
+}
+*/
+
+int main(void)
+{
+	int num;
+
+	num = 5;
+
+	ft_printf("%#0-+ d", num);
 }
