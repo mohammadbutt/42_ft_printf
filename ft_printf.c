@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/19 21:09:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 15:05:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,12 +191,12 @@ void cancel_flags(t_printf *pr)
 	if(pr->flag_minus == true)
 		pr->flag_zero = false;
 }
-
+/*
 void collect_width(t_printf *pr, t_variables *var)
 {
 
 }
-
+*/
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct 
@@ -242,7 +242,7 @@ int ft_printf_driver(va_list args, const char *str)
 			while(collect_flags(&pr, &var) != -1) // Added
 				var.i++;  // Added
 			cancel_flags(&pr);
-			collect_width(&pr, &var);
+//			collect_width(&pr, &var);
 
 /*
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
