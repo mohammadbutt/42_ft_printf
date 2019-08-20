@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/19 20:17:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/19 21:09:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,13 +156,8 @@ void initialize_flag_values(t_printf *pr)
 /*
 ** Function collect_flags gets called in a while loop and it will run as long as
 ** the return value is not -1.
-** Function will return -1 if one of the characters is one of the  conversion
-** symbols, which are cspdiouxX.
-** Below are important notes on ' ' and '0' flags:
-** 1. Flag ' ' is ignored when flag '+' is present.
-** 2. Flag '0' is ignored when flag '-' is present.
-** In the above two cases if '+' is present, flag_space will be set to 0 and if
-** flag -
+** Function will return -1 if one of the characters is a conversion symbols,
+** which are cspdiouxX.
 */
 
 int collect_flags(t_printf *pr, t_variables *var)
@@ -180,12 +175,26 @@ int collect_flags(t_printf *pr, t_variables *var)
 	return(-1);
 }
 
+/*
+** Function cancel_flags cancels/ignores the below flags:
+** 1. Flag ' ' is ignored when flag '+' is present. So when flag_plus is true,
+** we set flag_space to false.
+**
+** 2. Flag '0' is ignored when flag '-' is present. So when flag_minus is true,
+** we set flag_zero to false.
+*/
+
 void cancel_flags(t_printf *pr)
 {
 	if(pr->flag_plus == true)
 		pr->flag_space = false;
 	if(pr->flag_minus == true)
 		pr->flag_zero = false;
+}
+
+void collect_width(t_printf *pr, t_variables *var)
+{
+
 }
 
 int ft_printf_driver(va_list args, const char *str)
@@ -233,12 +242,16 @@ int ft_printf_driver(va_list args, const char *str)
 			while(collect_flags(&pr, &var) != -1) // Added
 				var.i++;  // Added
 			cancel_flags(&pr);
+			collect_width(&pr, &var);
+
+/*
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
 			printf("flag_minus:|%d|\n", pr.flag_minus);
 			printf("flag_plus:|%d|\n", pr.flag_plus);
 			printf("flag_space:|%d|\n", pr.flag_space);
+*/
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);

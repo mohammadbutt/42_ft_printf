@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/19 20:17:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/19 21:09:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 ** One megabyte = 1024 * 1024 bytes
 ** 1024 bytes x 1024 kb
 ** __________   ________
-** 1 kb          1 mb
+**    1 kb        1 mb
 **
-** 1024 * 1024 bytes / 1 mb
+** 1024 x 1024 bytes / 1 mb
 **
 ** 1048576 bytes = 1 mb
 */
@@ -42,6 +42,10 @@ typedef struct s_printf
 	bool flag_minus;
 	bool flag_plus;
 	bool flag_space;
+	int	width_field;
+	int	precision_field;
+	int length_field;
+
 }	t_printf;
 
 typedef struct s_variables
@@ -61,6 +65,7 @@ void	print_on_screen(int repeat, va_list args, const char conversion_value);
 void	initialize_flag_values(t_printf *pr);
 int 	collect_flags(t_printf *pr, t_variables *var);
 void 	cancel_flags(t_printf *pr);
+void	collect_width(t_printf *pr, t_variables *var);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 
