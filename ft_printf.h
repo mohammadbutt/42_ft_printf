@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/19 19:19:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/19 20:17:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>
+
+/*
+** One megabyte = 1024 * 1024 bytes
+** 1024 bytes x 1024 kb
+** __________   ________
+** 1 kb          1 mb
+**
+** 1024 * 1024 bytes / 1 mb
+**
+** 1048576 bytes = 1 mb
+*/
+
+# define FT_ONE_MEGABYTE 1048576
 
 typedef struct s_printf
 {
