@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 18:00:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:42:27 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,19 @@ typedef struct s_printf
 {
 	va_list arguments;
 	const char *string;
+	int	width_field;
+	int	precision_field;
+	int length_field;
 	bool flag_hash;
 	bool flag_zero;
 	bool flag_minus;
 	bool flag_plus;
 	bool flag_space;
-	int	width_field;
-	int	precision_field;
-	int length_field;
+	bool length_hh;
+	bool length_h;
+	bool length_l;
+	bool length_ll;
+	bool length_L;
 
 }	t_printf;
 
@@ -67,6 +72,7 @@ int 	collect_flags(t_printf *pr, t_variables *var);
 void 	cancel_flags(t_printf *pr);
 void	collect_width(va_list args, t_printf *pr, t_variables *var);
 void	collect_precision(va_list args, t_printf *pr, t_variables *var);
+void	collect_length(t_printf *pr, t_variables *var);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 

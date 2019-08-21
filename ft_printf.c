@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 18:00:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:42:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,14 +146,19 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 
 void initialize_flag_and_field_values(t_printf *pr)
 {
+	pr->width_field = 0;
+	pr->precision_field = 0;
+	pr->length_field = 0;
 	pr->flag_hash = false;
 	pr->flag_zero = false;
 	pr->flag_minus = false;
 	pr->flag_plus = false;
 	pr->flag_space = false;
-	pr->width_field = 0;
-	pr->precision_field = 0;
-	pr->length_field = 0;
+	pr->length_hh = false;
+	pr->length_h = false;
+	pr->length_l = false;
+	pr->length_ll = false;
+	pr->length_L = false;
 }
 
 /*
@@ -232,6 +237,27 @@ void collect_precision(va_list args, t_printf *pr, t_variables *var)
 	}
 }
 
+void collect_length(t_printf *pr, t_variables *var)
+{
+	if(pr->string[var->i] == 'h' && pr->string[var->i + 1] == 'h')
+	{
+		var->i++;
+		pr->length_hh = true;
+	}
+	else if(pr->string[var->i] == 'l' && pr->string[var->i + 1] == 'l')
+	{
+		var->i++;
+		pr->length_ll = true;
+	}
+	else if(pr->string[var->i] == 'h')
+		pr->length_h = true;
+	else if(pr->string[var->i] == 'l')
+		pr->length_l = true;
+	else if(pr->string[var->i] == 'L')
+		pr->length_L = true;
+	var->i++;
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct 
@@ -279,6 +305,7 @@ int ft_printf_driver(va_list args, const char *str)
 			cancel_flags(&pr);
 			collect_width(args, &pr, &var);
 			collect_precision(args, &pr, &var);
+			collect_length(&pr, &var);
 
 
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
@@ -289,6 +316,11 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("flag_space:|%d|\n", pr.flag_space);
 			printf("width_field:|%d|\n", pr.width_field);
 			printf("precision_field:|%d|\n", pr.precision_field);
+			printf("h:|%d|\n", pr.length_h);
+			printf("hh:|%d|\n", pr.length_hh);
+			printf("l:|%d|\n", pr.length_l);
+			printf("ll:|%d|\n", pr.length_ll);
+			printf("L:|%d|\n", pr.length_L);
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);
