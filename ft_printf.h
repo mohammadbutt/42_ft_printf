@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 21:07:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 12:42:55 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,21 @@
 
 # define FT_ONE_MEGABYTE 1048576
 /*
-** Below is a reference for : in structs for flags and length
-** stackoverflow.com/questions/8564532/colon-in-c-struct-what-does-it-mean
+** Colon ':' in structs is called a bit field
 ** 1 bool data type uses 1 bytes. 1 byte = 8 bits. This means a bool will ask
-** for 1 block of memory which will have 8 slates as shown below:
+** for 1 byte of memory which will have 8 bits as shown below:
 **  _ _ _ _ _ _ _ _
 ** |_|_|_|_|_|_|_|_|
 **
-** Unless se specify this entire 1 block will be reserved and used for a single
-** variable. But when we specify by using colon : a bool variable will only
-** use one slot from the block, which means we can have 8 more variables of
-** bool or char data type
+** Unless se specify this entire 1 byte will be reserved and used for a single
+** variable.
+** We can ask for one single bit from a byte and it will look as following:
+**  _
+** |_|
+**
+** When we specify by using colon : a bool variable will only
+** use the specified number of bits of the byte, which means we can have 7 more
+** bits that can be used.
 */
 
 typedef struct s_printf
