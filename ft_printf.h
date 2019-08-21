@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 18:42:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 21:07:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,19 @@
 */
 
 # define FT_ONE_MEGABYTE 1048576
+/*
+** Below is a reference for : in structs for flags and length
+** stackoverflow.com/questions/8564532/colon-in-c-struct-what-does-it-mean
+** 1 bool data type uses 1 bytes. 1 byte = 8 bits. This means a bool will ask
+** for 1 block of memory which will have 8 slates as shown below:
+**  _ _ _ _ _ _ _ _
+** |_|_|_|_|_|_|_|_|
+**
+** Unless se specify this entire 1 block will be reserved and used for a single
+** variable. But when we specify by using colon : a bool variable will only
+** use one slot from the block, which means we can have 8 more variables of
+** bool or char data type
+*/
 
 typedef struct s_printf
 {
@@ -40,24 +53,24 @@ typedef struct s_printf
 	int	width_field;
 	int	precision_field;
 	int length_field;
-	bool flag_hash;
-	bool flag_zero;
-	bool flag_minus;
-	bool flag_plus;
-	bool flag_space;
-	bool length_hh;
-	bool length_h;
-	bool length_l;
-	bool length_ll;
-	bool length_L;
+	bool flag_hash : 1;
+	bool flag_zero : 1;
+	bool flag_minus : 1;
+	bool flag_plus : 1;
+	bool flag_space : 1;
+	bool length_hh : 1;
+	bool length_h : 1;
+	bool length_l : 1;
+	bool length_ll : 1;
+	bool length_L : 1;
 
 }	t_printf;
 
 typedef struct s_variables
 {
 	int i;
-	int c;
-	int repeat;
+//	int c;
+//	int repeat;
 } t_variables;
 
 //void set_variables_to_zero(t_variables var);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 18:42:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 21:08:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ void collect_length(t_printf *pr, t_variables *var)
 
 int ft_printf_driver(va_list args, const char *str)
 {
-	t_printf pr; // print_struct 
+	t_printf pr; // print_struct
 	t_variables var;
 	int repeat;
 	int i;
@@ -307,8 +307,6 @@ int ft_printf_driver(va_list args, const char *str)
 			collect_precision(args, &pr, &var);
 			collect_length(&pr, &var);
 
-
-			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
 			printf("flag_minus:|%d|\n", pr.flag_minus);
@@ -321,6 +319,7 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("l:|%d|\n", pr.length_l);
 			printf("ll:|%d|\n", pr.length_ll);
 			printf("L:|%d|\n", pr.length_L);
+			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);
