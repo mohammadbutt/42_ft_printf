@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 15:28:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 16:27:17 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,27 +21,6 @@ int ft_conversion(const char c)
 	else if(c == 'f')
 		return(1);
 	return(0);
-}
-/*
-** Function find_conversion_index finds the index of the conversion_symbols
-** and returns the index value of it.
-** conversion symbols are: "cspdiouxXf%" stored in FT_VALID_TYPE
-** If conversion_symbol does not exist then the function will return -1
-*/
-
-int find_conversion_index(char *str, char c)
-{
-	int i;
-
-	i = 0;
-	if(str)
-		while(str[i])
-		{
-			if(str[i] == c)
-				return(i);
-			i++;
-		}
-	return(-1);
 }
 
 /*
@@ -180,6 +159,7 @@ void initialize_flag_and_field_values(t_printf *pr)
 	pr->length_l = false;
 	pr->length_ll = false;
 	pr->length_L = false;
+	pr->type_field = 0;
 }
 
 /*
@@ -279,6 +259,55 @@ void collect_length(t_printf *pr, t_variables *var)
 	var->i++;
 }
 
+/*
+** Function collect_type_field finds the index of the conversion symbols.
+** Conversion symbols are: "cspdiouxXf%" stored in macro FT_VALID_TYPE
+** When the conversion symbol is found it's index + 1 is stored in type_field
+** to be used for dispatch table.
+** If the conversion symbol is not found then the type_field will remain 0.
+*/
+
+/*
+void collect_type_field(t_printf *pr, t_variables, char *str, char c)
+{
+	int i;
+
+	i = 0;
+	if(str)
+	{
+		while(str[i])
+		{
+			if(str[i] == c)
+			{
+				pr->type_field = i + 1;
+				return;
+			}
+			i++;
+		}
+	}
+}
+*/
+void collect_type_field(t_printf *pr, t_variables *var)
+{
+	char *str;
+	char c;
+	int i;
+
+	i = 0;
+	str = FT_VALID_TYPE;
+	c = pr->string[var->i];
+	while(str[i])
+	{
+		if(str[i] == c)
+		{
+			pr->type_field = i + 1;
+			return;
+		}
+		i++;
+	}
+}
+
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct
@@ -327,6 +356,8 @@ int ft_printf_driver(va_list args, const char *str)
 			collect_width(args, &pr, &var);
 			collect_precision(args, &pr, &var);
 			collect_length(&pr, &var);
+			collect_type_field(&pr, &var);
+
 
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
@@ -340,6 +371,7 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("l:|%d|\n", pr.length_l);
 			printf("ll:|%d|\n", pr.length_ll);
 			printf("L:|%d|\n", pr.length_L);
+			printf("type_field:|%d|\n", pr.type_field);
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 21:08:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 16:27:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,5 @@ int main(void)
 
 //	ft_printf("%#0-+103.*d sdfsdfdf\n", precision,num);
 //	printf("%'d", num);
-	ft_printf("%Ld\n", num);
+	ft_printf("%L%", num);
 }

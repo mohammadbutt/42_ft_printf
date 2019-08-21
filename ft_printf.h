@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 15:28:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 16:27:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ typedef struct s_printf
 	bool length_l : 1;
 	bool length_ll : 1;
 	bool length_L : 1;
-	int  type_field: 4;
+	int  type_field;
 
 }	t_printf;
 
@@ -82,7 +82,6 @@ typedef struct s_variables
 //void set_variables_to_zero(t_variables var);
 
 int 	ft_conversion(const char c);
-int		find_conversion_index(char *str, char c);
 char	determine_conversion(const char *str, t_variables *var);
 int		start_parsing(va_list args, const char *str, t_variables *var);
 void	print_c(va_list args, int repeat, const char conversion);
@@ -93,6 +92,7 @@ void 	cancel_flags(t_printf *pr);
 void	collect_width(va_list args, t_printf *pr, t_variables *var);
 void	collect_precision(va_list args, t_printf *pr, t_variables *var);
 void	collect_length(t_printf *pr, t_variables *var);
+void	collect_type_field(t_printf *pr ,t_variables *var);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 
