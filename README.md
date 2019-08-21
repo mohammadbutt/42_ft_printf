@@ -75,9 +75,11 @@ Things to learn:
 
 ### Project summary: 
 
-# Resources
+# Resources and Referenes
 1. [Variadic functions - simple_printf](https://en.cppreference.com/w/c/variadic)
 2. [Linux man stdarg](http://man7.org/linux/man-pages/man3/stdarg.3.html)
 3. [printf format syntax - wikipedia](https://en.wikipedia.org/wiki/Printf_format_string#Syntax)
 4. [Dispatch Table or Jump Table (University of Chicago)](https://github.com/uchicago-cs/cmsc23300/tree/master/samples/dispatch_table)
 5. [Dispatch Table - Alice Goldfuss blog](https://blog.alicegoldfuss.com/function-dispatch-tables/)
+6. [Stackoverflow - C Bit Field](https://stackoverflow.com/questions/8564532/colon-in-c-struct-what-does-it-mean)
+7. [Microsoft Documentation - C Bit Field](https://stackoverflow.com/questions/8564532/colon-in-c-struct-what-does-it-mean)
