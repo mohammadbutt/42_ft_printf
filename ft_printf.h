@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 16:47:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:00:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	initialize_flag_and_field_values(t_printf *pr);
 int 	collect_flags(t_printf *pr, t_variables *var);
 void 	cancel_flags(t_printf *pr);
 void	collect_width(va_list args, t_printf *pr, t_variables *var);
+void	collect_precision(va_list args, t_printf *pr, t_variables *var);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 

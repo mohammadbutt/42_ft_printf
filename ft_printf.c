@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 16:47:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/20 18:00:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,24 @@ void collect_width(va_list args, t_printf *pr, t_variables *var)
 	}
 }
 
+void collect_precision(va_list args, t_printf *pr, t_variables *var)
+{
+	va_copy(pr->arguments, args);
+	if(pr->string[var->i] == '.' && ft_isdigit(pr->string[var->i+1]) == 1)
+	{
+		var->i++;
+		pr->precision_field = ft_atoi(&pr->string[var->i]);
+		while(ft_isdigit(pr->string[var->i]) == 1)
+			var->i++;
+	}
+	else if(pr->string[var->i] == '.' && pr->string[var->i+1] == '*')
+	{
+		var->i++;
+		pr->precision_field = va_arg(args, int);
+		var->i++;
+	}
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct 
@@ -260,6 +278,7 @@ int ft_printf_driver(va_list args, const char *str)
 				var.i++;  // Added
 			cancel_flags(&pr);
 			collect_width(args, &pr, &var);
+			collect_precision(args, &pr, &var);
 
 
 			printf("pr.string[var.i]:|%c|\n", pr.string[var.i]);
@@ -269,6 +288,7 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("flag_plus:|%d|\n", pr.flag_plus);
 			printf("flag_space:|%d|\n", pr.flag_space);
 			printf("width_field:|%d|\n", pr.width_field);
+			printf("precision_field:|%d|\n", pr.precision_field);
 //			repeat = start_parsing(args, pr.string + var.i, &var);
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);
