@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 21:08:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 15:28:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,27 @@ int ft_conversion(const char c)
 	else if(c == 'f')
 		return(1);
 	return(0);
+}
+/*
+** Function find_conversion_index finds the index of the conversion_symbols
+** and returns the index value of it.
+** conversion symbols are: "cspdiouxXf%" stored in FT_VALID_TYPE
+** If conversion_symbol does not exist then the function will return -1
+*/
+
+int find_conversion_index(char *str, char c)
+{
+	int i;
+
+	i = 0;
+	if(str)
+		while(str[i])
+		{
+			if(str[i] == c)
+				return(i);
+			i++;
+		}
+	return(-1);
 }
 
 /*
