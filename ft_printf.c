@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 21:41:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 14:35:52 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,9 +207,8 @@ void cancel_flags(t_printf *pr)
 /*
 ** Collect_width function collects width_field for each conversion
 */
-void collect_width(va_list args, t_printf *pr, t_variables *var)
+void collect_width(t_printf *pr, t_variables *var)
 {
-	va_copy(pr->arguments, args);
 	if(ft_isdigit(pr->string[var->i]) == 1)
 	{
 		pr->width_field = ft_atoi(&pr->string[var->i]);
@@ -218,14 +217,13 @@ void collect_width(va_list args, t_printf *pr, t_variables *var)
 	}
 	else if(pr->string[var->i] == '*')
 	{
-		pr->width_field = va_arg(args, int);
+		pr->width_field = va_arg(pr->arguments, int);
 		var->i++;
 	}
 }
 
-void collect_precision(va_list args, t_printf *pr, t_variables *var)
+void collect_precision(t_printf *pr, t_variables *var)
 {
-	va_copy(pr->arguments, args);
 	if(pr->string[var->i] == '.' && ft_isdigit(pr->string[var->i+1]) == 1)
 	{
 		var->i++;
@@ -236,7 +234,7 @@ void collect_precision(va_list args, t_printf *pr, t_variables *var)
 	else if(pr->string[var->i] == '.' && pr->string[var->i+1] == '*')
 	{
 		var->i++;
-		pr->precision_field = va_arg(args, int);
+		pr->precision_field = va_arg(pr->arguments, int);
 		var->i++;
 	}
 }
@@ -323,7 +321,7 @@ void collect_type_field(t_printf *pr, t_variables *var)
 	}
 }
 
-void start_collecting(va_list args, t_printf *pr, t_variables *var)
+void start_collecting(t_printf *pr, t_variables *var)
 {
 	while(collect_flags(pr, var) != -1) // commenting for a quick test
 		var->i++;					    // commenting for a quick test
@@ -332,10 +330,10 @@ void start_collecting(va_list args, t_printf *pr, t_variables *var)
 	cancel_flags(pr);
 
 //	printf("1:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_width(args, pr, var);
+	collect_width(pr, var);
 
 //	printf("2:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_precision(args, pr, var);
+	collect_precision(pr, var);
 
 //	printf("3:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	collect_length(pr, var);
@@ -346,13 +344,13 @@ void start_collecting(va_list args, t_printf *pr, t_variables *var)
 
 }
 
-void print_c(va_list args, t_printf *pr)
+//void print_c(va_list args, t_printf *pr)
+void print_c(t_printf *pr)
 {
 	int c;
 	int repeat;
 
-	va_copy(pr->arguments, args);
-	c = va_arg(args, int);
+	c = va_arg(pr->arguments, int);
 	repeat = 0;
 /*	
 	if(pr->width_field > 0)
@@ -384,10 +382,10 @@ void print_c(va_list args, t_printf *pr)
 	}
 }
 
-void start_printing(va_list args, t_printf *pr)
+void start_printing(t_printf *pr)
 {
-//	if(pr->type_field == 1)
-		print_c(args, pr);
+	if(pr->type_field == 1)
+		print_c(pr);
 }
 
 int ft_printf_driver(va_list args, const char *str)
@@ -432,16 +430,19 @@ int ft_printf_driver(va_list args, const char *str)
 		{
 			initialize_flag_and_field_values(&pr);
 			var.i++;
-//			while(collect_flags(&pr, &var) != -1)
-//				var.i++;
-//			cancel_flags(&pr);
-//			collect_width(args, &pr, &var);
-//			collect_precision(args, &pr, &var);
-//			collect_length(&pr, &var);
-//			collect_type_field(&pr, &var);
-			
-			start_collecting(args, &pr, &var);
-			start_printing(args, &pr);
+/*
+			while(collect_flags(&pr, &var) != -1)
+				var.i++;
+			cancel_flags(&pr);
+			collect_width(args, &pr, &var);
+			collect_precision(args, &pr, &var);
+			collect_length(&pr, &var);
+			collect_type_field(&pr, &var);
+*/
+			start_collecting(&pr, &var);
+			start_printing(&pr);
+
+
 /*	
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
@@ -467,7 +468,7 @@ int ft_printf_driver(va_list args, const char *str)
 			ft_putchar(pr.string[var.i]);
 		var.i++;
 	}
-
+	va_end(pr.arguments);
 	return(0);
 }
 
