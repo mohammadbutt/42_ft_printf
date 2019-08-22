@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 17:37:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 17:38:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@
 ** Unless se specify this entire 1 byte will be reserved and used for a single
 ** variable.
 ** We can ask for one single bit from a byte and it will look as following:
-**  _    ┅   ┏━┓┏━┓┏━┓┏━┓┏━┓┏━┓┏━┓┏━┓
-** |_|  ┆    ┗━┛┗━┛┗━┛┗━┛┗━┛┗━┛┗━┛┗━┛
+**  _
+** |_|
 **
 ** When we specify by using colon : a bool variable will only
 ** use the specified number of bits of the byte, which means we can have 7 more
