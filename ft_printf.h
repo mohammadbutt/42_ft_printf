@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 14:35:55 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:28:41 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,9 @@ typedef struct s_variables
 //	int repeat;
 } t_variables;
 
+/*
+** rop stands for return_of_printf
+*/
 typedef struct s_printf
 {
 	t_variables var;
@@ -78,7 +81,7 @@ typedef struct s_printf
 	bool length_L : 1;
 	int  type_field;
 
-	int return_ftprintf;
+	int return_of_printf;
 
 }	t_printf;
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 14:35:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:28:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,25 @@ int main(void)
 }
 */
 
+
 int main(void)
 {
-	int num = 5;
-	char c;
+	int return1;
+	int return2;
 
+//	int num = 5;
+	char c;
+	return1 = 0;
+	return2 = 0;
 	c = 'a';
 
-	   printf("   printf:|%-5c %3c %2c|sdf\n", c, c, c);
-	ft_printf("ft_printf:|%-5c %3c %2c|sdf\n", c, c, c);
-	printf("%d\n", num);
+//	return1 =   printf("   printf:|%-5c %3c %2c|sdf\n", c, c, c);
+//	return2 = ft_printf("ft_printf:|%-5c %3c %2c|sdf\n", c, c, c);
+
+	return1 = printf("%");
+	return2 = ft_printf("%");
+//	ft_printf("%");
+//	printf("   printf_return:|%d|\n", return1);
+//	printf("ft_printf_return:|%d|\n", return2);
 }
 

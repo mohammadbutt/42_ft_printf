@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/09 20:28:34 by mbutt            ###   ########.fr        #
+#    Updated: 2019/08/22 15:28:26 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I. -c
 
-SRC = *.c
+//SRC = *.c
+SRC = $(filter-out main.c, $(wildcard *.c))
 MINI_LIBFT = mini_libft/*.c
 OBJ = *.o
 

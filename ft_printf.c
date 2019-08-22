@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 14:35:52 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 15:28:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,8 +244,11 @@ void collect_length(t_printf *pr, t_variables *var)
 	char c;
 	char d;
 
+//	if(pr->string[var->i] != '\0')
+//	{
 	c = pr->string[var->i];
 	d = pr->string[var->i + 1];
+//	}
 	if((c == 'h' && d == 'h') || (c == 'l' && d == 'l'))
 	{
 		if(c == 'h' && d == 'h')
@@ -368,17 +371,17 @@ void print_c(t_printf *pr)
 	{
 		if(pr->flag_zero == true)
 			while(repeat--)
-				write(1, "0", 1);
+				pr->return_of_printf += write(1, "0", 1);
 		else if(pr->flag_zero == false)
 			while(repeat--)
-				write(1, " ", 1);
-		write(1, &c, 1);
+				pr->return_of_printf += write(1, " ", 1);
+		pr->return_of_printf += write(1, &c, 1);
 	}
 	else if(pr->flag_minus == true)
 	{
-		write(1, &c, 1);
+		pr->return_of_printf += write(1, &c, 1);
 		while(repeat--)
-			write(1, " ", 1);
+			pr->return_of_printf += write(1, " ", 1);
 	}
 }
 
@@ -392,17 +395,12 @@ int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct
 	t_variables var;
-	int repeat;
-	int i;
-	char conversion_value;
 
-	repeat = 0;
-	i = 0;
-	conversion_value = '0';
 	va_copy(pr.arguments, args);
+	pr.return_of_printf = 0;
 	pr.string = str;
-
 	var.i = 0;
+
 	while(pr.string[var.i])
 	{
 //		if(ps.string[i] == '%')
@@ -465,11 +463,15 @@ int ft_printf_driver(va_list args, const char *str)
 //			print_on_screen(repeat, args, conversion_value);
 		}
 		else
-			ft_putchar(pr.string[var.i]);
+			pr.return_of_printf += write(1, &pr.string[var.i], 1);
+		if(var.i-1 == '%' && var.i == '\0')
+			var.i = var.i - 1;
+		printf("|%c|\n", pr.string[var.i]);
 		var.i++;
 	}
 	va_end(pr.arguments);
-	return(0);
+	return(pr.return_of_printf);
+//	return(0);
 }
 
 /*
@@ -485,7 +487,7 @@ int ft_printf(const char *str, ...)
 
 	ft_printf_return = 0;
 	va_start(args, str);
-	ft_printf_driver(args, str);
+	ft_printf_return = ft_printf_driver(args, str);
 	
 	va_end(args);
 	return(ft_printf_return);
