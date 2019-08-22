@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 15:28:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 16:29:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,11 +244,10 @@ void collect_length(t_printf *pr, t_variables *var)
 	char c;
 	char d;
 
-//	if(pr->string[var->i] != '\0')
-//	{
+//	if(!(pr->string[var->i]))
+//		return ;
 	c = pr->string[var->i];
 	d = pr->string[var->i + 1];
-//	}
 	if((c == 'h' && d == 'h') || (c == 'l' && d == 'l'))
 	{
 		if(c == 'h' && d == 'h')
@@ -311,6 +310,8 @@ void collect_type_field(t_printf *pr, t_variables *var)
 	int i;
 
 	i = 0;
+//	if(!(pr->string[var->i]))
+//		return ;
 	str = FT_VALID_TYPE;
 	c = pr->string[var->i];
 	while(str[i])
@@ -400,7 +401,6 @@ int ft_printf_driver(va_list args, const char *str)
 	pr.return_of_printf = 0;
 	pr.string = str;
 	var.i = 0;
-
 	while(pr.string[var.i])
 	{
 //		if(ps.string[i] == '%')
@@ -437,6 +437,8 @@ int ft_printf_driver(va_list args, const char *str)
 			collect_length(&pr, &var);
 			collect_type_field(&pr, &var);
 */
+			if(pr.string[var.i] == '\0')
+				return(pr.return_of_printf);
 			start_collecting(&pr, &var);
 			start_printing(&pr);
 
@@ -464,9 +466,6 @@ int ft_printf_driver(va_list args, const char *str)
 		}
 		else
 			pr.return_of_printf += write(1, &pr.string[var.i], 1);
-		if(var.i-1 == '%' && var.i == '\0')
-			var.i = var.i - 1;
-		printf("|%c|\n", pr.string[var.i]);
 		var.i++;
 	}
 	va_end(pr.arguments);
