@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 16:27:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 18:27:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -307,6 +307,16 @@ void collect_type_field(t_printf *pr, t_variables *var)
 	}
 }
 
+void start_collecting(va_list args, t_printf *pr, t_variables *var)
+{
+	while(collect_flags(pr, var) != -1)
+		var->i++;
+	cancel_flags(pr);
+	collect_width(args, pr, var);
+	collect_precision(args, pr, var);
+	collect_length(pr, var);
+	collect_type_field(pr, var);
+}
 
 int ft_printf_driver(va_list args, const char *str)
 {
@@ -350,14 +360,15 @@ int ft_printf_driver(va_list args, const char *str)
 		{
 			initialize_flag_and_field_values(&pr);
 			var.i++;
-			while(collect_flags(&pr, &var) != -1) // Added
-				var.i++;  // Added
-			cancel_flags(&pr);
-			collect_width(args, &pr, &var);
-			collect_precision(args, &pr, &var);
-			collect_length(&pr, &var);
-			collect_type_field(&pr, &var);
-
+//			while(collect_flags(&pr, &var) != -1)
+//				var.i++;
+//			cancel_flags(&pr);
+//			collect_width(args, &pr, &var);
+//			collect_precision(args, &pr, &var);
+//			collect_length(&pr, &var);
+//			collect_type_field(&pr, &var);
+			
+			start_collecting(args, &pr, &var);
 
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
