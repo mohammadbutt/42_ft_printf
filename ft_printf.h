@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/21 18:27:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/21 21:41:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_variables
 int 	ft_conversion(const char c);
 char	determine_conversion(const char *str, t_variables *var);
 int		start_parsing(va_list args, const char *str, t_variables *var);
-void	print_c(va_list args, int repeat, const char conversion);
+//void	print_c(va_list args, int repeat, const char conversion);
 void	print_on_screen(int repeat, va_list args, const char conversion_value);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collecting(va_list args, t_printf *pr, t_variables *var);
@@ -94,6 +94,8 @@ void	collect_width(va_list args, t_printf *pr, t_variables *var);
 void	collect_precision(va_list args, t_printf *pr, t_variables *var);
 void	collect_length(t_printf *pr, t_variables *var);
 void	collect_type_field(t_printf *pr ,t_variables *var);
+void	start_printing(va_list args, t_printf *pr);
+void	print_c(va_list args, t_printf *pr);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 
