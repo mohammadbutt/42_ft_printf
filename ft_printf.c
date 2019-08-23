@@ -6,12 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 18:33:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:10:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+/*
 int ft_conversion(const char c)
 {
 	if(c == 'c' || c == 's' || c == 'p')
@@ -22,7 +23,7 @@ int ft_conversion(const char c)
 		return(1);
 	return(0);
 }
-
+*/
 /*
 int start_parsing(va_list args, const char *str)
 {
@@ -63,6 +64,7 @@ int start_parsing(va_list args, const char *str)
 ** the index of the string.
 */
 
+/*
 char determine_conversion(const char *str, t_variables *var)
 {
 	
@@ -78,9 +80,10 @@ char determine_conversion(const char *str, t_variables *var)
 	var->i = var->i + i;
 	return(str[i]);
 }
-
+*/
 //void traverse_negative_sign
 
+/*
 int start_parsing(va_list args, const char *str, t_variables *var)
 {
 	t_printf ps;
@@ -114,7 +117,7 @@ int start_parsing(va_list args, const char *str, t_variables *var)
 	}
 	return(0);
 }
-
+*/
 /*
 void print_c(va_list args, int repeat, const char conversion_value)
 {
@@ -152,38 +155,37 @@ void initialize_flag_and_field_values(t_printf *pr)
 	pr->width_field = 0;
 	pr->precision_field = 0;
 	pr->length_field = 0;
-	pr->flag_hash = false;
-	pr->flag_zero = false;
-	pr->flag_minus = false;
-	pr->flag_plus = false;
-	pr->flag_space = false;
-	pr->length_hh = false;
-	pr->length_h = false;
-	pr->length_l = false;
-	pr->length_ll = false;
-	pr->length_L = false;
 	pr->type_field = 0;
+	pr->flag.hash = false;
+	pr->flag.zero = false;
+	pr->flag.minus = false;
+	pr->flag.plus = false;
+	pr->flag.space = false;
+	pr->length.hh = false;
+	pr->length.h = false;
+	pr->length.l = false;
+	pr->length.ll = false;
+	pr->length.L = false;
 }
 
 /*
 ** Function collect_flags gets called in a while loop and it will run as long as
 ** the return value is not -1.
-** Function will return -1 if one of the characters is a conversion symbols,
-** which are cspdiouxX.
+** Function will return -1 if the character is not '#' '0' '-' '+' ' '.
 */
 
-int collect_flags(t_printf *pr, t_variables *var)
+int collect_flags(t_printf *pr)
 {
-	if(pr->string[var->i] == '#')
-		return (pr->flag_hash = true);
-	else if(pr->string[var->i] == '0')
-		return(pr->flag_zero = true);
-	else if(pr->string[var->i] == '-')
-		return (pr->flag_minus = true);
-	else if(pr->string[var->i] == '+')
-		return (pr->flag_plus = true);
-	else if(pr->string[var->i] == ' ')
-		return(pr->flag_space = true);
+	if(pr->string[pr->var.i] == '#')
+		return (pr->flag.hash = true);
+	else if(pr->string[pr->var.i] == '0')
+		return(pr->flag.zero = true);
+	else if(pr->string[pr->var.i] == '-')
+		return (pr->flag.minus = true);
+	else if(pr->string[pr->var.i] == '+')
+		return (pr->flag.plus = true);
+	else if(pr->string[pr->var.i] == ' ')
+		return(pr->flag.space = true);
 	return(-1);
 }
 
@@ -198,71 +200,79 @@ int collect_flags(t_printf *pr, t_variables *var)
 
 void cancel_flags(t_printf *pr)
 {
-	if(pr->flag_plus == true)
-		pr->flag_space = false;
-	if(pr->flag_minus == true)
-		pr->flag_zero = false;
+	if(pr->flag.plus == true)
+		pr->flag.space = false;
+	if(pr->flag.minus == true)
+		pr->flag.zero = false;
 }
 
 /*
 ** Collect_width function collects width_field for each conversion
 */
-void collect_width(t_printf *pr, t_variables *var)
+
+void collect_width(t_printf *pr)
 {
-	if(ft_isdigit(pr->string[var->i]) == 1)
+	if(ft_isdigit(pr->string[pr->var.i]) == 1)
 	{
-		pr->width_field = ft_atoi(&pr->string[var->i]);
-		while(ft_isdigit(pr->string[var->i]) == 1)	
-			var->i++;
+		pr->width_field = ft_atoi(&pr->string[pr->var.i]);
+		while(ft_isdigit(pr->string[pr->var.i]) == 1)	
+			pr->var.i++;
 	}
-	else if(pr->string[var->i] == '*')
+	else if(pr->string[pr->var.i] == '*')
 	{
 		pr->width_field = va_arg(pr->arguments, int);
-		var->i++;
+		pr->var.i++;
 	}
 }
 
-void collect_precision(t_printf *pr, t_variables *var)
+void collect_precision(t_printf *pr)
 {
-	if(pr->string[var->i] == '.' && ft_isdigit(pr->string[var->i+1]) == 1)
+	int current_i;
+	int next_i;
+
+	current_i = pr->var.i;
+	next_i = pr->var.i + 1;
+//	if(pr->string[pr->var.i] == '.' && ft_isdigit(pr->string[pr->var.i + 1]) == 1)
+	if(pr->string[current_i] == '.' && ft_isdigit(pr->string[next_i]) == 1)
 	{
-		var->i++;
-		pr->precision_field = ft_atoi(&pr->string[var->i]);
-		while(ft_isdigit(pr->string[var->i]) == 1)
-			var->i++;
+		pr->var.i++;
+		pr->precision_field = ft_atoi(&pr->string[pr->var.i]);
+		while(ft_isdigit(pr->string[pr->var.i]) == 1)
+			pr->var.i++;
 	}
-	else if(pr->string[var->i] == '.' && pr->string[var->i+1] == '*')
+//	else if(pr->string[pr->var.i] == '.' && pr->string[pr->var.i + 1] == '*')
+	else if(pr->string[current_i] == '.' && pr->string[next_i] == '*')
 	{
-		var->i++;
 		pr->precision_field = va_arg(pr->arguments, int);
-		var->i++;
+		pr->var.i = pr->var.i + 2;
 	}
 }
 
-void collect_length(t_printf *pr, t_variables *var)
+void collect_length(t_printf *pr)
 {
-	char c;
-	char d;
+	char current;
+	char next;
 
-	c = pr->string[var->i];
-	d = pr->string[var->i + 1];
-	if((c == 'h' && d == 'h') || (c == 'l' && d == 'l'))
+	current = pr->string[pr->var.i];
+	next = pr->string[pr->var.i + 1];
+
+	if((current == 'h' && next == 'h') || (current == 'l' && next == 'l'))
 	{
-		if(c == 'h' && d == 'h')
-			pr->length_hh = true;
-		else if(c == 'l' && d == 'l')
-			pr->length_ll = true;
-		var->i = var->i + 2;
+		if(current == 'h' && next == 'h')
+			pr->length.hh = true;
+		else if(current == 'l' && next == 'l')
+			pr->length.ll = true;
+		pr->var.i = pr->var.i + 2;
 	}
-	else if(c == 'h' || c == 'l' || c == 'L')
+	else if(current == 'h' || current == 'l' || current == 'L')
 	{
-		if(c == 'h')
-			pr->length_h = true;
-		else if(c == 'l')
-			pr->length_l = true;
-		else if(c == 'L')
-			pr->length_L = true;
-		var->i++;
+		if(current == 'h')
+			pr->length.h = true;
+		else if(current == 'l')
+			pr->length.l = true;
+		else if(current == 'L')
+			pr->length.L = true;
+		pr->var.i++;
 	}
 }
 
@@ -279,29 +289,7 @@ void collect_length(t_printf *pr, t_variables *var)
 ** If the conversion symbol is not found then the type_field will remain 0.
 */
 
-/*
-void collect_type_field(t_printf *pr, t_variables, char *str, char c)
-{
-	int i;
-
-	i = 0;
-	if(str)
-	{
-		while(str[i])
-		{
-			if(str[i] == c)
-			{
-				pr->type_field = i + 1;
-				return;
-			}
-			i++;
-		}
-	}
-}
-*/
-
-
-void collect_type_field(t_printf *pr, t_variables *var)
+void collect_type_field(t_printf *pr)
 {
 	char *str;
 	char c;
@@ -309,7 +297,7 @@ void collect_type_field(t_printf *pr, t_variables *var)
 
 	i = 0;
 	str = FT_VALID_TYPE;
-	c = pr->string[var->i];
+	c = pr->string[pr->var.i];
 	while(str[i])
 	{
 		if(str[i] == c)
@@ -321,30 +309,29 @@ void collect_type_field(t_printf *pr, t_variables *var)
 	}
 }
 
-void start_collecting(t_printf *pr, t_variables *var)
+void start_collecting(t_printf *pr)
 {
-	while(collect_flags(pr, var) != -1)
-		var->i++;
+	while(collect_flags(pr) != -1)
+		pr->var.i++;
 	
 //	printf("0:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	cancel_flags(pr);
 
 //	printf("1:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_width(pr, var);
+	collect_width(pr);
 
 //	printf("2:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_precision(pr, var);
+	collect_precision(pr);
 
 //	printf("3:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_length(pr, var);
+	collect_length(pr);
 
 //	printf("4:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-	collect_type_field(pr, var);
+	collect_type_field(pr);
 //	printf("5:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 
 }
 
-//void print_c(va_list args, t_printf *pr)
 void print_c(t_printf *pr)
 {
 	int c;
@@ -364,17 +351,17 @@ void print_c(t_printf *pr)
 */
 	if(pr->width_field > 0)
 		repeat = pr->width_field - 1;
-	if(pr->flag_minus == false)
+	if(pr->flag.minus == false)
 	{
-		if(pr->flag_zero == true)
+		if(pr->flag.zero == true)
 			while(repeat--)
 				pr->return_of_printf += write(1, "0", 1);
-		else if(pr->flag_zero == false)
+		else if(pr->flag.zero == false)
 			while(repeat--)
 				pr->return_of_printf += write(1, " ", 1);
 		pr->return_of_printf += write(1, &c, 1);
 	}
-	else if(pr->flag_minus == true)
+	else if(pr->flag.minus == true)
 	{
 		pr->return_of_printf += write(1, &c, 1);
 		while(repeat--)
@@ -382,7 +369,7 @@ void print_c(t_printf *pr)
 	}
 }
 
-void print_percent(t_printf *pr, t_variables *var)
+void print_percent(t_printf *pr)
 {
 	int repeat;
 
@@ -390,44 +377,41 @@ void print_percent(t_printf *pr, t_variables *var)
 
 	if(pr->width_field > 0)
 		repeat = pr->width_field - 1;
-	if(pr->flag_minus == false)
+	if(pr->flag.minus == false)
 	{
-		if(pr->flag_zero == true)
+		if(pr->flag.zero == true)
 			while(repeat--)
 				pr->return_of_printf += write(1, "0", 1);
-		else if(pr->flag_zero == false)
+		else if(pr->flag.zero == false)
 			while(repeat--)
 				pr->return_of_printf += write(1, " ", 1);
-		pr->return_of_printf += write(1, &pr->string[var->i], 1);
-		pr->var.i++;
+		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1);
 	}
-	else if(pr->flag_minus == true)
+	else if(pr->flag.minus == true)
 	{
-		pr->return_of_printf += write(1, &pr->string[var->i], 1);
+		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1);
 		while(repeat--)
 			pr->return_of_printf += write(1, " ", 1);
-		pr->var.i++;
 	}
 }
 
-void start_printing(t_printf *pr, t_variables *var)
+void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
 		print_c(pr);
 	else if(pr->type_field == 11)
-		print_percent(pr, var);
+		print_percent(pr);
 }
 
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct
-	t_variables var;
 
 	va_copy(pr.arguments, args);
 	pr.return_of_printf = 0;
 	pr.string = str;
-	var.i = 0;
-	while(pr.string[var.i])
+	pr.var.i = 0;
+	while(pr.string[pr.var.i])
 	{
 //		if(ps.string[i] == '%')
 //		{
@@ -450,10 +434,10 @@ int ft_printf_driver(va_list args, const char *str)
 			ft_putchar(ps.string[var.i]);
 		var.i++;
 */
-		if(pr.string[var.i] == '%')
+		if(pr.string[pr.var.i] == '%')
 		{
 			initialize_flag_and_field_values(&pr);
-			var.i++;
+			pr.var.i++;
 /*
 			while(collect_flags(&pr, &var) != -1)
 				var.i++;
@@ -463,11 +447,10 @@ int ft_printf_driver(va_list args, const char *str)
 			collect_length(&pr, &var);
 			collect_type_field(&pr, &var);
 */
-			if(pr.string[var.i] == '\0')
+			if(pr.string[pr.var.i] == '\0')
 				return(pr.return_of_printf);
-			start_collecting(&pr, &var);
-			start_printing(&pr, &var);
-
+			start_collecting(&pr);
+			start_printing(&pr);
 
 /*	
 			printf("flag_hash:|%d|\n", pr.flag_hash);
@@ -490,13 +473,14 @@ int ft_printf_driver(va_list args, const char *str)
 //			conversion_value = determine_conversion(pr.string + var.i, &var);
 //			print_on_screen(repeat, args, conversion_value);
 		}
+		else if(pr.string[pr.var.i] == '\0')
+			return(pr.return_of_printf);
 		else
-			pr.return_of_printf += write(1, &pr.string[var.i], 1);
-		var.i++;
+			pr.return_of_printf += write(1, &pr.string[pr.var.i], 1);
+		pr.var.i++;
 	}
 	va_end(pr.arguments);
 	return(pr.return_of_printf);
-//	return(0);
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 18:33:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:11:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,65 +58,57 @@ typedef struct s_variables
 //	int repeat;
 } t_variables;
 
-/*
-** rop stands for return_of_printf
-*/
+typedef struct s_flag
+{
+	bool hash : 1;
+	bool zero : 1;
+	bool minus : 1;
+	bool plus : 1;
+	bool space : 1;
+} t_flag;
+
+typedef struct s_length
+{
+	bool hh : 1;
+	bool h : 1;
+	bool l : 1;
+	bool ll : 1;
+	bool L : 1;
+} t_length;
+
 typedef struct s_printf
 {
 	t_variables var;
+	t_flag flag;
+	t_length length;
 	va_list arguments;
 	const char *string;
 	int	width_field;
 	int	precision_field;
 	int length_field;
-	bool flag_hash : 1;
-	bool flag_zero : 1;
-	bool flag_minus : 1;
-	bool flag_plus : 1;
-	bool flag_space : 1;
-	bool length_hh : 1;
-	bool length_h : 1;
-	bool length_l : 1;
-	bool length_ll : 1;
-	bool length_L : 1;
 	int  type_field;
-
 	int return_of_printf;
 
 }	t_printf;
 
-
-//void set_variables_to_zero(t_variables var);
-
 int 	ft_conversion(const char c);
 char	determine_conversion(const char *str, t_variables *var);
 int		start_parsing(va_list args, const char *str, t_variables *var);
-//void	print_c(va_list args, int repeat, const char conversion);
 void	print_on_screen(int repeat, va_list args, const char conversion_value);
 void	initialize_flag_and_field_values(t_printf *pr);
-
-/*
-void	start_collecting(va_list args, t_printf *pr, t_variables *var);
-int 	collect_flags(t_printf *pr, t_variables *var);
+void	start_collecting(t_printf *pr);
+int 	collect_flags(t_printf *pr);
 void 	cancel_flags(t_printf *pr);
-void	collect_width(va_list args, t_printf *pr, t_variables *var);
-void	collect_precision(va_list args, t_printf *pr, t_variables *var);
-void	collect_length(t_printf *pr, t_variables *var);
-void	collect_type_field(t_printf *pr ,t_variables *var);
-void	start_printing(va_list args, t_printf *pr);
-void	print_c(va_list args, t_printf *pr);
-*/
-
-void	start_collecting(t_printf *pr, t_variables *var);
-int 	collect_flags(t_printf *pr, t_variables *var);
-void 	cancel_flags(t_printf *pr);
-void	collect_width(t_printf *pr, t_variables *var);
-void	collect_precision(t_printf *pr, t_variables *var);
-void	collect_length(t_printf *pr, t_variables *var);
-void	collect_type_field(t_printf *pr, t_variables *var);
-void	start_printing(t_printf *pr, t_variables *var);
+void	collect_width(t_printf *pr);
+void	collect_precision(t_printf *pr);
+void	collect_length(t_printf *pr);
+void	collect_type_field(t_printf *pr);
+void	start_printing(t_printf *pr);
 void	print_c(t_printf *pr);
-void	print_percent(t_printf *pr, t_variables *var);
+void	print_percent(t_printf *pr);
+
+
+//typedef void print_functions(t_printf *pr)
 
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
