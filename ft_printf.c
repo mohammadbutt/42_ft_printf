@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 21:50:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 16:36:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,10 +229,9 @@ void collect_precision(t_printf *pr)
 {
 	int current_i;
 	int next_i;
-
+	
 	current_i = pr->var.i;
 	next_i = pr->var.i + 1;
-//	if(pr->string[pr->var.i] == '.' && ft_isdigit(pr->string[pr->var.i + 1]) == 1)
 	if(pr->string[current_i] == '.' && ft_isdigit(pr->string[next_i]) == 1)
 	{
 		pr->var.i++;
@@ -240,7 +239,6 @@ void collect_precision(t_printf *pr)
 		while(ft_isdigit(pr->string[pr->var.i]) == 1)
 			pr->var.i++;
 	}
-//	else if(pr->string[pr->var.i] == '.' && pr->string[pr->var.i + 1] == '*')
 	else if(pr->string[current_i] == '.' && pr->string[next_i] == '*')
 	{
 		pr->precision_field = va_arg(pr->arguments, int);
@@ -339,33 +337,29 @@ void print_c(t_printf *pr)
 
 	c = va_arg(pr->arguments, int);
 	repeat = 0;
-/*	
-	if(pr->width_field > 0)
-		repeat = pr->width_field - 1;
-	if(pr->flag_minus == false && pr->flag_zero == true)
-		while(repeat--)
-			write(1, "0", 1);
-	else if(pr->flag_minus == false && pr->flag_zero == false)
-		while(repeat--)
-			write(1, " ", 1);
-*/
 	if(pr->width_field > 0)
 		repeat = pr->width_field - 1;
 	if(pr->flag.minus == false)
 	{
 		if(pr->flag.zero == true)
 			while(repeat--)
-				pr->return_of_printf += write(1, "0", 1);
+//				pr->return_of_printf += write(1, "0", 1); // commenting
+				pr->buffer[pr->buffer_i++] = '0'; 		// Adding
 		else if(pr->flag.zero == false)
 			while(repeat--)
-				pr->return_of_printf += write(1, " ", 1);
-		pr->return_of_printf += write(1, &c, 1);
+//				pr->return_of_printf += write(1, " ", 1); // Commenting
+				pr->buffer[pr->buffer_i++] = ' '; 		// Adding
+
+//		pr->return_of_printf += write(1, &c, 1);		// commenting
+		pr->buffer[pr->buffer_i++] = c; //				// Adding
 	}
 	else if(pr->flag.minus == true)
 	{
-		pr->return_of_printf += write(1, &c, 1);
+//		pr->return_of_printf += write(1, &c, 1);         // commenting
+		pr->buffer[pr->buffer_i++] = c;					// Adding
 		while(repeat--)
-			pr->return_of_printf += write(1, " ", 1);
+//			pr->return_of_printf += write(1, " ", 1);    // Commenting
+			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
@@ -381,23 +375,28 @@ void print_percent(t_printf *pr)
 	{
 		if(pr->flag.zero == true)
 			while(repeat--)
-				pr->return_of_printf += write(1, "0", 1);
+//				pr->return_of_printf += write(1, "0", 1); // Commenting
+				pr->buffer[pr->buffer_i++] = '0'; 			// Adding
 		else if(pr->flag.zero == false)
 			while(repeat--)
-				pr->return_of_printf += write(1, " ", 1);
-		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1);
+//				pr->return_of_printf += write(1, " ", 1); // commenting
+				pr->buffer[pr->buffer_i++] = ' '; 			// Adding
+
+//		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1); // Commenting
+		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i]; 		// Adding
 	}
 	else if(pr->flag.minus == true)
 	{
-		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1);
+//		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1); // commenting
+		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i]; // Adding
 		while(repeat--)
-			pr->return_of_printf += write(1, " ", 1);
+//			pr->return_of_printf += write(1, " ", 1); // Commenting
+			pr->buffer[pr->buffer_i++] = ' ';         // Adding
 	}
 }
 
 void start_printing(t_printf *pr)
 {
-	
 	if(pr->type_field == 1)
 		print_c(pr);
 	else if(pr->type_field == 11)
@@ -406,56 +405,38 @@ void start_printing(t_printf *pr)
 //	ft_dispatch_table[pr->type_field](pr);
 }
 
+void start_parsing(t_printf *pr)
+{
+	pr->var.i++;
+	initialize_flag_and_field_values(pr);
+	if(pr->string[pr->var.i] == '\0')
+		return;
+	start_collecting(pr);
+	start_printing(pr);
+}
+
+void initialize_printf_struct(t_printf *pr, const char *str)
+{
+	pr->string = str;
+	pr->return_of_printf = 0;
+	pr->var.i = 0;
+	pr->buffer_i = 0;
+}
+
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct
 	
 	va_copy(pr.arguments, args);
-	pr.string = str;
-	pr.return_of_printf = 0;
-	pr.var.i = 0;
-	pr.buffer_i = 0;
+	initialize_printf_struct(&pr, str);
 	while(pr.string[pr.var.i])
 	{
-//		if(ps.string[i] == '%')
-//		{
-//			c = va_arg(args, int);
-//			ft_putchar(c);
-//		}
-
-/*
-		if(ps.string[var.i] == '%')
-		{
-			temp_i = var.i;
-			conversion_value = determine_conversion(ps.string + var.i, &var);
-			temp_i2 = var.i;
-			var.i = temp_i;
-			repeat = start_parsing(args, ps.string + var.i);
-			print_on_screen(repeat, args, conversion_value);
-			var.i = temp_i2;
-		}
-		else
-			ft_putchar(ps.string[var.i]);
-		var.i++;
-*/
 		if(pr.string[pr.var.i] == '%')
 		{
-			initialize_flag_and_field_values(&pr);
-			pr.var.i++;
-/*
-			while(collect_flags(&pr, &var) != -1)
-				var.i++;
-			cancel_flags(&pr);
-			collect_width(args, &pr, &var);
-			collect_precision(args, &pr, &var);
-			collect_length(&pr, &var);
-			collect_type_field(&pr, &var);
-*/
+			start_parsing(&pr);
 			if(pr.string[pr.var.i] == '\0')
-				return(pr.return_of_printf);
-			start_collecting(&pr);
-			start_printing(&pr);
-
+//				return(pr.return_of_printf); // Commenting
+				return(write(1, pr.buffer, pr.buffer_i)); // Adding
 /*	
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
@@ -469,22 +450,18 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("l:|%d|\n", pr.length_l);
 			printf("ll:|%d|\n", pr.length_ll);
 			printf("L:|%d|\n", pr.length_L);
-
 			printf("\ntype_field:|%d|\n", pr.type_field);
 			printf("\npr.string[var.i]:|%c|\n", pr.string[var.i]);
 */
-//			repeat = start_parsing(args, pr.string + var.i, &var);
-//			conversion_value = determine_conversion(pr.string + var.i, &var);
-//			print_on_screen(repeat, args, conversion_value);
 		}
-		else if(pr.string[pr.var.i] == '\0')
-			return(pr.return_of_printf);
 		else
-			pr.return_of_printf += write(1, &pr.string[pr.var.i], 1);
+		//	pr.return_of_printf += write(1, &pr.string[pr.var.i], 1); // Commenting
+			pr.buffer[pr.buffer_i++] = pr.string[pr.var.i]; // Adding
 		pr.var.i++;
 	}
 	va_end(pr.arguments);
-	return(pr.return_of_printf);
+//	return(pr.return_of_printf); Commenting
+	return(write(1, pr.buffer, pr.buffer_i)); // Adding;
 }
 
 /*

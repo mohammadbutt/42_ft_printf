@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 21:50:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 16:36:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,10 +93,11 @@ typedef struct s_printf
 
 }	t_printf;
 
-int 	ft_conversion(const char c);
-char	determine_conversion(const char *str, t_variables *var);
-int		start_parsing(va_list args, const char *str, t_variables *var);
-void	print_on_screen(int repeat, va_list args, const char conversion_value);
+//int 	ft_conversion(const char c);
+//char	determine_conversion(const char *str, t_variables *var);
+//int		start_parsing(va_list args, const char *str, t_variables *var);
+//void	print_on_screen(int repeat, va_list args, const char conversion_value);
+void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collecting(t_printf *pr);
 int 	collect_flags(t_printf *pr);
@@ -118,7 +119,7 @@ ft_print_functions *ft_dispatch_table[2] =
 	print_percent
 };
 */
-
+void	initialize_printf_struct(t_printf *pr, const char *str);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 
