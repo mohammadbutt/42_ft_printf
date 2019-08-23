@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 21:11:38 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:50:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,10 @@ typedef struct s_printf
 	t_variables var;
 	t_flag flag;
 	t_length length;
+	char buffer[FT_ONE_MEGABYTE];
 	va_list arguments;
 	const char *string;
+	int buffer_i;
 	int	width_field;
 	int	precision_field;
 	int length_field;
@@ -107,8 +109,15 @@ void	start_printing(t_printf *pr);
 void	print_c(t_printf *pr);
 void	print_percent(t_printf *pr);
 
+/*
+typedef void ft_print_functions(t_printf *pr);
 
-//typedef void print_functions(t_printf *pr)
+ft_print_functions *ft_dispatch_table[2] =
+{
+	print_c,
+	print_percent
+};
+*/
 
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 21:10:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 21:50:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -397,20 +397,24 @@ void print_percent(t_printf *pr)
 
 void start_printing(t_printf *pr)
 {
+	
 	if(pr->type_field == 1)
 		print_c(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
+
+//	ft_dispatch_table[pr->type_field](pr);
 }
 
 int ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr; // print_struct
-
+	
 	va_copy(pr.arguments, args);
-	pr.return_of_printf = 0;
 	pr.string = str;
+	pr.return_of_printf = 0;
 	pr.var.i = 0;
+	pr.buffer_i = 0;
 	while(pr.string[pr.var.i])
 	{
 //		if(ps.string[i] == '%')
