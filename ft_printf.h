@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 16:29:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:33:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,8 +114,9 @@ void	collect_width(t_printf *pr, t_variables *var);
 void	collect_precision(t_printf *pr, t_variables *var);
 void	collect_length(t_printf *pr, t_variables *var);
 void	collect_type_field(t_printf *pr, t_variables *var);
-void	start_printing(t_printf *pr);
+void	start_printing(t_printf *pr, t_variables *var);
 void	print_c(t_printf *pr);
+void	print_percent(t_printf *pr, t_variables *var);
 
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);

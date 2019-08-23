@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/22 16:29:59 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/22 18:33:17 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,8 +244,6 @@ void collect_length(t_printf *pr, t_variables *var)
 	char c;
 	char d;
 
-//	if(!(pr->string[var->i]))
-//		return ;
 	c = pr->string[var->i];
 	d = pr->string[var->i + 1];
 	if((c == 'h' && d == 'h') || (c == 'l' && d == 'l'))
@@ -310,8 +308,6 @@ void collect_type_field(t_printf *pr, t_variables *var)
 	int i;
 
 	i = 0;
-//	if(!(pr->string[var->i]))
-//		return ;
 	str = FT_VALID_TYPE;
 	c = pr->string[var->i];
 	while(str[i])
@@ -327,8 +323,8 @@ void collect_type_field(t_printf *pr, t_variables *var)
 
 void start_collecting(t_printf *pr, t_variables *var)
 {
-	while(collect_flags(pr, var) != -1) // commenting for a quick test
-		var->i++;					    // commenting for a quick test
+	while(collect_flags(pr, var) != -1)
+		var->i++;
 	
 //	printf("0:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	cancel_flags(pr);
@@ -386,10 +382,40 @@ void print_c(t_printf *pr)
 	}
 }
 
-void start_printing(t_printf *pr)
+void print_percent(t_printf *pr, t_variables *var)
+{
+	int repeat;
+
+	repeat = 0;
+
+	if(pr->width_field > 0)
+		repeat = pr->width_field - 1;
+	if(pr->flag_minus == false)
+	{
+		if(pr->flag_zero == true)
+			while(repeat--)
+				pr->return_of_printf += write(1, "0", 1);
+		else if(pr->flag_zero == false)
+			while(repeat--)
+				pr->return_of_printf += write(1, " ", 1);
+		pr->return_of_printf += write(1, &pr->string[var->i], 1);
+		pr->var.i++;
+	}
+	else if(pr->flag_minus == true)
+	{
+		pr->return_of_printf += write(1, &pr->string[var->i], 1);
+		while(repeat--)
+			pr->return_of_printf += write(1, " ", 1);
+		pr->var.i++;
+	}
+}
+
+void start_printing(t_printf *pr, t_variables *var)
 {
 	if(pr->type_field == 1)
 		print_c(pr);
+	else if(pr->type_field == 11)
+		print_percent(pr, var);
 }
 
 int ft_printf_driver(va_list args, const char *str)
@@ -440,7 +466,7 @@ int ft_printf_driver(va_list args, const char *str)
 			if(pr.string[var.i] == '\0')
 				return(pr.return_of_printf);
 			start_collecting(&pr, &var);
-			start_printing(&pr);
+			start_printing(&pr, &var);
 
 
 /*	
