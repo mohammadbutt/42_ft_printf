@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 18:25:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 19:07:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -354,22 +354,16 @@ void print_c(t_printf *pr)
 	{
 		if(pr->flag.zero == true)
 			while(repeat--)
-//				pr->return_of_printf += write(1, "0", 1); // commenting
-				pr->buffer[pr->buffer_i++] = '0'; 		// Adding
+				pr->buffer[pr->buffer_i++] = '0';
 		else if(pr->flag.zero == false)
 			while(repeat--)
-//				pr->return_of_printf += write(1, " ", 1); // Commenting
-				pr->buffer[pr->buffer_i++] = ' '; 		// Adding
-
-//		pr->return_of_printf += write(1, &c, 1);		// commenting
-		pr->buffer[pr->buffer_i++] = c; //				// Adding
+				pr->buffer[pr->buffer_i++] = ' ';
+		pr->buffer[pr->buffer_i++] = c;
 	}
 	else if(pr->flag.minus == true)
 	{
-//		pr->return_of_printf += write(1, &c, 1);         // commenting
-		pr->buffer[pr->buffer_i++] = c;					// Adding
+		pr->buffer[pr->buffer_i++] = c;
 		while(repeat--)
-//			pr->return_of_printf += write(1, " ", 1);    // Commenting
 			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
@@ -386,26 +380,26 @@ void print_percent(t_printf *pr)
 	{
 		if(pr->flag.zero == true)
 			while(repeat--)
-//				pr->return_of_printf += write(1, "0", 1); // Commenting
-				pr->buffer[pr->buffer_i++] = '0'; 			// Adding
+				pr->buffer[pr->buffer_i++] = '0';
 		else if(pr->flag.zero == false)
 			while(repeat--)
-//				pr->return_of_printf += write(1, " ", 1); // commenting
-				pr->buffer[pr->buffer_i++] = ' '; 			// Adding
-
-//		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1); // Commenting
-		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i]; 		// Adding
+				pr->buffer[pr->buffer_i++] = ' ';
+		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
 	}
 	else if(pr->flag.minus == true)
 	{
-//		pr->return_of_printf += write(1, &pr->string[pr->var.i], 1); // commenting
-		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i]; // Adding
+		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
 		while(repeat--)
-//			pr->return_of_printf += write(1, " ", 1); // Commenting
-			pr->buffer[pr->buffer_i++] = ' ';         // Adding
+			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
+/*
+void print_s(t_printf *pr)
+{
+
+}
+*/
 void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
@@ -449,8 +443,7 @@ int ft_printf_driver(va_list args, const char *str)
 		{
 			start_parsing(&pr);
 			if(pr.string[pr.var.i] == '\0')
-//				return(pr.return_of_printf); // Commenting
-				return(write(1, pr.buffer, pr.buffer_i)); // Adding
+				return(write(1, pr.buffer, pr.buffer_i));
 /*	
 			printf("flag_hash:|%d|\n", pr.flag_hash);
 			printf("flag_zero:|%d|\n", pr.flag_zero);
@@ -469,13 +462,11 @@ int ft_printf_driver(va_list args, const char *str)
 */
 		}
 		else
-		//	pr.return_of_printf += write(1, &pr.string[pr.var.i], 1); // Commenting
-			pr.buffer[pr.buffer_i++] = pr.string[pr.var.i]; // Adding
+			pr.buffer[pr.buffer_i++] = pr.string[pr.var.i];
 		pr.var.i++;
 	}
 	va_end(pr.arguments);
-//	return(pr.return_of_printf); Commenting
-	return(write(1, pr.buffer, pr.buffer_i)); // Adding;
+	return(write(1, pr.buffer, pr.buffer_i));
 }
 
 /*

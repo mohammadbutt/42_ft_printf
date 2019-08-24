@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:52:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 18:25:47 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 19:07:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ft_bzero(void *s, size_t len)
 {
-	char	*str;
+	unsigned char *str;
 	size_t	i;
 
 	str = s;
