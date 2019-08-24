@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 19:07:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 21:03:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,16 +157,16 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 ** RETURN VALUE: Concatenated destination string
 */
 
-char *ft_strappend(char *dest, int dest_index, char *source)
+//void ft_strappend(char *dest, int dest_index, char *source)
+void	ft_strappend(t_printf *pr, char *source)
 {
 	int i;
 
 	i = 0;
 	if(source)
 		while(source[i])
-			dest[dest_index++] = source[i++];
-	dest[dest_index] = '\0';
-	return(dest);
+			pr->buffer[pr->buffer_i++] = source[i++];
+	pr->buffer[pr->buffer_i] = '\0';
 }
 
 void initialize_flag_and_field_values(t_printf *pr)
@@ -394,6 +394,41 @@ void print_percent(t_printf *pr)
 	}
 }
 
+void print_s(t_printf *pr)
+{
+	char *temp_str;
+	char str[FT_ONE_MEGABYTE];
+	int repeat;
+	
+	repeat = 0;
+//	temp_str = NULL;
+//	str = NULL;
+	temp_str = va_arg(pr->arguments, char *);
+	if(pr->precision_field >= 0)
+		ft_strncpy(str, temp_str, pr->precision_field);
+	else
+		ft_strcpy(temp_str, str);
+	(pr->width_field > 0) && (repeat = pr->width_field);
+	repeat = repeat - ft_strlen(str);
+	(repeat < 0) && (repeat = 0);
+	if(pr->flag.minus == false)
+	{
+		if(pr->flag.zero == true)
+			while(repeat--)
+				pr->buffer[pr->buffer_i++] = '0';
+		else if(pr->flag.zero == false)
+			while(repeat--)
+				pr->buffer[pr->buffer_i++] = ' ';
+		ft_strappend(pr, str);
+	}
+	else if(pr->flag.minus == true)
+	{
+		ft_strappend(pr, str);
+		while(repeat--)
+			pr->buffer[pr->buffer_i++] = ' ';
+	}
+}
+
 /*
 void print_s(t_printf *pr)
 {
@@ -404,8 +439,8 @@ void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
 		print_c(pr);
-//	else if(pr->type_field == 2)
-//		print_s(pr);
+	else if(pr->type_field == 2)
+		print_s(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 

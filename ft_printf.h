@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 19:07:46 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 21:03:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ typedef struct s_printf
 //char	determine_conversion(const char *str, t_variables *var);
 //int		start_parsing(va_list args, const char *str, t_variables *var);
 //void	print_on_screen(int repeat, va_list args, const char conversion_value);
-char 	*ft_strappend(char *dest, int dest_index, char *source);
+void 	ft_strappend(t_printf *pr, char *source);
 void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collecting(t_printf *pr);
