@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 16:36:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 18:17:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>
+#include <string.h>
 
 /*
 ** One megabyte = 1024 * 1024 bytes
@@ -60,20 +61,20 @@ typedef struct s_variables
 
 typedef struct s_flag
 {
-	bool hash : 1;
-	bool zero : 1;
-	bool minus : 1;
-	bool plus : 1;
-	bool space : 1;
+	bool hash; //: 1;
+	bool zero; //: 1;
+	bool minus; //: 1;
+	bool plus; //: 1;
+	bool space; //: 1;
 } t_flag;
 
 typedef struct s_length
 {
-	bool hh : 1;
-	bool h : 1;
-	bool l : 1;
-	bool ll : 1;
-	bool L : 1;
+	bool hh; //: 1;
+	bool h; //: 1;
+	bool l; //: 1;
+	bool ll; //: 1;
+	bool L; //: 1;
 } t_length;
 
 typedef struct s_printf
@@ -97,6 +98,7 @@ typedef struct s_printf
 //char	determine_conversion(const char *str, t_variables *var);
 //int		start_parsing(va_list args, const char *str, t_variables *var);
 //void	print_on_screen(int repeat, va_list args, const char conversion_value);
+char 	*ft_strappend(char *dest, int dest_index, char *source);
 void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collecting(t_printf *pr);
@@ -108,6 +110,7 @@ void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
 void	start_printing(t_printf *pr);
 void	print_c(t_printf *pr);
+void	print_s(t_printf *pr);
 void	print_percent(t_printf *pr);
 
 /*

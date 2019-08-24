@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 16:36:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 18:25:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,22 +150,33 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 		print_c(args, repeat, conversion_value);
 }
 */
+/*
+** Function ft_strappend works just like strcat, but ft_strappend takes the
+** last index of the destination beforehand, so once the function starts,
+** it will start appending from the last index.
+** RETURN VALUE: Concatenated destination string
+*/
+
+char *ft_strappend(char *dest, int dest_index, char *source)
+{
+	int i;
+
+	i = 0;
+	if(source)
+		while(source[i])
+			dest[dest_index++] = source[i++];
+	dest[dest_index] = '\0';
+	return(dest);
+}
+
 void initialize_flag_and_field_values(t_printf *pr)
 {
 	pr->width_field = 0;
 	pr->precision_field = 0;
 	pr->length_field = 0;
 	pr->type_field = 0;
-	pr->flag.hash = false;
-	pr->flag.zero = false;
-	pr->flag.minus = false;
-	pr->flag.plus = false;
-	pr->flag.space = false;
-	pr->length.hh = false;
-	pr->length.h = false;
-	pr->length.l = false;
-	pr->length.ll = false;
-	pr->length.L = false;
+	ft_bzero(&pr->flag, sizeof(pr->flag));
+	ft_bzero(&pr->length, sizeof(pr->length));
 }
 
 /*
@@ -399,6 +410,8 @@ void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
 		print_c(pr);
+//	else if(pr->type_field == 2)
+//		print_s(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
@@ -425,10 +438,11 @@ void initialize_printf_struct(t_printf *pr, const char *str)
 
 int ft_printf_driver(va_list args, const char *str)
 {
-	t_printf pr; // print_struct
-	
+	t_printf pr; // print_struct	
+	ft_bzero(&pr, sizeof(pr));
 	va_copy(pr.arguments, args);
-	initialize_printf_struct(&pr, str);
+//	initialize_printf_struct(&pr, str);
+	pr.string = str;
 	while(pr.string[pr.var.i])
 	{
 		if(pr.string[pr.var.i] == '%')

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/20 16:42:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/23 18:25:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 ** mini_libft function prototypes-----------------------------------------------
 */
 
+void	ft_bzero(void *str, size_t len);
 int		ft_abs(int num);
 int		ft_atoi(const char *str);
 int		ft_isspace(int c);
