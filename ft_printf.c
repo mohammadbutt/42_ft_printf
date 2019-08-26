@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/25 18:56:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 19:25:39 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -471,11 +471,16 @@ void print_s(t_printf *pr)
 	
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
-	(temp_s == NULL) && (temp_s = "(null)");
-	(pr->precision_field > 0) && (ft_strncpy(str, temp_s, pr->precision_field));
-	(pr->precision_field == -1) && (ft_strcpy(str, temp_s));
-	(pr->precision_field == 0) && (ft_strcpy(str, NULL));
-	(pr->width_field > 0) && (repeat = pr->width_field);
+	if(temp_s == NULL)
+		temp_s = "(null)";
+	if (pr->precision_field > 0)
+		ft_strncpy(str, temp_s, pr->precision_field);
+	else if(pr->precision_field == -1)
+		ft_strcpy(str, temp_s);
+	else if(pr->precision_field == 0)
+		(ft_strcpy(str, NULL));
+	if(pr->width_field > 0)
+		repeat = pr->width_field;
 	repeat = repeat - ft_strlen(str);
 	(repeat < 0) && (repeat = 0);
 	print_s_append_buffer(pr, str, repeat);
