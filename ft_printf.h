@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/25 18:56:14 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 21:09:43 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ void	print_c(t_printf *pr);
 void	print_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
+void 	print_p(t_printf *pr);
 
 /*
 typedef void ft_print_functions(t_printf *pr);

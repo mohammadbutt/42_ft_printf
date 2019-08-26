@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/25 19:25:39 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 21:09:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -486,18 +486,24 @@ void print_s(t_printf *pr)
 	print_s_append_buffer(pr, str, repeat);
 }
 
-/*
-void print_s(t_printf *pr)
-{
 
+void print_p(t_printf *pr)
+{
+	int_fast64_t pointer;
+
+	pointer = (int_fast64_t)va_arg(pr->arguments, void *);
+//	pointer = va_arg(pr->arguments, void *);	
+	printf("|%lld|\n", pointer);
 }
-*/
+
 void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
 		print_c(pr);
 	else if(pr->type_field == 2)
 		print_s(pr);
+	else if(pr->type_field == 3)
+		print_p(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
