@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 21:03:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 17:02:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,9 @@ int main(void)
 	return2 = 0;
 	c = 'a';
 	char *str1 = "Test";
+	char *str2 = "abcd";
+	char *str3 = "123";
+	char *str4 = "@#$%^";
 
 //	return1 =   printf("   printf:|%-5c %3c %2c|sdf\n", c, c, c);
 //	return2 = ft_printf("ft_printf:|%-5c %3c %2c|sdf\n", c, c, c);
@@ -79,7 +82,7 @@ int main(void)
 //	printf("ft_printf_return:|%d|\n", return2);
 //	printf("   printf_return:|%c|\n", c);
 //	printf("ft_printf_return:|%c|\n", c);
-	   printf("   printf:|%.1s|\n", str1);
-	ft_printf("ft_printf:|%.1s|\n", str1);
+	   printf("   printf:|%-.2s|%s|%5.0s|%5.s|%10s|%.05s|%.05s|\n", str1, str2, str3, str4, NULL, NULL, "");
+	ft_printf("ft_printf:|%-.2s|%s|%5.0s|%5.s|%10s|%.05s|%.05s|\n", str1, str2, str3, str4, NULL, NULL, "");
 }
 

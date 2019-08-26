@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/23 21:03:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 18:38:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,7 +172,7 @@ void	ft_strappend(t_printf *pr, char *source)
 void initialize_flag_and_field_values(t_printf *pr)
 {
 	pr->width_field = 0;
-	pr->precision_field = 0;
+	pr->precision_field = -1;
 	pr->length_field = 0;
 	pr->type_field = 0;
 	ft_bzero(&pr->flag, sizeof(pr->flag));
@@ -254,6 +254,11 @@ void collect_precision(t_printf *pr)
 	{
 		pr->precision_field = va_arg(pr->arguments, int);
 		pr->var.i = pr->var.i + 2;
+	}
+	else if(pr->string[current_i] == '.' && ft_isdigit(pr->string[next_i]) != 1)
+	{
+		pr->var.i++;
+		pr->precision_field = 0;
 	}
 }
 
@@ -394,23 +399,26 @@ void print_percent(t_printf *pr)
 	}
 }
 
-void print_s(t_printf *pr)
+/*
+** print_s_append_buffer looks if the minus flag is true or false.
+** If the minus flag is false which means it is 0, then we will look at the zero
+** flag.
+** 1. If the zero flag is true then we will store '0' as many times as the
+** repeat value onto the buffer. Repeat is also called pad/padding.
+** 2. If the zero flag is false then then we will store ' ' space as many times
+** as the repeat value onto the buffer.
+** 3. Finally we will append the str that was previously stored using va_arg.
+** 
+** If the minus flag is true which means it is 1, we will do the following two
+** things.
+** 1. Append the string from str to buffer.
+** 2. Then append ' ', space as any times as the repeat value, or the pad.
+**
+** Note: If the minus flag is true then the 0 zero flag is ignored.
+*/
+
+void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 {
-	char *temp_str;
-	char str[FT_ONE_MEGABYTE];
-	int repeat;
-	
-	repeat = 0;
-//	temp_str = NULL;
-//	str = NULL;
-	temp_str = va_arg(pr->arguments, char *);
-	if(pr->precision_field >= 0)
-		ft_strncpy(str, temp_str, pr->precision_field);
-	else
-		ft_strcpy(temp_str, str);
-	(pr->width_field > 0) && (repeat = pr->width_field);
-	repeat = repeat - ft_strlen(str);
-	(repeat < 0) && (repeat = 0);
 	if(pr->flag.minus == false)
 	{
 		if(pr->flag.zero == true)
@@ -427,6 +435,33 @@ void print_s(t_printf *pr)
 		while(repeat--)
 			pr->buffer[pr->buffer_i++] = ' ';
 	}
+}
+
+/*
+** print_s function does two things:
+** 1. Looks at the precision_field value to determine how many characters will
+** have to be appended so we store those in str variable.
+** 2. Looks at the width_field to calculate the repeat value. This repeat value
+** will be used to determine how much padding will be placed in the beginning
+** or end of the string.
+*/
+
+void print_s(t_printf *pr)
+{
+	char *temp_s;
+	char str[FT_ONE_MEGABYTE];
+	int repeat;
+	
+	repeat = 0;
+	temp_s = va_arg(pr->arguments, char *);
+	(temp_s == NULL) && (temp_s = "(null)");
+	(pr->precision_field > 0) && (ft_strncpy(str, temp_s, pr->precision_field));
+	(pr->precision_field == -1) && (ft_strcpy(str, temp_s));
+	(pr->precision_field == 0) && (ft_strcpy(str, NULL));
+	(pr->width_field > 0) && (repeat = pr->width_field);
+	repeat = repeat - ft_strlen(str);
+	(repeat < 0) && (repeat = 0);
+	print_s_append_buffer(pr, str, repeat);
 }
 
 /*
