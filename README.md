@@ -84,3 +84,4 @@ Things to learn:
 6. [C Bit Field - Stackoverflow](https://stackoverflow.com/questions/8564532/colon-in-c-struct-what-does-it-mean)
 7. [C Bit Field - Microsoft Documentation](https://docs.microsoft.com/en-us/cpp/c-language/c-bit-fields?view=vs-2019)
 8. [Conversion/Type Chart - cplusplus](http://www.cplusplus.com/reference/cstdio/printf/)
+9. [Fixed Width Integer Types - cppreference](https://en.cppreference.com/w/c/types/integer)
