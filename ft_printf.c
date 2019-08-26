@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/25 18:38:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/25 18:56:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,14 +150,15 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 		print_c(args, repeat, conversion_value);
 }
 */
+
 /*
-** Function ft_strappend works just like strcat, but ft_strappend takes the
-** last index of the destination beforehand, so once the function starts,
-** it will start appending from the last index.
+** Function ft_strappend works just like strcat, but it takes in the struct and
+** source string to append.
+** Destination string and index inside the struct are used to append the source
+** to the end of the destination.
 ** RETURN VALUE: Concatenated destination string
 */
 
-//void ft_strappend(char *dest, int dest_index, char *source)
 void	ft_strappend(t_printf *pr, char *source)
 {
 	int i;
@@ -168,6 +169,22 @@ void	ft_strappend(t_printf *pr, char *source)
 			pr->buffer[pr->buffer_i++] = source[i++];
 	pr->buffer[pr->buffer_i] = '\0';
 }
+
+/*
+char *ft_strappend(char *dest, int dest_index, char *source)
+{
+	int i;
+
+	i = 0;
+	if(source)
+		while(source[i])
+			dest[dest_index++] = source[i++];
+	dest[dest_index] = '\0';
+	printf("|%s|\n", dest);
+	return(dest);
+}
+*/
+
 
 void initialize_flag_and_field_values(t_printf *pr)
 {
