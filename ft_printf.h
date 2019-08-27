@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/26 22:09:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/27 16:23:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>
-#include <string.h>
+# include <string.h>
+//# include "forbidden.h"
 
 /*
 ** One megabyte = 1024 * 1024 bytes
@@ -112,12 +113,14 @@ void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
 void	start_printing(t_printf *pr);
 void	print_c(t_printf *pr);
-int		find_padding(t_printf *pr, int string_length);
+//int		find_padding(t_printf *pr, int string_length);
+int		find_padding(int field, int string_length);
 void	print_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
 void 	print_p(t_printf *pr);
-void	print_p_append_buffer(t_printf *pr, char *str, int repeat, int temp_repeat, int_fast64_t pointer_value);
+void	append_to_buffer_in_loop(t_printf *pr, int x_times, char *str);
+void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
 
 /*
 typedef void ft_print_functions(t_printf *pr);

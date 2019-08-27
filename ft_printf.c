@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/26 22:21:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/27 16:23:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -454,6 +454,22 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 	}
 }
 
+/*
+** In field parameter we can pass in width_field or precision_field.
+*/
+
+int find_padding(int field, int string_length)
+{
+	int repeat;
+
+	repeat = 0;
+	repeat = field - string_length;
+	if(repeat < 0)
+		return(0);
+	return(repeat);
+}
+
+/*
 int find_padding(t_printf *pr, int string_length)
 {
 	int repeat;
@@ -464,7 +480,7 @@ int find_padding(t_printf *pr, int string_length)
 		return(repeat = 0);
 	return(repeat);
 }
-
+*/
 /*
 ** print_s function does two things:
 ** 1. Looks at the precision_field value to determine how many characters will
@@ -490,45 +506,98 @@ void print_s(t_printf *pr)
 		ft_strcpy(str, temp_s);
 	else if(pr->precision_field == 0)
 		(ft_strcpy(str, NULL));
-	repeat = pr->width_field - ft_strlen(str);
+//	repeat = pr->width_field - ft_strlen(str);
 //	if(repeat < 0)
 //		repeat = 0;
-	repeat = find_padding(pr, ft_strlen(str));
+//	repeat = find_padding(pr, ft_strlen(str));
+	repeat = find_padding(pr->width_field, ft_strlen(str));
 	print_s_append_buffer(pr, str, repeat);
 }
 
-void print_p_append_buffer(t_printf *pr, char *str, int repeat, int temp_repeat, int_fast64_t pointer_value)
+/*
+void p_flag_minus_f(t_printf *pr, char *str, int re_width, int re_precision)
+{
+	if(pr->flag.zero == false)
+	{
+		while(re_width--)
+			pr->buffer[pr->buffer_i++] = ' ';
+		ft_strappend(pr, "0x");
+	}
+	if(pr->precision_field > 0 && re_precision > 0)
+	{
+		while(re_precision--)
+			ft_strappend(pr, "0");
+	}
+	ft_strappend(pr, str);
+}
+
+void p_flag_minu_t(t_printf *pr, char *str, int re_width, int re_precision)
+{
+	ft_strappend(pr, "0x");
+	if(pr->precision_field > 0 && re_precision > 0)
+		while(re_precision--)
+			ft_strappend(pr, "0");
+	ft_strappend(pr, str);
+	while(re_width--)
+		pr->buffer[pr->buffer_i++] = ' ';
+
+}
+*/
+
+/*
+** Function append_to_buffer in loop will append the string or a character in a
+** while loop as many times as the x_times value.
+**
+** Note: Uses ft_str_append function so the string, or character will be
+** appended at the end of the buffer and buffer_index will be incremented
+*/
+
+void append_to_buffer_in_loop(t_printf *pr, int x_times, char *str)
+{
+	int len;
+
+	len = ft_strlen(str);
+	if(len > 1)
+		while(x_times--)   // This line
+			ft_strappend(pr, str); // And this 2nd line is what we really need
+	else if(len == 1)
+		while(x_times--)
+			pr->buffer[pr->buffer_i++] = str[0];
+}
+
+void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 {
 	if(pr->flag.minus == false)
 	{
 		if(pr->flag.zero == false)
 		{
-			while(repeat--)
-				pr->buffer[pr->buffer_i++] = ' ';
+	//		while(re_width--)
+	//			pr->buffer[pr->buffer_i++] = ' ';
+	//		while(re_width--)
+	//			ft_strappend(pr, " ");
+			append_to_buffer_in_loop(pr, re_width, " ");
 			ft_strappend(pr, "0x");
 		}
-//		if(pr->precision_field == 0 && pointer_value == 0)
-//			return;
-		if(pr->precision_field > 0 && temp_repeat > 0)
+		if(pr->precision_field > 0 && re_precision > 0)
 		{
-			while(temp_repeat--)
-				ft_strappend(pr, "0");
+//			while(re_precision--)
+//				ft_strappend(pr, "0");
+			append_to_buffer_in_loop(pr, re_precision, "0");
 		}
 		ft_strappend(pr, str);
 	}
 	else if(pr->flag.minus == true)
 	{
 		ft_strappend(pr, "0x");
-//		if(pr->precision_field == 0 && pointer_value == 0)
-//			return;
-		if(pr->precision_field > 0 && temp_repeat > 0)
-			while(temp_repeat--)
-				ft_strappend(pr, "0");
+		if(pr->precision_field > 0 && re_precision > 0)
+//			while(re_precision--)
+//				ft_strappend(pr, "0");
+			append_to_buffer_in_loop(pr, re_precision, "0");
 		ft_strappend(pr, str);
-		while(repeat--)
-			pr->buffer[pr->buffer_i++] = ' ';
+		append_to_buffer_in_loop(pr, re_width, " ");
+//		while(re_width--)
+//			pr->buffer[pr->buffer_i++] = ' ';
 	}
-	pointer_value++;
 }
 
 void print_p(t_printf *pr)
@@ -536,46 +605,26 @@ void print_p(t_printf *pr)
 	int_fast64_t pointer_value;
 	char str[16];
 	char temp_str1[16];
-//	char temp_str2[16];
-	int repeat;
-	int temp_repeat;
+	int re_width;
+	int re_precision;
 
-	repeat = 0;
 	pointer_value = (int_fast64_t)va_arg(pr->arguments, void *);
-
-	printf("pointer_valu:|%lld|\n", pointer_value);
 	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
-	repeat = find_padding(pr, ft_strlen(temp_str1) + 2);
-	temp_repeat = pr->precision_field - ft_strlen(temp_str1);
-	if(temp_repeat < 0)
-		temp_repeat = 0;
+	re_width = find_padding(pr->width_field, ft_strlen(temp_str1) + 2);
+	re_precision = find_padding(pr->precision_field, ft_strlen(temp_str1));
 	if(pr->flag.zero == true && pr->flag.minus == false)
 	{
 		ft_strappend(pr, "0x");
-		while(repeat--)
+		while(re_width--)
 			pr->buffer[pr->buffer_i++] = '0';
 	}
-//	ft_strcat(temp_str2, temp_str1);
 	if(pointer_value == 0 && pr->precision_field != 0)
 		ft_strcpy(str, "0");
-	else
+	else if(pointer_value == 0 && pr->precision_field == 0)
+		ft_strcpy(str, NULL);
+	else if(pr->precision_field != 0)
 		ft_strcpy(str, temp_str1);
-//	if(pr->precision_field > 0)
-//		while(temp_repeat--)
-//			ft_strcat(str, "0");
-//		ft_strcpy(str, temp_str2);
-/*	
-	if(pr->precision_field > 0)
-		ft_strncpy(str, temp_str2, pr->precision_field);
-	else if(pr->precision_field == -1)
-		ft_strcpy(str, temp_str2);
-	else if(pr->precision_field == 0)
-		(ft_strcpy(str, NULL));
-*/
-//	repeat = pr->width_field - ft_strlen(str);
-//	if(repeat < 0)
-//		repeat = 0;
-	print_p_append_buffer(pr, str, repeat, temp_repeat, pointer_value);
+	print_p_append(pr, str, re_width, re_precision);
 }
 
 
