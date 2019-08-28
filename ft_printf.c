@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 19:24:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/27 20:51:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -493,36 +493,6 @@ void print_s(t_printf *pr)
 	print_s_append_buffer(pr, str, repeat);
 }
 
-/*
-void p_flag_minus_f(t_printf *pr, char *str, int re_width, int re_precision)
-{
-	if(pr->flag.zero == false)
-	{
-		while(re_width--)
-			pr->buffer[pr->buffer_i++] = ' ';
-		ft_strappend(pr, "0x");
-	}
-	if(pr->precision_field > 0 && re_precision > 0)
-	{
-		while(re_precision--)
-			ft_strappend(pr, "0");
-	}
-	ft_strappend(pr, str);
-}
-
-void p_flag_minu_t(t_printf *pr, char *str, int re_width, int re_precision)
-{
-	ft_strappend(pr, "0x");
-	if(pr->precision_field > 0 && re_precision > 0)
-		while(re_precision--)
-			ft_strappend(pr, "0");
-	ft_strappend(pr, str);
-	while(re_width--)
-		pr->buffer[pr->buffer_i++] = ' ';
-
-}
-*/
-
 
 void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 {
@@ -573,7 +543,14 @@ void print_p(t_printf *pr)
 	print_p_append(pr, str, re_width, re_precision);
 }
 
+/*
+void print_d(t_printf *pr)
+{
+	int_fast64_t num;
 
+	num = (int_fast64_t)va_arg(pr->arguments, int);
+}
+*/
 void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
@@ -582,6 +559,8 @@ void start_printing(t_printf *pr)
 		print_s(pr);
 	else if(pr->type_field == 3)
 		print_p(pr);
+//	else if(pr->type_field == 4)
+//		print_d(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
