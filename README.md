@@ -73,6 +73,15 @@ int main(void)
 Things to learn:
 - Jump Table, also known as dispatch table
 
+### Length Field
+
+|Character | Description                                         | Value Range                                            |
+|----------|---------------------------------------------------- |-------------------                                     |
+|   `hh`   | expects `int` argument which is converted to `char` | -128 to 127                                            |
+|   `h`    | expects `int` argument which is converted to `short`| -32,768 to 32,768                                      |
+|   `l`    | expects `long` or `long int` `int long` argument    | -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
+|   `L`    | expects `long long` or `long long int` or `int long long` argument| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
+
 ### Project summary: 
 
 # Resources and Referenes
