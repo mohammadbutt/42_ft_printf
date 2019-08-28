@@ -81,7 +81,7 @@ Things to learn:
 |   `h`    | 2 bytes or 16 bits   | For integer types expects `int` argument which is converted to `short`              | -32,768 to 32,768  |
 |   `l`    | 8 bytes or 64 bits   | For integer types expects `long` or `long int` `int long` argument                  |-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
 |   `ll`   | 8 bytes or 64 bits   | For integer types expects `long long` or `long long int` or `int long long` argument| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
-|    `L`   | 16 bytes or 128 bits |For floating point types expects `long double` argument or `double long` argument   | |
+|    `L`   | 16 bytes or 128 bits |For floating point types expects `long double` or `double long` argument   | |
 
 ### Project summary: 
 
