@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 20:51:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/28 15:40:17 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,7 +288,6 @@ void collect_length(t_printf *pr)
 
 	current = pr->string[pr->var.i];
 	next = pr->string[pr->var.i + 1];
-
 	if((current == 'h' && next == 'h') || (current == 'l' && next == 'l'))
 	{
 		if(current == 'h' && next == 'h')
@@ -296,7 +295,7 @@ void collect_length(t_printf *pr)
 		else if(current == 'l' && next == 'l')
 			pr->length.ll = true;
 		pr->var.i = pr->var.i + 2;
-	}
+	}	
 	else if(current == 'h' || current == 'l' || current == 'L')
 	{
 		if(current == 'h')
@@ -517,6 +516,19 @@ void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 	}
 }
 
+/*
+** p type_field gives a number which goes over int max range of 2147483647, but
+** it is upto 10 digits long. Because the pointer number cannot be stored in an
+** int or int32_t, we use int_fast64_t which uses 8 bytes or 64 bits and has
+** enough range to house the pointer value that is generated.
+** 
+** When the pointer is converted to a hexadecimal value, it can be  upto
+** 11 characters long + 1 for '\0', so allocating 12 bytes of memory would be
+** sufficient, but 16 bytes of memory is allocated to stay consistent with the
+** power of 2. Since memory is tied to cpu having a power of 2 requires less
+** logic and computational power.
+*/
+
 void print_p(t_printf *pr)
 {
 	int_fast64_t pointer_value;
@@ -544,13 +556,50 @@ void print_p(t_printf *pr)
 }
 
 /*
-void print_d(t_printf *pr)
+**
+*/
+
+int_fast64_t determine_type_with_length(t_printf *pr)
 {
 	int_fast64_t num;
 
-	num = (int_fast64_t)va_arg(pr->arguments, int);
+	num = 0;
+	if(pr->length.hh == true)
+		num = (char) va_arg(pr->arguments, int);
+	else if(pr->length.h == true)
+		num = (short) va_arg(pr->arguments, int);
+	else if(pr->length.l == true)
+		num = va_arg(pr->arguments, long);
+	else if(pr->length.ll == true)
+		num = va_arg(pr->arguments, long long);
+	return(num);
 }
+
+/*
+** For d type_field, 'll' length_field can print a 19 digits number with a range
+** from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
+** This would require 21 bytes of memory to account for negative sign and '\0'
+** null termination, but 32 bytes are allocated to stay consistent with power of
+** 2.
+** Since 'll' is the biggest length_field for d type_field, all other
+** length fields 'hh','h', 'l' will be safely covered are stored with 32 bytes.
+**
+** Note: 'l' long and 'll' long long has the same value range.
 */
+
+void print_d(t_printf *pr)
+{
+	int_fast64_t num;
+	char temp_str[32];
+//	char str[32];
+
+	num = 0;
+	num = determine_type_with_length(pr);
+	ft_itoa_base(num, FT_DECIMAL, temp_str);
+	append_to_buffer(pr, temp_str);
+//	num = (int_fast64_t)va_arg(pr->arguments, int);
+}
+
 void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
@@ -559,8 +608,8 @@ void start_printing(t_printf *pr)
 		print_s(pr);
 	else if(pr->type_field == 3)
 		print_p(pr);
-//	else if(pr->type_field == 4)
-//		print_d(pr);
+	else if(pr->type_field == 4)
+		print_d(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 

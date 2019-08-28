@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 16:23:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/28 15:40:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int main(void)
 }
 */
 
-
+/*
 int main(void)
 {
 	int return1;
@@ -103,4 +103,40 @@ int main(void)
 
 
 }
+*/
 
+int main(void)
+{
+	char num1_min = -128;
+	char num1_max = 127;
+
+	short num2_min = -32768;
+	short num2_max = 32767;
+
+	long num3_min = -9223372036854775808;
+	long num3_max = 9223372036854775807;
+
+	long long num4_min = -9223372036854775808;
+	long long num4_max = 9223372036854775807;
+
+	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
+	   printf("   printf:1:|%hhd|\n", num1_min);
+	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
+	   printf("   printf:1:|%hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:2:|%hd|\n", num2_min);
+	   printf("   printf:2:|%hd|\n", num2_min);
+	ft_printf("ft_printf:2:|%hd|\n", num2_max);
+	   printf("   printf:2:|%hd|\n\n", num2_max);
+
+	ft_printf("ft_printf:3:|%ld|\n", num3_min);
+	   printf("   printf:3:|%ld|\n", num3_min);
+	ft_printf("ft_printf:3:|%ld|\n", num3_max);
+	   printf("   printf:3:|%ld|\n\n", num3_max);
+
+	ft_printf("ft_printf:4:|%lld|\n", num4_min);
+	   printf("   printf:4:|%lld|\n", num4_min);
+	ft_printf("ft_printf:4:|%lld|\n", num4_max);
+	   printf("   printf:4:|%lld|\n\n", num4_max);
+
+}

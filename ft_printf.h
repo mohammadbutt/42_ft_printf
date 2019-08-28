@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 20:49:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/28 15:40:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 # define FT_ONE_MEGABYTE 1048576
 # define FT_VALID_TYPE "cspdiouxXf%"
 # define FT_HEX 16
+# define FT_DECIMAL 10
 /*
 ** Colon ':' in structs is called a bit field
 ** 1 bool data type uses 1 bytes. 1 byte = 8 bits. This means a bool will ask
@@ -122,6 +123,7 @@ void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
 void 	print_p(t_printf *pr);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
+int_fast64_t 	determine_type_with_length(t_printf *pr);
 void 	print_d(t_printf *pr);
 
 /*
