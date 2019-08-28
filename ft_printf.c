@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 19:14:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/27 19:24:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,14 +152,13 @@ void print_on_screen(int repeat, va_list args, const char conversion_value)
 */
 
 /*
-** Function ft_strappend works just like strcat, but it takes in the struct and
-** source string to append.
+** Function append_to_buffe works just like strcat, but it takes in the struct
+** and source string to append.
 ** Destination string and index inside the struct are used to append the source
 ** to the end of the destination.
 ** RETURN VALUE: Concatenated destination string
 */
 
-//void	ft_strappend(t_printf *pr, char *source)
 void	append_to_buffer(t_printf *pr, char *source)
 {
 	int i;
@@ -184,7 +183,6 @@ void append_to_buffer_loop(t_printf *pr, int x_times, char *str)
 	if(str[1] != '\0')
 		while(x_times--)
 			append_to_buffer(pr, str);
-//			ft_strappend(pr, str);
 	else if(str[1] == '\0')
 		while(x_times--)
 			pr->buffer[pr->buffer_i++] = str[0];
@@ -380,20 +378,14 @@ void print_c(t_printf *pr)
 	{
 		if(pr->flag.zero == true)
 			append_to_buffer_loop(pr, repeat, "0");
-//			while(repeat--)
-//				pr->buffer[pr->buffer_i++] = '0';
 		else if(pr->flag.zero == false)
 			append_to_buffer_loop(pr, repeat, " ");
-//			while(repeat--)
-//				pr->buffer[pr->buffer_i++] = ' ';
 		pr->buffer[pr->buffer_i++] = c;
 	}
 	else if(pr->flag.minus == true)
 	{
 		pr->buffer[pr->buffer_i++] = c;
 		append_to_buffer_loop(pr, repeat, " ");
-//		while(repeat--)
-//			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
@@ -409,20 +401,14 @@ void print_percent(t_printf *pr)
 	{
 		if(pr->flag.zero == true)
 			append_to_buffer_loop(pr, repeat, "0");
-//			while(repeat--)
-//				pr->buffer[pr->buffer_i++] = '0';
 		else if(pr->flag.zero == false)
 			append_to_buffer_loop(pr, repeat, " ");
-//			while(repeat--)
-//				pr->buffer[pr->buffer_i++] = ' ';
 		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
 	}
 	else if(pr->flag.minus == true)
 	{
 		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
 		append_to_buffer_loop(pr, repeat, " ");
-//		while(repeat--)
-//			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
@@ -467,22 +453,14 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 	{
 		if(pr->flag.zero == true)
 			append_to_buffer_loop(pr, repeat, "0");
-	//		while(repeat--)
-	//			pr->buffer[pr->buffer_i++] = '0';
 		else if(pr->flag.zero == false)
 			append_to_buffer_loop(pr, repeat, " ");
-//			while(repeat--)
-//				pr->buffer[pr->buffer_i++] = ' ';
-//		ft_strappend(pr, str);
 		append_to_buffer(pr, str);
 	}
 	else if(pr->flag.minus == true)
 	{
-//		ft_strappend(pr, str);
 		append_to_buffer(pr, str);
 		append_to_buffer_loop(pr, repeat, " ");
-//		while(repeat--)
-//			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
@@ -511,10 +489,6 @@ void print_s(t_printf *pr)
 		ft_strcpy(str, temp_s);
 	else if(pr->precision_field == 0)
 		(ft_strcpy(str, NULL));
-//	repeat = pr->width_field - ft_strlen(str);
-//	if(repeat < 0)
-//		repeat = 0;
-//	repeat = find_padding(pr, ft_strlen(str));
 	repeat = find_padding(pr->width_field, ft_strlen(str));
 	print_s_append_buffer(pr, str, repeat);
 }
@@ -556,36 +530,20 @@ void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 	{
 		if(pr->flag.zero == false)
 		{
-	//		while(re_width--)
-	//			pr->buffer[pr->buffer_i++] = ' ';
-	//		while(re_width--)
-	//			ft_strappend(pr, " ");
 			append_to_buffer_loop(pr, re_width, " ");
 			append_to_buffer(pr, "0x");
-//			ft_strappend(pr, "0x");
 		}
 		if(pr->precision_field > 0 && re_precision > 0)
-		{
-//			while(re_precision--)
-//				ft_strappend(pr, "0");
 			append_to_buffer_loop(pr, re_precision, "0");
-		}
 		append_to_buffer(pr, str);
-//		ft_strappend(pr, str);
 	}
 	else if(pr->flag.minus == true)
 	{
-//		ft_strappend(pr, "0x");
 		append_to_buffer(pr, "0x");
 		if(pr->precision_field > 0 && re_precision > 0)
-//			while(re_precision--)
-//				ft_strappend(pr, "0");
 			append_to_buffer_loop(pr, re_precision, "0");
 		append_to_buffer(pr, str);
-//		ft_strappend(pr, str);
 		append_to_buffer_loop(pr, re_width, " ");
-//		while(re_width--)
-//			pr->buffer[pr->buffer_i++] = ' ';
 	}
 }
 
@@ -603,11 +561,8 @@ void print_p(t_printf *pr)
 	re_precision = find_padding(pr->precision_field, ft_strlen(temp_str1));
 	if(pr->flag.zero == true && pr->flag.minus == false)
 	{
-//		ft_strappend(pr, "0x");
 		append_to_buffer(pr, "0x");
 		append_to_buffer_loop(pr, re_width, "0");
-//		while(re_width--)
-//			pr->buffer[pr->buffer_i++] = '0';
 	}
 	if(pointer_value == 0 && pr->precision_field != 0)
 		ft_strcpy(str, "0");
