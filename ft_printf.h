@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 16:23:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/27 19:14:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,10 @@ typedef struct s_printf
 //char	determine_conversion(const char *str, t_variables *var);
 //int		start_parsing(va_list args, const char *str, t_variables *var);
 //void	print_on_screen(int repeat, va_list args, const char conversion_value);
-void 	ft_strappend(t_printf *pr, char *source);
+//void 	ft_strappend(t_printf *pr, char *source);
 //char	*ft_strappend(char *dest, int dest_index, char *source);
+void	append_to_buffer(t_printf *pr, char *source);
+void	append_to_buffer_loop(t_printf *pr, int x_times, char *str);
 void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collecting(t_printf *pr);
@@ -119,7 +121,6 @@ void	print_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
 void 	print_p(t_printf *pr);
-void	append_to_buffer_in_loop(t_printf *pr, int x_times, char *str);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
 
 /*
