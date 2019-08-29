@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 15:40:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/26 22:21:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/28 21:13:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 /*
 ** ft_itoa_base will work with any base, but if a base is of 2 and the value is
 ** either int min, this will produce a binary which will be 32 digits long + 1
-** for '\0' making it 33 bits. To ensure that the number is stored properly, we
-** will use a buffer/stack of 64 bits.
+** for '\0' making it 33 bits. Allocating memory of 5 bytes would be enough, but
+** computationally it will be better if the allocated memory is a power of 2.
+** So a buffer/stack of 8 bytes is used to allocate memory.
 */
 
 int ft_numlen(int_fast64_t value, int base)

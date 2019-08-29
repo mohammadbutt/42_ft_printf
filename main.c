@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/28 15:40:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 15:25:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,22 +107,53 @@ int main(void)
 
 int main(void)
 {
+	char *str     = "Test";
 	char num1_min = -128;
 	char num1_max = 127;
 
 	short num2_min = -32768;
 	short num2_max = 32767;
 
-	long num3_min = -9223372036854775808;
+	long num3_min = -9223372036854775807;
 	long num3_max = 9223372036854775807;
 
-	long long num4_min = -9223372036854775808;
+	long long num4_min = -9223372036854775807;
 	long long num4_max = 9223372036854775807;
 
+
+/*
+	printf("w01:|%hhd|\n", num1_min);
+	printf("w02:|%hhd|\n\n", num1_max);
+
+	printf("w03:|%5hhd|\n", num1_min);
+	printf("w04:|%5hhd|\n\n", num1_max);
+
+	printf("w-05:|%-5hhd|\n", num1_min);
+	printf("w-06:|%-5hhd|\n\n", num1_max);
+
+
+	printf("wz07:|%05hhd|\n", num1_min);
+	printf("wz08:|%05hhd|\n\n", num1_max);
+
+	printf("p09:|%.5hhd|\n", num1_min);
+	printf("p10:|%.5hhd|\n\n", num1_max);
+
+	printf("pw11:|%7.5hhd|\n", num1_min);
+	printf("pw12:|%7.5hhd|\n\n", num1_max);
+
+	printf("pw13:|%-7.5hhd|\n", num1_min);
+	printf("pw14:|%-7.5hhd|\n\n", num1_max);
+*/
+
+
+
+//	ft_printf("ft_printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
+//	   printf("   printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
+
 	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
-	   printf("   printf:1:|%hhd|\n", num1_min);
+	   printf("   printf:1:|%05hhd|\n", num1_min);
 	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
-	   printf("   printf:1:|%hhd|\n\n", num1_max);
+	   printf("   printf:1:|%05hhd|\n\n", num1_max);
 
 	ft_printf("ft_printf:2:|%hd|\n", num2_min);
 	   printf("   printf:2:|%hd|\n", num2_min);

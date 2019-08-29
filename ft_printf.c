@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/28 15:40:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 15:25:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -312,32 +312,43 @@ void collect_length(t_printf *pr)
 ** Function collect_type_field finds the index of the conversion symbols.
 ** Conversion symbols are: "cspdiouxXf%" stored in macro FT_VALID_TYPE
 ** When the conversion symbol is found it's index + 1 is stored in type_field
-** to be used for dispatch table.
+** which can be used for dispatch table later.
 ** 
 ** If type_field is equal to 1 that would represent 'c'.
 ** If type_field is equal to 2 that would represent 's'.
 ** If type_field is equal to 3 that would represetnt 'p'. and so on.
 ** 
 ** If the conversion symbol is not found then the type_field will remain 0.
+** simpler way to understand the below while loop:
+**
+**	while(FT_VALID_TYPE[j])
+**	{
+**		if(FT_VALID_TYPE[j] == pr->string[pr->var.i])
+**		{
+**			pr->type_field = j + 1;
+**			return;
+**		}
+**		j++;
+**	}
 */
 
 void collect_type_field(t_printf *pr)
 {
 	char *str;
 	char c;
-	int i;
+	int j;
 
-	i = 0;
+	j = 0;
 	str = FT_VALID_TYPE;
 	c = pr->string[pr->var.i];
-	while(str[i])
+	while(str[j])
 	{
-		if(str[i] == c)
+		if(str[j] == c)
 		{
-			pr->type_field = i + 1;
+			pr->type_field = j + 1;
 			return;
 		}
-		i++;
+		j++;
 	}
 }
 
@@ -556,10 +567,11 @@ void print_p(t_printf *pr)
 }
 
 /*
-**
+**int_fast64_t determines what data type is the in the given argument.
+** Type casts to 'char' for 'hh'. Type casts to 'short' for 'h'.
 */
 
-int_fast64_t determine_type_with_length(t_printf *pr)
+int_fast64_t determine_length_of_d(t_printf *pr)
 {
 	int_fast64_t num;
 
@@ -572,7 +584,92 @@ int_fast64_t determine_type_with_length(t_printf *pr)
 		num = va_arg(pr->arguments, long);
 	else if(pr->length.ll == true)
 		num = va_arg(pr->arguments, long long);
+	else
+		num = va_arg(pr->arguments, int);
 	return(num);
+}
+
+char *ft_itoa_min_hh(t_printf *pr, char num, char temp_str[])
+{
+	append_to_buffer(pr, "-");
+	if(num == CHAR_MIN)
+		ft_strcpy(temp_str, FT_CHAR_STR);
+	else
+	{
+		num = ft_abs(num);
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
+	return(temp_str);
+}
+
+char *ft_itoa_min_h(t_printf *pr, short num, char temp_str[])
+{
+	append_to_buffer(pr, "-");
+	if(num == SHRT_MIN)
+		ft_strcpy(temp_str, FT_SHORT_STR);
+	else
+	{
+		num = ft_abs(num);
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
+	return(temp_str);
+}
+
+char *ft_itoa_min_l(t_printf *pr, int_fast64_t num, char temp_str[])
+{
+	append_to_buffer(pr, "-");
+	if(num == LONG_MIN)
+		ft_strcpy(temp_str, FT_LONG_STR);
+	else
+	{
+		num = ft_abs(num);
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
+	return(temp_str);
+}
+
+char *ft_itoa_min_ll(t_printf *pr, int_fast64_t num, char temp_str[])
+{
+	append_to_buffer(pr, "-");
+	if(num == LLONG_MIN)
+		ft_strcpy(temp_str, FT_LLONG_STR);
+	else
+	{
+		num = ft_abs(num);
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
+	return(temp_str);
+}
+
+char *ft_itoa_min_int(t_printf *pr, int num, char temp_str[])
+{
+	append_to_buffer(pr, "-");
+	if(num == INT_MIN)
+		ft_strcpy(temp_str, FT_INT_STR);
+	else
+	{
+		num = ft_abs(num);
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
+	return(temp_str);
+}
+
+char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
+{
+	if(pr->length.hh == true)
+		ft_itoa_min_hh(pr, num, temp_str);
+	else if(pr->length.h == true)
+		ft_itoa_min_h(pr, num, temp_str);
+	else if(pr->length.l == true)
+		ft_itoa_min_l(pr, num, temp_str);
+	else if(pr->length.ll == true)
+		ft_itoa_min_ll(pr, num, temp_str);
+//	else if(pr->length.L == true)
+//		ft_itoa_min_L(pr, num, temp_str);
+	else
+		ft_itoa_min_int(pr, num, temp_str);
+
+	return(temp_str);
 }
 
 /*
@@ -585,19 +682,59 @@ int_fast64_t determine_type_with_length(t_printf *pr)
 ** length fields 'hh','h', 'l' will be safely covered are stored with 32 bytes.
 **
 ** Note: 'l' long and 'll' long long has the same value range.
+** .0 means there's 0 precision_field, which is a valid precision .1 means
+** there's 1 precision_field, which is also a valid precision. This is why
+** precision_field is initialized to -1 which would means precision was not
+** invoked.
+** If there is precision and the precision value is equal to 0 or greater than
+** 0, it would cancel out the zero flag and make it false.
+** 
+** precision is stored first and then width is calculated. precision over width.
+** Precision does not count the negative sign in the length of the number:
+** printf("|%.5hhd|\n", -128) will give output of |-00128|
+** printf("|%.5hhd|\n",  127) will give output of |00127|
+**
+** Width counts the negative sign in the length of the number:
+** printf("|%5hhd|\n", -128) will give output of | -128|
+** printf("|%5hhd|\n",  127) will give output of |  127|
 */
 
 void print_d(t_printf *pr)
 {
 	int_fast64_t num;
-	char temp_str[32];
 //	char str[32];
+	char temp_str[32];
+	int width;
+	int precision;
 
 	num = 0;
-	num = determine_type_with_length(pr);
-	ft_itoa_base(num, FT_DECIMAL, temp_str);
+	width = 0;
+	precision = 0;
+	num = determine_length_of_d(pr);
+	if(num < 0)
+	{
+//		if(num == INT_FAST64_MIN)
+//		{
+//			append_to_buffer(pr, "-");
+//			ft_strcpy(temp_str, FT_INT_MIN_STR);
+//		}
+//		num = ft_abs(num);
+//		ft_itoa_base(num, FT_DECIMAL, temp_str);
+		ft_itoa_min(pr, num, temp_str);
+	}
+	else
+	{
+		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
 	append_to_buffer(pr, temp_str);
-//	num = (int_fast64_t)va_arg(pr->arguments, int);
+	if(pr->precision_field > -1)
+		pr->flag.zero = false;
+	if(temp_str[0] == '-')
+		precision = find_padding(pr->precision_field, ft_strlen(temp_str) - 1);
+	else if(temp_str[0] != '-')
+		precision = find_padding(pr->precision_field, ft_strlen(temp_str));
+	width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+
 }
 
 void start_printing(t_printf *pr)

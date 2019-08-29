@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/28 15:40:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 15:25:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>
 # include <string.h>
+# include <limits.h> /*Ford different macros like CHAR_MIN, SHRT_MIN, LONG_MIN*/
 //# include "forbidden.h"
 
 /*
@@ -31,12 +32,23 @@
 ** 1024 x 1024 bytes / 1 mb
 **
 ** 1048576 bytes = 1 mb
+**
+** macros FT_CHAR_STR, FT_SHORT_STR, FT_INT_STR, FT_LONG_STR, FT_LONG_LONG_STR
+** their values go over the max range, that's because the negative sign from
+** these values will get appended to the buffer first and the values without
+** the negative sign will get stored in temp_str.
 */
 
 # define FT_ONE_MEGABYTE 1048576
 # define FT_VALID_TYPE "cspdiouxXf%"
 # define FT_HEX 16
 # define FT_DECIMAL 10
+# define FT_CHAR_STR "128"
+# define FT_SHORT_STR "32768"
+# define FT_INT_STR "2147483648"
+# define FT_LONG_STR "9223372036854775808"
+# define FT_LLONG_STR "9223372036854775808"
+
 /*
 ** Colon ':' in structs is called a bit field
 ** 1 bool data type uses 1 bytes. 1 byte = 8 bits. This means a bool will ask
@@ -123,7 +135,13 @@ void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
 void 	print_p(t_printf *pr);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
-int_fast64_t 	determine_type_with_length(t_printf *pr);
+int_fast64_t 	determine_length_of_d(t_printf *pr);
+char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_hh(t_printf*pr, char num, char temp_str[]);
+char 	*ft_itoa_min_h(t_printf *pr, short num, char temp_str[]);
+char	*ft_itoa_min_l(t_printf *pr, int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_ll(t_printf *pr, int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_int(t_printf *pr, int num, char temp_str[]);
 void 	print_d(t_printf *pr);
 
 /*
