@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/27 10:54:58 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/27 11:38:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 16:19:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@
 # define strncpy(x,y,n) FORBIDDEN(strncpy)
 # undef strncat
 # define strncat(x,y,n) FORBIDDEN(strncat)
+# undef bzero
+# define bzero(s, n) FORBIDDEN(strcpy)
 
 # undef sprintf
 # undef vsprintf

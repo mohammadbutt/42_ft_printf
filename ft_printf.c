@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 15:25:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 16:32:00 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -433,7 +433,7 @@ int find_padding(int field, int string_length)
 
 	repeat = 0;
 	repeat = field - string_length;
-	if(repeat < 0)
+	if(repeat <= 0)
 		return(0);
 	return(repeat);
 }
@@ -481,6 +481,8 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 ** 2. Looks at the width_field to calculate the repeat value. This repeat value
 ** will be used to determine how much padding will be placed in the beginning
 ** or end of the string.
+** NOTE: Since we dont know how long a string will be that is entered by the
+** user, 1 megabyte of memory is allocated which is equal to 1,048,576.
 */
 
 void print_s(t_printf *pr)
@@ -591,9 +593,14 @@ int_fast64_t determine_length_of_d(t_printf *pr)
 
 char *ft_itoa_min_hh(t_printf *pr, char num, char temp_str[])
 {
-	append_to_buffer(pr, "-");
+	if(pr->flag.zero == true)
+		append_to_buffer(pr, "-");
+	else if(pr->flag.zero == false)
+		ft_strcpy(temp_str, "-");
+
 	if(num == CHAR_MIN)
-		ft_strcpy(temp_str, FT_CHAR_STR);
+		ft_strcat(temp_str, FT_CHAR_STR);
+//		ft_strcpy(temp_str, FT_CHAR_STR);
 	else
 	{
 		num = ft_abs(num);
@@ -706,35 +713,41 @@ void print_d(t_printf *pr)
 	char temp_str[32];
 	int width;
 	int precision;
-
+	
+	ft_bzero(temp_str, 32);
 	num = 0;
 	width = 0;
 	precision = 0;
 	num = determine_length_of_d(pr);
 	if(num < 0)
-	{
-//		if(num == INT_FAST64_MIN)
-//		{
-//			append_to_buffer(pr, "-");
-//			ft_strcpy(temp_str, FT_INT_MIN_STR);
-//		}
-//		num = ft_abs(num);
-//		ft_itoa_base(num, FT_DECIMAL, temp_str);
 		ft_itoa_min(pr, num, temp_str);
-	}
 	else
-	{
 		ft_itoa_base(num, FT_DECIMAL, temp_str);
-	}
-	append_to_buffer(pr, temp_str);
-	if(pr->precision_field > -1)
-		pr->flag.zero = false;
-	if(temp_str[0] == '-')
-		precision = find_padding(pr->precision_field, ft_strlen(temp_str) - 1);
-	else if(temp_str[0] != '-')
-		precision = find_padding(pr->precision_field, ft_strlen(temp_str));
-	width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
 
+	if(pr->precision_field != -1)
+		pr->flag.zero = false;
+	if(num < 0)
+		precision = find_padding(pr->precision_field, ft_strlen(temp_str) - 1);
+	else if(num >= 0)
+		precision = find_padding(pr->precision_field, ft_strlen(temp_str));
+	if(num < 0 && pr->flag.zero == true)
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision + 1);
+	else if(num < 0 && pr->flag.zero == false)
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+	else if(num >= 0)
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+
+//	if(width >= 0)
+//	{
+		if(pr->flag.zero == true)
+			append_to_buffer_loop(pr, width, "0");
+		else if(pr->flag.zero == false && pr->flag.minus == false)
+			append_to_buffer_loop(pr, width, " ");
+		else if(pr->flag.minus == true)
+			while(width--)
+				ft_strcat(temp_str, " ");
+//	}
+	append_to_buffer(pr, temp_str);
 }
 
 void start_printing(t_printf *pr)

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 15:25:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 16:32:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,10 +150,10 @@ int main(void)
 //	ft_printf("ft_printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 //	   printf("   printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 
-	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
-	   printf("   printf:1:|%05hhd|\n", num1_min);
-	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
-	   printf("   printf:1:|%05hhd|\n\n", num1_max);
+	ft_printf("ft_printf:1:|%-5hhd|\n", num1_min);
+	   printf("   printf:1:|%-5hhd|\n", num1_min);
+	ft_printf("ft_printf:1:|%-5hhd|\n", num1_max);   
+	   printf("   printf:1:|%-5hhd|\n\n", num1_max);
 
 	ft_printf("ft_printf:2:|%hd|\n", num2_min);
 	   printf("   printf:2:|%hd|\n", num2_min);
