@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 22:08:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 14:49:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -675,6 +675,47 @@ void ft_bzero_buffers(char str[], char temp_str[])
 	ft_bzero_no_len(temp_str);
 }
 
+
+/*
+** n   = num or number
+** s   = str
+** t_s = temp_str
+*/
+
+void	d_append_buffer(t_printf *pr, char s[], char t_s[], int_fast64_t n)
+{
+	int len;
+
+	len = ft_strlen(t_s);
+	pr->var.precision = ft_pad(pr->precision_field, len);
+	if(n < 0)
+		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision +1);
+	else if(n >= 0)
+		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+	if(pr->flag.plus == true || pr->flag.space == true)
+		if(pr->var.width > 0 && n >= 0)
+			pr->var.width--;
+	if(pr->flag.zero == true && pr->var.width >= 0)
+		while(pr->var.width--)
+			ft_strcat(s, "0");
+	else if(pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, pr->var.width, " ");
+	else if(pr->flag.minus == true)
+		while(pr->var.width--)
+			ft_strcat(t_s, " ");
+	if(pr->var.precision >= 0)
+		while(pr->var.precision--)
+			ft_strcat(s, "0");
+	ft_strcat(s, t_s);
+	append_to_buffer(pr, s);
+}
+
+/*
+** n   = num or number
+** s   = str
+** t_s = temp_str
+*/
+
 /*
 ** For d type_field, 'll' length_field can print a 19 digits number with a range
 ** from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
@@ -704,72 +745,30 @@ void ft_bzero_buffers(char str[], char temp_str[])
 
 void print_d(t_printf *pr)
 {
-	int_fast64_t num;
-//	char str[FT_ONE_KILOBYTE];
-//	char temp_str[FT_ONE_KILOBYTE];
-	char str[pr->precision_field + pr->width_field + 32];
-	char temp_str[pr->precision_field + pr->width_field + 32];
-	int width;
-	int precision;
+	int_fast64_t n;
+	char s[pr->precision_field + pr->width_field + 32];
+	char t_s[pr->precision_field + pr->width_field + 32];
 	
-	ft_bzero_buffers(str, temp_str);
-	var_to_zero(&num, &width, &precision, &precision);
-//	var_to_zero(&num, &pr->var.precision, &pr->var.width, &pr->var.width);
-	num = determine_length_of_d(pr);
-	if(num < 0)
+	ft_bzero_buffers(s, t_s);
+	var_to_zero(&n, &pr->var.precision, &pr->var.width, &pr->var.width);
+	n = determine_length_of_d(pr);
+	if(n < 0)
 	{
-		ft_strcpy(str, "-");
-		ft_itoa_min(pr, num, temp_str);
+		ft_strcpy(s, "-");
+		ft_itoa_min(pr, n, t_s);
 	}
 	else
 	{
 		if(pr->flag.plus == true)
-			ft_strcpy(str, "+");
+			ft_strcpy(s, "+");
 		else if(pr->flag.space == true)
-			ft_strcpy(str, " ");
-		ft_itoa_base(num, FT_DECIMAL, temp_str);
+			ft_strcpy(s, " ");
+		ft_itoa_base(n, FT_DECIMAL, t_s);
 	}
-
-	if(pr->precision_field != -1)
-		pr->flag.zero = false;
-	if(pr->precision_field == 0 && num == 0) // Added
-		ft_strcpy(temp_str, NULL);           // Added
-	precision = ft_pad(pr->precision_field, ft_strlen(temp_str));
-
-/*	
-	if(num < 0 && pr->flag.zero == true)
-		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
-	else if(num < 0 && pr->flag.zero == false)
-		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
-	else if(num >= 0)
-		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision);
-*/
-
-	if(num < 0)
-		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
-	else if(num >= 0)
-		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision);
-
-	
-	if(pr->flag.plus == true || pr->flag.space == true)
-		if(width > 0 && num >= 0)
-			width--;
-	if(pr->flag.zero == true && width >= 0)
-		while(width--)
-			ft_strcat(str, "0");
-	else if(pr->flag.zero == false && pr->flag.minus == false)
-		append_to_buffer_loop(pr, width, " ");
-	else if(pr->flag.minus == true)
-		while(width--)
-			ft_strcat(temp_str, " ");
-	if(precision >= 0)
-		while(precision--)
-			ft_strcat(str, "0");
-
-	ft_strcat(str, temp_str);
-	append_to_buffer(pr, str);
+	(pr->precision_field != -1) && (pr->flag.zero = false);
+	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
+	d_append_buffer(pr, s, t_s, n);
 }
-
 
 /*
 ** 1 = c
