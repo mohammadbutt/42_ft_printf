@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 21:58:50 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 22:08:03 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,15 +206,15 @@ void initialize_flag_and_field_values(t_printf *pr)
 
 int collect_flags(t_printf *pr)
 {
-	if(pr->string[pr->var.i] == '#')
+	if(pr->string[pr->i] == '#')
 		return (pr->flag.hash = true);
-	else if(pr->string[pr->var.i] == '0')
+	else if(pr->string[pr->i] == '0')
 		return(pr->flag.zero = true);
-	else if(pr->string[pr->var.i] == '-')
+	else if(pr->string[pr->i] == '-')
 		return (pr->flag.minus = true);
-	else if(pr->string[pr->var.i] == '+')
+	else if(pr->string[pr->i] == '+')
 		return (pr->flag.plus = true);
-	else if(pr->string[pr->var.i] == ' ')
+	else if(pr->string[pr->i] == ' ')
 		return(pr->flag.space = true);
 	return(-1);
 }
@@ -242,16 +242,16 @@ void cancel_flags(t_printf *pr)
 
 void collect_width(t_printf *pr)
 {
-	if(ft_isdigit(pr->string[pr->var.i]) == 1)
+	if(ft_isdigit(pr->string[pr->i]) == 1)
 	{
-		pr->width_field = ft_atoi(&pr->string[pr->var.i]);
-		while(ft_isdigit(pr->string[pr->var.i]) == 1)	
-			pr->var.i++;
+		pr->width_field = ft_atoi(&pr->string[pr->i]);
+		while(ft_isdigit(pr->string[pr->i]) == 1)	
+			pr->i++;
 	}
-	else if(pr->string[pr->var.i] == '*')
+	else if(pr->string[pr->i] == '*')
 	{
 		pr->width_field = va_arg(pr->arguments, int);
-		pr->var.i++;
+		pr->i++;
 	}
 }
 
@@ -260,23 +260,23 @@ void collect_precision(t_printf *pr)
 	int current_i;
 	int next_i;
 	
-	current_i = pr->var.i;
-	next_i = pr->var.i + 1;
+	current_i = pr->i;
+	next_i = pr->i + 1;
 	if(pr->string[current_i] == '.' && ft_isdigit(pr->string[next_i]) == 1)
 	{
-		pr->var.i++;
-		pr->precision_field = ft_atoi(&pr->string[pr->var.i]);
-		while(ft_isdigit(pr->string[pr->var.i]) == 1)
-			pr->var.i++;
+		pr->i++;
+		pr->precision_field = ft_atoi(&pr->string[pr->i]);
+		while(ft_isdigit(pr->string[pr->i]) == 1)
+			pr->i++;
 	}
 	else if(pr->string[current_i] == '.' && pr->string[next_i] == '*')
 	{
 		pr->precision_field = va_arg(pr->arguments, int);
-		pr->var.i = pr->var.i + 2;
+		pr->i = pr->i + 2;
 	}
 	else if(pr->string[current_i] == '.' && ft_isdigit(pr->string[next_i]) != 1)
 	{
-		pr->var.i++;
+		pr->i++;
 		pr->precision_field = 0;
 	}
 }
@@ -286,15 +286,15 @@ void collect_length(t_printf *pr)
 	char current;
 	char next;
 
-	current = pr->string[pr->var.i];
-	next = pr->string[pr->var.i + 1];
+	current = pr->string[pr->i];
+	next = pr->string[pr->i + 1];
 	if((current == 'h' && next == 'h') || (current == 'l' && next == 'l'))
 	{
 		if(current == 'h' && next == 'h')
 			pr->length.hh = true;
 		else if(current == 'l' && next == 'l')
 			pr->length.ll = true;
-		pr->var.i = pr->var.i + 2;
+		pr->i = pr->i + 2;
 	}	
 	else if(current == 'h' || current == 'l' || current == 'L')
 	{
@@ -304,7 +304,7 @@ void collect_length(t_printf *pr)
 			pr->length.l = true;
 		else if(current == 'L')
 			pr->length.L = true;
-		pr->var.i++;
+		pr->i++;
 	}
 }
 
@@ -323,7 +323,7 @@ void collect_length(t_printf *pr)
 **
 **	while(FT_VALID_TYPE[j])
 **	{
-**		if(FT_VALID_TYPE[j] == pr->string[pr->var.i])
+**		if(FT_VALID_TYPE[j] == pr->string[pr->i])
 **		{
 **			pr->type_field = j + 1;
 **			return;
@@ -340,7 +340,7 @@ void collect_type_field(t_printf *pr)
 
 	j = 0;
 	str = FT_VALID_TYPE;
-	c = pr->string[pr->var.i];
+	c = pr->string[pr->i];
 	while(str[j])
 	{
 		if(str[j] == c)
@@ -355,7 +355,7 @@ void collect_type_field(t_printf *pr)
 void start_collecting(t_printf *pr)
 {
 	while(collect_flags(pr) != -1)
-		pr->var.i++;
+		pr->i++;
 	
 //	printf("0:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	cancel_flags(pr);
@@ -413,11 +413,11 @@ void print_percent(t_printf *pr)
 			append_to_buffer_loop(pr, repeat, "0");
 		else if(pr->flag.zero == false)
 			append_to_buffer_loop(pr, repeat, " ");
-		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
+		pr->buffer[pr->buffer_i++] = pr->string[pr->i];
 	}
 	else if(pr->flag.minus == true)
 	{
-		pr->buffer[pr->buffer_i++] = pr->string[pr->var.i];
+		pr->buffer[pr->buffer_i++] = pr->string[pr->i];
 		append_to_buffer_loop(pr, repeat, " ");
 	}
 }
@@ -803,9 +803,9 @@ void start_printing(t_printf *pr)
 
 void start_parsing(t_printf *pr)
 {
-	pr->var.i++;
+	pr->i++;
 	initialize_flag_and_field_values(pr);
-	if(pr->string[pr->var.i] == '\0')
+	if(pr->string[pr->i] == '\0')
 		return;
 	start_collecting(pr);
 	start_printing(pr);
@@ -815,7 +815,7 @@ void initialize_printf_struct(t_printf *pr, const char *str)
 {
 	pr->string = str;
 	pr->return_of_printf = 0;
-	pr->var.i = 0;
+	pr->i = 0;
 	pr->buffer_i = 0;
 }
 
@@ -826,12 +826,12 @@ int ft_printf_driver(va_list args, const char *str)
 	va_copy(pr.arguments, args);
 //	initialize_printf_struct(&pr, str);
 	pr.string = str;
-	while(pr.string[pr.var.i])
+	while(pr.string[pr.i])
 	{
-		if(pr.string[pr.var.i] == '%')
+		if(pr.string[pr.i] == '%')
 		{
 			start_parsing(&pr);
-			if(pr.string[pr.var.i] == '\0')
+			if(pr.string[pr.i] == '\0')
 				return(write(1, pr.buffer, pr.buffer_i));
 /*	
 			printf("flag_hash:|%d|\n", pr.flag_hash);
@@ -847,12 +847,12 @@ int ft_printf_driver(va_list args, const char *str)
 			printf("ll:|%d|\n", pr.length_ll);
 			printf("L:|%d|\n", pr.length_L);
 			printf("\ntype_field:|%d|\n", pr.type_field);
-			printf("\npr.string[var.i]:|%c|\n", pr.string[var.i]);
+			printf("\npr.string[i]:|%c|\n", pr.string[i]);
 */
 		}
 		else
-			pr.buffer[pr.buffer_i++] = pr.string[pr.var.i];
-		pr.var.i++;
+			pr.buffer[pr.buffer_i++] = pr.string[pr.i];
+		pr.i++;
 	}
 	va_end(pr.arguments);
 	return(write(1, pr.buffer, pr.buffer_i));
