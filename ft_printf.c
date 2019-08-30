@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 16:32:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 20:42:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -591,16 +591,10 @@ int_fast64_t determine_length_of_d(t_printf *pr)
 	return(num);
 }
 
-char *ft_itoa_min_hh(t_printf *pr, char num, char temp_str[])
+char *ft_itoa_min_hh(char num, char temp_str[])
 {
-	if(pr->flag.zero == true)
-		append_to_buffer(pr, "-");
-	else if(pr->flag.zero == false)
-		ft_strcpy(temp_str, "-");
-
 	if(num == CHAR_MIN)
-		ft_strcat(temp_str, FT_CHAR_STR);
-//		ft_strcpy(temp_str, FT_CHAR_STR);
+		ft_strcpy(temp_str, FT_CHAR_STR);
 	else
 	{
 		num = ft_abs(num);
@@ -609,9 +603,8 @@ char *ft_itoa_min_hh(t_printf *pr, char num, char temp_str[])
 	return(temp_str);
 }
 
-char *ft_itoa_min_h(t_printf *pr, short num, char temp_str[])
+char *ft_itoa_min_h(short num, char temp_str[])
 {
-	append_to_buffer(pr, "-");
 	if(num == SHRT_MIN)
 		ft_strcpy(temp_str, FT_SHORT_STR);
 	else
@@ -622,9 +615,8 @@ char *ft_itoa_min_h(t_printf *pr, short num, char temp_str[])
 	return(temp_str);
 }
 
-char *ft_itoa_min_l(t_printf *pr, int_fast64_t num, char temp_str[])
+char *ft_itoa_min_l(int_fast64_t num, char temp_str[])
 {
-	append_to_buffer(pr, "-");
 	if(num == LONG_MIN)
 		ft_strcpy(temp_str, FT_LONG_STR);
 	else
@@ -635,9 +627,8 @@ char *ft_itoa_min_l(t_printf *pr, int_fast64_t num, char temp_str[])
 	return(temp_str);
 }
 
-char *ft_itoa_min_ll(t_printf *pr, int_fast64_t num, char temp_str[])
+char *ft_itoa_min_ll(int_fast64_t num, char temp_str[])
 {
-	append_to_buffer(pr, "-");
 	if(num == LLONG_MIN)
 		ft_strcpy(temp_str, FT_LLONG_STR);
 	else
@@ -648,9 +639,8 @@ char *ft_itoa_min_ll(t_printf *pr, int_fast64_t num, char temp_str[])
 	return(temp_str);
 }
 
-char *ft_itoa_min_int(t_printf *pr, int num, char temp_str[])
+char *ft_itoa_min_int(int num, char temp_str[])
 {
-	append_to_buffer(pr, "-");
 	if(num == INT_MIN)
 		ft_strcpy(temp_str, FT_INT_STR);
 	else
@@ -664,17 +654,17 @@ char *ft_itoa_min_int(t_printf *pr, int num, char temp_str[])
 char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 {
 	if(pr->length.hh == true)
-		ft_itoa_min_hh(pr, num, temp_str);
+		ft_itoa_min_hh(num, temp_str);
 	else if(pr->length.h == true)
-		ft_itoa_min_h(pr, num, temp_str);
+		ft_itoa_min_h(num, temp_str);
 	else if(pr->length.l == true)
-		ft_itoa_min_l(pr, num, temp_str);
+		ft_itoa_min_l(num, temp_str);
 	else if(pr->length.ll == true)
-		ft_itoa_min_ll(pr, num, temp_str);
+		ft_itoa_min_ll(num, temp_str);
 //	else if(pr->length.L == true)
-//		ft_itoa_min_L(pr, num, temp_str);
+//		ft_itoa_min_L(num, temp_str);
 	else
-		ft_itoa_min_int(pr, num, temp_str);
+		ft_itoa_min_int(num, temp_str);
 
 	return(temp_str);
 }
@@ -709,46 +699,85 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 void print_d(t_printf *pr)
 {
 	int_fast64_t num;
-//	char str[32];
-	char temp_str[32];
+//	char str[FT_ONE_KILOBYTE];
+//	char temp_str[FT_ONE_KILOBYTE];
+	char str[pr->precision_field + pr->width_field + 32];
+	char temp_str[pr->precision_field + pr->width_field + 32];
 	int width;
 	int precision;
 	
 	ft_bzero(temp_str, 32);
+	ft_bzero(str, 32);
 	num = 0;
 	width = 0;
 	precision = 0;
 	num = determine_length_of_d(pr);
 	if(num < 0)
+	{
+		ft_strcpy(str, "-");
 		ft_itoa_min(pr, num, temp_str);
+	}
 	else
+	{
+		if(pr->flag.plus == true)
+			ft_strcpy(str, "+");
+		else if(pr->flag.space == true)
+			ft_strcpy(str, " ");
 		ft_itoa_base(num, FT_DECIMAL, temp_str);
+	}
 
 	if(pr->precision_field != -1)
 		pr->flag.zero = false;
-	if(num < 0)
-		precision = find_padding(pr->precision_field, ft_strlen(temp_str) - 1);
-	else if(num >= 0)
-		precision = find_padding(pr->precision_field, ft_strlen(temp_str));
+	if(pr->precision_field == 0 && num == 0) // Added
+		ft_strcpy(temp_str, NULL);           // Added
+	precision = find_padding(pr->precision_field, ft_strlen(temp_str));
+
+/*	
 	if(num < 0 && pr->flag.zero == true)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision + 1);
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
 	else if(num < 0 && pr->flag.zero == false)
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
+	else if(num >= 0)
 		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+*/
+
+	if(num < 0)
+		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
 	else if(num >= 0)
 		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
 
-//	if(width >= 0)
-//	{
-		if(pr->flag.zero == true)
-			append_to_buffer_loop(pr, width, "0");
-		else if(pr->flag.zero == false && pr->flag.minus == false)
-			append_to_buffer_loop(pr, width, " ");
-		else if(pr->flag.minus == true)
-			while(width--)
-				ft_strcat(temp_str, " ");
-//	}
-	append_to_buffer(pr, temp_str);
+	
+	if(pr->flag.plus == true || pr->flag.space == true)
+		if(width > 0 && num >= 0)
+			width--;
+	if(pr->flag.zero == true && width >= 0)
+		while(width--)
+			ft_strcat(str, "0");
+	else if(pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, width, " ");
+	else if(pr->flag.minus == true)
+		while(width--)
+			ft_strcat(temp_str, " ");
+	if(precision >= 0)
+		while(precision--)
+			ft_strcat(str, "0");
+
+	ft_strcat(str, temp_str);
+	append_to_buffer(pr, str);
 }
+/*
+** 1 = c
+** 2 = s
+** 3 = p
+** 4 = d
+** 5 = i
+** 6 = o
+** 7 = u
+** 8 = x
+** 9 = X
+** 10 = f
+** 11 = %
+*/
 
 void start_printing(t_printf *pr)
 {
@@ -758,7 +787,7 @@ void start_printing(t_printf *pr)
 		print_s(pr);
 	else if(pr->type_field == 3)
 		print_p(pr);
-	else if(pr->type_field == 4)
+	else if(pr->type_field == 4 || pr->type_field == 5)
 		print_d(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);

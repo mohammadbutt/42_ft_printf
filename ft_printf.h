@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 16:32:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 20:42:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 */
 
 # define FT_ONE_MEGABYTE 1048576
+# define FT_ONE_KILOBYTE 1024
 # define FT_VALID_TYPE "cspdiouxXf%"
 # define FT_HEX 16
 # define FT_DECIMAL 10
@@ -137,11 +138,11 @@ void 	print_p(t_printf *pr);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
 int_fast64_t 	determine_length_of_d(t_printf *pr);
 char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_hh(t_printf*pr, char num, char temp_str[]);
-char 	*ft_itoa_min_h(t_printf *pr, short num, char temp_str[]);
-char	*ft_itoa_min_l(t_printf *pr, int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_ll(t_printf *pr, int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_int(t_printf *pr, int num, char temp_str[]);
+char	*ft_itoa_min_hh(char num, char temp_str[]);
+char 	*ft_itoa_min_h(short num, char temp_str[]);
+char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_int(int num, char temp_str[]);
 void 	print_d(t_printf *pr);
 
 /*

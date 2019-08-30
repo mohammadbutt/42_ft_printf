@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 16:32:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 20:42:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int main(void)
 	char *str     = "Test";
 	char num1_min = -128;
 	char num1_max = 127;
+//	char num1_max = 0;
 
 	short num2_min = -32768;
 	short num2_max = 32767;
@@ -150,10 +151,77 @@ int main(void)
 //	ft_printf("ft_printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 //	   printf("   printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 
-	ft_printf("ft_printf:1:|%-5hhd|\n", num1_min);
-	   printf("   printf:1:|%-5hhd|\n", num1_min);
-	ft_printf("ft_printf:1:|%-5hhd|\n", num1_max);   
-	   printf("   printf:1:|%-5hhd|\n\n", num1_max);
+	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
+	   printf("   printf:1:|%hhd|\n", num1_min);
+	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
+	   printf("   printf:1:|%hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:2:|%6hhd|\n", num1_min);
+	   printf("   printf:2:|%6hhd|\n", num1_min);
+	ft_printf("ft_printf:2:|%6hhd|\n", num1_max);   
+	   printf("   printf:2:|%6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:3:|%06hhd|\n", num1_min);
+	   printf("   printf:3:|%06hhd|\n", num1_min);
+	ft_printf("ft_printf:3:|%06hhd|\n", num1_max);   
+	   printf("   printf:3:|%06hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:4:|%-6hhd|\n", num1_min);
+	   printf("   printf:4:|%-6hhd|\n", num1_min);
+	ft_printf("ft_printf:4:|%-6hhd|\n", num1_max);   
+	   printf("   printf:4:|%-6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:5:|%.6hhd|\n", num1_min);
+	   printf("   printf:5:|%.6hhd|\n", num1_min);
+	ft_printf("ft_printf:5:|%.6hhd|\n", num1_max);   
+	   printf("   printf:5:|%.6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:6:|%0.6hhd|\n", num1_min);
+	   printf("   printf:6:|%0.6hhd|\n", num1_min);
+	ft_printf("ft_printf:6:|%0.6hhd|\n", num1_max);   
+	   printf("   printf:6:|%0.6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:7:|%010.6hhd|\n", num1_min);
+	   printf("   printf:7:|%010.6hhd|\n", num1_min);
+	ft_printf("ft_printf:7:|%010.6hhd|\n", num1_max);   
+	   printf("   printf:7:|%010.6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:8:|% 10.6hhd|\n", num1_min);
+	   printf("   printf:8:|% 10.6hhd|\n", num1_min);
+	ft_printf("ft_printf:8:|% 10.6hhd|\n", num1_max);   
+	   printf("   printf:8:|% 10.6hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:9:|%+10.6hhd|\n", num1_min);
+	   printf("   printf:9:|%+10.6hhd|\n", num1_min);
+	ft_printf("ft_printf:9:|%+10.6hhd|\n", num1_max);   
+	   printf("   printf:9:|%+10.6hhd|\n\n", num1_max);
+
+
+	ft_printf("ft_printf:10:|%+.6hhd|\n", num1_min);
+	   printf("   printf:10:|%+.6hhd|\n", num1_min);
+	ft_printf("ft_printf:10:|%+.6hhd|\n", num1_max);   
+	   printf("   printf:10:|%+.6hhd|\n\n", num1_max);
+
+
+	ft_printf("ft_printf:9:|% hhd|\n", num1_min);
+	   printf("   printf:9:|% hhd|\n", num1_min);
+	ft_printf("ft_printf:9:|% hhd|\n", num1_max);   
+	   printf("   printf:9:|% hhd|\n\n", num1_max);
+
+	ft_printf("ft_printf:9:|% 3d|\n", 0);
+	   printf("   printf:9:|% 3d|\n", 0);
+
+	ft_printf("ft_printf:9:|% .d|\n", 0);
+	   printf("   printf:9:|% .d|\n", 0);
+
+
+//	ft_printf("ft_printf:6:|%+5hhd|\n", num1_min);
+//	   printf("   printf:6:|%+5hhd|\n", num1_min);
+//	ft_printf("ft_printf:6:|%+5hhd|\n", num1_max);   
+//	   printf("   printf:6:|%+5hhd|\n\n", num1_max);
+
+
+
 
 	ft_printf("ft_printf:2:|%hd|\n", num2_min);
 	   printf("   printf:2:|%hd|\n", num2_min);
@@ -169,5 +237,8 @@ int main(void)
 	   printf("   printf:4:|%lld|\n", num4_min);
 	ft_printf("ft_printf:4:|%lld|\n", num4_max);
 	   printf("   printf:4:|%lld|\n\n", num4_max);
+
+	ft_printf("ft_printf643:|%-10240lld|\n", -522337203685470ll);
+	   printf("   printf643:|%-10240lld|\n", -522337203685470ll);
 
 }
