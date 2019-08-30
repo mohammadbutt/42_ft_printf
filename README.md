@@ -44,7 +44,7 @@ int main(void)
 ' ' # 
 ' ' 0 
 ' ' - 
-~~' ' +~~ 
+' ' + : ' ' is ignored when '+' is present
 
 # ' '
 # #
@@ -55,16 +55,16 @@ int main(void)
 0 ' '
 0 #
 0 0
-0 -
+0 - : '0' is ignored when '-' is present
 0 +
 
 - ' '
 - #
-- 0
+- 0 : '0' is ignored when '-' is present
 - -
 - +
 
-+ ' '
++ ' ' : ' ' is ignored when '+' is present
 + #
 + 0
 + -
