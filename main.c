@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 20:42:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 21:58:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -238,7 +238,13 @@ int main(void)
 	ft_printf("ft_printf:4:|%lld|\n", num4_max);
 	   printf("   printf:4:|%lld|\n\n", num4_max);
 
-	ft_printf("ft_printf643:|%-10240lld|\n", -522337203685470ll);
-	   printf("   printf643:|%-10240lld|\n", -522337203685470ll);
+//	ft_printf("ft_printf643:|%-10240lld|\n", -522337203685470ll);
+//	   printf("   printf643:|%-10240lld|\n", -522337203685470ll);
+
+
+	ft_printf("ft_printf:4:|%lld|\n", num4_min);
+	   printf("   printf:4:|%lld|\n", num4_min);
+	ft_printf("ft_printf:4:|%lld|\n", num4_max);
+	   printf("   printf:4:|%lld|\n\n", num4_max);
 
 }

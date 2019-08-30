@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 20:42:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 21:56:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@
 typedef struct s_variables
 {
 	int i;
+	int width;
+	int precision;
 //	int c;
 //	int repeat;
 } t_variables;
@@ -101,6 +103,7 @@ typedef struct s_printf
 	char buffer[FT_ONE_MEGABYTE];
 	va_list arguments;
 	const char *string;
+	int i;
 	int buffer_i;
 	int	width_field;
 	int	precision_field;
@@ -129,8 +132,8 @@ void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
 void	start_printing(t_printf *pr);
 void	print_c(t_printf *pr);
-//int		find_padding(t_printf *pr, int string_length);
-int		find_padding(int field, int string_length);
+//int		ft_pad(t_printf *pr, int string_length);
+int		ft_pad(int field, int string_length);
 void	print_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
@@ -143,6 +146,7 @@ char 	*ft_itoa_min_h(short num, char temp_str[]);
 char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
+void	ft_bzero_buffers(char str[], char temp_str[]);
 void 	print_d(t_printf *pr);
 
 /*

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 20:42:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/29 21:58:50 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,7 +427,7 @@ void print_percent(t_printf *pr)
 ** In field parameter we can pass in width_field or precision_field.
 */
 
-int find_padding(int field, int string_length)
+int ft_pad(int field, int string_length)
 {
 	int repeat;
 
@@ -501,7 +501,7 @@ void print_s(t_printf *pr)
 		ft_strcpy(str, temp_s);
 	else if(pr->precision_field == 0)
 		(ft_strcpy(str, NULL));
-	repeat = find_padding(pr->width_field, ft_strlen(str));
+	repeat = ft_pad(pr->width_field, ft_strlen(str));
 	print_s_append_buffer(pr, str, repeat);
 }
 
@@ -552,8 +552,8 @@ void print_p(t_printf *pr)
 
 	pointer_value = (int_fast64_t)va_arg(pr->arguments, void *);
 	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
-	re_width = find_padding(pr->width_field, ft_strlen(temp_str1) + 2);
-	re_precision = find_padding(pr->precision_field, ft_strlen(temp_str1));
+	re_width = ft_pad(pr->width_field, ft_strlen(temp_str1) + 2);
+	re_precision = ft_pad(pr->precision_field, ft_strlen(temp_str1));
 	if(pr->flag.zero == true && pr->flag.minus == false)
 	{
 		append_to_buffer(pr, "0x");
@@ -669,6 +669,12 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 	return(temp_str);
 }
 
+void ft_bzero_buffers(char str[], char temp_str[])
+{
+	ft_bzero_no_len(str);
+	ft_bzero_no_len(temp_str);
+}
+
 /*
 ** For d type_field, 'll' length_field can print a 19 digits number with a range
 ** from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807.
@@ -706,11 +712,9 @@ void print_d(t_printf *pr)
 	int width;
 	int precision;
 	
-	ft_bzero(temp_str, 32);
-	ft_bzero(str, 32);
-	num = 0;
-	width = 0;
-	precision = 0;
+	ft_bzero_buffers(str, temp_str);
+	var_to_zero(&num, &width, &precision, &precision);
+//	var_to_zero(&num, &pr->var.precision, &pr->var.width, &pr->var.width);
 	num = determine_length_of_d(pr);
 	if(num < 0)
 	{
@@ -730,21 +734,21 @@ void print_d(t_printf *pr)
 		pr->flag.zero = false;
 	if(pr->precision_field == 0 && num == 0) // Added
 		ft_strcpy(temp_str, NULL);           // Added
-	precision = find_padding(pr->precision_field, ft_strlen(temp_str));
+	precision = ft_pad(pr->precision_field, ft_strlen(temp_str));
 
 /*	
 	if(num < 0 && pr->flag.zero == true)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
+		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
 	else if(num < 0 && pr->flag.zero == false)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
+		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
 	else if(num >= 0)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision);
 */
 
 	if(num < 0)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision +1);
+		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision +1);
 	else if(num >= 0)
-		width = find_padding(pr->width_field, ft_strlen(temp_str) + precision);
+		width = ft_pad(pr->width_field, ft_strlen(temp_str) + precision);
 
 	
 	if(pr->flag.plus == true || pr->flag.space == true)
@@ -765,6 +769,8 @@ void print_d(t_printf *pr)
 	ft_strcat(str, temp_str);
 	append_to_buffer(pr, str);
 }
+
+
 /*
 ** 1 = c
 ** 2 = s

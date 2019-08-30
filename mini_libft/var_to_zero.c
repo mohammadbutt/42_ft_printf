@@ -1,36 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_bzero.c                                         :+:      :+:    :+:   */
+/*   var_to_zero.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/08/23 17:52:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 21:07:54 by mbutt            ###   ########.fr       */
+/*   Created: 2019/08/29 21:40:12 by mbutt             #+#    #+#             */
+/*   Updated: 2019/08/29 21:58:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
 
-void	ft_bzero(void *s, size_t len)
+/*
+** sets variables to zero
+*/
+int var_to_zero(int_fast64_t *a, int *b, int *c, int *d)
 {
-	unsigned char *str;
-	size_t	i;
-
-	str = s;
-	i = 0;
-	while (i < len)
-		str[i++] = 0;
-}
-
-void ft_bzero_no_len(void *s)
-{
-	unsigned char *str;
-	size_t i;
-	
-	str = s;
-	i = 0;
-	if(str)
-		while(str[i])
-			str[i++] = 0;
+	*a = 0;
+	*b = 0;
+	*c = 0;
+	*d = 0;
+	return(0);
 }
