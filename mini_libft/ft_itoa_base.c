@@ -6,12 +6,12 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/26 15:40:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/28 21:13:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 16:11:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
-
+#include <stdio.h>
 /*
 ** ft_itoa_base will work with any base, but if a base is of 2 and the value is
 ** either int min, this will produce a binary which will be 32 digits long + 1
@@ -48,8 +48,9 @@ char *ft_itoa_base(int_fast64_t value, int base, char str[])
 {
 	int len;
 	uint_fast64_t u_value;
-	char placeholder[] = "0123456789abcdef";
+	char placeholder[17];
 
+	ft_strcpy(placeholder, "0123456789abcdef");
 	if (value == 0)
 		return (ft_strcpy(str, "0"));
 	len = ft_numlen(value, base);

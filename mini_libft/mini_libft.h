@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/29 21:41:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 15:58:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ int_fast64_t	ft_abs(int_fast64_t num);
 int				ft_atoi(const char *str);
 void			ft_bzero(void *str, size_t len);
 void			ft_bzero_no_len(void *str);
-int				ft_numlen(int_fast64_t value, int base);
+//int				ft_numlen(int_fast64_t value, int base);
 //int				initialize_with_zero(int_fast64_t *a, int *b, int *c, int *d);
 int				ft_isdigit(char c);
 int				ft_isdigit1(char c);
 int				ft_isspace(int c);
-char 			*ft_itoa_base(int_fast64_t value, int base, char str_buffer[]);
+char 			*ft_itoa_base(int_fast64_t value, int base, char str[]);
+char			*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 char			*ft_strcat(char *dest, char *source);

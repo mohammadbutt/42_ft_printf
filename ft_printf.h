@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 14:49:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 16:44:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,7 +148,13 @@ char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
 void	ft_bzero_buffers(char str[], char temp_str[]);
 void 	print_d(t_printf *pr);
-void	d_append_buffer(t_printf *pr, char s[], char t_s[], int_fast64_t n);
+//void	d_append_buffer(t_printf *pr, char s[], char t_s[], int_fast64_t n);
+void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
+void	print_u(t_printf *pr);
+uint_fast64_t determine_length_of_u(t_printf *pr);
+void	u_append_buffer(t_printf *pr, char s[], char t_s[]);
+
+
 /*
 typedef void ft_print_functions(t_printf *pr);
 
