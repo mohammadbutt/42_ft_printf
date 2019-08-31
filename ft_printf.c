@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 21:20:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 21:28:46 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -889,7 +889,6 @@ void print_o(t_printf *pr)
 	ft_itoa_base_u(n, FT_OCTAL, t_s);
 	if(t_s[0] == '0' && s[0] == '0' && pr->precision_field == -1)
 		(pr->flag.zero == false) && (ft_strcpy(s, " "));
-	(pr->flag.zero == true && n == 0) && (ft_strcpy(s, NULL));
 	if(s[0] == ' ' && t_s[0] == '0' && pr->flag.minus == true)
 		ft_swap(&s[0], &t_s[0]);
 	else if(n == 0 && pr->width_field == 0 && pr->precision_field == -1)
