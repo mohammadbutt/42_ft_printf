@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 16:45:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 17:20:22 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -796,13 +796,10 @@ void	u_append_buffer(t_printf *pr, char s[], char t_s[])
 	int len;
 
 	len = ft_strlen(t_s);
-	pr->var.precision = ft_pad(pr->precision_field, len);
-//	if(n < 0)
-//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision +1);
-//	else if(n >= 0)
-		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+	pr->var.precision = ft_pad(pr->precision_field, len);	
+	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
 	if(pr->flag.plus == true || pr->flag.space == true)
-//		if(pr->var.width > 0 && n >= 0)
+		if(pr->var.width > 0)	
 			pr->var.width--;
 	if(pr->flag.zero == true && pr->var.width >= 0)
 		while(pr->var.width--)
@@ -829,21 +826,12 @@ void print_u(t_printf *pr)
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
 	n = 0;
-//	var_to_zero(&pr->var.precision, &pr->var.width, &pr->var.width);
 	n = determine_length_of_u(pr);
-//	if(n < 0)
-//	{
-//		ft_strcpy(s, "-");
-//		ft_itoa_min(pr, n, t_s);
-//	}
-//	else
-//	{
-		if(pr->flag.plus == true)
-			ft_strcpy(s, "+");
-		else if(pr->flag.space == true)
-			ft_strcpy(s, " ");
-		ft_itoa_base_u(n, FT_DECIMAL, t_s);
-//	}
+	if(pr->flag.plus == true)
+		ft_strcpy(s, "+");
+	else if(pr->flag.space == true)
+		ft_strcpy(s, " ");
+	ft_itoa_base_u(n, FT_DECIMAL, t_s);
 	(pr->precision_field != -1) && (pr->flag.zero = false);
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
 	u_append_buffer(pr, s, t_s);
@@ -867,8 +855,8 @@ void start_printing(t_printf *pr)
 		print_d(pr);
 //	else if(pr->type_field == 6)
 //		print_o(pr);
-//	else if(pr->type_field == 7)
-//		print_u(pr);
+	else if(pr->type_field == 7)
+		print_u(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/30 15:57:35 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 16:08:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 16:53:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,12 @@ int ft_u_numlen(uint_fast64_t value, int base)
 //		u_value = u_value/base;
 //		i++;
 //	}
-	while(base && u_value)
-	{
-		u_value = u_value / base;
-		i++;
-	}
+	if(u_value)
+		while(base && u_value)
+		{
+			u_value = u_value / base;
+			i++;
+		}
 	return (i);
 }
 
@@ -68,7 +69,7 @@ char *ft_itoa_base_u(uint_fast64_t value, int base, char str[])
 //	}
 //	while (base != 10 && u_value)
 //	{
-//		str[len] = placeholder[u_value%base];
+//		str[len] = placeholder[u_value % base];
 //		u_value = u_value / base;
 //		len--;
 //	}

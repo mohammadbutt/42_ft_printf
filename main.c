@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 16:45:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 17:20:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ int main(void)
 //	ft_printf("ft_printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 //	   printf("   printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 
+/*
 	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
 	   printf("   printf:1:|%hhd|\n", num1_min);
 	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
@@ -246,11 +247,13 @@ int main(void)
 	   printf("   printf:4:|%lld|\n", num4_min);
 	ft_printf("ft_printf:4:|%lld|\n", num4_max);
 	   printf("   printf:4:|%lld|\n\n", num4_max);
+*/
 
-	ft_printf("ft_printf:4:|%llu|\n", num4_min);
-	   printf("   printf:4:|%llu|\n", num4_min);
-	ft_printf("ft_printf:4:|%llu|\n", num4_max);
-	   printf("   printf:4:|%llu|\n\n", num4_max);
+	   printf("   printf:1|%+d|\n", 5);
+	ft_printf("ft_printf:1|%+d|\n", 5);
+
+//	ft_printf("ft_printf:4:|%llu|\n", num4_max);
+//	   printf("   printf:4:|%llu|\n\n", num4_max);
 
 
 }
