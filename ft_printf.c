@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 21:00:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 21:20:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -837,32 +837,6 @@ void print_u(t_printf *pr)
 	u_append_buffer(pr, s, t_s);
 }
 
-
-/*
-** determines what data type is in the given argument.
-** Type casts to 'unsigned char' for 'hh'.
-** Type casts to 'unsigned short' for 'h'.
-*/
-/*
-uint_fast64_t determine_length_of_o(t_printf *pr)
-{
-	uint_fast64_t num;
-
-	num = 0;
-	if(pr->length.hh == true)
-		num = (unsigned char) va_arg(pr->arguments, unsigned int);
-	else if(pr->length.h == true)
-		num = (unsigned short) va_arg(pr->arguments, unsigned int);
-	else if(pr->length.l == true)
-		num = va_arg(pr->arguments, unsigned long);
-	else if(pr->length.ll == true)
-		num = va_arg(pr->arguments, unsigned long long);
-	else
-		num = va_arg(pr->arguments, unsigned int);
-	return(num);
-}
-*/
-
 void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 {
 	int len;
@@ -891,7 +865,15 @@ void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-
+void check_flags_for_o(t_printf *pr, char s[])
+{
+	if(pr->flag.hash == true)
+		ft_strcpy(s, "0");
+	else if(pr->flag.plus == true)
+		ft_strcpy(s, "+");
+	else if(pr->flag.space == true)
+		ft_strcpy(s, " ");
+}
 
 void print_o(t_printf *pr)
 {
@@ -903,27 +885,17 @@ void print_o(t_printf *pr)
 	ft_bzero_no_len(&pr->var);
 	n = 0;
 	n = determine_length_of_u_o(pr);
-	if(pr->flag.hash == true)
-		ft_strcpy(s, "0");
-	else if(pr->flag.plus == true)
-		ft_strcpy(s, "+");
-	else if(pr->flag.space == true)
-		ft_strcpy(s, " ");
+	check_flags_for_o(pr, s);
 	ft_itoa_base_u(n, FT_OCTAL, t_s);
 	if(t_s[0] == '0' && s[0] == '0' && pr->precision_field == -1)
-	{
-		if(pr->flag.zero == false)
-			ft_strcpy(s, " ");
-	}
-	if(pr->flag.zero == true && n == 0)
-		ft_strcpy(s, NULL);
+		(pr->flag.zero == false) && (ft_strcpy(s, " "));
+	(pr->flag.zero == true && n == 0) && (ft_strcpy(s, NULL));
 	if(s[0] == ' ' && t_s[0] == '0' && pr->flag.minus == true)
 		ft_swap(&s[0], &t_s[0]);
 	else if(n == 0 && pr->width_field == 0 && pr->precision_field == -1)
 		ft_strcpy(s, NULL);
 	if(n == 0 && pr->width_field > 1 && pr->flag.zero == true)
-		if(pr->flag.hash == true)
-			ft_strcpy(s, "0");
+		(pr->flag.hash == true) && (ft_strcpy(s, "0"));
 	(pr->precision_field != -1) && (pr->flag.zero = false);
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
 	o_append_buffer(pr, s, t_s);
