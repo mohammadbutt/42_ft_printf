@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 17:13:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 17:48:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@
 # define FT_VALID_TYPE "cspdiouxXf%"
 # define FT_HEX 16
 # define FT_DECIMAL 10
+# define FT_OCTAL 8
 # define FT_CHAR_STR "128"
 # define FT_SHORT_STR "32768"
 # define FT_INT_STR "2147483648"
@@ -151,8 +152,11 @@ void 	print_d(t_printf *pr);
 //void	d_append_buffer(t_printf *pr, char s[], char t_s[], int_fast64_t n);
 void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
 void	print_u(t_printf *pr);
-uint_fast64_t determine_length_of_u(t_printf *pr);
+uint_fast64_t determine_length_of_u_o(t_printf *pr);
 void	u_append_buffer(t_printf *pr, char s[], char t_s[]);
+void	print_o(t_printf *pr);
+void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
+
 
 
 /*

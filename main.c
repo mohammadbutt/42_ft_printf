@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 17:20:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 21:01:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,8 +249,154 @@ int main(void)
 	   printf("   printf:4:|%lld|\n\n", num4_max);
 */
 
-	   printf("   printf:1|%+d|\n", 5);
-	ft_printf("ft_printf:1|%+d|\n", 5);
+	   printf("   printf:1|%# +o|\n", 345345);
+	ft_printf("ft_printf:1|%# +o|\n", 345345);
+
+	   printf("   printf:2|%#-8.3o|\n", 345345);
+	ft_printf("ft_printf:2|%#-8.3o|\n\n", 345345);
+
+	   printf("   printf:3|%#-8.5o|\n", 34);
+	ft_printf("ft_printf:3|%#-8.5o|\n\n", 34);
+
+	   printf("   printf:4|%#-8.o|\n", 34);
+	ft_printf("ft_printf:4|%#-8.o|\n\n", 34);
+
+	   printf("   printf:5|%#8.o|\n", 34);
+	ft_printf("ft_printf:5|%#8.o|\n\n", 34);
+
+	   printf("   printf:6|%8.3o|\n", 34);
+	ft_printf("ft_printf:6|%8.3o|\n\n", 34);
+
+	   printf("   printf:7|%#8.3o|\n", 34);
+	ft_printf("ft_printf:7|%#8.3o|\n\n", 34);
+
+	   printf("   printf:8|%3o|\n", 4);
+	ft_printf("ft_printf:8|%3o|\n\n", 4);
+
+	   printf("   printf:9|%3o|\n", 0);
+	ft_printf("ft_printf:9|%3o|\n\n", 0);
+
+	   printf("   printf:10|%#3o|\n", 4);
+	ft_printf("ft_printf:10|%#3o|\n\n", 4);
+
+	   printf("   printf:11|%#5o|\n", 0);
+	ft_printf("ft_printf:11|%#5o|\n\n", 0);
+
+	   printf("   printf:12|%#5.8o|\n", 0);
+	ft_printf("ft_printf:12|%#5.8o|\n\n", 0);
+
+	   printf("   printf:13|%#5.0o|\n", 0);
+	ft_printf("ft_printf:13|%#5.0o|\n\n", 0);
+
+	   printf("   printf:14|%#-3o|\n", 0);
+	ft_printf("ft_printf:14|%#-3o|\n\n", 0);
+
+	   printf("   printf:15|%#3o|\n", 0);
+	ft_printf("ft_printf:15|%#3o|\n\n", 0);
+	
+	   printf("   printf:16|this %#o number,|\n", 0);
+	ft_printf("ft_printf:16|this %#o number,|\n\n", 0);
+
+	   printf("   printf:17|%#o|\n", 0);
+	ft_printf("ft_printf:17|%#o|\n\n", 0);
+
+	   printf("   printf:18|%0#o|\n", 0);
+	ft_printf("ft_printf:18|%0#o|\n\n", 0);
+
+	   printf("   printf:19|%#.3o|\n", 0);
+	ft_printf("ft_printf:19|%#.3o|\n\n", 0);
+
+	   printf("   printf:20|%#.0o|\n", 0);
+	ft_printf("ft_printf:20|%#.0o|\n\n", 0);
+
+	   printf("   printf:21|%#.o|\n", 0);
+	ft_printf("ft_printf:21|%#.o|\n\n", 0);
+
+	   printf("   printf:22|%#0o|\n", 0);
+	ft_printf("ft_printf:22|%#0o|\n\n", 0);
+
+	   printf("   printf:23|%#01o|\n", 1);
+	ft_printf("ft_printf:23|%#01o|\n\n", 1);
+
+	   printf("   printf:24|%#1o|\n", 1);
+	ft_printf("ft_printf:24|%#1o|\n\n", 1);
+
+	   printf("   printf:25|%1o|\n", 0);
+	ft_printf("ft_printf:25|%1o|\n\n", 0);
+
+	   printf("   printf:26|%#01o|\n", 0);
+	ft_printf("ft_printf:26|%#01o|\n\n", 0);
+
+	   printf("   printf:27|%#01o|\n", 1);
+	ft_printf("ft_printf:27|%#01o|\n\n", 1);
+
+	   printf("   printf:28|%#01o|\n", 1);
+	ft_printf("ft_printf:28|%#01o|\n\n", 1);
+
+	   printf("   printf:29|%#02o|\n", 0);
+	ft_printf("ft_printf:29|%#02o|\n\n", 0);
+
+	   printf("   printf:30|%#03o|\n", 0);
+	ft_printf("ft_printf:30|%#03o|\n\n", 0);
+
+	   printf("   printf:31|%#04o|\n", 0);
+	ft_printf("ft_printf:31|%#04o|\n\n", 0);
+
+	   printf("   printf:32|%00o|\n", 0);
+	ft_printf("ft_printf:32|%00o|\n\n", 0);
+
+	   printf("   printf:33|%01o|\n", 0);
+	ft_printf("ft_printf:33|%01o|\n\n", 0);
+
+	   printf("   printf:34|%02o|\n", 0);
+	ft_printf("ft_printf:34|%02o|\n\n", 0);
+
+	   printf("   printf:35|%03o|\n", 0);
+	ft_printf("ft_printf:35|%03o|\n\n", 0);
+
+	   printf("   printf:36|%03o|\n", 0);
+	ft_printf("ft_printf:36|%03o|\n\n", 0);
+
+	   printf("   printf:37|%03o|\n", 1);
+	ft_printf("ft_printf:37|%03o|\n\n", 1);
+
+	   printf("   printf:38|%08.o|\n", 1);
+	ft_printf("ft_printf:38|%08.o|\n\n", 1);
+
+	   printf("   printf:39|%08.0o|\n", 1);
+	ft_printf("ft_printf:39|%08.0o|\n\n", 1);
+
+	   printf("   printf:40|%08.1o|\n", 1);
+	ft_printf("ft_printf:40|%08.1o|\n\n", 1);
+
+	   printf("   printf:41|%08.2o|\n", 1);
+	ft_printf("ft_printf:41|%08.2o|\n\n", 1);
+
+	   printf("   printf:42|%08.3o|\n", 1);
+	ft_printf("ft_printf:42|%08.3o|\n\n", 1);
+
+	   printf("   printf:43|%08.4o|\n", 1);
+	ft_printf("ft_printf:43|%08.4o|\n\n", 1);
+
+	   printf("   printf:44|%08.o|\n", 0);
+	ft_printf("ft_printf:44|%08.o|\n\n", 0);
+
+	   printf("   printf:45|%08.0o|\n", 0);
+	ft_printf("ft_printf:45|%08.0o|\n\n", 0);
+
+	   printf("   printf:46|%08.1o|\n", 0);
+	ft_printf("ft_printf:46|%08.1o|\n\n", 0);
+
+	   printf("   printf:47|%08.2o|\n", 0);
+	ft_printf("ft_printf:47|%08.2o|\n\n", 0);
+
+	   printf("   printf:47|%08.3o|\n", 0);
+	ft_printf("ft_printf:47|%08.3o|\n\n", 0);
+
+	   printf("   printf:48|%08.4o|\n", 0);
+	ft_printf("ft_printf:48|%08.4o|\n\n", 0);
+
+
 
 //	ft_printf("ft_printf:4:|%llu|\n", num4_max);
 //	   printf("   printf:4:|%llu|\n\n", num4_max);

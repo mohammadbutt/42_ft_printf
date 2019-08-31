@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 17:20:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/30 21:00:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -773,7 +773,7 @@ void print_d(t_printf *pr)
 ** Type casts to 'unsigned short' for 'h'.
 */
 
-uint_fast64_t determine_length_of_u(t_printf *pr)
+uint_fast64_t determine_length_of_u_o(t_printf *pr)
 {
 	uint_fast64_t num;
 
@@ -826,7 +826,7 @@ void print_u(t_printf *pr)
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
 	n = 0;
-	n = determine_length_of_u(pr);
+	n = determine_length_of_u_o(pr);
 	if(pr->flag.plus == true)
 		ft_strcpy(s, "+");
 	else if(pr->flag.space == true)
@@ -837,6 +837,97 @@ void print_u(t_printf *pr)
 	u_append_buffer(pr, s, t_s);
 }
 
+
+/*
+** determines what data type is in the given argument.
+** Type casts to 'unsigned char' for 'hh'.
+** Type casts to 'unsigned short' for 'h'.
+*/
+/*
+uint_fast64_t determine_length_of_o(t_printf *pr)
+{
+	uint_fast64_t num;
+
+	num = 0;
+	if(pr->length.hh == true)
+		num = (unsigned char) va_arg(pr->arguments, unsigned int);
+	else if(pr->length.h == true)
+		num = (unsigned short) va_arg(pr->arguments, unsigned int);
+	else if(pr->length.l == true)
+		num = va_arg(pr->arguments, unsigned long);
+	else if(pr->length.ll == true)
+		num = va_arg(pr->arguments, unsigned long long);
+	else
+		num = va_arg(pr->arguments, unsigned int);
+	return(num);
+}
+*/
+
+void	o_append_buffer(t_printf *pr, char s[], char t_s[])
+{
+	int len;
+
+	len = ft_strlen(t_s);
+	if(pr->flag.hash == true && pr->precision_field >= 0)
+		pr->var.precision = ft_pad(pr->precision_field, len + 1);
+	else
+		pr->var.precision = ft_pad(pr->precision_field, len);
+	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+	if(pr->flag.plus == true || pr->flag.space == true || pr->flag.hash == true)
+		if(pr->var.width > 0)	
+			pr->var.width--;
+	if( pr->flag.zero == true && pr->var.width >= 0)
+		while(pr->var.width--)
+			ft_strcat(s, "0");
+	else if(pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, pr->var.width, " ");
+	else if(pr->flag.minus == true)
+		while(pr->var.width--)
+			ft_strcat(t_s, " ");
+	if(pr->var.precision >= 0)
+		while(pr->var.precision--)
+			ft_strcat(s, "0");
+	ft_strcat(s, t_s);
+	append_to_buffer(pr, s);
+}
+
+
+
+void print_o(t_printf *pr)
+{
+	uint_fast64_t n;
+	char s[pr->precision_field + pr->width_field + 32];
+	char t_s[pr->precision_field + pr->width_field + 32];
+	
+	ft_bzero_buffers(s, t_s);
+	ft_bzero_no_len(&pr->var);
+	n = 0;
+	n = determine_length_of_u_o(pr);
+	if(pr->flag.hash == true)
+		ft_strcpy(s, "0");
+	else if(pr->flag.plus == true)
+		ft_strcpy(s, "+");
+	else if(pr->flag.space == true)
+		ft_strcpy(s, " ");
+	ft_itoa_base_u(n, FT_OCTAL, t_s);
+	if(t_s[0] == '0' && s[0] == '0' && pr->precision_field == -1)
+	{
+		if(pr->flag.zero == false)
+			ft_strcpy(s, " ");
+	}
+	if(pr->flag.zero == true && n == 0)
+		ft_strcpy(s, NULL);
+	if(s[0] == ' ' && t_s[0] == '0' && pr->flag.minus == true)
+		ft_swap(&s[0], &t_s[0]);
+	else if(n == 0 && pr->width_field == 0 && pr->precision_field == -1)
+		ft_strcpy(s, NULL);
+	if(n == 0 && pr->width_field > 1 && pr->flag.zero == true)
+		if(pr->flag.hash == true)
+			ft_strcpy(s, "0");
+	(pr->precision_field != -1) && (pr->flag.zero = false);
+	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
+	o_append_buffer(pr, s, t_s);
+}
 
 /*
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
@@ -853,8 +944,8 @@ void start_printing(t_printf *pr)
 		print_p(pr);
 	else if(pr->type_field == 4 || pr->type_field == 5)
 		print_d(pr);
-//	else if(pr->type_field == 6)
-//		print_o(pr);
+	else if(pr->type_field == 6)
+		print_o(pr);
 	else if(pr->type_field == 7)
 		print_u(pr);
 	else if(pr->type_field == 11)
