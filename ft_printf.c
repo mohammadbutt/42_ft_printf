@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 21:28:46 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/31 18:18:22 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -842,7 +842,8 @@ void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 	int len;
 
 	len = ft_strlen(t_s);
-	if(pr->flag.hash == true && pr->precision_field >= 0)
+//	if(pr->flag.hash == true && pr->precision_field >= 0) // Commenting
+	if(s[0] == '0') // Works
 		pr->var.precision = ft_pad(pr->precision_field, len + 1);
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
@@ -869,8 +870,6 @@ void check_flags_for_o(t_printf *pr, char s[])
 {
 	if(pr->flag.hash == true)
 		ft_strcpy(s, "0");
-	else if(pr->flag.plus == true)
-		ft_strcpy(s, "+");
 	else if(pr->flag.space == true)
 		ft_strcpy(s, " ");
 }
