@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/30 19:39:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/08/31 19:19:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int				ft_isdigit1(char c);
 int				ft_isspace(int c);
 char 			*ft_itoa_base(int_fast64_t value, int base, char str[]);
 char			*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
+char			*ft_hex(uint_fast64_t value, char c, char str[]);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 char			*ft_strcat(char *dest, char *source);
