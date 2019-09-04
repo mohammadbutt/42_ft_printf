@@ -85,7 +85,7 @@ Things to learn:
 
 ### x type field
 - When minus flag is true:
-  - Precision places `0` in the beginning.
+  - Precision places zero `'0'` in the beginning.
   - Width places space `' '` at the end.
 
 ### Project summary: 
