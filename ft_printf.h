@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/31 20:59:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/03 22:27:15 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,7 +157,10 @@ void	print_o(t_printf *pr);
 void 	check_flags_for_o(t_printf *pr, char s[]);
 void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
 void 	print_x(t_printf *pr);
-void	print_x_append(t_printf *pr, char *str, int re_width, int re_precision, uint64_t pointer_value);
+void	no_width_no_precision(t_printf *pr, uint_fast64_t n);
+void	no_width_yes_precision(t_printf *pr, uint_fast64_t n);
+void	yes_width_no_precision(t_printf *pr, uint_fast64_t n);
+//void	print_x_append(t_printf *pr, char *str, int re_width, int re_precision, uint64_t pointer_value);
 
 //void	print_x(t_printf *pr);
 //void	x_append_buffer(t_printf *pr, char s[]);

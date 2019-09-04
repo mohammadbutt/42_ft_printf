@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/01 21:12:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/04 12:43:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1101,10 +1101,157 @@ void check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n)
 {
 	if(pr->flag.hash == true && n != 0 && pr->type_field == 8)
 		ft_strcpy(s, "0x");
-//	else if (pr->flag.hash == true && n != 0 && pr->type_field == 9)
-//		ft_strcpy(s, "0X");
+	else if (pr->flag.hash == true && n != 0 && pr->type_field == 9)
+		ft_strcpy(s, "0X");
 }
 
+void no_width_no_precision(t_printf *pr, uint_fast64_t n)
+{
+	char str[32];
+	char str_hex[32];
+	
+	ft_bzero_buffers(str, str_hex);
+	ft_bzero_no_len(&pr->var);
+	if(pr->type_field == 8)
+		ft_hex(n, 'x', str);
+
+	if(pr->flag.hash == true && n != 0 && pr->type_field == 8)
+		ft_strcpy(str_hex, "0x");
+	ft_strcat(str_hex, str);
+	append_to_buffer(pr, str_hex);
+}
+
+void no_width_yes_precision(t_printf *pr, uint_fast64_t n)
+{
+	char str[pr->precision_field + 32];
+	char str_hex[pr->precision_field + 32];
+
+	ft_bzero_buffers(str, str_hex);
+	ft_bzero_no_len(&pr->var);
+	if(pr->type_field == 8)
+		ft_hex(n, 'x', str);
+	check_flags_for_x(pr, str_hex, n);
+	if(n == 0 && pr->precision_field == 0)
+	{
+		ft_strcpy(str, NULL);
+		append_to_buffer(pr, str);
+		return;
+	}
+	pr->var.precision = ft_pad(pr->precision_field, ft_strlen(str));
+	if(pr->flag.hash == false)
+		append_to_buffer_loop(pr, pr->var.precision, "0");
+	else if(pr->flag.hash == true)
+		while(pr->var.precision--)
+			ft_strcat(str_hex, "0");
+	ft_strcat(str_hex, str);
+	append_to_buffer(pr, str_hex);
+
+}
+
+void yes_width_no_precision(t_printf *pr, uint_fast64_t n)
+{
+	char str[pr->width_field + 32];
+	char str_hex[pr->width_field + 32];
+
+	ft_bzero_buffers(str, str_hex);
+	ft_bzero_no_len(&pr->var);
+	if(pr->type_field == 8)
+		ft_hex(n, 'x', str);
+	check_flags_for_x(pr, str_hex, n);
+	pr->var.width = ft_pad(pr->width_field, ft_strlen(str) + ft_strlen(str_hex));
+	
+	if(pr->flag.minus == true)
+	{
+		if(pr->var.width > 0)
+			while(pr->var.width--)
+				ft_strcat(str, " ");
+		ft_strcat(str_hex, str);
+		append_to_buffer(pr, str_hex);
+		return;
+	}
+	else if(pr->flag.minus == false)
+	{
+		if(pr->flag.hash == false)
+		{
+			if(pr->flag.zero == false)
+				append_to_buffer_loop(pr, pr->var.width, " ");
+			else if(pr->flag.zero == true)
+				append_to_buffer_loop(pr, pr->var.width, "0");
+			append_to_buffer(pr, str);
+		}
+		else if(pr->flag.hash == true)
+		{
+			if(pr->flag.zero == false)
+				append_to_buffer_loop(pr, pr->var.width, " ");
+			else if(pr->flag.zero == true)
+				while(pr->var.width--)
+					ft_strcat(str_hex, "0");
+			ft_strcat(str_hex, str);
+			append_to_buffer(pr, str_hex);
+		}
+	}
+/*
+// Works - changing the structure
+	else if(pr->flag.minus == false)
+	{
+		if(pr->flag.hash == false && pr->flag.zero == false)
+		{
+			if(pr->var.width > 0)
+				append_to_buffer_loop(pr, pr->var.width, " ");
+			append_to_buffer(pr, str);
+		}
+		else if(pr->flag.hash == false && pr->flag.zero == true)
+		{
+			if(pr->var.width > 0)
+				append_to_buffer_loop(pr, pr->var.width, "0");
+			append_to_buffer(pr, str);
+		}
+		else if(pr->flag.hash == true && pr->flag.zero == false)
+		{
+			if(pr->var.width > 0)
+				append_to_buffer_loop(pr, pr->var.width, " ");
+			ft_strcat(str_hex, str);
+			append_to_buffer(pr , str_hex);
+		}
+		else if(pr->flag.hash == true && pr->flag.zero == true)
+		{
+			if(pr->var.width > 0)
+				while(pr->var.width--)
+					ft_strcat(str_hex, "0");
+			ft_strcat(str_hex, str);
+			append_to_buffer(pr, str_hex);
+		}
+	}
+*/
+
+}
+
+void print_x(t_printf *pr)
+{
+	uint_fast64_t n;
+//	char s[pr->precision_field + pr->width_field + 32];
+//	char t_s[pr->precision_field + pr->width_field + 32];
+//	int len;
+
+//	ft_bzero_buffers(s, t_s);
+//	ft_bzero_no_len(&pr->var);
+	n = 0;
+	n = determine_length_of_u_o(pr);
+//	ft_hex(n, 'x', t_s);
+	
+//	printf("precision_field:|%d|\n", pr->precision_field);
+	if(pr->width_field == 0 && pr->precision_field == -1)
+		no_width_no_precision(pr, n);
+	else if(pr->width_field == 0 && pr->precision_field != -1)
+		no_width_yes_precision(pr, n);
+	else if(pr->width_field != 0 && pr->precision_field == -1)
+		yes_width_no_precision(pr, n);
+//	else if(pr->width_field != 0 && precision_field != -1)
+//		yes_width_yes_precision(pr);
+
+}
+
+/*
 void print_x(t_printf *pr)
 {
 	uint_fast64_t n;
@@ -1121,6 +1268,165 @@ void print_x(t_printf *pr)
 	len = ft_strlen(t_s);
 
 	if(pr->precision_field == 0 && n == 0)
+		ft_strcpy(s, NULL); // commenting
+	if(pr->precision_field == 0 && n == 0)
+		ft_strcpy(t_s, NULL);
+//		ft_strcpy(s, "");
+//	else if(s[0] == '\0')
+//		ft_strcpy(s, t_s);
+//	else if(s[0] != '\0')
+//		ft_strcat(s, t_s);
+
+
+//	if(s[0] == '0' && s[1] == 'x') // commenting
+	if(pr->flag.hash == true && n != 0) // Adding	
+		pr->var.precision = ft_pad(pr->precision_field, len + 2);
+	else
+		pr->var.precision = ft_pad(pr->precision_field, len);
+	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+
+
+//	pr->var.precision = ft_pad(pr->precision_field, len);
+//	if(s[0] == '0' && s[1] == 'x')
+//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 2);
+//	else
+//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+
+	
+//	if(s[0] == '0' && s[1] == 'x' && pr->flag.hash == true) // commenting
+	if(pr->flag.hash == true && n != 0) // Adding
+	{
+		if(pr->var.width == 1)
+			pr->var.width = pr->var.width - 1;
+		else if(pr->var.width > 1)
+			pr->var.width = pr->var.width - 2;
+	}
+
+
+// somewhat works -- Need to switch 0x , spacing alligns
+	pr->var.precision = ft_pad(pr->precision_field, len);	
+	if(pr->var.precision >= 0)
+		while(pr->var.precision--)
+		{
+			if(pr->flag.minus == true)
+		//		ft_strcat(s, "0");// commenting
+				ft_strcat(s, "0"); // "0"
+			else if(pr->flag.minus == false)
+			{
+		//		ft_strcat(s, "0"); // commenting
+				ft_strcat(s, "0"); // "0"
+//				append_to_buffer(pr, "0");
+//				ft_strcat(t_s, "0");
+			}
+		}
+//	pr->var.precision = ft_pad(pr->precision_field, len);
+	if(pr->flag.minus == false && pr->flag.zero == false)
+	{
+		if(pr->flag.hash == true && n != 0) // Adding	
+			pr->var.precision = ft_pad(pr->precision_field, len + 2);
+		else
+			pr->var.precision = ft_pad(pr->precision_field, len);
+		if(pr->flag.zero == true && pr->precision_field == -1)
+			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
+		else if(pr->var.width > ft_pad(pr->width_field, len + pr->var.precision))
+		//	append_to_buffer_loop(pr, pr->var.width, " ");
+			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
+		else
+			append_to_buffer_loop(pr, pr->var.width, " "); // " "
+		if(pr->precision_field == 0 && n == 0)
+			ft_strcpy(t_s, NULL); // NULL
+	}
+	else if(pr->flag.minus == false && pr->flag.zero == true)
+	{
+		if(pr->flag.hash == true && n != 0) // Adding	
+			pr->var.precision = ft_pad(pr->precision_field, len + 2); // Adding
+		else // Adding
+			pr->var.precision = ft_pad(pr->precision_field, len); // Adding
+		if(pr->flag.zero == true && pr->precision_field == -1)
+			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
+		else if(pr->var.width > ft_pad(pr->width_field, len + pr->var.precision))
+//		if(pr->var.width > pr->var.precision)
+			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
+		else
+		{
+//			pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+			if(pr->flag.hash == true && n != 0) // Adding
+			{
+				if(pr->var.width == 1)
+					pr->var.width = pr->var.width - 1;
+				else if(pr->var.width > 1)
+					pr->var.width = pr->var.width - 2;
+			}
+			append_to_buffer_loop(pr, pr->var.width, "-"); // " "
+		}
+	}
+//	if(pr->flag.minus == false)
+//	{
+//		if(pr->precision_field == 0 && n == 0)
+//		{
+//			if(pr->width_field == 0)
+//				ft_strcpy(t_s, NULL);
+//			else if(pr->width_field > 0)
+//				ft_strcpy(t_s, " ");
+//		}
+//		while(pr->var.width--)
+//			ft_strcat(t_s, " ");
+//		ft_strcat(s, t_s);
+//	}
+	else if(pr->flag.minus == true)
+	{
+
+// Somewhat works, need to modify a little
+//		if(pr->precision_field == 0 && n == 0 && pr->var.width > 0)// > 0
+//			ft_strcpy(t_s, " "); //" "
+//		else if(pr->precision_field == 0 && n == 0 && pr->var.width == 0)
+//			ft_strcpy(t_s, NULL); // NULL
+
+		if(pr->precision_field == 0 && n == 0)// && pr->var.width == 0)
+		{
+			if(pr->width_field == 0)
+				ft_strcpy(t_s, NULL);
+			else if(pr->width_field > 0)
+				ft_strcpy(t_s, " ");
+		}
+//		else if(pr->precision_field == 0 && n == 0 && pr->var.width > 0)
+//			ft_strcpy(t_s, " ");
+
+		while(pr->var.width--)
+			ft_strcat(t_s, " "); // " "
+		ft_strcat(s, t_s);
+	}
+	ft_hex(n, 'x', t_s);
+
+	if(pr->precision_field == 0 && n == 0)
+		ft_strcpy(t_s, NULL);
+	if(pr->flag.minus == false)
+		ft_strcat(s, t_s);
+
+
+
+	append_to_buffer(pr, s);
+}
+*/
+
+/*
+// somewhat works
+void print_x(t_printf *pr)
+{
+	uint_fast64_t n;
+	char s[pr->precision_field + pr->width_field + 32];
+	char t_s[pr->precision_field + pr->width_field + 32];
+	int len;
+
+	n = 0;
+	ft_bzero_buffers(s, t_s);
+	ft_bzero_no_len(&pr->var);
+	n = determine_length_of_u_o(pr);
+	check_flags_for_x(pr, s, n); //commenting
+	ft_hex(n, 'x', t_s);
+	len = ft_strlen(t_s);
+
+	if(pr->precision_field == 0 && n == 0)
 		ft_strcpy(s, NULL);
 	else if(s[0] == '\0')
 		ft_strcpy(s, t_s);
@@ -1128,20 +1434,23 @@ void print_x(t_printf *pr)
 		ft_strcat(s, t_s);
 
 
-	if(s[0] == '0' && s[1] == 'x')
+//	if(s[0] == '0' && s[1] == 'x') // commenting
+	if(pr->flag.hash == true && n != 0) // Adding	
 		pr->var.precision = ft_pad(pr->precision_field, len + 2);
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
 
-/*
-	pr->var.precision = ft_pad(pr->precision_field, len);
-	if(s[0] == '0' && s[1] == 'x')
-		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 2);
-	else
-		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-*/
-	if(s[0] == '0' && s[1] == 'x' && pr->flag.hash == true)
+
+//	pr->var.precision = ft_pad(pr->precision_field, len);
+//	if(s[0] == '0' && s[1] == 'x')
+//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 2);
+//	else
+//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+
+	
+//	if(s[0] == '0' && s[1] == 'x' && pr->flag.hash == true) // commenting
+	if(pr->flag.hash == true && n != 0) // Adding
 	{
 		if(pr->var.width == 1)
 			pr->var.width = pr->var.width - 1;
@@ -1171,11 +1480,9 @@ void print_x(t_printf *pr)
 			ft_strcat(t_s, " ");
 		ft_strcat(s, t_s);
 	}
-
-
 	append_to_buffer(pr, s);
 }
-
+*/
 
 /*
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
@@ -1198,6 +1505,8 @@ void start_printing(t_printf *pr)
 		print_u(pr);
 	else if(pr->type_field == 8)
 		print_x(pr);
+//	else if(pr->type_field == 9)
+//		print_x(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
