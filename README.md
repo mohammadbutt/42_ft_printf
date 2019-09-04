@@ -83,6 +83,8 @@ Things to learn:
 |   `ll`   | 8 bytes or 64 bits   | For integer types expects `long long` or `long long int` or `int long long` argument| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
 |    `L`   | 16 bytes or 128 bits |For floating point types expects `long double` or `double long` argument   | |
 
+### General rule for precision and width. Precision is prioritized and appended first. Precision is used to calculate width and then width gets appended after.
+
 ### x type field
 - When minus flag is true:
   - Precision places zero `'0'` in the beginning.
