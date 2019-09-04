@@ -84,9 +84,9 @@ Things to learn:
 |    `L`   | 16 bytes or 128 bits |For floating point types expects `long double` or `double long` argument   | |
 
 ### x type field
-- When minus glag is true:
-        - Precision places `0` in the beginning.
-        - Width places space `' '` at the end.
+* When minus glag is true:
+        * Precision places `0` in the beginning.
+        * Width places space `' '` at the end.
 
 ### Project summary: 
 
