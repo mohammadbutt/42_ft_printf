@@ -83,6 +83,11 @@ Things to learn:
 |   `ll`   | 8 bytes or 64 bits   | For integer types expects `long long` or `long long int` or `int long long` argument| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
 |    `L`   | 16 bytes or 128 bits |For floating point types expects `long double` or `double long` argument   | |
 
+### x type field
+- When minus glag is true:
+        - Precision places `0` in the beginning.
+        - Width places space `' '` at the end.
+
 ### Project summary: 
 
 # Resources and Referenes
