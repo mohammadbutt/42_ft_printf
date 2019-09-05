@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/04 23:28:33 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/05 16:45:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,7 +140,8 @@ void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
 void	print_percent(t_printf *pr);
 void 	print_p(t_printf *pr);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
-int_fast64_t 	determine_length_of_d(t_printf *pr);
+//int_fast64_t 	determine_length_of_d(t_printf *pr);
+int_fast64_t length_field_d(t_printf *pr);
 char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_hh(char num, char temp_str[]);
 char 	*ft_itoa_min_h(short num, char temp_str[]);
@@ -151,12 +152,13 @@ void	ft_bzero_buffers(char str[], char temp_str[]);
 void 	print_d(t_printf *pr);
 void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
 void	print_u(t_printf *pr);
-uint_fast64_t determine_length_of_u_o(t_printf *pr);
+//uint_fast64_t determine_length_of_u_o(t_printf *pr);
+uint_fast64_t	length_field_uoxX(t_printf *pr);
 void	u_append_buffer(t_printf *pr, char s[], char t_s[]);
 void	print_o(t_printf *pr);
 void 	check_flags_for_o(t_printf *pr, char s[]);
 void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
-void 	print_x(t_printf *pr);
+void 	print_xX(t_printf *pr);
 void	width_N_precision_N(t_printf *pr, uint_fast64_t n);
 void	width_N_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N(t_printf *pr, uint_fast64_t n);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/04 23:46:22 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/05 16:45:53 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -575,7 +575,7 @@ void print_p(t_printf *pr)
 ** Type casts to 'char' for 'hh'. Type casts to 'short' for 'h'.
 */
 
-int_fast64_t determine_length_of_d(t_printf *pr)
+int_fast64_t length_field_d(t_printf *pr)
 {
 	int_fast64_t num;
 
@@ -749,7 +749,7 @@ void print_d(t_printf *pr)
 	
 	ft_bzero_buffers(s, t_s);
 	var_to_zero(&n, &pr->var.precision, &pr->var.width, &pr->var.width);
-	n = determine_length_of_d(pr);
+	n = length_field_d(pr);
 	if(n < 0)
 	{
 		ft_strcpy(s, "-");
@@ -770,12 +770,12 @@ void print_d(t_printf *pr)
 
 
 /*
-** uint_fast64_t determines what data type is in the given argument.
+** Function length_field_uoxX determines what data type is in the given argument.
 ** Type casts to 'unsigned char' for 'hh'.
 ** Type casts to 'unsigned short' for 'h'.
 */
 
-uint_fast64_t determine_length_of_u_o(t_printf *pr)
+uint_fast64_t length_field_uoxX(t_printf *pr)
 {
 	uint_fast64_t num;
 
@@ -828,7 +828,7 @@ void print_u(t_printf *pr)
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
 	n = 0;
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	if(pr->flag.plus == true)
 		ft_strcpy(s, "+");
 	else if(pr->flag.space == true)
@@ -886,7 +886,7 @@ void print_o(t_printf *pr)
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
 	n = 0;
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	check_flags_for_o(pr, s);
 	ft_itoa_base_u(n, FT_OCTAL, t_s);
 	if(t_s[0] == '0' && s[0] == '0' && pr->precision_field == -1)
@@ -930,7 +930,7 @@ void x_append_buffer(t_printf *pr, char str[])//, int re_width, int re_precision
 	}
 }
 
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t n;
 //	char str[16];
@@ -941,7 +941,7 @@ void print_x(t_printf *pr)
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
 	n = 0;
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	
 	ft_hex(n, 'x', t_s);
 	if(pr->flag.hash == true)
@@ -966,7 +966,7 @@ void print_x(t_printf *pr)
 */
 
 /*
-void print_x_append(t_printf *pr, char *str, int re_width, int re_precision, uint64_t pointer_value)
+void print_xX_append(t_printf *pr, char *str, int re_width, int re_precision, uint64_t pointer_value)
 {
 	if(pr->flag.minus == false)
 	{
@@ -997,7 +997,7 @@ void print_x_append(t_printf *pr, char *str, int re_width, int re_precision, uin
 }
 */
 /*
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t pointer_value;
 	char str[16];
@@ -1006,7 +1006,7 @@ void print_x(t_printf *pr)
 	int re_precision;
 
 //	pointer_value = (int_fast64_t)va_arg(pr->arguments, void *);
-	pointer_value = determine_length_of_u_o(pr);
+	pointer_value = length_field_uoxX(pr);
 //	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
 	ft_hex(pointer_value, 'x', temp_str1);
 	re_width = 0;
@@ -1029,11 +1029,11 @@ void print_x(t_printf *pr)
 		ft_strcpy(str, NULL);
 	else if(pr->precision_field != 0)
 		ft_strcpy(str, temp_str1);
-	print_x_append(pr, str, re_width, re_precision, pointer_value);
+	print_xX_append(pr, str, re_width, re_precision, pointer_value);
 }
 */
 /*
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t pointer_value;
 	char str[16];
@@ -1042,7 +1042,7 @@ void print_x(t_printf *pr)
 	int re_precision;
 	int len;
 
-	pointer_value = determine_length_of_u_o(pr);
+	pointer_value = length_field_uoxX(pr);
 	ft_hex(pointer_value, 'x', temp_str1);
 	len = ft_strlen(temp_str1);
 	if(pr->flag.hash == true && pointer_value != 0)
@@ -1250,12 +1250,12 @@ void width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
 	width_Y_precision_Y2(pr, str, str_hex);
 }
 
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t n;
 
 	n = 0;
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	if(pr->width_field == 0 && pr->precision_field == -1)
 		width_N_precision_N(pr, n);
 	else if(pr->width_field == 0 && pr->precision_field != -1)
@@ -1267,7 +1267,7 @@ void print_x(t_printf *pr)
 }
 
 /*
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t n;
 	char s[pr->precision_field + pr->width_field + 32];
@@ -1277,7 +1277,7 @@ void print_x(t_printf *pr)
 	n = 0;
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	check_flags_for_x(pr, s, n);
 	ft_hex(n, 'x', t_s);
 	len = ft_strlen(t_s);
@@ -1426,7 +1426,7 @@ void print_x(t_printf *pr)
 
 /*
 // somewhat works
-void print_x(t_printf *pr)
+void print_xX(t_printf *pr)
 {
 	uint_fast64_t n;
 	char s[pr->precision_field + pr->width_field + 32];
@@ -1436,7 +1436,7 @@ void print_x(t_printf *pr)
 	n = 0;
 	ft_bzero_buffers(s, t_s);
 	ft_bzero_no_len(&pr->var);
-	n = determine_length_of_u_o(pr);
+	n = length_field_uoxX(pr);
 	check_flags_for_x(pr, s, n); //commenting
 	ft_hex(n, 'x', t_s);
 	len = ft_strlen(t_s);
@@ -1519,9 +1519,11 @@ void start_printing(t_printf *pr)
 	else if(pr->type_field == 7)
 		print_u(pr);
 	else if(pr->type_field == 8)
-		print_x(pr);
+		print_xX(pr);
 	else if(pr->type_field == 9)
-		print_x(pr);
+		print_xX(pr);
+//	else if(pr->type_field == 10)
+//		printf_f(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
