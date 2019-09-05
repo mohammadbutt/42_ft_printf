@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/31 19:19:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/04 23:39:30 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char			*ft_hex(uint_fast64_t value, char c, char str[]);
 void			ft_putchar(char c);
 void			ft_putstr(char *str);
 char			*ft_strcat(char *dest, char *source);
+char			*ft_strcat_loop(char *dest, int x_times, char *source);
 int				ft_strlen(char *str);
 char			*ft_strcpy(char *dest, char *source);
 char			*ft_strncpy(char *dest, char *source, int len);
