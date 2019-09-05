@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/04 12:43:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/04 21:03:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1276,132 +1276,664 @@ int main(void)
 	   printf("   printf:5|%0.1lx|\n", -2147483648);
 	ft_printf("ft_printf:5|%0.1lx|\n\n", -2147483648);
 
-	printf(" Yes Width, no precision - Minus Width\n");
 	int num;
-	num = 0;
-	printf("\n|%d|\n", printf("   printf:0:(%%-0x, %d)    |%-0x|", num, num));
+	num = 16;
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%.5x, %d)    |%.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%.5x, %d)    |%.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%#.5x, %d)    |%#.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%#.5x, %d)    |%#.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%0.5x, %d)    |%0.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%0.5x, %d)    |%0.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:17:(%%0#.5x, %d)    |%0#.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:17:(%%0#.5x, %d)    |%0#.5x|", num, num));
+	printf("\n");
+
+
+	printf(" Yes Width, no precision - Minus Width\n");
+	num = 16;
+	printf("\n|%d|\n",    printf("   printf:0:(%%-0x, %d)    |%-0x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:0:(%%-0x, %d)    |%-0x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:1:(%%-1x, %d)    |%-1x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:1:(%%-1x, %d)    |%-1x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:1:(%%-1x, %d)    |%-1x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:2:(%%-2x, %d)    |%-2x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:2:(%%-2x, %d)    |%-2x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:2:(%%-2x, %d)    |%-2x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:3:(%%-3x, %d)    |%-3x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:3:(%%-3x, %d)    |%-3x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:3:(%%-3x, %d)    |%-3x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:4:(%%-4x, %d)    |%-4x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:4:(%%-4x, %d)    |%-4x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:4:(%%-4x, %d)    |%-4x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:5:(%%-5x, %d)    |%-5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:5:(%%-5x, %d)    |%-5x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:5:(%%-5x, %d)    |%-5x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:6:(%%-6x, %d)    |%-6x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:6:(%%-6x, %d)    |%-6x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:6:(%%-6x, %d)    |%-6x|", num, num));
 	printf("\n");
 
 
-	printf("\n|%d|\n", printf("   printf:7:(%%#-0x, %d)    |%#-0x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:7:(%%#-0x, %d)    |%#-0x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:7:(%%#-0x, %d)    |%#-0x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:8:(%%#-1x, %d)    |%#-1x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:8:(%%#-1x, %d)    |%#-1x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:8:(%%#-1x, %d)    |%#-1x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:9:(%%#-2x, %d)    |%#-2x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:9:(%%#-2x, %d)    |%#-2x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:9:(%%#-2x, %d)    |%#-2x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:10:(%%#-3x, %d)    |%#-3x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:10:(%%#-3x, %d)    |%#-3x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:10:(%%#-3x, %d)    |%#-3x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:11:(%%#-4x, %d)    |%#-4x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:11:(%%#-4x, %d)    |%#-4x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:11:(%%#-4x, %d)    |%#-4x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:12:(%%#-5x, %d)    |%#-5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:12:(%%#-5x, %d)    |%#-5x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:12:(%%#-5x, %d)    |%#-5x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:13:(%%#-6x, %d)    |%#-6x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:13:(%%#-6x, %d)    |%#-6x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:13:(%%#-6x, %d)    |%#-6x|", num, num));
 	printf("\n");
 
 	printf("Minus flag == false\n\n");
+	printf("Just Width\n");
 
-	printf("\n|%d|\n", printf("   printf:0:(%%0x, %d)    |%0x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:0:(%%0x, %d)    |%0x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:0:(%%0x, %d)    |%0x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:1:(%%1x, %d)    |%1x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:1:(%%1x, %d)    |%1x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:1:(%%1x, %d)    |%1x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:2:(%%2x, %d)    |%2x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:2:(%%2x, %d)    |%2x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:2:(%%2x, %d)    |%2x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:3:(%%3x, %d)    |%3x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:3:(%%3x, %d)    |%3x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:3:(%%3x, %d)    |%3x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:4:(%%4x, %d)    |%4x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:4:(%%4x, %d)    |%4x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:4:(%%4x, %d)    |%4x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:5:(%%5x, %d)    |%5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:5:(%%5x, %d)    |%5x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:5:(%%5x, %d)    |%5x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:6:(%%6x, %d)    |%6x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:6:(%%6x, %d)    |%6x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:6:(%%6x, %d)    |%6x|", num, num));
 	printf("\n");
+	printf("Width and Hash\n\n");
 
-
-	printf("\n|%d|\n", printf("   printf:7:(%%#0x, %d)    |%#0x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:7:(%%#0x, %d)    |%#0x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:7:(%%#0x, %d)    |%#0x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:8:(%%#1x, %d)    |%#1x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:8:(%%#1x, %d)    |%#1x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:8:(%%#1x, %d)    |%#1x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:9:(%%#2x, %d)    |%#2x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:9:(%%#2x, %d)    |%#2x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:9:(%%#2x, %d)    |%#2x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:10:(%%#3x, %d)    |%#3x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:10:(%%#3x, %d)    |%#3x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:10:(%%#3x, %d)    |%#3x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:11:(%%#4x, %d)    |%#4x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:11:(%%#4x, %d)    |%#4x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:11:(%%#4x, %d)    |%#4x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:12:(%%#5x, %d)    |%#5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:12:(%%#5x, %d)    |%#5x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:12:(%%#5x, %d)    |%#5x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:13:(%%#6x, %d)    |%#6x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:13:(%%#6x, %d)    |%#6x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:13:(%%#6x, %d)    |%#6x|", num, num));
 	printf("\n");
+	printf("Width and Zero\n\n");
 
-	printf("\n|%d|\n", printf("   printf:14:(%%.5x, %d)    |%.5x|", num, num));
-    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%.5x, %d)    |%.5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:14:(%%00x, %d)    |%00x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%00x, %d)    |%00x|", num, num));
 	printf("\n");
 
-	printf("\n|%d|\n", printf("   printf:15:(%%#.5x, %d)    |%#.5x|", num, num));
-    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%#.5x, %d)    |%#.5x|", num, num));
+	printf("\n|%d|\n",    printf("   printf:15:(%%01x, %d)    |%01x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%01x, %d)    |%01x|", num, num));
 	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%02x, %d)    |%02x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%02x, %d)    |%02x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:17:(%%03x, %d)    |%03x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:17:(%%03x, %d)    |%03x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:18:(%%04x, %d)    |%04x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:18:(%%04x, %d)    |%04x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:19:(%%05x, %d)    |%05x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:19:(%%05x, %d)    |%05x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:20:(%%06x, %d)    |%06x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:20:(%%06x, %d)    |%06x|", num, num));
+	printf("\n");
+	printf("Width, zero and hash\n\n");
+
+	printf("\n|%d|\n",    printf("   printf:21:(%%0#0x, %d)    |%0#0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:21:(%%0#0x, %d)    |%0#0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:22:(%%0#1x, %d)    |%0#1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:22:(%%0#1x, %d)    |%0#1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:23:(%%0#2x, %d)    |%0#2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:23:(%%0#2x, %d)    |%0#2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:24:(%%0#3x, %d)    |%0#3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:24:(%%0#3x, %d)    |%0#3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:25:(%%0#4x, %d)    |%0#4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:25:(%%0#4x, %d)    |%0#4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:26:(%%0#5x, %d)    |%0#5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:26:(%%0#5x, %d)    |%0#5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:27:(%%0#6x, %d)    |%0#6x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:27:(%%0#6x, %d)    |%0#6x|", num, num));
+	printf("\n");
+
+	printf("\nyes_width_yes_precision------------------------------------------\n");
+	printf("1: No hash - No zero _ To Test value of 0--------------------------\n");
+
+	num = 0;
+
+	printf("\n|%d|\n",    printf("   printf:1:(%%0.x, %d)    |%0.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:1:(%%0.x, %d)    |%0.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:2:(%%0.0x, %d)   |%0.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:2:(%%0.0x, %d)   |%0.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:3:(%%1.x, %d)    |%1.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:3:(%%1.x, %d)    |%1.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:4:(%%1.0x, %d)   |%1.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:4:(%%1.0x, %d)   |%1.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:1:(%%2.x, %d)    |%2.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:1:(%%2.x, %d)    |%2.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:2:(%%2.0x, %d)   |%2.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:2:(%%2.0x, %d)   |%2.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:3:(%%3.x, %d)    |%3.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:3:(%%3.x, %d)    |%3.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:4:(%%3.0x, %d)   |%3.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:4:(%%3.0x, %d)   |%3.0x|", num, num));
+	printf("\n");
+
+	printf("\nyes_width_yes_precision\n");
+	printf("flag minus = true\n");
+	printf("1: No hash - No zero _ To Test values other than 0.\n");
+
+
+	printf("\n|%d|\n",    printf("   printf:1:(%%-0.x, %d)     |%-0.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:1:(%%-0.x, %d)     |%-0.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:2:(%%-0.0x, %d)    |%-0.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:2:(%%-0.0x, %d)    |%-0.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:3:(%%-1.x, %d)     |%-1.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:3:(%%-1.x, %d)     |%-1.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:4:(%%-1.0x, %d)    |%-1.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:4:(%%-1.0x, %d)    |%-1.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:5:(%%-2.x, %d)     |%-2.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:5:(%%-2.x, %d)     |%-2.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:6:(%%-2.0x, %d)    |%-2.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:6:(%%-2.0x, %d)    |%-2.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:7:(%%-3.x, %d)     |%-3.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:7:(%%-3.x, %d)     |%-3.x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:8:(%%-3.0x, %d)    |%-3.x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:8:(%%-3.0x, %d)    |%-3.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:9:(%%-0.1x, %d)    |%-0.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:9:(%%-0.1x, %d)    |%-0.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%-1.2x, %d)   |%-1.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%-1.2x, %d)   |%-1.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%-2.3x, %d)   |%-2.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%-2.3x, %d)   |%-2.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%-3.4x, %d)   |%-3.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%-3.4x, %d)   |%-3.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%-4.5x, %d)   |%-4.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%-4.5x, %d)   |%-4.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%-5.6x, %d)   |%-5.6x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%-5.6x, %d)   |%-5.6x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%-6.7x, %d)   |%-6.7x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%-6.7x, %d)   |%-6.7x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%-7.8x, %d)   |%-7.8x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%-7.8x, %d)   |%-7.8x|", num, num));
+	printf("\n");
+
+	printf("Minus flag true\n\nWith Hash\n\n");
+
+	printf("\nyes_width_yes_precision\n");
+	printf("flag minus = true\n");
+	printf("2: With hash - No zero _ To Test values other than 0.\n");
+
+//	num = 0;
+
+	printf("\n|%d|\n",    printf("   printf:1:(%%#-1.0x, %d)    |%#-1.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:1:(%%#-1.0x, %d)    |%#-1.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:2:(%%#-1.1x, %d)    |%#-1.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:2:(%%#-1.1x, %d)    |%#-1.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:3:(%%#-1.2x, %d)    |%#-1.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:3:(%%#-1.2x, %d)    |%#-1.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:4:(%%#-1.3x, %d)    |%#-1.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:4:(%%#-1.3x, %d)    |%#-1.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:5:(%%#-1.4x, %d)    |%#-1.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:5:(%%#-1.4x, %d)    |%#-1.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:6:(%%#-1.5x, %d)    |%#-1.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:6:(%%#-1.5x, %d)    |%#-1.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:7:(%%#-2.0x, %d)    |%#-2.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:7:(%%#-2.0x, %d)    |%#-2.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:8:(%%#-2.1x, %d)    |%#-2.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:8:(%%#-2.1x, %d)    |%#-2.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:9:(%%#-2.2x, %d)    |%#-2.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:9:(%%#-2.2x, %d)    |%#-2.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%#-2.3x, %d)   |%#-2.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%#-2.3x, %d)   |%#-2.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%#-2.4x, %d)   |%#-2.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%#-2.4x, %d)   |%#-2.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%#-2.5x, %d)   |%#-2.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%#-2.5x, %d)   |%#-2.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%#-3.0x, %d)   |%#-3.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%#-3.0x, %d)   |%#-3.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%#-3.1x, %d)   |%#-3.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%#-3.1x, %d)   |%#-3.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%#-3.2x, %d)   |%#-3.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%#-3.2x, %d)   |%#-3.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%#-3.3x, %d)   |%#-3.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%#-3.3x, %d)   |%#-3.3x|", num, num));
+	printf("\n");
+	
+
+	printf(" Testing for Flag minus = false\n");
+	printf(" Testing hash = true\n");
+
+//	num = 0;
+
+	printf("\n|%d|\n",    printf("   printf:01:(%%#1.0x, %d)    |%#1.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:01:(%%#1.0x, %d)    |%#1.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:02:(%%#1.1x, %d)    |%#1.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:02:(%%#1.1x, %d)    |%#1.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:03:(%%#1.2x, %d)    |%#1.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:03:(%%#1.2x, %d)    |%#1.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:04:(%%#1.3x, %d)    |%#1.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:04:(%%#1.3x, %d)    |%#1.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:05:(%%#1.4x, %d)    |%#1.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:05:(%%#1.4x, %d)    |%#1.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:06:(%%#1.5x, %d)    |%#1.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:06:(%%#1.5x, %d)    |%#1.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:07:(%%#2.0x, %d)    |%#2.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:07:(%%#2.0x, %d)    |%#2.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:08:(%%#2.1x, %d)    |%#2.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:08:(%%#2.1x, %d)    |%#2.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:09:(%%#2.2x, %d)    |%#2.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:09:(%%#2.2x, %d)    |%#2.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%#2.3x, %d)    |%#2.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%#2.3x, %d)    |%#2.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%#2.4x, %d)    |%#2.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%#2.4x, %d)    |%#2.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%#2.5x, %d)    |%#2.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%#2.5x, %d)    |%#2.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%#3.0x, %d)    |%#3.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%#3.0x, %d)    |%#3.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%#3.1x, %d)    |%#3.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%#3.1x, %d)    |%#3.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%#3.2x, %d)    |%#3.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%#3.2x, %d)    |%#3.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%#3.3x, %d)    |%#3.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%#3.3x, %d)    |%#3.3x|", num, num));
+	printf("\n");
+
+	printf("Testing without hash-------------------------------------------------\n");
+	printf("minus flag = false---------------------------------------------------\n");
+	printf("Width and precision------------------------------------------------\n\n");
+
+	printf("\n|%d|\n",    printf("   printf:01:(%%1.0x, %d)    |%1.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:01:(%%1.0x, %d)    |%1.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:02:(%%1.1x, %d)    |%1.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:02:(%%1.1x, %d)    |%1.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:03:(%%1.2x, %d)    |%1.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:03:(%%1.2x, %d)    |%1.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:04:(%%1.3x, %d)    |%1.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:04:(%%1.3x, %d)    |%1.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:05:(%%1.4x, %d)    |%1.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:05:(%%1.4x, %d)    |%1.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:06:(%%1.5x, %d)    |%1.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:06:(%%1.5x, %d)    |%1.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:07:(%%2.0x, %d)    |%2.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:07:(%%2.0x, %d)    |%2.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:08:(%%2.1x, %d)    |%2.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:08:(%%2.1x, %d)    |%2.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:09:(%%2.2x, %d)    |%2.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:09:(%%2.2x, %d)    |%2.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%2.3x, %d)    |%2.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%2.3x, %d)    |%2.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%2.4x, %d)    |%2.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%2.4x, %d)    |%2.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%2.5x, %d)    |%2.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%2.5x, %d)    |%2.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%3.0x, %d)    |%3.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%3.0x, %d)    |%3.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%3.1x, %d)    |%3.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%3.1x, %d)    |%3.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%3.2x, %d)    |%3.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%3.2x, %d)    |%3.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%3.3x, %d)    |%3.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%3.3x, %d)    |%3.3x|", num, num));
+	printf("\n");
+
+	printf("Testing without hash. But with zero flag on--------------------------\n");
+	printf("minus flag = false---------------------------------------------------\n");
+	printf("Width and precision------------------------------------------------\n\n");
+
+	printf("\n|%d|\n",    printf("   printf:01:(%%01.0x, %d)    |%01.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:01:(%%01.0x, %d)    |%01.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:02:(%%01.1x, %d)    |%01.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:02:(%%01.1x, %d)    |%01.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:03:(%%01.2x, %d)    |%01.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:03:(%%01.2x, %d)    |%01.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:04:(%%01.3x, %d)    |%01.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:04:(%%01.3x, %d)    |%01.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:05:(%%01.4x, %d)    |%01.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:05:(%%01.4x, %d)    |%01.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:06:(%%01.5x, %d)    |%01.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:06:(%%01.5x, %d)    |%01.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:07:(%%02.0x, %d)    |%02.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:07:(%%02.0x, %d)    |%02.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:08:(%%02.1x, %d)    |%02.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:08:(%%02.1x, %d)    |%02.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:09:(%%02.2x, %d)    |%02.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:09:(%%02.2x, %d)    |%02.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%02.3x, %d)    |%02.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%02.3x, %d)    |%02.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%02.4x, %d)    |%02.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%02.4x, %d)    |%02.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%02.5x, %d)    |%02.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%02.5x, %d)    |%02.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%03.0x, %d)    |%03.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%03.0x, %d)    |%03.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%03.1x, %d)    |%03.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%03.1x, %d)    |%03.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%03.2x, %d)    |%03.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%03.2x, %d)    |%03.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%03.3x, %d)    |%03.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%03.3x, %d)    |%03.3x|", num, num));
+	printf("\n");
+
+	printf("testing with hash flag on and zero flag on----------------------------\n");
+	printf("minus flag = false---------------------------------------------------\n");
+	printf("Width and precision------------------------------------------------\n\n");
+
+	printf("\n|%d|\n",    printf("   printf:01:(%%#01.0x, %d)    |%#01.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:01:(%%#01.0x, %d)    |%#01.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:02:(%%#01.1x, %d)    |%#01.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:02:(%%#01.1x, %d)    |%#01.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:03:(%%#01.2x, %d)    |%#01.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:03:(%%#01.2x, %d)    |%#01.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:04:(%%#01.3x, %d)    |%#01.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:04:(%%#01.3x, %d)    |%#01.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:05:(%%#01.4x, %d)    |%#01.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:05:(%%#01.4x, %d)    |%#01.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:06:(%%#01.5x, %d)    |%#01.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:06:(%%#01.5x, %d)    |%#01.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:07:(%%#02.0x, %d)    |%#02.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:07:(%%#02.0x, %d)    |%#02.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:08:(%%#02.1x, %d)    |%#02.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:08:(%%#02.1x, %d)    |%#02.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:09:(%%#02.2x, %d)    |%#02.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:09:(%%#02.2x, %d)    |%#02.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:10:(%%#02.3x, %d)    |%#02.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:10:(%%#02.3x, %d)    |%#02.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:11:(%%#02.4x, %d)    |%#02.4x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:11:(%%#02.4x, %d)    |%#02.4x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:12:(%%#02.5x, %d)    |%#02.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:12:(%%#02.5x, %d)    |%#02.5x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:13:(%%#03.0x, %d)    |%#03.0x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:13:(%%#03.0x, %d)    |%#03.0x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%#03.1x, %d)    |%#03.1x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%#03.1x, %d)    |%#03.1x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:15:(%%#03.2x, %d)    |%#03.2x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:15:(%%#03.2x, %d)    |%#03.2x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:16:(%%#03.3x, %d)    |%#03.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:16:(%%#03.3x, %d)    |%#03.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:17:(%%#08.3x, %d)    |%#08.3x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:17:(%%#08.3x, %d)    |%#08.3x|", num, num));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:18:(%%#08.5x, %d)    |%#08.5x|", num, num));
+    printf("\n|%d|\n", ft_printf("ft_printf:18:(%%#08.5x, %d)    |%#08.5x|", num, num));
+	printf("\n");
+
+
 /*
 	printf("|%d|\n", printf("   printf:7:(%%-7x, %d)    |%-7x|", num, num));
 	printf("|%d|\n", ft_printf("ft_printf:7:(%%-7x, %d)    |%-7x|", num, num));
@@ -1572,5 +2104,6 @@ int main(void)
 	printf("ft_printf: %d vs %d :printf #123\n", ft_printf("|%#013.13x|\t", u), printf("|%#013.13x|\t", u));
 	printf("ft_printf: %d vs %d :printf #124\n", ft_printf("|%#04.4x|\t", u), printf("|%#04.4x|\t", u));
 */
+
 
 }
