@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/04 21:03:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/04 21:42:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1275,9 +1275,11 @@ int main(void)
 
 	   printf("   printf:5|%0.1lx|\n", -2147483648);
 	ft_printf("ft_printf:5|%0.1lx|\n\n", -2147483648);
-
+	
+	printf("----------------------Start unit test x flag---------------------\n");
+	printf("-----------------------------------------------------------------\n\n");
 	int num;
-	num = 16;
+	num = 0;
 
 	printf("\n|%d|\n",    printf("   printf:14:(%%.5x, %d)    |%.5x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:14:(%%.5x, %d)    |%.5x|", num, num));
@@ -1297,7 +1299,7 @@ int main(void)
 
 
 	printf(" Yes Width, no precision - Minus Width\n");
-	num = 16;
+//	num = 16;
 	printf("\n|%d|\n",    printf("   printf:0:(%%-0x, %d)    |%-0x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:0:(%%-0x, %d)    |%-0x|", num, num));
 	printf("\n");
@@ -1476,7 +1478,7 @@ int main(void)
 	printf("\nyes_width_yes_precision------------------------------------------\n");
 	printf("1: No hash - No zero _ To Test value of 0--------------------------\n");
 
-	num = 0;
+//	num = 0;
 
 	printf("\n|%d|\n",    printf("   printf:1:(%%0.x, %d)    |%0.x|", num, num));
     printf("\n|%d|\n", ft_printf("ft_printf:1:(%%0.x, %d)    |%0.x|", num, num));
