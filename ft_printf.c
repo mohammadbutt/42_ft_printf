@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/05 16:45:53 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/05 18:22:08 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,8 +663,8 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 		ft_itoa_min_l(num, temp_str);
 	else if(pr->length.ll == true)
 		ft_itoa_min_ll(num, temp_str);
-//	else if(pr->length.L == true)
-//		ft_itoa_min_L(num, temp_str);
+	else if(pr->length.L == true)
+		ft_itoa_min_L(num, temp_str);
 	else
 		ft_itoa_min_int(num, temp_str);
 
@@ -1266,6 +1266,40 @@ void print_xX(t_printf *pr)
 		width_Y_precision_Y(pr, n);
 }
 
+
+/*
+** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
+** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
+*/
+
+
+void start_printing(t_printf *pr)
+{
+	if(pr->type_field == 1)
+		print_c(pr);
+	else if(pr->type_field == 2)
+		print_s(pr);
+	else if(pr->type_field == 3)
+		print_p(pr);
+	else if(pr->type_field == 4 || pr->type_field == 5)
+		print_d(pr);
+	else if(pr->type_field == 6)
+		print_o(pr);
+	else if(pr->type_field == 7)
+		print_u(pr);
+	else if(pr->type_field == 8)
+		print_xX(pr);
+	else if(pr->type_field == 9)
+		print_xX(pr);
+	else if(pr->type_field == 10)
+		printf_f(pr);
+	else if(pr->type_field == 11)
+		print_percent(pr);
+
+//	ft_dispatch_table[pr->type_field](pr);
+}
+
+
 /*
 void print_xX(t_printf *pr)
 {
@@ -1503,7 +1537,7 @@ void print_xX(t_printf *pr)
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
 ** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
 */
-
+/*
 void start_printing(t_printf *pr)
 {
 	if(pr->type_field == 1)
@@ -1522,14 +1556,14 @@ void start_printing(t_printf *pr)
 		print_xX(pr);
 	else if(pr->type_field == 9)
 		print_xX(pr);
-//	else if(pr->type_field == 10)
-//		printf_f(pr);
+	else if(pr->type_field == 10)
+		printf_f(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
 //	ft_dispatch_table[pr->type_field](pr);
 }
-
+*/
 void start_parsing(t_printf *pr)
 {
 	pr->i++;
