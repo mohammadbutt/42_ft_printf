@@ -76,7 +76,6 @@ Things to learn:
 ### Length Field
 
 |Character |Type field |Size       |Description                                                                    | Value Range        |
-
 |----------|------------|------------|-------------------------------------------------------------------------------|------------------- |
 |   `hh`   |`d` `u` `o` `x` `X` |1 byte or 8 bits     | For integer types expects `int` argument which is converted to `char`               | -128 to 127        |
 |   `h`    |`d` `u` `o` `x` `X` | 2 bytes or 16 bits   | For integer types expects `int` argument which is converted to `short`              | -32,768 to 32,767  |
