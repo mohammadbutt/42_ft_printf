@@ -80,13 +80,9 @@ Things to learn:
 |----------|------------|------------|-------------------------------------------------------------------------------|------------------- |
 
 |   `hh`   |`d` `u` `o` `x` `X` |1 byte or 8 bits     | For integer types expects `int` argument which is converted to `char`               | -128 to 127        |
-
 |   `h`    |`d` `u` `o` `x` `X` | 2 bytes or 16 bits   | For integer types expects `int` argument which is converted to `short`              | -32,768 to 32,767  |
-
 |   `l`    |`d` `u` `o` `x` `X` |8 bytes or 64 bits   | For integer types expects `long` or `long int` `int long` argument                  |-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
-
 |   `ll`   | `d` `u` `o` `x` `X` |8 bytes or 64 bits   | For integer types expects `long long` or `long long int` or `int long long` argument| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
-
 |    `L`   | `f`|16 bytes or 128 bits |For floating point types expects `long double` or `double long` argument   | |
 
 ### General rule for precision and width. Precision is prioritized and appended first. Precision is used to calculate width and then width gets appended after.
