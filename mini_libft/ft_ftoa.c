@@ -6,13 +6,14 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:48:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/09 18:33:24 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/09 21:26:38 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
 #include <stdbool.h>
 #include <stdio.h>
+
 /*
 char *ft_strcpy(char *dest, char *source)
 {
@@ -112,6 +113,7 @@ int ft_numlen_uint64(uint64_t nbr)
 /*
 ** ---------------------------------------------------------------------------
 ** ---------------------------------------------------------------------------
+** ---------------------------------------------------------------------------
 */
 double turn_negative_sign_on_and_off(t_float *f, double nbr)
 {
@@ -197,7 +199,9 @@ void extract_whole_nbr(t_float *f, char str[], int precision)
 char 	*ft_ftoa(double nbr, char str[], int precision)
 {
 	t_float f;
-
+	
+	if(precision <= -1)
+		precision = 6;
 	ft_bzero(&f, sizeof(f));
 	nbr = turn_negative_sign_on_and_off(&f, nbr);
 	get_whole_fraction_diff(&f, nbr, precision);
@@ -218,7 +222,7 @@ int main(void)
 	double num;
 
 	num = 1.1;
-	precision = 16;
+	precision = -1;
 
 	printf("   printf: |%.*f|\n", precision, num);
 	printf(" ft_printf:|%s|\n", ft_ftoa(num, str, precision));

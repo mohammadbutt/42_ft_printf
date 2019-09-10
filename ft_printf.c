@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/09 18:33:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/09 21:45:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -671,10 +671,13 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 	return(temp_str);
 }
 
+
 void ft_bzero_buffers(char str[], char temp_str[])
 {
-	ft_bzero_no_len(str);
-	ft_bzero_no_len(temp_str);
+//	ft_bzero_no_len(str);
+//	ft_bzero_no_len(temp_str);
+	ft_bzero(str, ft_strlen(str));
+	ft_bzero(temp_str, ft_strlen(temp_str));
 }
 
 
@@ -1265,11 +1268,62 @@ void print_xX(t_printf *pr)
 	else if(pr->width_field != 0 && pr->precision_field != -1)
 		width_Y_precision_Y(pr, n);
 }
-/*
+
+void f_append_buffer(t_printf *pr, char s[], char t_s[])
+{
+	int len;
+
+	len = ft_strlen(t_s);
+	pr->var.precision = ft_pad(pr->precision_field, len);
+	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+	if(pr->flag.plus == true || pr->flag.space == true)
+		if(pr->var.width > 0)// && t_s[0] != '-')
+			pr->var.width--;
+	if(pr->flag.zero == true && pr->var.width >= 0)
+		while(pr->var.width--)
+			ft_strcat(s, "0");
+	else if(pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, pr->var.width, " ");
+	else if(pr->flag.minus == true)
+		while(pr->var.width--)
+			ft_strcat(t_s, " ");
+	if(pr->var.precision >= 0)
+		while(pr->var.precision--)
+			ft_strcat(s, "0");
+	ft_strcat(s, t_s);
+	append_to_buffer(pr, s);
+}
+
 void print_f(t_printf *pr)
 {
+	double nbr;
+	char s[pr->precision_field + pr->width_field + 64];
+	char t_s[pr->precision_field + pr->width_field + 64];
+
+	nbr = 0;
+	ft_bzero_buffers(s, t_s);
+	if(pr->length.L == true)
+		nbr = va_arg(pr->arguments, long double);
+	else if(pr->length.L == false)
+		nbr = va_arg(pr->arguments, double);
+	if(nbr < 0)
+		ft_ftoa(nbr, t_s, pr->precision_field);
+	else if(nbr >= 0)
+	{
+		if(pr->flag.plus == true)
+			ft_strcpy(s, "+");
+		else if(pr->flag.space == true)
+			ft_strcpy(s, " ");
+		ft_ftoa(nbr, t_s, pr->precision_field);
+	}
+//	(pr->precision_field != -1) && (pr->flag.zero == false) Not applied to floats
+	(pr->precision_field == 0 && nbr == 0) && (ft_strcpy(t_s, "0"));
+	f_append_buffer(pr, s, t_s); // Break function here;
+	
 }
-*/
+
+
+
 /*
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
 ** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
@@ -1294,8 +1348,8 @@ void start_printing(t_printf *pr)
 		print_xX(pr);
 	else if(pr->type_field == 9)
 		print_xX(pr);
-//	else if(pr->type_field == 10)
-//		printf_f(pr);
+	else if(pr->type_field == 10)
+		print_f(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 

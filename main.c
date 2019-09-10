@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/04 23:46:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/09 21:45:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ int main(void)
 
 int main(void)
 {
+/*
 	char *str     = "Test";
 	char num1_min = -128;
 	char num1_max = 127;
@@ -121,7 +122,7 @@ int main(void)
 
 	long long num4_min = -9223372036854775807;
 	long long num4_max = 9223372036854775807;
-
+*/
 
 /*
 	printf("w01:|%hhd|\n", num1_min);
@@ -1025,7 +1026,7 @@ int main(void)
 	   printf("   printf:55|%5.x|\n", 0);
 	ft_printf("ft_printf:55|%5.x|\n\n", 0);
 */
-
+/*
 	printf("Simple test for x no Width, no Precision\n");
 	printf("No hash\n");
 	   printf("   printf:0|%x|\n", 0);
@@ -1935,6 +1936,7 @@ int main(void)
     printf("\n|%d|\n", ft_printf("ft_printf:18:(%%#08.5x, %d)    |%#08.5x|", num, num));
 	printf("\n");
 
+*/
 
 /*
 	printf("|%d|\n", printf("   printf:7:(%%-7x, %d)    |%-7x|", num, num));
@@ -2108,4 +2110,17 @@ int main(void)
 */
 
 
+	printf("----------------------------------------------------------------------\n");
+	printf("---------------------------Unit Test for floats-----------------------\n");
+	printf("----------------------------------------------------------------------\n");
+	
+	double num1;
+	int precision;
+
+	num1 = 43;
+
+	printf("\n|%d|\n",    printf("   printf:14:(%%.5f, %f)    |%12.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:14:(%%.5f, %f)    |%12.5f|", num1, num1));
+	printf("\n");
 }
+
