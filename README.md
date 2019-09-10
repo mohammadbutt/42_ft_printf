@@ -103,4 +103,5 @@ Things to learn:
 8. [Conversion/Type Chart - cplusplus](http://www.cplusplus.com/reference/cstdio/printf/)
 9. [Fixed Width Integer Types - cppreference](https://en.cppreference.com/w/c/types/integer)
 10. [Limits.h Macros - cplusplus](http://www.cplusplus.com/reference/climits/)
+11. [Macros for intergers and floats - cppreference](https://en.cppreference.com/w/c/types/limits)
 11. [Data Type Ranges - Microsoft Documentation](https://docs.microsoft.com/en-us/cpp/cpp/data-type-ranges?view=vs-2019)
