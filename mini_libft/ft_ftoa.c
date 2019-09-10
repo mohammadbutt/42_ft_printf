@@ -6,12 +6,113 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:48:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/09 16:14:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/09 18:33:24 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
+#include <stdbool.h>
+#include <stdio.h>
+/*
+char *ft_strcpy(char *dest, char *source)
+{
+	int i;
+	int j;
 
+	i = 0;
+	j = 0;
+	if(source)
+		while(source[i])
+			dest[j++] = source[i++];
+	dest[i] = '\0';
+	return(dest);
+}
+
+
+int ft_numlen(uint64_t nbr)
+{
+	int i;
+
+	i = 0;
+	if(nbr == 0)
+		return(0);
+	while(nbr)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	return(i);
+}
+
+int ft_strlen(char *str)
+{
+	int i;
+
+	i = 0;
+	if(str)
+		while(str[i])
+			i++;
+	return(i);
+}
+
+char *ft_strcat(char *dest, char *source)
+{
+	int len;
+
+	len = ft_strlen(dest);
+	return(ft_strcpy(dest + len, source));
+}
+
+char *ft_strcat_loop(char *dest, int x_times, char *source)
+{
+	if(x_times)
+		while(x_times--)
+			ft_strcat(dest, source);
+	return(dest);
+}
+
+void ft_bzero(void *s, size_t len)
+{
+	unsigned char *str;
+	size_t i;
+
+	str = s;
+	i = 0;
+	while(i < len )
+			str[i++] = 0;
+}
+
+uint64_t ft_pow10(uint64_t num)
+{
+	uint64_t i;
+
+	i = 1;
+	if(num)
+		while(num--)
+			i = i * 10;
+	return(i);
+}
+
+int ft_numlen_uint64(uint64_t nbr)
+{
+	int i;
+
+	i = 0;
+	if(nbr == 0)
+		return(0);
+	while(nbr)
+	{
+		nbr = nbr / 10;
+		i++;
+	}
+	return(i);
+}
+*/
+
+/*
+** ---------------------------------------------------------------------------
+** ---------------------------------------------------------------------------
+*/
 double turn_negative_sign_on_and_off(t_float *f, double nbr)
 {
 	if(nbr < 0)
@@ -22,7 +123,7 @@ double turn_negative_sign_on_and_off(t_float *f, double nbr)
 	return(nbr);
 }
 
-void extract_whole_fraction_difference(t_float *f, double nbr, int precision)
+void get_whole_fraction_diff(t_float *f, double nbr, int precision)
 {
 	f->whole_nbr = (uint_fast64_t)nbr;
 	f->temp_nbr = (nbr - f->whole_nbr) * ft_pow10(precision);
@@ -53,7 +154,7 @@ void ft_ftoa_roundup(t_float *f, double nbr, int precision)
 	}
 }
 
-void extract_precision_to_ascii(t_float *f, char str[], int precision)
+void extract_precision_nbr(t_float *f, char str[], int precision)
 {
 	f->fraction_nbr_len = ft_numlen_uint64(f->fraction_nbr);
 	if(precision > f->fraction_nbr_len)
@@ -70,7 +171,7 @@ void extract_precision_to_ascii(t_float *f, char str[], int precision)
 		ft_strcat_loop(f->new_string, f->pad_zeros, "0");
 }
 
-void extract_whole_to_ascii(t_float *f, char str[], int precision)
+void extract_whole_nbr(t_float *f, char str[], int precision)
 {
 	f->whole_nbr_len = ft_numlen_uint64(f->whole_nbr);
 	if(f->negative_sign == true)
@@ -93,16 +194,43 @@ void extract_whole_to_ascii(t_float *f, char str[], int precision)
 	}
 }
 
-char *ft_ftoa(t_float *f, double nbr, char str[], int precision)
+char 	*ft_ftoa(double nbr, char str[], int precision)
 {
-	ft_bzero(f, sizeof(f));
-	nbr = turn_negative_sign_on_and_off(f, nbr);
-	extract_whole_fraction_difference(f, nbr, precision);
-	ft_ftoa_roundup(f, nbr, precision);
-	extract_precision_to_ascii(f, str, precision);
-	ft_strcat(f->new_string, str);
+	t_float f;
+
+	ft_bzero(&f, sizeof(f));
+	nbr = turn_negative_sign_on_and_off(&f, nbr);
+	get_whole_fraction_diff(&f, nbr, precision);
+	ft_ftoa_roundup(&f, nbr, precision);
+	extract_precision_nbr(&f, str, precision);
+	ft_strcat(f.new_string, str);
 	ft_bzero(str, ft_strlen(str));
-	extract_whole_to_ascii(f, str, precision);
-	ft_strcat(str, f->new_string);
+	extract_whole_nbr(&f, str, precision);
+	ft_strcat(str, f.new_string);
 	return(str);
 }
+
+/*
+int main(void)
+{
+	char str[1024];
+	int precision;
+	double num;
+
+	num = 1.1;
+	precision = 16;
+
+	printf("   printf: |%.*f|\n", precision, num);
+	printf(" ft_printf:|%s|\n", ft_ftoa(num, str, precision));
+
+//	printf("printf:    |%.20f|\n", 111.109999999999999 - 111.11000000000000);
+//	printf("printf:    |%f|\n", );
+//	printf("printf:    |%f|\n", );
+//	printf("printf:    |%f|\n", );
+
+
+
+//	printf("|%f|\n", num1 % 10.0);
+
+}
+*/

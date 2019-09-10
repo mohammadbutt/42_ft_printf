@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/05 18:22:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/09 18:33:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -663,8 +663,8 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 		ft_itoa_min_l(num, temp_str);
 	else if(pr->length.ll == true)
 		ft_itoa_min_ll(num, temp_str);
-	else if(pr->length.L == true)
-		ft_itoa_min_L(num, temp_str);
+//	else if(pr->length.L == true)
+//		ft_itoa_min_L(num, temp_str);
 	else
 		ft_itoa_min_int(num, temp_str);
 
@@ -1265,8 +1265,11 @@ void print_xX(t_printf *pr)
 	else if(pr->width_field != 0 && pr->precision_field != -1)
 		width_Y_precision_Y(pr, n);
 }
-
-
+/*
+void print_f(t_printf *pr)
+{
+}
+*/
 /*
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
 ** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
@@ -1291,8 +1294,8 @@ void start_printing(t_printf *pr)
 		print_xX(pr);
 	else if(pr->type_field == 9)
 		print_xX(pr);
-	else if(pr->type_field == 10)
-		printf_f(pr);
+//	else if(pr->type_field == 10)
+//		printf_f(pr);
 	else if(pr->type_field == 11)
 		print_percent(pr);
 
