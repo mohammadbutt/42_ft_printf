@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 20:58:35 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 12:52:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1322,7 +1322,8 @@ void print_f(t_printf *pr)
 		else if(pr->flag.space == true)
 			ft_strcpy(s, " ");
 	}
-	ft_ftoa(nbr, t_s, pr->precision_field);
+	ft_ftoa(nbr, t_s, pr->precision_field); // Commenting to try a differnt ftoa
+
 //	(pr->precision_field != -1) && (pr->flag.zero == false) Not applied to floats
 //	(pr->precision_field == 0 && nbr == 0) && (ft_strcpy(t_s, "0"));
 //	if(nbr == 0 && pr->precision_field >= 1)
@@ -1336,11 +1337,72 @@ void print_f(t_printf *pr)
 	f_append_buffer(pr, s, t_s); // Break function here;
 }
 
+void	b_append_buffer(t_printf *pr, char s[], char t_s[])
+{
+	int len;
 
+	len = ft_strlen(t_s);
+//	if(pr->flag.hash == true && pr->precision_field >= 0) // Commenting
+
+	if(s[0] == '0') // Works
+		pr->var.precision = ft_pad(pr->precision_field, len + 1);
+	else
+		pr->var.precision = ft_pad(pr->precision_field, len);
+	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+	if(pr->flag.plus == true || pr->flag.space == true || pr->flag.hash == true)
+		if(pr->var.width > 0)	
+			pr->var.width--;
+	if( pr->flag.zero == true && pr->var.width >= 0)
+		while(pr->var.width--)
+			ft_strcat(s, "0");
+	else if(pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, pr->var.width, " ");
+	else if(pr->flag.minus == true)
+		while(pr->var.width--)
+			ft_strcat(t_s, " ");
+	if(pr->var.precision >= 0)
+		while(pr->var.precision--)
+			ft_strcat(s, "0");
+	ft_strcat(s, t_s);
+	append_to_buffer(pr, s);
+}
+
+void check_flags_for_b(t_printf *pr, char s[])
+{
+	if(pr->flag.hash == true)
+		ft_strcpy(s, "0");
+	else if(pr->flag.space == true)
+		ft_strcpy(s, " ");
+}
+
+void print_b(t_printf *pr)
+{
+	uint_fast64_t n;
+	char s[pr->precision_field + pr->width_field + 128];
+	char t_s[pr->precision_field + pr->width_field + 128];
+	
+	ft_bzero_buffers(s, t_s);
+	ft_bzero_no_len(&pr->var);
+	n = 0;
+	n = length_field_uoxX(pr);
+	check_flags_for_o(pr, s);
+	ft_itoa_base_u(n, FT_BINARY, t_s);
+	if(t_s[0] == '0' && s[0] == '0' && pr->precision_field == -1)
+		(pr->flag.zero == false) && (ft_strcpy(s, " "));
+	if(s[0] == ' ' && t_s[0] == '0' && pr->flag.minus == true)
+		ft_swap(&s[0], &t_s[0]);
+	else if(n == 0 && pr->width_field == 0 && pr->precision_field == -1)
+		ft_strcpy(s, NULL);
+	if(n == 0 && pr->width_field > 1 && pr->flag.zero == true)
+		(pr->flag.hash == true) && (ft_strcpy(s, "0"));
+	(pr->precision_field != -1) && (pr->flag.zero = false);
+	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
+	o_append_buffer(pr, s, t_s);
+}
 
 /*
 ** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
-** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
+** 7 = u, 8 = x, 9 = X, 10 = f, 11 = b, 12 = %
 */
 
 
@@ -1365,6 +1427,8 @@ void start_printing(t_printf *pr)
 	else if(pr->type_field == 10)
 		print_f(pr);
 	else if(pr->type_field == 11)
+		print_b(pr);
+	else if(pr->type_field == 12)
 		print_percent(pr);
 
 //	ft_dispatch_table[pr->type_field](pr);

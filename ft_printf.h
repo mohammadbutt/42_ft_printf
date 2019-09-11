@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 21:26:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 12:52:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,11 @@
 
 # define FT_ONE_MEGABYTE 1048576
 # define FT_ONE_KILOBYTE 1024
-# define FT_VALID_TYPE "cspdiouxXf%"
+# define FT_VALID_TYPE "cspdiouxXfb%"
 # define FT_HEX 16
 # define FT_DECIMAL 10
 # define FT_OCTAL 8
+# define FT_BINARY 2
 # define FT_CHAR_STR "128"
 # define FT_SHORT_STR "32768"
 # define FT_INT_STR "2147483648"
@@ -165,7 +166,12 @@ void	width_Y_precision_N(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
 void	width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
+void	print_f(t_printf *pr);
+void	f_append_buffer(t_printf *pr, char s[], char t_s[]);
 
+void	print_b(t_printf *pr);
+void 	check_flags_for_b(t_printf *pr, char s[]);
+void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 
 

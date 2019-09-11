@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 22:20:32 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 12:52:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -253,6 +253,9 @@ int main(void)
 */
 
 /*
+	printf("--------------------Unit test for o-----------------------\n");
+	printf("----------------------------------------------------------\n");
+
 	   printf("   printf:1|%# +o|\n", 345345);
 	ft_printf("ft_printf:1|%# +o|\n", 345345);
 
@@ -2110,7 +2113,7 @@ int main(void)
 	printf("ft_printf: %d vs %d :printf #124\n", ft_printf("|%#04.4x|\t", u), printf("|%#04.4x|\t", u));
 */
 
-
+/*
 	printf("----------------------------------------------------------------------\n");
 	printf("---------------------------Unit Test for floats-----------------------\n");
 	printf("----------------------------------------------------------------------\n");
@@ -2841,6 +2844,94 @@ int main(void)
 	printf("\n|%d|\n",    printf("   printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
     printf("\n|%d|\n", ft_printf("ft_printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
 	printf("\n\n");
+*/
 
+	printf("---------------------------Testing Binary-----------------------\n");
+
+
+	ft_printf("ft_printf:0:uint64_max|%b|\n", 18446744073709551615);
+	ft_printf("ft_printf:1:int64_min|%b|\n", INT64_MIN);
+	ft_printf("ft_printf:2:int64_max|%b|\n", INT64_MAX);
+	ft_printf("ft_printf:3:int32_min|%b|\n", INT32_MIN);
+	ft_printf("ft_printf:4:int32_max|%b|\n", INT32_MAX);
+	ft_printf("ft_printf:5|%# +b|\n", 345345);
+	ft_printf("ft_printf:6|%#-8.3b|\n\n", 345345);
+	ft_printf("ft_printf:7|%#-8.5b|\n\n", 34);
+	ft_printf("ft_printf:8|%#-8.b|\n\n", 34);
+	ft_printf("ft_printf:9|%#8.b|\n\n", 34);
+	ft_printf("ft_printf:10|%8.3b|\n\n", 34);
+	ft_printf("ft_printf:11|%#8.3b|\n\n", 34);
+	ft_printf("ft_printf:12|%3b|\n\n", 4);
+	ft_printf("ft_printf:13|%3b|\n\n", 0);
+	ft_printf("ft_printf:14|%#3b|\n\n", 4);
+	ft_printf("ft_printf:15|%#5b|\n\n", 0);
+	ft_printf("ft_printf:16|%#5.8b|\n\n", 0);
+	ft_printf("ft_printf:17|%#5.0b|\n\n", 0);
+	ft_printf("ft_printf:18|%#-3b|\n\n", 0);
+	ft_printf("ft_printf:19|%#3b|\n\n", 0);
+	ft_printf("ft_printf:20|this %#b number,|\n\n", 0);
+	ft_printf("ft_printf:21|%#b|\n\n", 0);
+	ft_printf("ft_printf:22|%0#b|\n\n", 0);
+	ft_printf("ft_printf:22.1|%#.0b|\n\n", 0);
+	ft_printf("ft_printf:22.2|%#.1b|\n\n", 0);
+	ft_printf("ft_printf:22.21|%#.1b|\n\n", 1);
+	ft_printf("ft_printf:22.3|%#.2b|\n\n", 0);
+	ft_printf("ft_printf:22.4|%#0.3b|\n\n", 0);
+	ft_printf("ft_printf:22.5|%#1.3b|\n\n", 0);
+	ft_printf("ft_printf:22.6|%#2.3b|\n\n", 0);
+	ft_printf("ft_printf:22.7|%#3.3b|\n\n", 0);
+	ft_printf("ft_printf:22.8|%#4.3b|\n\n", 0);
+	ft_printf("ft_printf:22.9|%#5.3b|\n\n", 0);
+	ft_printf("ft_printf:22.10|%#.3b|\n\n", 0);
+	ft_printf("ft_printf:23|%#.0b|\n\n", 0);
+	ft_printf("ft_printf:24|%#.b|\n\n", 0);
+	ft_printf("ft_printf:25|%#0b|\n\n", 0);
+	ft_printf("ft_printf:26|%#01b|\n\n", 1);
+	ft_printf("ft_printf:27|%#1b|\n\n", 1);
+	ft_printf("ft_printf:28|%1b|\n\n", 0);
+	ft_printf("ft_printf:29|%#01b|\n\n", 0);
+	ft_printf("ft_printf:30|%#1b|\n\n", 1);
+	ft_printf("ft_printf:31|%#1b|\n\n", 1);
+	ft_printf("ft_printf:32|%#2b|\n\n", 0);
+	ft_printf("ft_printf:33|%#3b|\n\n", 0);
+	ft_printf("ft_printf:34|%#04b|\n\n", 0);
+	ft_printf("ft_printf:35|%00b|\n\n", 0);
+	ft_printf("ft_printf:36|%01b|\n\n", 0);
+	ft_printf("ft_printf:37|%02b|\n\n", 0);
+	ft_printf("ft_printf:38|%03b|\n\n", 0);
+	ft_printf("ft_printf:39|%03b|\n\n", 0);
+	ft_printf("ft_printf:40|%03b|\n\n", 1);
+	ft_printf("ft_printf:41|%08.b|\n\n", 1);
+	ft_printf("ft_printf:42|%08.0b|\n\n", 1);
+	ft_printf("ft_printf:43|%08.1b|\n\n", 1);
+	ft_printf("ft_printf:44|%08.2b|\n\n", 1);
+	ft_printf("ft_printf:45|%08.3b|\n\n", 1);
+	ft_printf("ft_printf:46|%08.4b|\n\n", 1);
+	ft_printf("ft_printf:47|%08.b|\n\n", 0);
+	ft_printf("ft_printf:48|%08.0b|\n\n", 0);
+	ft_printf("ft_printf:49|%08.1b|\n\n", 0);
+	ft_printf("ft_printf:50|%08.2b|\n\n", 0);
+	ft_printf("ft_printf:51|%08.3b|\n\n", 0);
+	ft_printf("ft_printf:52|%08.4b|\n\n", 0);
+	ft_printf("ft_printf:52.0|%#.0b|\n\n", 0);
+	ft_printf("ft_printf:52.1|%#.0b|\n\n", 1);
+	ft_printf("ft_printf:52.11|%#.0b|\n\n", 11);
+	ft_printf("ft_printf:53.0|%#.b|\n\n", 0);
+	ft_printf("ft_printf:53.1|%#.b|\n\n", 1);
+	ft_printf("ft_printf:53.11|%#.b|\n\n", 11);
+	ft_printf("ft_printf:53.0|%#0b|\n\n", 0);
+	ft_printf("ft_printf:53.1|%#0b|\n\n", 1);
+	ft_printf("ft_printf:53.11|%#0b|\n\n", 11);
+	ft_printf("ft_printf:53.0|%#01b|\n\n", 0);
+	ft_printf("ft_printf:53.1|%#01b|\n\n", 1);
+	ft_printf("ft_printf:53.11|%#01b|\n\n", 11);
+	ft_printf("ft_printf:54|%#1b|\n\n", 1);
+	ft_printf("ft_printf:55|%1b|\n\n", 0);
+	ft_printf("ft_printf:56|%#01b|\n\n", 0);
+	ft_printf("ft_printf:57|%#1b|\n\n", 1);
+	ft_printf("ft_printf:58|%#1b|\n\n", 1);
+	ft_printf("ft_printf:59|%#2b|\n\n", 0);
+	ft_printf("ft_printf:60|%#3b|\n\n", 0);
+	ft_printf("ft_printf:61|%#04b|\n\n", 0);
 }
 
