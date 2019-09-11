@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 15:22:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 16:22:44 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1470,271 +1470,6 @@ void start_printing(t_printf *pr)
 	ft_dispatch_table[pr->type_field](pr);
 }
 
-
-/*
-void print_xX(t_printf *pr)
-{
-	uint_fast64_t n;
-	char s[pr->precision_field + pr->width_field + 32];
-	char t_s[pr->precision_field + pr->width_field + 32];
-	int len;
-
-	n = 0;
-	ft_bzero_buffers(s, t_s);
-	ft_bzero_no_len(&pr->var);
-	n = length_field_uoxX(pr);
-	check_flags_for_x(pr, s, n);
-	ft_hex(n, 'x', t_s);
-	len = ft_strlen(t_s);
-
-	if(pr->precision_field == 0 && n == 0)
-		ft_strcpy(s, NULL); // commenting
-	if(pr->precision_field == 0 && n == 0)
-		ft_strcpy(t_s, NULL);
-//		ft_strcpy(s, "");
-//	else if(s[0] == '\0')
-//		ft_strcpy(s, t_s);
-//	else if(s[0] != '\0')
-//		ft_strcat(s, t_s);
-
-
-//	if(s[0] == '0' && s[1] == 'x') // commenting
-	if(pr->flag.hash == true && n != 0) // Adding	
-		pr->var.precision = ft_pad(pr->precision_field, len + 2);
-	else
-		pr->var.precision = ft_pad(pr->precision_field, len);
-	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-
-
-//	pr->var.precision = ft_pad(pr->precision_field, len);
-//	if(s[0] == '0' && s[1] == 'x')
-//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 2);
-//	else
-//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-
-	
-//	if(s[0] == '0' && s[1] == 'x' && pr->flag.hash == true) // commenting
-	if(pr->flag.hash == true && n != 0) // Adding
-	{
-		if(pr->var.width == 1)
-			pr->var.width = pr->var.width - 1;
-		else if(pr->var.width > 1)
-			pr->var.width = pr->var.width - 2;
-	}
-
-
-// somewhat works -- Need to switch 0x , spacing alligns
-	pr->var.precision = ft_pad(pr->precision_field, len);	
-	if(pr->var.precision >= 0)
-		while(pr->var.precision--)
-		{
-			if(pr->flag.minus == true)
-		//		ft_strcat(s, "0");// commenting
-				ft_strcat(s, "0"); // "0"
-			else if(pr->flag.minus == false)
-			{
-		//		ft_strcat(s, "0"); // commenting
-				ft_strcat(s, "0"); // "0"
-//				append_to_buffer(pr, "0");
-//				ft_strcat(t_s, "0");
-			}
-		}
-//	pr->var.precision = ft_pad(pr->precision_field, len);
-	if(pr->flag.minus == false && pr->flag.zero == false)
-	{
-		if(pr->flag.hash == true && n != 0) // Adding	
-			pr->var.precision = ft_pad(pr->precision_field, len + 2);
-		else
-			pr->var.precision = ft_pad(pr->precision_field, len);
-		if(pr->flag.zero == true && pr->precision_field == -1)
-			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
-		else if(pr->var.width > ft_pad(pr->width_field, len + pr->var.precision))
-		//	append_to_buffer_loop(pr, pr->var.width, " ");
-			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
-		else
-			append_to_buffer_loop(pr, pr->var.width, " "); // " "
-		if(pr->precision_field == 0 && n == 0)
-			ft_strcpy(t_s, NULL); // NULL
-	}
-	else if(pr->flag.minus == false && pr->flag.zero == true)
-	{
-		if(pr->flag.hash == true && n != 0) // Adding	
-			pr->var.precision = ft_pad(pr->precision_field, len + 2); // Adding
-		else // Adding
-			pr->var.precision = ft_pad(pr->precision_field, len); // Adding
-		if(pr->flag.zero == true && pr->precision_field == -1)
-			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
-		else if(pr->var.width > ft_pad(pr->width_field, len + pr->var.precision))
-//		if(pr->var.width > pr->var.precision)
-			append_to_buffer_loop(pr, pr->var.width, "0"); // "0"
-		else
-		{
-//			pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-			if(pr->flag.hash == true && n != 0) // Adding
-			{
-				if(pr->var.width == 1)
-					pr->var.width = pr->var.width - 1;
-				else if(pr->var.width > 1)
-					pr->var.width = pr->var.width - 2;
-			}
-			append_to_buffer_loop(pr, pr->var.width, "-"); // " "
-		}
-	}
-//	if(pr->flag.minus == false)
-//	{
-//		if(pr->precision_field == 0 && n == 0)
-//		{
-//			if(pr->width_field == 0)
-//				ft_strcpy(t_s, NULL);
-//			else if(pr->width_field > 0)
-//				ft_strcpy(t_s, " ");
-//		}
-//		while(pr->var.width--)
-//			ft_strcat(t_s, " ");
-//		ft_strcat(s, t_s);
-//	}
-	else if(pr->flag.minus == true)
-	{
-
-// Somewhat works, need to modify a little
-//		if(pr->precision_field == 0 && n == 0 && pr->var.width > 0)// > 0
-//			ft_strcpy(t_s, " "); //" "
-//		else if(pr->precision_field == 0 && n == 0 && pr->var.width == 0)
-//			ft_strcpy(t_s, NULL); // NULL
-
-		if(pr->precision_field == 0 && n == 0)// && pr->var.width == 0)
-		{
-			if(pr->width_field == 0)
-				ft_strcpy(t_s, NULL);
-			else if(pr->width_field > 0)
-				ft_strcpy(t_s, " ");
-		}
-//		else if(pr->precision_field == 0 && n == 0 && pr->var.width > 0)
-//			ft_strcpy(t_s, " ");
-
-		while(pr->var.width--)
-			ft_strcat(t_s, " "); // " "
-		ft_strcat(s, t_s);
-	}
-	ft_hex(n, 'x', t_s);
-
-	if(pr->precision_field == 0 && n == 0)
-		ft_strcpy(t_s, NULL);
-	if(pr->flag.minus == false)
-		ft_strcat(s, t_s);
-
-
-
-	append_to_buffer(pr, s);
-}
-*/
-
-/*
-// somewhat works
-void print_xX(t_printf *pr)
-{
-	uint_fast64_t n;
-	char s[pr->precision_field + pr->width_field + 32];
-	char t_s[pr->precision_field + pr->width_field + 32];
-	int len;
-
-	n = 0;
-	ft_bzero_buffers(s, t_s);
-	ft_bzero_no_len(&pr->var);
-	n = length_field_uoxX(pr);
-	check_flags_for_x(pr, s, n); //commenting
-	ft_hex(n, 'x', t_s);
-	len = ft_strlen(t_s);
-
-	if(pr->precision_field == 0 && n == 0)
-		ft_strcpy(s, NULL);
-	else if(s[0] == '\0')
-		ft_strcpy(s, t_s);
-	else if(s[0] != '\0')
-		ft_strcat(s, t_s);
-
-
-//	if(s[0] == '0' && s[1] == 'x') // commenting
-	if(pr->flag.hash == true && n != 0) // Adding	
-		pr->var.precision = ft_pad(pr->precision_field, len + 2);
-	else
-		pr->var.precision = ft_pad(pr->precision_field, len);
-	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-
-
-//	pr->var.precision = ft_pad(pr->precision_field, len);
-//	if(s[0] == '0' && s[1] == 'x')
-//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 2);
-//	else
-//		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-
-	
-//	if(s[0] == '0' && s[1] == 'x' && pr->flag.hash == true) // commenting
-	if(pr->flag.hash == true && n != 0) // Adding
-	{
-		if(pr->var.width == 1)
-			pr->var.width = pr->var.width - 1;
-		else if(pr->var.width > 1)
-			pr->var.width = pr->var.width - 2;
-	}
-
-
-// somewhat works -- Need to switch 0x , spacing alligns
-	pr->var.precision = ft_pad(pr->precision_field, len);	
-	if(pr->var.precision >= 0)
-		while(pr->var.precision--)
-		{
-			if(pr->flag.minus == true)
-				ft_strcat(s, "0");
-			else if(pr->flag.minus == false)
-				append_to_buffer(pr, "0");
-				ft_strcat(t_s, "0");
-		}
-	pr->var.precision = ft_pad(pr->precision_field, len);	
-	if(pr->flag.minus == false)
-		append_to_buffer_loop(pr, pr->var.width, " ");
-	else if(pr->flag.minus == true)
-	{
-		ft_strcpy(t_s, NULL);
-		while(pr->var.width--)
-			ft_strcat(t_s, " ");
-		ft_strcat(s, t_s);
-	}
-	append_to_buffer(pr, s);
-}
-*/
-
-/*
-** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
-** 7 = u, 8 = x, 9 = X, 10 = f, 11 = %
-*/
-/*
-void start_printing(t_printf *pr)
-{
-	if(pr->type_field == 1)
-		print_c(pr);
-	else if(pr->type_field == 2)
-		print_s(pr);
-	else if(pr->type_field == 3)
-		print_p(pr);
-	else if(pr->type_field == 4 || pr->type_field == 5)
-		print_d(pr);
-	else if(pr->type_field == 6)
-		print_o(pr);
-	else if(pr->type_field == 7)
-		print_u(pr);
-	else if(pr->type_field == 8)
-		print_xX(pr);
-	else if(pr->type_field == 9)
-		print_xX(pr);
-	else if(pr->type_field == 10)
-		printf_f(pr);
-	else if(pr->type_field == 11)
-		print_percent(pr);
-
-//	ft_dispatch_table[pr->type_field](pr);
-}
-*/
 void start_parsing(t_printf *pr)
 {
 	pr->i++;
@@ -1755,10 +1490,9 @@ void initialize_printf_struct(t_printf *pr, const char *str)
 
 int ft_printf_driver(va_list args, const char *str)
 {
-	t_printf pr; // print_struct	
+	t_printf pr;
 	ft_bzero(&pr, sizeof(pr));
 	va_copy(pr.arguments, args);
-//	initialize_printf_struct(&pr, str);
 	pr.string = str;
 	while(pr.string[pr.i])
 	{
@@ -1767,22 +1501,6 @@ int ft_printf_driver(va_list args, const char *str)
 			start_parsing(&pr);
 			if(pr.string[pr.i] == '\0')
 				return(write(1, pr.buffer, pr.buffer_i));
-/*	
-			printf("flag_hash:|%d|\n", pr.flag_hash);
-			printf("flag_zero:|%d|\n", pr.flag_zero);
-			printf("flag_minus:|%d|\n", pr.flag_minus);
-			printf("flag_plus:|%d|\n", pr.flag_plus);
-			printf("flag_space:|%d|\n", pr.flag_space);
-			printf("width_field:|%d|\n", pr.width_field);
-			printf("precision_field:|%d|\n", pr.precision_field);
-			printf("h:|%d|\n", pr.length_h);
-			printf("hh:|%d|\n", pr.length_hh);
-			printf("l:|%d|\n", pr.length_l);
-			printf("ll:|%d|\n", pr.length_ll);
-			printf("L:|%d|\n", pr.length_L);
-			printf("\ntype_field:|%d|\n", pr.type_field);
-			printf("\npr.string[i]:|%c|\n", pr.string[i]);
-*/
 		}
 		else
 			pr.buffer[pr.buffer_i++] = pr.string[pr.i];
@@ -1791,12 +1509,6 @@ int ft_printf_driver(va_list args, const char *str)
 	va_end(pr.arguments);
 	return(write(1, pr.buffer, pr.buffer_i));
 }
-
-/*
-** To do:
-** 1. Parsing - Once you hit %, store the string until it hits conversion.
-** Conversions: are "csp-diouxX-f"
-*/
 
 int ft_printf(const char *str, ...)
 {
@@ -1811,92 +1523,3 @@ int ft_printf(const char *str, ...)
 	return(ft_printf_return);
 }
 
-/*
-//void simple_printf(const char *fmt, ...)
-int	ft_printf(const char *str, ...)
-{
-	va_list args;
-	int ft_printf_return;
-	int i;
-	int c;
-
-	va_start(args, str);
-	i = 0;
-	c = 0;
-	ft_printf_return = 0;  //For now it's fine, but we want to update this.
-
-	while(str[i] != '\0')
-	{
-		if(str[i] == '%')
-			start_parsing(args, str+i);
-			//	start_parsing((char *)str+i, args);
-//		if(fmt[i] == '%' && fmt[i+1] == 'c')
-//		{
-//			c = va_arg(args, int);
-//			ft_putchar(c);
-//		}
-		i++;
-	}
-	va_end(args);
-	return(ft_printf_return);
-}
-*/
-/*	
-	while(fmt[i] != '\0')
-	{
-		if(fmt[i] == '%' && fmt[i + 1] == 'c')
-		{
-			c = va_arg(args, int);
-			ft_putchar(c);
-		}
-		if(fmt[i] != 'c' && fmt[i] != '%')
-		{
-			ft_putchar(fmt[i]);
-		}
-		i++;
-	}
-	va_end(args);
-}
-*/
-
-/*
-void simple_printf(const char *fmt, ...)
-{
-	va_list args;
-	int i;
-	int c;
-	double d;
-	char *s;
-
-	va_start(args, fmt);
-	i = 0;
-	c = 0;
-	d = 0;
-	s = NULL;
-	while(*fmt != '\0')
-	{
-		if(*fmt == 'd')
-		{
-			i = va_arg(args, int);
-			printf("%d\n", i);
-		}
-		else if(*fmt == 'c')
-		{
-			c = va_arg(args, int);
-			printf("%c\n", c);
-		}
-		else if(*fmt == 'f')
-		{
-			d = va_arg(args, double);
-			printf("%f\n", d);
-		}
-		else if(*fmt == 's')
-		{
-			s = va_arg(args, char *);
-			printf("%s\n", s);
-		}
-		++fmt;
-	}
-	va_end(args);
-}
-*/

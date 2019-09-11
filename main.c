@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 16:07:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 16:13:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2862,7 +2862,7 @@ int main(void)
 	ft_printf(NC BBLUE"ft_printf:12|%3b|\n\n", 4);
 	ft_printf(NC BPURPLE"ft_printf:13|%3b|\n\n", 0);
 	ft_printf(NC BCYAN"ft_printf:14|%#3b|\n\n", 4);
-	ft_printf(NC BWHITE"ft_printf:15|%#5b|\n\n"NC, 0);
+	ft_printf(NC BWHITE"ft_printf:15|%#5b|\n\n", 0);
 	ft_printf(NC BWHITE ON_BLACK"\nft_printf:16|%#5.8b|", 0);
 	ft_printf(NC BWHITE ON_RED"\nft_printf:17|%#5.0b|", 0);
 	ft_printf(NC BWHITE ON_GREEN"\nft_printf:18|%#-3b|", 0);
