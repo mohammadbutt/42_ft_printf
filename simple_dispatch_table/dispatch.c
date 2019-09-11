@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/18 17:55:18 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/18 19:15:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 15:06:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,28 @@
 
 int add(int num1, int num2)
 {
+	printf("Choice 0\n");
 	printf("Addition:\n");
 	return(num1 + num2);
 }
 
 int sub(int num1, int num2)
 {
+	printf("Choice 1\n");
 	printf("Subtraction:\n");
 	return(num1 - num2);
 }
 
 int mult(int num1, int num2)
 {
+	printf("Choice 2\n");
 	printf("Multiplication:\n");
 	return(num1 * num2);
 }
 
 int divide(int num1, int num2)
 {
+	printf("Choice 3\n");
 	printf("Division:\n");
 	return(num1 / num2);
 }

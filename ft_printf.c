@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 14:27:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 15:22:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -345,7 +345,8 @@ void collect_type_field(t_printf *pr)
 	{
 		if(str[j] == c)
 		{
-			pr->type_field = j + 1;
+	//		pr->type_field = j + 1;
+			pr->type_field = j;
 			return;
 		}
 		j++;
@@ -1106,10 +1107,15 @@ void print_xX(t_printf *pr)
 
 void check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n)
 {
-	if(pr->flag.hash == true && n != 0 && pr->type_field == 8)
+//	if(pr->flag.hash == true && n != 0 && pr->type_field == 8)
+//		ft_strcpy(s, "0x");
+//	else if (pr->flag.hash == true && n != 0 && pr->type_field == 9)
+//		ft_strcpy(s, "0X");
+	if(pr->flag.hash == true && n != 0 && pr->type_field == 7)
 		ft_strcpy(s, "0x");
-	else if (pr->flag.hash == true && n != 0 && pr->type_field == 9)
+	else if (pr->flag.hash == true && n != 0 && pr->type_field == 8)
 		ft_strcpy(s, "0X");
+
 }
 
 void width_N_precision_N(t_printf *pr, uint_fast64_t n)
@@ -1120,10 +1126,15 @@ void width_N_precision_N(t_printf *pr, uint_fast64_t n)
 	ft_bzero_buffers(str, str_hex);
 //	ft_bzero_no_len(&pr->var); Commenting
 	ft_bzero(&pr->var, sizeof(&pr->var)); // Adding
-	if(pr->type_field == 8)
+//	if(pr->type_field == 8)
+//		ft_hex(n, 'x', str);
+//	else if(pr->type_field == 9)
+//		ft_hex(n, 'X', str);
+	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
-	else if(pr->type_field == 9)
+	else if(pr->type_field == 8)
 		ft_hex(n, 'X', str);
+
 	check_flags_for_x(pr, str_hex, n);
 	ft_strcat(str_hex, str);
 	append_to_buffer(pr, str_hex);
@@ -1138,9 +1149,13 @@ void width_N_precision_Y(t_printf *pr, uint_fast64_t n)
 	ft_bzero_buffers(str, str_hex);
 //	ft_bzero_no_len(&pr->var); Commenting
 	ft_bzero(&pr->var, sizeof(&pr->var)); // Adding
-	if(pr->type_field == 8)
+//	if(pr->type_field == 8)
+//		ft_hex(n, 'x', str);
+//	else if(pr->type_field == 9)
+//		ft_hex(n, 'X', str);
+	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
-	else if(pr->type_field == 9)
+	else if(pr->type_field == 8)
 		ft_hex(n, 'X', str);
 	check_flags_for_x(pr, str_hex, n);
 	if(n == 0 && pr->precision_field == 0)
@@ -1189,10 +1204,15 @@ void width_Y_precision_N(t_printf *pr, uint_fast64_t n)
 	ft_bzero_buffers(str, str_hex);
 //	ft_bzero_no_len(&pr->var); // Commenting
 	ft_bzero(&pr->var, sizeof(&pr->var));  // Adding
-	if(pr->type_field == 8)
+//	if(pr->type_field == 8)
+//		ft_hex(n, 'x', str);
+//	else if(pr->type_field == 9)
+//		ft_hex(n, 'X', str);
+	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
-	else if(pr->type_field == 9)
+	else if(pr->type_field == 8)
 		ft_hex(n, 'X', str);
+
 	check_flags_for_x(pr, str_hex, n);
 	total_length = ft_strlen(str) + ft_strlen(str_hex);
 	pr->var.width = ft_pad(pr->width_field, total_length);
@@ -1243,8 +1263,11 @@ void width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
 	ft_bzero_buffers(str, str_hex);
 //	ft_bzero_no_len(&pr->var); // commenting
 	ft_bzero(&pr->var, sizeof(&pr->var)); // Adding
-	(pr->type_field == 8) && (ft_hex(n, 'x', str));
-	(pr->type_field == 9) && (ft_hex(n, 'X', str));
+//	(pr->type_field == 8) && (ft_hex(n, 'x', str));
+//	(pr->type_field == 9) && (ft_hex(n, 'X', str));
+	(pr->type_field == 7) && (ft_hex(n, 'x', str));
+	(pr->type_field == 8) && (ft_hex(n, 'X', str));
+
 	check_flags_for_x(pr, str_hex, n);
 	l_s_h = ft_strlen(str_hex);
 	l_s = ft_strlen(str);
@@ -1410,37 +1433,41 @@ void print_b(t_printf *pr)
 }
 
 /*
-** 1 = c,  2 = s, 3 = p, 4 = d,  5 = i, 6 = o
-** 7 = u, 8 = x, 9 = X, 10 = f, 11 = b, 12 = %
+** 0 = c,  1 = s,  2 = p
+** 3 = d,  4 = i,  5 = o
+** 6 = u,  7 = x,  8 = X
+** 9 = f, 10 = b, 11 = %
 */
 
 
 void start_printing(t_printf *pr)
 {
-	if(pr->type_field == 1)
+
+/*
+// Commenting to test dispatch table
+	if(pr->type_field == 0)
 		print_c(pr);
-	else if(pr->type_field == 2)
+	else if(pr->type_field == 1)
 		print_s(pr);
-	else if(pr->type_field == 3)
+	else if(pr->type_field == 2)
 		print_p(pr);
-	else if(pr->type_field == 4 || pr->type_field == 5)
+	else if(pr->type_field == 3 || pr->type_field == 4)
 		print_d(pr);
-	else if(pr->type_field == 6)
+	else if(pr->type_field == 5)
 		print_o(pr);
-	else if(pr->type_field == 7)
+	else if(pr->type_field == 6)
 		print_u(pr);
-	else if(pr->type_field == 8)
+	else if(pr->type_field == 7 || pr->type_field == 8)
 		print_xX(pr);
 	else if(pr->type_field == 9)
-		print_xX(pr);
-	else if(pr->type_field == 10)
 		print_f(pr);
-	else if(pr->type_field == 11)
+	else if(pr->type_field == 10)
 		print_b(pr);
-	else if(pr->type_field == 12)
+	else if(pr->type_field == 11)
 		print_percent(pr);
+*/
 
-//	ft_dispatch_table[pr->type_field](pr);
+	ft_dispatch_table[pr->type_field](pr);
 }
 
 

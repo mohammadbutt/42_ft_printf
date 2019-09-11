@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 14:27:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 15:22:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,15 +184,26 @@ void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void	print_x(t_printf *pr);
 //void	x_append_buffer(t_printf *pr, char s[]);
 
-/*
-typedef void ft_print_functions(t_printf *pr);
 
-ft_print_functions *ft_dispatch_table[2] =
+typedef void ft_print_functions(t_printf *pr);
+// "cspdiouxXfb%"
+
+static ft_print_functions *ft_dispatch_table[] =
 {
 	print_c,
+	print_s,
+	print_p,
+	print_d,
+	print_d,
+	print_o,
+	print_u,
+	print_xX,
+	print_xX,
+	print_f,
+	print_b,
 	print_percent
 };
-*/
+
 void	initialize_printf_struct(t_printf *pr, const char *str);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
