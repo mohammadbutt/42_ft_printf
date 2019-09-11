@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 18:18:39 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 22:20:32 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <stdlib.h>
+//#include <cfloat.h>
 
 /*
 int main(void)
@@ -2675,8 +2676,8 @@ int main(void)
     printf("\n|%d|\n", ft_printf("ft_printf:129:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
 	printf("\n");
 
-	printf("\n|%d|\n",    printf("   printf:130:(%%f, %f)        |%#f|", num1, num1));
-    printf("\n|%d|\n", ft_printf("ft_printf:130:(%%f, %f)        |%#f|", num1, num1));
+	printf("\n|%d|\n",    printf("   printf:130:(%%#f, %f)        |%#f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:130:(%%#f, %f)        |%#f|", num1, num1));
 	printf("\n\n");
 
 	num1 = 0;
@@ -2709,11 +2710,137 @@ int main(void)
     printf("\n|%d|\n", ft_printf("ft_printf:136:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
 	printf("\n");
 
-	printf("\n|%d|\n",    printf("   printf:137:(%%f, %f)        |%#f|", num1, num1));
-    printf("\n|%d|\n", ft_printf("ft_printf:137:(%%f, %f)        |%#f|", num1, num1));
+	printf("\n|%d|\n",    printf("   printf:137:(%%#f, %f)       |%#f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:137:(%%#f, %f)       |%#f|", num1, num1));
 	printf("\n\n");
 
+	num1 = 7.3;
 
+	printf("\n|%d|\n",    printf("   printf:138:(%%+05.f, %.f)     |%+05.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:138:(%%+05.f, %.f)     |%+05.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:139:(%%+05.0f, %.0f)   |%+05.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:139:(%%+05.0f, %.0f)   |%+05.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:140:(%%+05.1f, %.1f)   |%+05.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:140:(%%+05.1f, %.1f)   |%+05.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:141:(%%+05.2f, %.2f)   |%+05.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:141:(%%+05.2f, %.2f)   |%+05.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:142:(%%+05.3f, %.3f)   |%+05.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:142:(%%+05.3f, %.3f)   |%+05.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:143:(%%+05.4f, %.4f)   |%+05.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:143:(%%+05.4f, %.4f)   |%+05.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:144:(%%+05.5f, %.5f)   |%+05.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:144:(%%+05.5f, %.5f)   |%+05.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:145:(%%f, %f)        |%f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:145:(%%f, %f)        |%f|", num1, num1));
+	printf("\n\n");
+
+	num1 = -7.3;
+
+	printf("\n|%d|\n",    printf("   printf:146:(%%+05.f, %.f)     |%+05.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:146:(%%+05.f, %.f)     |%+05.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:147:(%%+05.0f, %.0f)   |%+05.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:147:(%%+05.0f, %.0f)   |%+05.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:148:(%%+05.1f, %.1f)   |%+05.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:148:(%%+05.1f, %.1f)   |%+05.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:149:(%%+05.2f, %.2f)   |%+05.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:149:(%%+05.2f, %.2f)   |%+05.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:150:(%%+05.3f, %.3f)   |%+05.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:150:(%%+05.3f, %.3f)   |%+05.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:151:(%%+05.4f, %.4f)   |%+05.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:151:(%%+05.4f, %.4f)   |%+05.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:152:(%%+05.5f, %.5f)   |%+05.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:152:(%%+05.5f, %.5f)   |%+05.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:153:(%%f, %f)        |%f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:153:(%%f, %f)        |%f|", num1, num1));
+	printf("\n\n");
+
+	num1 = -7.3;
+
+	printf("\n|%d|\n",    printf("   printf:146:(%%05.f, %.f)     |%05.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:146:(%%05.f, %.f)     |%05.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:147:(%%05.0f, %.0f)   |%05.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:147:(%%05.0f, %.0f)   |%05.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:148:(%%05.1f, %.1f)   |%05.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:148:(%%05.1f, %.1f)   |%05.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:149:(%%05.2f, %.2f)   |%05.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:149:(%%05.2f, %.2f)   |%05.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:150:(%%05.3f, %.3f)   |%05.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:150:(%%05.3f, %.3f)   |%05.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:151:(%%05.4f, %.4f)   |%05.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:151:(%%05.4f, %.4f)   |%05.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:152:(%%05.5f, %.5f)   |%05.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:152:(%%05.5f, %.5f)   |%05.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:153:(%%f, %f)        |%f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:153:(%%f, %f)        |%f|", num1, num1));
+	printf("\n\n");
+
+	printf("-------------------------Additional Tests-----------------------------------\n");
+	printf("----------------------------------------------------------------------------\n");
+
+	long double num2;
+	num2 = 0.87650894255l;
+
+	printf("\n|%d|\n",    printf("   printf:154:(%%.10Lf, %Lf)        |%.10Lf|", num2, num2));
+    printf("\n|%d|\n", ft_printf("ft_printf:154:(%%.10Lf, %Lf)        |%.10Lf|", num2, num2));
+	printf("\n\n");
+	
+	num2 = 1.025978542436587568678;
+
+	printf("\n|%d|\n",    printf("   printf:155:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+    printf("\n|%d|\n", ft_printf("ft_printf:155:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+	printf("\n\n");
+
+	num2 = 1.025978548534310422034;
+
+	printf("\n|%d|\n",    printf("   printf:156:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+    printf("\n|%d|\n", ft_printf("ft_printf:156:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+	printf("\n\n");
+
+	printf("\n|%d|\n",    printf("   printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
+    printf("\n|%d|\n", ft_printf("ft_printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
+	printf("\n\n");
 
 }
 

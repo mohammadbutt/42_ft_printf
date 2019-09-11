@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 17:57:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 11:38:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,20 @@
 # define MINI_LIBFT_H
 
 #include <unistd.h>
-#include <stdlib.h>
+#include <stdlib.h> /*uint64_t, uint_fast64_t*/
 #include <limits.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 /*
 ** mini_libft function prototypes-----------------------------------------------
 */
+
+/*
+** Macros----------------------------------------------------------------------
+*/
+
+typedef __uint128_t uint128_t;
 
 /*
 ** Struct for ftoa--------------------------------------------------------------
@@ -29,8 +36,6 @@
 typedef struct		s_floats
 {
 	char			new_string[64];
-//	double			temp_nbr;
-//	double			difference;
 	long double		temp_nbr;
 	long double		difference;
 	uint_fast64_t	whole_nbr;
@@ -67,6 +72,7 @@ char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
 char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 char				*ft_hex(uint_fast64_t value, char c, char str[]);
 int					ft_numlen_uint64(uint_fast64_t nbr);
+int					ft_numlen_uint128(uint128_t nbr);
 uint_fast64_t		ft_pow10(uint_fast64_t num);
 void				ft_putchar(char c);
 void				ft_putstr(char *str);

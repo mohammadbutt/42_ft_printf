@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 18:23:36 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 21:26:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "./mini_libft/mini_libft.h"
 # include <unistd.h> /*write(2)*/
-# include <stdlib.h> /*malloc(3), free(3), and exit(3)*/
+# include <stdlib.h> /*malloc(3), free(3), exit(3), uint64_t, and uint_fast64_t*/
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>

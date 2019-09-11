@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 18:25:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 20:58:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1276,8 +1276,14 @@ void f_append_buffer(t_printf *pr, char s[], char t_s[])
 	len = ft_strlen(t_s);
 	pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
+/*
+// Commenting
 	if(pr->flag.plus == true || pr->flag.space == true)
 		if(pr->var.width > 0)// && t_s[0] != '-')
+			pr->var.width--;
+*/
+	if(pr->flag.plus == true || pr->flag.space == true || s[0] == '-')
+		if(pr->var.width > 0)
 			pr->var.width--;
 	if(pr->flag.zero == true && pr->var.width >= 0)
 		while(pr->var.width--)
@@ -1306,17 +1312,17 @@ void print_f(t_printf *pr)
 	if(pr->length.L == true)
 		nbr = va_arg(pr->arguments, long double);
 	else if(pr->length.L == false)
-		nbr = (double)va_arg(pr->arguments, double);
+		nbr = va_arg(pr->arguments, double);
 	if(nbr < 0)
-		ft_ftoa(nbr, t_s, pr->precision_field);
+		ft_strcpy(s, "-");
 	else if(nbr >= 0)
 	{
 		if(pr->flag.plus == true)
 			ft_strcpy(s, "+");
 		else if(pr->flag.space == true)
 			ft_strcpy(s, " ");
-		ft_ftoa(nbr, t_s, pr->precision_field);
 	}
+	ft_ftoa(nbr, t_s, pr->precision_field);
 //	(pr->precision_field != -1) && (pr->flag.zero == false) Not applied to floats
 //	(pr->precision_field == 0 && nbr == 0) && (ft_strcpy(t_s, "0"));
 //	if(nbr == 0 && pr->precision_field >= 1)
@@ -1328,7 +1334,6 @@ void print_f(t_printf *pr)
 	if(pr->precision_field == 0 && pr->flag.hash == true)
 		ft_strcat(t_s, ".");
 	f_append_buffer(pr, s, t_s); // Break function here;
-	
 }
 
 
