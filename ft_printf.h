@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 15:22:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 16:07:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,51 @@
 # define FT_LLONG_STR "9223372036854775808"
 
 /*
+** -----------------------------Font Color Scheme-------------------------------
+** -----------------------------------------------------------------------------
+*/
+
+/*
+** Regular Colors
+*/
+
+# define NC "\33[0m"
+# define BLACK "\33[0;30m"
+# define RED "\33[0;31m"
+# define GREEN "\33[0;32m"
+# define YELLOW "\33[0;33m"
+# define BLUE "\33[0;34m"
+# define PURPLE "\33[0;35m"
+# define CYAN "\33[0;36m"
+# define WHITE "\33[0;37m"
+
+/*
+** Bold Colors
+*/
+
+# define BBLACK "\33[1;30m"
+# define BRED "\33[1;31m"
+# define BGREEN "\33[1;32m"
+# define BYELLOW "\33[1;33m"
+# define BBLUE "\33[1;34m"
+# define BPURPLE "\33[1;35m"
+# define BCYAN "\33[1;36m"
+# define BWHITE "\33[1;37m"
+
+/*
+** Background Colors
+*/
+
+#define ON_BLACK "\033[40m"
+#define ON_RED "\033[41m"
+#define ON_GREEN "\033[42m"
+#define ON_YELLOW "\033[43m"
+#define ON_BLUE "\033[44m"
+#define ON_PURPLE "\033[45m"
+#define ON_CYAN "\033[46m"
+#define ON_WHITE "\033[47m"
+
+/*
 ** Colon ':' in structs is called a bit field
 ** 1 bool data type uses 1 bytes. 1 byte = 8 bits. This means a bool will ask
 ** for 1 byte of memory which will have 8 bits as shown below:
@@ -75,8 +120,6 @@ typedef struct s_variables
 	int i;
 	int width;
 	int precision;
-//	int c;
-//	int repeat;
 } t_variables;
 
 typedef struct s_flag

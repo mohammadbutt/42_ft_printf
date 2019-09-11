@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 14:27:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 16:07:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2849,31 +2849,31 @@ int main(void)
 	printf("---------------------------Testing Binary-----------------------\n");
 
 
-	ft_printf("ft_printf:0:uint64_max|%b|\n", 18446744073709551615);
-	ft_printf("ft_printf:3:int32_min |%b|\n", INT32_MIN);
-	ft_printf("ft_printf:4:int32_max |%b|\n", INT32_MAX);
-	ft_printf("ft_printf:5|%# +b|\n", 345345);
-	ft_printf("ft_printf:6|%#-8.3b|\n\n", 345345);
-	ft_printf("ft_printf:7|%#-8.5b|\n\n", 34);
-	ft_printf("ft_printf:8|%#-8.b|\n\n", 34);
-	ft_printf("ft_printf:9|%#8.b|\n\n", 34);
-	ft_printf("ft_printf:10|%8.3b|\n\n", 34);
-	ft_printf("ft_printf:11|%#8.3b|\n\n", 34);
-	ft_printf("ft_printf:12|%3b|\n\n", 4);
-	ft_printf("ft_printf:13|%3b|\n\n", 0);
-	ft_printf("ft_printf:14|%#3b|\n\n", 4);
-	ft_printf("ft_printf:15|%#5b|\n\n", 0);
-	ft_printf("ft_printf:16|%#5.8b|\n\n", 0);
-	ft_printf("ft_printf:17|%#5.0b|\n\n", 0);
-	ft_printf("ft_printf:18|%#-3b|\n\n", 0);
-	ft_printf("ft_printf:19|%#3b|\n\n", 0);
-	ft_printf("ft_printf:20|this %#b number,|\n\n", 0);
-	ft_printf("ft_printf:21|%#b|\n\n", 0);
-	ft_printf("ft_printf:22|%0#b|\n\n", 0);
-	ft_printf("ft_printf:22.1|%#.0b|\n\n", 0);
-	ft_printf("ft_printf:22.2|%#.1b|\n\n", 0);
-	ft_printf("ft_printf:22.21|%#.1b|\n\n", 1);
-	ft_printf("ft_printf:22.3|%#.2b|\n\n", 0);
+	ft_printf(RED"ft_printf:0:uint64_max|%b|\n", 18446744073709551615);
+	ft_printf(NC GREEN"ft_printf:3:int32_min |%b|\n", INT32_MIN);
+	ft_printf(NC YELLOW"ft_printf:4:int32_max |%b|\n", INT32_MAX);
+	ft_printf(NC BLUE"ft_printf:5|%# +b|\n", 345345);
+	ft_printf(PURPLE"ft_printf:6|%#-8.3b|\n", 345345);
+	ft_printf(NC CYAN"ft_printf:7|%#-8.5b|\n"NC, 34);
+	ft_printf(NC WHITE"ft_printf:8|%#-8.b|\n\n", 34);
+	ft_printf(NC BRED"ft_printf:9|%#8.b|\n\n", 34);
+	ft_printf(NC BGREEN"ft_printf:10|%8.3b|\n\n", 34);
+	ft_printf(NC BYELLOW"ft_printf:11|%#8.3b|\n\n", 34);
+	ft_printf(NC BBLUE"ft_printf:12|%3b|\n\n", 4);
+	ft_printf(NC BPURPLE"ft_printf:13|%3b|\n\n", 0);
+	ft_printf(NC BCYAN"ft_printf:14|%#3b|\n\n", 4);
+	ft_printf(NC BWHITE"ft_printf:15|%#5b|\n\n"NC, 0);
+	ft_printf(NC BWHITE ON_BLACK"\nft_printf:16|%#5.8b|", 0);
+	ft_printf(NC BWHITE ON_RED"\nft_printf:17|%#5.0b|", 0);
+	ft_printf(NC BWHITE ON_GREEN"\nft_printf:18|%#-3b|", 0);
+	ft_printf(NC BWHITE ON_YELLOW"\nft_printf:19|%#3b|", 0);
+	ft_printf(NC BWHITE ON_BLUE"\nft_printf:20|this %#b number,|", 0);
+	ft_printf(NC BWHITE ON_PURPLE"\nft_printf:21|%#b|", 0);
+	ft_printf(NC BWHITE ON_CYAN"\nft_printf:22|%0#b|", 0);
+	ft_printf(NC BWHITE ON_WHITE"\nft_printf:23|%#.0b|"NC, 0);
+	ft_printf("\nft_printf:24|%#.1b|\n\n", 0);
+	ft_printf("ft_printf:25|%#.1b|\n\n", 1);
+	ft_printf("ft_printf:26|%#.2b|\n\n", 0);
 	ft_printf("ft_printf:22.4|%#0.3b|\n\n", 0);
 	ft_printf("ft_printf:22.5|%#1.3b|\n\n", 0);
 	ft_printf("ft_printf:22.6|%#2.3b|\n\n", 0);
