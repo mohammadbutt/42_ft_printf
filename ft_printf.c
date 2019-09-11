@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/09 21:45:11 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 18:04:19 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1296,7 +1296,8 @@ void f_append_buffer(t_printf *pr, char s[], char t_s[])
 
 void print_f(t_printf *pr)
 {
-	double nbr;
+//	double nbr;
+	long double nbr;
 	char s[pr->precision_field + pr->width_field + 64];
 	char t_s[pr->precision_field + pr->width_field + 64];
 
@@ -1305,7 +1306,7 @@ void print_f(t_printf *pr)
 	if(pr->length.L == true)
 		nbr = va_arg(pr->arguments, long double);
 	else if(pr->length.L == false)
-		nbr = va_arg(pr->arguments, double);
+		nbr = (double)va_arg(pr->arguments, double);
 	if(nbr < 0)
 		ft_ftoa(nbr, t_s, pr->precision_field);
 	else if(nbr >= 0)
@@ -1317,7 +1318,13 @@ void print_f(t_printf *pr)
 		ft_ftoa(nbr, t_s, pr->precision_field);
 	}
 //	(pr->precision_field != -1) && (pr->flag.zero == false) Not applied to floats
-	(pr->precision_field == 0 && nbr == 0) && (ft_strcpy(t_s, "0"));
+//	(pr->precision_field == 0 && nbr == 0) && (ft_strcpy(t_s, "0"));
+//	if(nbr == 0 && pr->precision_field >= 1)
+//		ft_strcpy(t_s, "0.");
+//	else if(nbr == 0)
+//		ft_strcpy(t_s, "0");
+//	(nbr == 0) && (ft_strcpy(t_s, "0"));
+//	(nbr == 0) && (ft_strcpy(s, "0"));
 	f_append_buffer(pr, s, t_s); // Break function here;
 	
 }
