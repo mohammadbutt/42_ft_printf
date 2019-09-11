@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 12:52:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 14:27:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2850,10 +2850,8 @@ int main(void)
 
 
 	ft_printf("ft_printf:0:uint64_max|%b|\n", 18446744073709551615);
-	ft_printf("ft_printf:1:int64_min|%b|\n", INT64_MIN);
-	ft_printf("ft_printf:2:int64_max|%b|\n", INT64_MAX);
-	ft_printf("ft_printf:3:int32_min|%b|\n", INT32_MIN);
-	ft_printf("ft_printf:4:int32_max|%b|\n", INT32_MAX);
+	ft_printf("ft_printf:3:int32_min |%b|\n", INT32_MIN);
+	ft_printf("ft_printf:4:int32_max |%b|\n", INT32_MAX);
 	ft_printf("ft_printf:5|%# +b|\n", 345345);
 	ft_printf("ft_printf:6|%#-8.3b|\n\n", 345345);
 	ft_printf("ft_printf:7|%#-8.5b|\n\n", 34);

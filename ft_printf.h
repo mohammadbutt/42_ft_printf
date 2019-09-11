@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 12:52:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 14:27:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,20 +81,20 @@ typedef struct s_variables
 
 typedef struct s_flag
 {
-	bool hash; //: 1;
-	bool zero; //: 1;
-	bool minus; //: 1;
-	bool plus; //: 1;
-	bool space; //: 1;
+	bool hash : 1;
+	bool zero : 1;
+	bool minus : 1;
+	bool plus : 1;
+	bool space : 1;
 } t_flag;
 
 typedef struct s_length
 {
-	bool hh; //: 1;
-	bool h; //: 1;
-	bool l; //: 1;
-	bool ll; //: 1;
-	bool L; //: 1;
+	bool hh : 1;
+	bool h : 1;
+	bool l : 1;
+	bool ll : 1;
+	bool L : 1;
 } t_length;
 
 typedef struct s_printf
