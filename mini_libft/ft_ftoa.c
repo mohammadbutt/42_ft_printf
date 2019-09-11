@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/09 15:48:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 17:54:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 18:25:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ int ft_numlen_uint64(uint64_t nbr)
 ** ---------------------------------------------------------------------------
 ** ---------------------------------------------------------------------------
 */
-//double turn_negative_sign_on_and_off(t_float *f, double nbr)
+
 long double turn_negative_sign_on_and_off(t_float *f, long double nbr)
 
 {
@@ -127,69 +127,16 @@ long double turn_negative_sign_on_and_off(t_float *f, long double nbr)
 	return(nbr);
 }
 
-//void get_whole_fraction_diff(t_float *f, double nbr, int precision)
 void get_whole_fraction_diff(t_float *f, long double nbr, int precision)
 {
-//	if(nbr == 0)
-//		f->whole_nbr = 0;
-//	else if(nbr != 0)
 	f->whole_nbr = (uint_fast64_t)nbr;
 	f->temp_nbr = (nbr - f->whole_nbr) * ft_pow10(precision);
 	f->fraction_nbr = (uint_fast64_t) f->temp_nbr;
 	f->difference = f->temp_nbr - f->fraction_nbr;
 }
 
-//void ft_ftoa_roundup(t_float *f, double nbr, int precision)
 void ft_ftoa_roundup(t_float *f, long double nbr, int precision)
 {
-/*
-	if(f->difference > 0.5)
-	{
-		f->fraction_nbr++;
-		if(f->fraction_nbr >= ft_pow10(precision))
-		{
-			f->fraction_nbr = 0;
-			f->whole_nbr++;
-		}
-	}
-	else if(f->difference >= 0.5)
-	{
-		if((f->fraction_nbr == 0) || ((f->fraction_nbr % 2) == 1))
-			f->fraction_nbr++;
-	}
-*/
-/*
-// Somewhat works
-	else if(f->difference >= 0.5)
-	{
-		if((f->fraction_nbr == 0) || ((f->fraction_nbr % 2) == 1))
-			f->fraction_nbr++;
-	}
-*/
-//	else if(f->difference <= 0.5)
-//	{
-//		if((f->fraction_nbr == 0) || ((f->fraction_nbr % 2) == 1))
-//			f->fraction_nbr++;
-//	}
-
-/*
-	else if (f->difference > 0.5) // Added
-	{
-		if((f->fraction_nbr == 0) || ((f->fraction_nbr % 2) == 1))
-			f->fraction_nbr++;
-	}
-*/
-
-
-/*
-	if(!(precision == 0))
-	{
-		f->difference = nbr - (double) f->whole_nbr;
-	    if(!(f->difference < 0.5) || (f->difference > 0.5))
-			if((f->whole_nbr % 2) == 1)
-				f->whole_nbr++;
-	}
-*/
 	if(f->difference > 0.5)
 	{
 		f->fraction_nbr++;
@@ -261,7 +208,6 @@ void extract_whole_nbr(t_float *f, char str[], int precision)
 	}
 }
 
-//char 	*ft_ftoa(double nbr, char str[], int precision)
 char 	*ft_ftoa(long double nbr, char str[], int precision)
 
 {

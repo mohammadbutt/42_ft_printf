@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 18:04:19 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 18:25:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -1325,6 +1325,8 @@ void print_f(t_printf *pr)
 //		ft_strcpy(t_s, "0");
 //	(nbr == 0) && (ft_strcpy(t_s, "0"));
 //	(nbr == 0) && (ft_strcpy(s, "0"));
+	if(pr->precision_field == 0 && pr->flag.hash == true)
+		ft_strcat(t_s, ".");
 	f_append_buffer(pr, s, t_s); // Break function here;
 	
 }

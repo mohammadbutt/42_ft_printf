@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/10 18:04:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/10 18:18:39 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2608,6 +2608,112 @@ int main(void)
 	printf("\n|%d|\n",    printf("   printf:114:(%%f, %f)    |%f|", num1, num1));
     printf("\n|%d|\n", ft_printf("ft_printf:114:(%%f, %f)    |%f|", num1, num1));
 	printf("\n\n");
+
+	num1 = -3.85;
+
+	printf("\n|%d|\n",    printf("   printf:115:(%%#.f, %.f)     |%#.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:115:(%%#.f, %.f)     |%#.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:116:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:116:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:117:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:117:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:118:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:118:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:119:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:119:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:120:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:120:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:121:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:121:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:122:(%%f, %f)        |%#f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:122:(%%f, %f)        |%#f|", num1, num1));
+	printf("\n\n");
+
+	num1 = -4;
+
+	printf("------------------------------------------------------------------------\n");
+	printf("--------------------Testing  floats with Hash---------------------------\n");
+	printf("\n|%d|\n",    printf("   printf:123:(%%#.f, %.f)     |%#.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:123:(%%#.f, %.f)     |%#.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:124:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:124:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:125:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:125:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:126:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:126:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:127:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:127:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:128:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:128:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:129:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:129:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:130:(%%f, %f)        |%#f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:130:(%%f, %f)        |%#f|", num1, num1));
+	printf("\n\n");
+
+	num1 = 0;
+
+	printf("\n|%d|\n",    printf("   printf:131:(%%#.f, %.f)     |%#.f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:131:(%%#.f, %.f)     |%#.f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:132:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:132:(%%#.0f, %.0f)   |%#.0f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:132:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:132:(%%#.1f, %.1f)   |%#.1f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:133:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:133:(%%#.2f, %.2f)   |%#.2f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:134:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:134:(%%#.3f, %.3f)   |%#.3f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:135:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:135:(%%#.4f, %.4f)   |%#.4f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:136:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:136:(%%#.5f, %.5f)   |%#.5f|", num1, num1));
+	printf("\n");
+
+	printf("\n|%d|\n",    printf("   printf:137:(%%f, %f)        |%#f|", num1, num1));
+    printf("\n|%d|\n", ft_printf("ft_printf:137:(%%f, %f)        |%#f|", num1, num1));
+	printf("\n\n");
+
+
 
 }
 
