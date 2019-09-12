@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 16:22:44 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 18:07:20 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -353,7 +353,8 @@ void collect_type_field(t_printf *pr)
 	}
 }
 
-void start_collecting(t_printf *pr)
+void start_collecting_flags(t_printf *pr)
+//void collect_flags(t_printf *pr)
 {
 	while(collect_flags(pr) != -1)
 		pr->i++;
@@ -1439,34 +1440,38 @@ void print_b(t_printf *pr)
 ** 9 = f, 10 = b, 11 = %
 */
 
-
-void start_printing(t_printf *pr)
-{
-
 /*
-// Commenting to test dispatch table
-	if(pr->type_field == 0)
-		print_c(pr);
-	else if(pr->type_field == 1)
-		print_s(pr);
-	else if(pr->type_field == 2)
-		print_p(pr);
-	else if(pr->type_field == 3 || pr->type_field == 4)
-		print_d(pr);
-	else if(pr->type_field == 5)
-		print_o(pr);
-	else if(pr->type_field == 6)
-		print_u(pr);
-	else if(pr->type_field == 7 || pr->type_field == 8)
-		print_xX(pr);
-	else if(pr->type_field == 9)
-		print_f(pr);
-	else if(pr->type_field == 10)
-		print_b(pr);
-	else if(pr->type_field == 11)
-		print_percent(pr);
+** This function can be used in place of dispatch table
+**void collect_data(t_printf *pr)
+**{
+**	if(pr->type_field == 0)
+**		print_c(pr);
+**	else if(pr->type_field == 1)
+**		print_s(pr);
+**	else if(pr->type_field == 2)
+**		print_p(pr);
+**	else if(pr->type_field == 3 || pr->type_field == 4)
+**		print_d(pr);
+**	else if(pr->type_field == 5)
+**		print_o(pr);
+**	else if(pr->type_field == 6)
+**		print_u(pr);
+**	else if(pr->type_field == 7 || pr->type_field == 8)
+**		print_xX(pr);
+**	else if(pr->type_field == 9)
+**		print_f(pr);
+**	else if(pr->type_field == 10)
+**		print_b(pr);
+**	else if(pr->type_field == 11)
+**		print_percent(pr);
+**}
 */
 
+
+//void start_printing(t_printf *pr)
+void collect_data(t_printf *pr)
+
+{
 	ft_dispatch_table[pr->type_field](pr);
 }
 
@@ -1476,8 +1481,9 @@ void start_parsing(t_printf *pr)
 	initialize_flag_and_field_values(pr);
 	if(pr->string[pr->i] == '\0')
 		return;
-	start_collecting(pr);
-	start_printing(pr);
+	start_collecting_flags(pr);
+//	start_printing(pr);
+	collect_data(pr);
 }
 
 void initialize_printf_struct(t_printf *pr, const char *str)

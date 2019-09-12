@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 16:07:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 18:07:13 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,14 +168,15 @@ void	append_to_buffer(t_printf *pr, char *source);
 void	append_to_buffer_loop(t_printf *pr, int x_times, char *str);
 void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
-void	start_collecting(t_printf *pr);
+void	start_collect_flags(t_printf *pr);
 int 	collect_flags(t_printf *pr);
 void 	cancel_flags(t_printf *pr);
 void	collect_width(t_printf *pr);
 void	collect_precision(t_printf *pr);
 void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
-void	start_printing(t_printf *pr);
+//void	start_printing(t_printf *pr);
+void	collect_data(t_printf *pr);
 void	print_c(t_printf *pr);
 //int		ft_pad(t_printf *pr, int string_length);
 int		ft_pad(int field, int string_length);
