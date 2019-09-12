@@ -6,12 +6,11 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 19:58:09 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 20:46:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:33:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mini_libft.h"
-#include <stdio.h>
 
 /*
 ** ft_abs performs the same function as abs(3) function found in stdlib.h
@@ -26,17 +25,3 @@ int_fast64_t	ft_abs(int_fast64_t num)
 		num = -1 * num;
 	return (num);
 }
-
-/*
-int main(void)
-{
-	int num;
-
-	num = -1222;
-
-	printf("|%d|\n", num);
-	printf("|%lld|\n", ft_abs(num));
-	printf("|%d|\n", num);
-
-}
-*/

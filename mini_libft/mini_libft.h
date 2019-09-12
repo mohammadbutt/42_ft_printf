@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 12:37:35 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:38:36 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,28 +46,34 @@ typedef struct		s_floats
 	bool			negative_sign;
 } 					t_float;
 
-int_fast64_t		ft_abs(int_fast64_t num);
-int					ft_atoi(const char *str);
-void				ft_bzero(void *str, size_t len);
-void				ft_bzero_no_len(void *str);
-//int				ft_numlen(int_fast64_t value, int base);
-//int				initialize_with_zero(int_fast64_t *a, int *b, int *c, int *d);
+/*
+** ft_ftoa.c
+*/
 
-// ftoa
-long double			turn_negative_sign_on_and_off(t_float *f, long double nbr);
 void				get_whole_fraction_diff(t_float *f, long double n, int precision);
 void 				ft_ftoa_roundup(t_float *f, long double nbr, int precision);
-char				*ft_ftoa(long double nbr, char str[], int precision);
-//double				turn_negative_sign_on_and_off(t_float *f, double nbr);
-//void				get_whole_fraction_diff(t_float *f, double n, int precision);
-//void 				ft_ftoa_roundup(t_float *f, double nbr, int precision);
-//char				*ft_ftoa(double nbr, char str[], int precision);
 void 				extract_precision_nbr(t_float *f, char str[], int precision);
 void				extract_whole_nbr(t_float *f, char str[], int precision);
+char				*ft_ftoa(long double nbr, char str[], int precision);
+
+/*
+** ft_atoi.c
+*/
+int					ft_atoi(const char *str);
+int					ft_isspace(int c);
+
+
+
+
+int_fast64_t		ft_abs(int_fast64_t num);
+
+
+
+void				ft_bzero(void *str, size_t len);
+void				ft_bzero_no_len(void *str);
 char				*ft_strrev(char *str);
 int					ft_isdigit(char c);
 int					ft_isdigit1(char c);
-int					ft_isspace(int c);
 char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
 char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 char				*ft_hex(uint_fast64_t value, char c, char str[]);
