@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 20:56:10 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 21:03:34 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,7 +200,7 @@ char 	*ft_itoa_min_h(short num, char temp_str[]);
 char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
-void	ft_bzero_buffers(char str[], char temp_str[]);
+//void	ft_bzero_buffers(char str[], char temp_str[]);
 //void 	print_d(t_printf *pr);
 void	collect_d(t_printf *pr);
 void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
