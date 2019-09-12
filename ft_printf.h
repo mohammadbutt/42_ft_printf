@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:34:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 22:46:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,6 +181,12 @@ int_fast64_t	length_field_d(t_printf *pr);
 void			collect_d(t_printf *pr);
 void			d_append_buffer(t_printf *pr, char s[], char t_s[]);
 
+/*
+** type_field_p.c
+*/
+
+void	collect_p(t_printf *pr);
+void	p_append_buffer(t_printf *pr, char *str, int width, int precision);
 
 
 
@@ -215,9 +221,6 @@ void	s_append_buffer(t_printf *pr, char *str, int repeat);
 //void	print_percent(t_printf *pr);
 //void 	print_p(t_printf *pr);
 void	collect_percent(t_printf *pr);
-void	collect_p(t_printf *pr);
-//void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
-void	p_append_buffer(t_printf *pr, char *str, int width, int precision);
 //int_fast64_t 	determine_length_of_d(t_printf *pr);
 char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_hh(char num, char temp_str[]);
