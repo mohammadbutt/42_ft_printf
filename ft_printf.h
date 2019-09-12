@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:15:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 22:34:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,13 @@ void	collect_b(t_printf *pr);
 void	collect_f(t_printf *pr);
 void	f_append_buffer(t_printf *pr, char s[], char t_s[]);
 
+/*
+** type_field_d_i.c
+*/
+
+int_fast64_t	length_field_d(t_printf *pr);
+void			collect_d(t_printf *pr);
+void			d_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 
 
@@ -212,7 +219,6 @@ void	collect_p(t_printf *pr);
 //void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
 void	p_append_buffer(t_printf *pr, char *str, int width, int precision);
 //int_fast64_t 	determine_length_of_d(t_printf *pr);
-int_fast64_t length_field_d(t_printf *pr);
 char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_hh(char num, char temp_str[]);
 char 	*ft_itoa_min_h(short num, char temp_str[]);
@@ -221,8 +227,6 @@ char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
 //void	ft_bzero_buffers(char str[], char temp_str[]);
 //void 	print_d(t_printf *pr);
-void	collect_d(t_printf *pr);
-void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void	print_u(t_printf *pr);
 void	collect_u(t_printf *pr);
 //uint_fast64_t determine_length_of_u_o(t_printf *pr);
