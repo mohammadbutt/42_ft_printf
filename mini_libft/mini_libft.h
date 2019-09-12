@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:50:30 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 16:00:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ int_fast32_t		ft_strlen_fast(char *str);
 char				*ft_strcpy(char *dest, char *source);
 char				*ft_strncpy(char *dest, char *source, int len);
 void				ft_swap(char *a, char *b);
-void				print_spaces(int repeat);
 int					var_to_zero(int_fast64_t *a, int *b, int *c, int *d);
 
 #endif

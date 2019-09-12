@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/12 13:41:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/08/12 14:10:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:57:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 ** To avoid calling write several times, the below function is created:
 */
 
+/*
 void print_spaces(int repeat)
 {
 	int i;
@@ -38,3 +39,4 @@ void print_spaces(int repeat)
 	buffer_size[i] = '\0';
 	write(1, buffer_size, repeat);
 }
+*/
