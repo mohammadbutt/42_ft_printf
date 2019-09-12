@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:14:01 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:18:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,6 +232,22 @@ void 	check_flags_for_o(t_printf *pr, char s[]);
 void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 /*
+** type_field_x.c
+*/
+void 	collect_x(t_printf *pr);
+void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
+void 	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
+
+/*
+** type_field_x_remaining_conditions.c
+*/
+void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
+void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
+
+/*
 ** parsing.c
 */
 
@@ -267,20 +283,12 @@ char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 
 /*
-** type_field_x.c
+** ft_printf.c
 */
-void 	collect_x(t_printf *pr);
-void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
-void 	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
+int		ft_pad(int precision_or_width, int string_length);
+int		ft_printf_driver(va_list args, const char *str);
+int		ft_printf(const char *str, ...);
 
-/*
-** type_field_x_remaining_conditions.c
-*/
-void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
-void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
 
 
 //int 	ft_conversion(const char c);
@@ -289,12 +297,11 @@ void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
 //void	print_on_screen(int repeat, va_list args, const char conversion_value);
 //void 	ft_strappend(t_printf *pr, char *source);
 //char	*ft_strappend(char *dest, int dest_index, char *source);
-void	start_collect_flags(t_printf *pr);
+//void	start_collect_flags(t_printf *pr);
 //void	start_printing(t_printf *pr);
 //void	print_c(t_printf *pr);
 //int		ft_pad(t_printf *pr, int string_length);
 //int		ft_pad(int field, int string_length);
-int		ft_pad(int precision_or_width, int string_length);
 //void	print_percent(t_printf *pr);
 //void 	print_p(t_printf *pr);
 
@@ -350,7 +357,5 @@ static ft_print_functions *ft_dispatch_table[] =
 	collect_percent
 };
 
-int		ft_printf_driver(va_list args, const char *str);
-int		ft_printf(const char *str, ...);
 
 #endif
