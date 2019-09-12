@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:13:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:21:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,6 +159,14 @@ typedef struct s_printf
 }	t_printf;
 
 /*
+** append_to_buffer.c
+*/
+
+void	append_to_buffer(t_printf *pr, char *source);
+void	append_to_buffer_loop(t_printf *pr, int x_times, char *str);
+
+
+/*
 ** type_field_b.c
 */
 
@@ -219,8 +227,6 @@ void	collect_percent(t_printf *pr);
 //void	print_on_screen(int repeat, va_list args, const char conversion_value);
 //void 	ft_strappend(t_printf *pr, char *source);
 //char	*ft_strappend(char *dest, int dest_index, char *source);
-void	append_to_buffer(t_printf *pr, char *source);
-void	append_to_buffer_loop(t_printf *pr, int x_times, char *str);
 void	start_parsing(t_printf *pr);
 void	initialize_flag_and_field_values(t_printf *pr);
 void	start_collect_flags(t_printf *pr);
