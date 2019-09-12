@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 16:15:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 16:28:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,18 +91,26 @@ char				*ft_strncpy(char *dest, char *source, int len);
 char				*ft_strcat(char *dest, char *source);
 char				*ft_strcat_loop(char *dest, int x_times, char *source);
 
+/*
+** ft_isdigit.c
+*/
+
+int					ft_isdigit(char c);
+int					ft_isdigit1(char c);
+
+/*
+** ft_strlen.c
+*/
+
+int					ft_strlen(char *str);
+int_fast32_t		ft_strlen_fast(char *str);
 
 
 int_fast64_t		ft_abs(int_fast64_t num);
-int					ft_isdigit(char c);
-int					ft_isdigit1(char c);
 char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
 char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 int					ft_numlen_uint64(uint_fast64_t nbr);
-int					ft_numlen_uint128(uint128_t nbr);
 uint_fast64_t		ft_pow10(uint_fast64_t num);
-int					ft_strlen(char *str);
-int_fast32_t		ft_strlen_fast(char *str);
 void				ft_swap(char *a, char *b);
 int					var_to_zero(int_fast64_t *a, int *b, int *c, int *d);
 
