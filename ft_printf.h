@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 12:36:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 14:54:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -250,10 +250,22 @@ void 	cancel_flags(t_printf *pr);
 /*
 ** collect_width_precision_length_type.c
 */
+
 void	collect_width(t_printf *pr);
 void	collect_precision(t_printf *pr);
 void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
+
+/*
+** ft_itoa_min_handler.c
+*/
+
+char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_hh(char num, char temp_str[]);
+char 	*ft_itoa_min_h(short num, char temp_str[]);
+char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
+char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
+
 
 
 
@@ -273,12 +285,7 @@ int		ft_pad(int precision_or_width, int string_length);
 //void 	print_p(t_printf *pr);
 
 //int_fast64_t 	determine_length_of_d(t_printf *pr);
-char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_hh(char num, char temp_str[]);
-char 	*ft_itoa_min_h(short num, char temp_str[]);
-char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_int(int num, char temp_str[]);
+//char	*ft_itoa_min_int(int num, char temp_str[]);
 //void	ft_bzero_buffers(char str[], char temp_str[]);
 //void 	print_d(t_printf *pr);
 //void 	print_xX(t_printf *pr);
