@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 21:03:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 21:46:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,14 +207,14 @@ void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void	print_u(t_printf *pr);
 void	collect_u(t_printf *pr);
 //uint_fast64_t determine_length_of_u_o(t_printf *pr);
-uint_fast64_t	length_field_uoxX(t_printf *pr);
+uint_fast64_t	length_field_uox(t_printf *pr);
 void	u_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void	print_o(t_printf *pr);
 void	collect_o(t_printf *pr);
 void 	check_flags_for_o(t_printf *pr, char s[]);
 void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void 	print_xX(t_printf *pr);
-void 	collect_xX(t_printf *pr);
+void 	collect_x(t_printf *pr);
 /*
 // Placing xX before function names
 void	width_N_precision_N(t_printf *pr, uint_fast64_t n);
@@ -224,12 +224,12 @@ void	width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
 void	width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
 */
-void	xX_width_N_precision_N(t_printf *pr, uint_fast64_t n);
-void	xX_width_N_precision_Y(t_printf *pr, uint_fast64_t n);
-void	xX_width_Y_precision_N(t_printf *pr, uint_fast64_t n);
-void	xX_width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
-void	xX_width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
-void	xX_width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
+void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
+void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
 
 
 
@@ -265,8 +265,8 @@ static ft_print_functions *ft_dispatch_table[] =
 	collect_d,
 	collect_o,
 	collect_u,
-	collect_xX,
-	collect_xX,
+	collect_x,
+	collect_x,
 	collect_f,
 	collect_b,
 	collect_percent
