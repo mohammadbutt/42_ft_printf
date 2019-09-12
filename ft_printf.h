@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 14:54:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:06:19 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,14 @@ char 	*ft_itoa_min_h(short num, char temp_str[]);
 char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 
+/*
+** type_field_x.c
+*/
+void 	collect_x(t_printf *pr);
+void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
+void 	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
+
 
 
 
@@ -289,7 +297,6 @@ int		ft_pad(int precision_or_width, int string_length);
 //void	ft_bzero_buffers(char str[], char temp_str[]);
 //void 	print_d(t_printf *pr);
 //void 	print_xX(t_printf *pr);
-void 	collect_x(t_printf *pr);
 /*
 // Placing xX before function names
 void	width_N_precision_N(t_printf *pr, uint_fast64_t n);
@@ -299,8 +306,6 @@ void	width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
 void	width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
 */
-void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
 void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
 void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
 void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
