@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 18:07:13 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 18:36:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,13 +177,17 @@ void	collect_length(t_printf *pr);
 void	collect_type_field(t_printf *pr);
 //void	start_printing(t_printf *pr);
 void	collect_data(t_printf *pr);
-void	print_c(t_printf *pr);
+//void	print_c(t_printf *pr);
+void	collect_c(t_printf *pr);
 //int		ft_pad(t_printf *pr, int string_length);
 int		ft_pad(int field, int string_length);
-void	print_s(t_printf *pr);
+//void	print_s(t_printf *pr);
+void	collect_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
-void	print_percent(t_printf *pr);
-void 	print_p(t_printf *pr);
+//void	print_percent(t_printf *pr);
+//void 	print_p(t_printf *pr);
+void	collect_percent(t_printf *pr);
+void	collect_p(t_printf *pr);
 void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
 //int_fast64_t 	determine_length_of_d(t_printf *pr);
 int_fast64_t length_field_d(t_printf *pr);
@@ -194,26 +198,44 @@ char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
 void	ft_bzero_buffers(char str[], char temp_str[]);
-void 	print_d(t_printf *pr);
+//void 	print_d(t_printf *pr);
+void	collect_d(t_printf *pr);
 void	d_append_buffer(t_printf *pr, char s[], char t_s[]);
-void	print_u(t_printf *pr);
+//void	print_u(t_printf *pr);
+void	collect_u(t_printf *pr);
 //uint_fast64_t determine_length_of_u_o(t_printf *pr);
 uint_fast64_t	length_field_uoxX(t_printf *pr);
 void	u_append_buffer(t_printf *pr, char s[], char t_s[]);
-void	print_o(t_printf *pr);
+//void	print_o(t_printf *pr);
+void	collect_o(t_printf *pr);
 void 	check_flags_for_o(t_printf *pr, char s[]);
 void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
-void 	print_xX(t_printf *pr);
+//void 	print_xX(t_printf *pr);
+void 	collect_xX(t_printf *pr);
+/*
+// Placing xX before function names
 void	width_N_precision_N(t_printf *pr, uint_fast64_t n);
 void	width_N_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
 void	width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
-void	print_f(t_printf *pr);
+*/
+void	xX_width_N_precision_N(t_printf *pr, uint_fast64_t n);
+void	xX_width_N_precision_Y(t_printf *pr, uint_fast64_t n);
+void	xX_width_Y_precision_N(t_printf *pr, uint_fast64_t n);
+void	xX_width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
+void	xX_width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
+void	xX_width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
+
+
+
+//void	print_f(t_printf *pr);
+void	collect_f(t_printf *pr);
 void	f_append_buffer(t_printf *pr, char s[], char t_s[]);
 
-void	print_b(t_printf *pr);
+//void	print_b(t_printf *pr);
+void	collect_b(t_printf *pr);
 void 	check_flags_for_b(t_printf *pr, char s[]);
 void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
 
@@ -234,18 +256,31 @@ typedef void ft_print_functions(t_printf *pr);
 
 static ft_print_functions *ft_dispatch_table[] =
 {
-	print_c,
-	print_s,
-	print_p,
-	print_d,
-	print_d,
-	print_o,
-	print_u,
-	print_xX,
-	print_xX,
-	print_f,
-	print_b,
-	print_percent
+//	print_c,
+//	print_s,
+//	print_p,
+//	print_d,
+//	print_d,
+//	print_o,
+//	print_u,
+//	print_xX,
+//	print_xX,
+//	print_f,
+//	print_b,
+//	print_percent,
+
+	collect_c,
+	collect_s,
+	collect_p,
+	collect_d,
+	collect_d,
+	collect_o,
+	collect_u,
+	collect_xX,
+	collect_xX,
+	collect_f,
+	collect_b,
+	collect_percent
 };
 
 void	initialize_printf_struct(t_printf *pr, const char *str);

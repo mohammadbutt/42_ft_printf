@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 18:07:20 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 18:36:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -377,7 +377,8 @@ void start_collecting_flags(t_printf *pr)
 
 }
 
-void print_c(t_printf *pr)
+//void print_c(t_printf *pr)
+void collect_c(t_printf *pr)
 {
 	int c;
 	int repeat;
@@ -401,7 +402,8 @@ void print_c(t_printf *pr)
 	}
 }
 
-void print_percent(t_printf *pr)
+//void print_percent(t_printf *pr)
+void collect_percent(t_printf *pr)
 {
 	int repeat;
 
@@ -487,7 +489,8 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 ** user, 1 megabyte of memory is allocated which is equal to 1,048,576.
 */
 
-void print_s(t_printf *pr)
+//void print_s(t_printf *pr)
+void collect_s(t_printf *pr)
 {
 	char *temp_s;
 	char str[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
@@ -545,7 +548,8 @@ void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 ** logic and computational power.
 */
 
-void print_p(t_printf *pr)
+//void print_p(t_printf *pr)
+void collect_p(t_printf *pr)
 {
 	uint_fast64_t pointer_value;
 	char str[ft_abs(pr->precision_field) + pr->width_field + 32];
@@ -748,7 +752,8 @@ void	d_append_buffer(t_printf *pr, char s[], char t_s[])
 ** printf("|%5hhd|\n",  127) will give output of |  127|
 */
 
-void print_d(t_printf *pr)
+//void print_d(t_printf *pr)
+void collect_d(t_printf *pr)
 {
 	int_fast64_t n;
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
@@ -826,7 +831,8 @@ void	u_append_buffer(t_printf *pr, char s[], char t_s[])
 }
 
 
-void print_u(t_printf *pr)
+//void print_u(t_printf *pr)
+void collect_u(t_printf *pr)
 {
 	uint_fast64_t n;
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
@@ -885,7 +891,8 @@ void check_flags_for_o(t_printf *pr, char s[])
 		ft_strcpy(s, " ");
 }
 
-void print_o(t_printf *pr)
+//void print_o(t_printf *pr)
+void collect_o(t_printf *pr)
 {
 	uint_fast64_t n;
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
@@ -1119,7 +1126,8 @@ void check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n)
 
 }
 
-void width_N_precision_N(t_printf *pr, uint_fast64_t n)
+//void width_N_precision_N(t_printf *pr, uint_fast64_t n)
+void xX_width_N_precision_N(t_printf *pr, uint_fast64_t n)
 {
 	char str[32];
 	char str_hex[32];
@@ -1141,8 +1149,8 @@ void width_N_precision_N(t_printf *pr, uint_fast64_t n)
 	append_to_buffer(pr, str_hex);
 }
 
-void width_N_precision_Y(t_printf *pr, uint_fast64_t n)
-
+//void width_N_precision_Y(t_printf *pr, uint_fast64_t n)
+void xX_width_N_precision_Y(t_printf *pr, uint_fast64_t n)
 {
 	char str[ft_abs(pr->precision_field) + 32];
 	char str_hex[ft_abs(pr->precision_field) + 32];
@@ -1174,7 +1182,8 @@ void width_N_precision_Y(t_printf *pr, uint_fast64_t n)
 	append_to_buffer(pr, str_hex);
 }
 
-void width_Y_precision_N2(t_printf *pr, char str[], char str_hex[])
+//void width_Y_precision_N2(t_printf *pr, char str[], char str_hex[])
+void xX_width_Y_precision_N2(t_printf *pr, char str[], char str_hex[])
 {
 	if(pr->flag.hash == false)
 	{
@@ -1195,8 +1204,8 @@ void width_Y_precision_N2(t_printf *pr, char str[], char str_hex[])
 	}
 }
 
-void width_Y_precision_N(t_printf *pr, uint_fast64_t n)
-
+//void width_Y_precision_N(t_printf *pr, uint_fast64_t n)
+void xX_width_Y_precision_N(t_printf *pr, uint_fast64_t n)
 {
 	char str[pr->width_field + 32];
 	char str_hex[pr->width_field + 32];
@@ -1225,10 +1234,13 @@ void width_Y_precision_N(t_printf *pr, uint_fast64_t n)
 		return;
 	}
 	else if(pr->flag.minus == false)
-		width_Y_precision_N2(pr, str, str_hex);
+//		width_Y_precision_N2(pr, str, str_hex);
+		xX_width_Y_precision_N2(pr, str, str_hex);
 }
 
-void width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[])
+//void width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[])
+void xX_width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[])
+
 {
 	if(pr->flag.minus == true)
 	{
@@ -1254,7 +1266,8 @@ void width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[])
 	}
 }
 
-void width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
+//void width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
+void xX_width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
 {
 	char str[pr->width_field + ft_abs(pr->precision_field) + 32];
 	char str_hex[pr->width_field + ft_abs(pr->precision_field) + 32];
@@ -1282,15 +1295,19 @@ void width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
 		append_to_buffer(pr, str);
 		return;
 	}
-	width_Y_precision_Y2(pr, str, str_hex);
+//	width_Y_precision_Y2(pr, str, str_hex);
+	xX_width_Y_precision_Y2(pr, str, str_hex);
 }
 
-void print_xX(t_printf *pr)
+//void print_xX(t_printf *pr)
+void collect_xX(t_printf *pr)
 {
 	uint_fast64_t n;
 
 	n = 0;
 	n = length_field_uoxX(pr);
+/*
+// placing x before function name
 	if(pr->width_field == 0 && pr->precision_field == -1)
 		width_N_precision_N(pr, n);
 	else if(pr->width_field == 0 && pr->precision_field != -1)
@@ -1299,6 +1316,17 @@ void print_xX(t_printf *pr)
 		width_Y_precision_N(pr, n);
 	else if(pr->width_field != 0 && pr->precision_field != -1)
 		width_Y_precision_Y(pr, n);
+*/
+	if(pr->width_field == 0 && pr->precision_field == -1)
+		xX_width_N_precision_N(pr, n);
+	else if(pr->width_field == 0 && pr->precision_field != -1)
+		xX_width_N_precision_Y(pr, n);
+	else if(pr->width_field != 0 && pr->precision_field == -1)
+		xX_width_Y_precision_N(pr, n);
+	else if(pr->width_field != 0 && pr->precision_field != -1)
+		xX_width_Y_precision_Y(pr, n);
+
+
 }
 
 void f_append_buffer(t_printf *pr, char s[], char t_s[])
@@ -1332,7 +1360,8 @@ void f_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-void print_f(t_printf *pr)
+//void print_f(t_printf *pr)
+void collect_f(t_printf *pr)
 {
 //	double nbr;
 	long double nbr;
@@ -1407,7 +1436,8 @@ void check_flags_for_b(t_printf *pr, char s[])
 		ft_strcpy(s, " ");
 }
 
-void print_b(t_printf *pr)
+//void print_b(t_printf *pr)
+void collect_b(t_printf *pr)
 {
 	uint_fast64_t n;
 	char s[ft_abs(pr->precision_field) + pr->width_field + 128];
@@ -1528,4 +1558,3 @@ int ft_printf(const char *str, ...)
 	va_end(args);
 	return(ft_printf_return);
 }
-
