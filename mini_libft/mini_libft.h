@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 16:08:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 16:15:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,17 +78,22 @@ char				*ft_hex(uint_fast64_t value, char c, char str[]);
 int					ft_hex_numlen(uint_fast64_t value, int base);
 
 /*
-**
+** ft_strcpy.c
 */
 
 char				*ft_strcpy(char *dest, char *source);
 char				*ft_strncpy(char *dest, char *source, int len);
 
+/*
+** ft_strcat.c
+*/
+
+char				*ft_strcat(char *dest, char *source);
+char				*ft_strcat_loop(char *dest, int x_times, char *source);
+
 
 
 int_fast64_t		ft_abs(int_fast64_t num);
-
-//char				*ft_strrev(char *str);
 int					ft_isdigit(char c);
 int					ft_isdigit1(char c);
 char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
@@ -96,10 +101,6 @@ char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 int					ft_numlen_uint64(uint_fast64_t nbr);
 int					ft_numlen_uint128(uint128_t nbr);
 uint_fast64_t		ft_pow10(uint_fast64_t num);
-void				ft_putchar(char c);
-void				ft_putstr(char *str);
-char				*ft_strcat(char *dest, char *source);
-char				*ft_strcat_loop(char *dest, int x_times, char *source);
 int					ft_strlen(char *str);
 int_fast32_t		ft_strlen_fast(char *str);
 void				ft_swap(char *a, char *b);
