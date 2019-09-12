@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 21:46:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 22:05:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,19 @@ typedef struct s_printf
 
 }	t_printf;
 
+/*
+** type_field_b.c
+*/
+
+void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
+void 	check_flags_for_b(t_printf *pr, char s[]);
+void	collect_b(t_printf *pr);
+
+
+
+
+
+
 //int 	ft_conversion(const char c);
 //char	determine_conversion(const char *str, t_variables *var);
 //int		start_parsing(va_list args, const char *str, t_variables *var);
@@ -238,9 +251,7 @@ void	collect_f(t_printf *pr);
 void	f_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 //void	print_b(t_printf *pr);
-void	collect_b(t_printf *pr);
-void 	check_flags_for_b(t_printf *pr, char s[]);
-void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
+
 
 
 
