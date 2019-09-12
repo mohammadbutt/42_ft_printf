@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:33:39 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:47:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,6 +223,14 @@ void			collect_u(t_printf *pr);
 uint_fast64_t	length_field_uox(t_printf *pr);
 void			u_append_buffer(t_printf *pr, char s[], char t_s[]);
 
+/*
+** type_field_o.c
+*/
+
+void	collect_o(t_printf *pr);
+void 	check_flags_for_o(t_printf *pr, char s[]);
+void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
+
 
 
 
@@ -259,10 +267,6 @@ char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 char	*ft_itoa_min_int(int num, char temp_str[]);
 //void	ft_bzero_buffers(char str[], char temp_str[]);
 //void 	print_d(t_printf *pr);
-//void	print_o(t_printf *pr);
-void	collect_o(t_printf *pr);
-void 	check_flags_for_o(t_printf *pr, char s[]);
-void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
 //void 	print_xX(t_printf *pr);
 void 	collect_x(t_printf *pr);
 /*
