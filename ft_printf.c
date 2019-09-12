@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 19:30:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 20:54:45 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -297,7 +297,7 @@ int ft_pad(int precision_or_width, int string_length)
 
 
 /*
-** print_s_append_buffer looks if the minus flag is true or false.
+** s_append_buffer looks if the minus flag is true or false.
 ** If the minus flag is false which means it is 0, then we will look at the zero
 ** flag.
 ** 1. If the zero flag is true then we will store '0' as many times as the
@@ -314,7 +314,7 @@ int ft_pad(int precision_or_width, int string_length)
 ** Note: If the minus flag is true then the 0 zero flag is ignored.
 */
 
-void print_s_append_buffer(t_printf *pr, char *str, int repeat)
+void s_append_buffer(t_printf *pr, char *str, int repeat)
 {
 	if(pr->flag.minus == false)
 	{
@@ -347,8 +347,14 @@ void collect_s(t_printf *pr)
 	char *temp_s;
 	char str[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
 	int repeat;
+	int width;
+	int precision;
 	
-	ft_bzero(str, pr->width_field);
+//	ft_bzero(str, pr->width_field); Commenting
+	width = pr->width_field;
+	precision = pr->precision_field;
+	ft_bzero(str,width + precision + FT_ONE_MEGABYTE);
+//	ft_bzero(str, pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE)
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
 	if(temp_s == NULL)
@@ -360,11 +366,10 @@ void collect_s(t_printf *pr)
 	else if(pr->precision_field == 0)
 		(ft_strcpy(str, NULL));
 	repeat = ft_pad(pr->width_field, ft_strlen(str));
-	print_s_append_buffer(pr, str, repeat);
+	s_append_buffer(pr, str, repeat);
 }
 
-
-void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
+void p_append_buffer(t_printf *pr, char *str, int re_width, int re_precision)
 {
 	if(pr->flag.minus == false)
 	{
@@ -408,7 +413,9 @@ void collect_p(t_printf *pr)
 	int re_width;
 	int re_precision;
 	
-	ft_bzero_buffers(str, temp_str1);
+//	ft_bzero_buffers(str, temp_str1);
+	ft_bzero(str, ft_abs(pr->precision_field) + pr->width_field + 32);
+	ft_bzero(temp_str1, ft_abs(pr->precision_field) + pr->width_field + 32);
 	pointer_value = 0;
 	pointer_value = (uint_fast64_t)va_arg(pr->arguments, void *);
 	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
@@ -426,7 +433,7 @@ void collect_p(t_printf *pr)
 		ft_strcpy(str, NULL);
 	else if(pr->precision_field != 0)
 		ft_strcpy(str, temp_str1);
-	print_p_append(pr, str, re_width, re_precision);
+	p_append_buffer(pr, str, re_width, re_precision);
 }
 
 /*
@@ -605,7 +612,9 @@ void collect_d(t_printf *pr)
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	
-	ft_bzero_buffers(s, t_s);
+//	ft_bzero_buffers(s, t_s);
+	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	var_to_zero(&n, &pr->var.precision, &pr->var.width, &pr->var.width);
 	n = length_field_d(pr);
 	if(n < 0)
@@ -682,7 +691,9 @@ void collect_u(t_printf *pr)
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	
-	ft_bzero_buffers(s, t_s);
+//	ft_bzero_buffers(s, t_s);
+	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uoxX(pr);
@@ -739,7 +750,9 @@ void collect_o(t_printf *pr)
 	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	
-	ft_bzero_buffers(s, t_s);
+//	ft_bzero_buffers(s, t_s);
+	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uoxX(pr);
@@ -772,7 +785,9 @@ void xX_width_N_precision_N(t_printf *pr, uint_fast64_t n)
 	char str[32];
 	char str_hex[32];
 	
-	ft_bzero_buffers(str, str_hex);
+//	ft_bzero_buffers(str, str_hex);
+	ft_bzero(str, 32);
+	ft_bzero(str_hex, 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
@@ -789,7 +804,9 @@ void xX_width_N_precision_Y(t_printf *pr, uint_fast64_t n)
 	char str[ft_abs(pr->precision_field) + 32];
 	char str_hex[ft_abs(pr->precision_field) + 32];
 
-	ft_bzero_buffers(str, str_hex);
+//	ft_bzero_buffers(str, str_hex);
+	ft_bzero(str, ft_abs(pr->precision_field) + 32);
+	ft_bzero(str_hex, ft_abs(pr->precision_field) + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
@@ -838,7 +855,9 @@ void xX_width_Y_precision_N(t_printf *pr, uint_fast64_t n)
 	char str_hex[pr->width_field + 32];
 	int total_length;
 
-	ft_bzero_buffers(str, str_hex);
+//	ft_bzero_buffers(str, str_hex);
+	ft_bzero(str, pr->width_field + 32);
+	ft_bzero(str_hex, pr->width_field + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	if(pr->type_field == 7)
 		ft_hex(n, 'x', str);
@@ -893,7 +912,9 @@ void xX_width_Y_precision_Y(t_printf *pr, uint_fast64_t n)
 	int l_s;
 	int l_s_h;
 
-	ft_bzero_buffers(str, str_hex);
+//	ft_bzero_buffers(str, str_hex);
+	ft_bzero(str, pr->width_field + ft_abs(pr->precision_field) + 32);
+	ft_bzero(str_hex, pr->width_field + ft_abs(pr->precision_field) + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	(pr->type_field == 7) && (ft_hex(n, 'x', str));
 	(pr->type_field == 8) && (ft_hex(n, 'X', str));
@@ -964,7 +985,9 @@ void collect_f(t_printf *pr)
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 64];
 
 	nbr = 0;
-	ft_bzero_buffers(s, t_s);
+//	ft_bzero_buffers(s, t_s);
+	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 64);
+	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 64);
 	if(pr->length.L == true)
 		nbr = va_arg(pr->arguments, long double);
 	else if(pr->length.L == false)
@@ -1026,7 +1049,9 @@ void collect_b(t_printf *pr)
 	char s[ft_abs(pr->precision_field) + pr->width_field + 128];
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 128];
 	
-	ft_bzero_buffers(s, t_s);
+//	ft_bzero_buffers(s, t_s);
+	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 128);
+	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 128);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uoxX(pr);
@@ -1098,14 +1123,6 @@ void start_parsing(t_printf *pr)
 		return;
 	start_collecting_flags(pr);
 	collect_data(pr);
-}
-
-void initialize_printf_struct(t_printf *pr, const char *str)
-{
-	pr->string = str;
-	pr->return_of_printf = 0;
-	pr->i = 0;
-	pr->buffer_i = 0;
 }
 
 int ft_printf_driver(va_list args, const char *str)

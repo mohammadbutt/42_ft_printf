@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 16:13:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 20:39:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2849,7 +2849,7 @@ int main(void)
 	printf("---------------------------Testing Binary-----------------------\n");
 
 
-	ft_printf(RED"ft_printf:0:uint64_max|%b|\n", 18446744073709551615);
+	ft_printf(RED"ft_printf:0:uint64_max|%b|\n", 18446744073709551);
 	ft_printf(NC GREEN"ft_printf:3:int32_min |%b|\n", INT32_MIN);
 	ft_printf(NC YELLOW"ft_printf:4:int32_max |%b|\n", INT32_MAX);
 	ft_printf(NC BLUE"ft_printf:5|%# +b|\n", 345345);

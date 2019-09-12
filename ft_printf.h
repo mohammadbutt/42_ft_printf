@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 19:31:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 20:56:10 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 */
 
 /*
-** Regular Colors
+** Regular font Color
 */
 
 # define NC "\33[0m"
@@ -72,7 +72,7 @@
 # define WHITE "\33[0;37m"
 
 /*
-** Bold Colors
+** Bold font Color
 */
 
 # define BBLACK "\33[1;30m"
@@ -184,12 +184,14 @@ void	collect_c(t_printf *pr);
 int		ft_pad(int precision_or_width, int string_length);
 //void	print_s(t_printf *pr);
 void	collect_s(t_printf *pr);
-void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
+//void	print_s_append_buffer(t_printf *pr, char *str, int repeat);
+void	s_append_buffer(t_printf *pr, char *str, int repeat);
 //void	print_percent(t_printf *pr);
 //void 	print_p(t_printf *pr);
 void	collect_percent(t_printf *pr);
 void	collect_p(t_printf *pr);
-void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
+//void	print_p_append(t_printf *pr, char *str, int re_width, int re_precision);
+void	p_append_buffer(t_printf *pr, char *str, int width, int precision);
 //int_fast64_t 	determine_length_of_d(t_printf *pr);
 int_fast64_t length_field_d(t_printf *pr);
 char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
@@ -270,7 +272,6 @@ static ft_print_functions *ft_dispatch_table[] =
 	collect_percent
 };
 
-void	initialize_printf_struct(t_printf *pr, const char *str);
 int		ft_printf_driver(va_list args, const char *str);
 int		ft_printf(const char *str, ...);
 
