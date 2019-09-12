@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:06:19 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 15:14:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -274,7 +274,13 @@ void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
 void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
 void 	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
 
-
+/*
+** type_field_x_remaining_conditions.c
+*/
+void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
+void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
+void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
 
 
 //int 	ft_conversion(const char c);
@@ -306,10 +312,6 @@ void	width_Y_precision_Y(t_printf *pr, uint_fast64_t n);
 void	width_Y_precision_N2(t_printf *pr, char str[], char str_hex[]);
 void	width_Y_precision_Y2(t_printf *pr, char str[], char str_hex[]);
 */
-void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
-void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
 
 
 
