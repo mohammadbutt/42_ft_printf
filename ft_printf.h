@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 12:24:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 12:36:41 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,6 +247,15 @@ void	start_parsing(t_printf *pr);
 int 	collect_flags(t_printf *pr);
 void 	cancel_flags(t_printf *pr);
 
+/*
+** collect_width_precision_length_type.c
+*/
+void	collect_width(t_printf *pr);
+void	collect_precision(t_printf *pr);
+void	collect_length(t_printf *pr);
+void	collect_type_field(t_printf *pr);
+
+
 
 //int 	ft_conversion(const char c);
 //char	determine_conversion(const char *str, t_variables *var);
@@ -255,10 +264,6 @@ void 	cancel_flags(t_printf *pr);
 //void 	ft_strappend(t_printf *pr, char *source);
 //char	*ft_strappend(char *dest, int dest_index, char *source);
 void	start_collect_flags(t_printf *pr);
-void	collect_width(t_printf *pr);
-void	collect_precision(t_printf *pr);
-void	collect_length(t_printf *pr);
-void	collect_type_field(t_printf *pr);
 //void	start_printing(t_printf *pr);
 //void	print_c(t_printf *pr);
 //int		ft_pad(t_printf *pr, int string_length);
