@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 18:53:02 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 19:31:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,7 +180,8 @@ void	collect_data(t_printf *pr);
 //void	print_c(t_printf *pr);
 void	collect_c(t_printf *pr);
 //int		ft_pad(t_printf *pr, int string_length);
-int		ft_pad(int field, int string_length);
+//int		ft_pad(int field, int string_length);
+int		ft_pad(int precision_or_width, int string_length);
 //void	print_s(t_printf *pr);
 void	collect_s(t_printf *pr);
 void	print_s_append_buffer(t_printf *pr, char *str, int repeat);

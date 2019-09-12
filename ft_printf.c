@@ -6,150 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 18:50:49 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/11 19:30:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-/*
-int ft_conversion(const char c)
-{
-	if(c == 'c' || c == 's' || c == 'p')
-		return(1);
-	else if(c == 'd' || c == 'i' || c == 'o' || c == 'u' || c == 'x' || c == 'X')
-		return(1);
-	else if(c == 'f')
-		return(1);
-	return(0);
-}
-*/
-/*
-int start_parsing(va_list args, const char *str)
-{
-	t_printf ps; // print_struct
-	int i;
-	int c;
-	int repeat;
 
-	va_copy(ps.arguments, args)
-	i = 0;
-	c = 0;
-	repeat = 0;
-	while(str[i] && ft_conversion(str[i]) == 0)
-	{
-		if(str[i] >= '1' && str[i] <= '9')
-		{
-			repeat = ft_atoi(&str[i]);
-			repeat--;   // If there's 1 we should not print space, so we minus 1.
-			while(repeat)
-				write(1, " ", repeat--);
-		}
-		else if(str[i] == '-')
-		{
-			repeat = ft_abs(ft_atoi(&str[i]));
-			repeat--;
-			return(repeat);
-		}
-	}
-	return(0);
-}
-*/
-
-/*
-** Function determine_conversion traverses through a string to check what value
-** comes after the modulo. Function will traverse through the string to skip
-** all the elements to get to one of the onversion values: "cspdiouxXf"
-** If the string is "%3c", it will skip '%' and '3', and return 'c' and update
-** the index of the string.
-*/
-
-/*
-char determine_conversion(const char *str, t_variables *var)
-{
-	
-	int i;
-
-	i = 0;	
-	while(str[i])
-	{
-		if(ft_conversion(str[i]) == 1)
-			break ;
-		i++;
-	}
-	var->i = var->i + i;
-	return(str[i]);
-}
-*/
-//void traverse_negative_sign
-
-/*
-int start_parsing(va_list args, const char *str, t_variables *var)
-{
-	t_printf ps;
-	int i;
-	int repeat;
-	int return_value;
-
-	i = 0;
-	
-	repeat = 0;
-	return_value = 0;
-	va_copy(ps.arguments, args);
-	ps.string = str;
-	while(ps.string[i] && ft_conversion(ps.string[i]) == 0)
-	{
-		if(ps.string[i] >= '1' && ps.string[i] <= '9')
-			return(ft_atoi(&ps.string[i]) - 1);
-		else if((ps.string[i] == '-') && (ft_isdigit1(ps.string[i + 1]) == 1))
-			return(ft_atoi(&ps.string[i]) + 1);
-		else if(ps.string[i] == '*')
-		{
-			return_value = va_arg(args, int);
-			if(return_value > 0)
-				return(return_value - 1);
-			else if(return_value < 0)
-				return(return_value + 1);
-			return(0);
-		}
-		i++;
-		var->i++;
-	}
-	return(0);
-}
-*/
-/*
-void print_c(va_list args, int repeat, const char conversion_value)
-{
-	t_printf ps;
-	int c;
-
-	c = 0;
-	va_copy(ps.arguments, args);
-	c = va_arg(args, int);
-	if(repeat <=0 && conversion_value == 'c')
-	{
-		ft_putchar(c);
-		repeat = ft_abs(repeat);
-		print_spaces(repeat);
-	}
-	else if(repeat > 0 && conversion_value == 'c')
-	{
-		print_spaces(repeat);
-		ft_putchar(c);
-	}
-}
-*/
-
-/*
-void print_on_screen(int repeat, va_list args, const char conversion_value)
-{
-	t_printf ps;
-	va_copy(ps.arguments, args);
-	if(conversion_value == 'c')
-		print_c(args, repeat, conversion_value);
-}
-*/
 
 /*
 ** Function append_to_buffe works just like strcat, but it takes in the struct
@@ -310,13 +173,13 @@ void collect_length(t_printf *pr)
 
 /*
 ** Function collect_type_field finds the index of the conversion symbols.
-** Conversion symbols are: "cspdiouxXf%" stored in macro FT_VALID_TYPE
-** When the conversion symbol is found it's index + 1 is stored in type_field
+** Conversion symbols are: "cspdiouxXfb%" stored in macro FT_VALID_TYPE
+** When the conversion symbol is found it's index is stored in type_field
 ** which can be used for dispatch table later.
 ** 
-** If type_field is equal to 1 that would represent 'c'.
-** If type_field is equal to 2 that would represent 's'.
-** If type_field is equal to 3 that would represetnt 'p'. and so on.
+** If type_field is equal to 0 that would represent 'c'.
+** If type_field is equal to 1 that would represent 's'.
+** If type_field is equal to 2 that would represetnt 'p'. and so on.
 ** 
 ** If the conversion symbol is not found then the type_field will remain 0.
 ** simpler way to understand the below while loop:
@@ -325,7 +188,7 @@ void collect_length(t_printf *pr)
 **	{
 **		if(FT_VALID_TYPE[j] == pr->string[pr->i])
 **		{
-**			pr->type_field = j + 1;
+**			pr->type_field = j;
 **			return;
 **		}
 **		j++;
@@ -345,7 +208,6 @@ void collect_type_field(t_printf *pr)
 	{
 		if(str[j] == c)
 		{
-	//		pr->type_field = j + 1;
 			pr->type_field = j;
 			return;
 		}
@@ -354,30 +216,16 @@ void collect_type_field(t_printf *pr)
 }
 
 void start_collecting_flags(t_printf *pr)
-//void collect_flags(t_printf *pr)
 {
 	while(collect_flags(pr) != -1)
 		pr->i++;
-	
-//	printf("0:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	cancel_flags(pr);
-
-//	printf("1:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	collect_width(pr);
-
-//	printf("2:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	collect_precision(pr);
-
-//	printf("3:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	collect_length(pr);
-
-//	printf("4:pr->string[var->i]:|%c|\n", pr->string[var->i]);
 	collect_type_field(pr);
-//	printf("5:pr->string[var->i]:|%c|\n", pr->string[var->i]);
-
 }
 
-//void print_c(t_printf *pr)
 void collect_c(t_printf *pr)
 {
 	int c;
@@ -402,7 +250,6 @@ void collect_c(t_printf *pr)
 	}
 }
 
-//void print_percent(t_printf *pr)
 void collect_percent(t_printf *pr)
 {
 	int repeat;
@@ -428,18 +275,24 @@ void collect_percent(t_printf *pr)
 
 
 /*
-** In field parameter we can pass in width_field or precision_field.
+** In field parameter width_field or precision_field will be passed in whichever
+** one is being calculated. In string_length field, len of string is passed,
+** along with precision field if the precision field has a effect on a type
+** field.
+**
+** Return Value: If the string length is greater than precision or width, then
+** 0 is returned which means there would be no padding.
 */
 
-int ft_pad(int field, int string_length)
+int ft_pad(int precision_or_width, int string_length)
 {
-	int repeat;
+	int padding;
 
-	repeat = 0;
-	repeat = ft_abs(field) - ft_abs(string_length);
-	if(repeat <= 0)
+	padding = 0;
+	padding = ft_abs(precision_or_width) - ft_abs(string_length);
+	if(padding <= 0)
 		return(0);
-	return(repeat);
+	return(padding);
 }
 
 
@@ -479,7 +332,7 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 }
 
 /*
-** print_s function does two things:
+** collect_s function does two things:
 ** 1. Looks at the precision_field value to determine how many characters will
 ** have to be appended so we store those in str variable.
 ** 2. Looks at the width_field to calculate the repeat value. This repeat value
@@ -489,7 +342,6 @@ void print_s_append_buffer(t_printf *pr, char *str, int repeat)
 ** user, 1 megabyte of memory is allocated which is equal to 1,048,576.
 */
 
-//void print_s(t_printf *pr)
 void collect_s(t_printf *pr)
 {
 	char *temp_s;
@@ -538,8 +390,8 @@ void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 /*
 ** p type_field gives a number which goes over int max range of 2147483647, but
 ** it is upto 10 digits long. Because the pointer number cannot be stored in an
-** int or int32_t, we use int_fast64_t which uses 8 bytes or 64 bits and has
-** enough range to house the pointer value that is generated.
+** int or int32_t, int_fast64_t is used which uses 8 bytes or 64 bits and has
+** enough range to store the pointer value that is generated.
 ** 
 ** When the pointer is converted to a hexadecimal value, it can be  upto
 ** 11 characters long + 1 for '\0', so allocating 12 bytes of memory would be
@@ -548,7 +400,6 @@ void print_p_append(t_printf *pr, char *str, int re_width, int re_precision)
 ** logic and computational power.
 */
 
-//void print_p(t_printf *pr)
 void collect_p(t_printf *pr)
 {
 	uint_fast64_t pointer_value;
@@ -579,7 +430,7 @@ void collect_p(t_printf *pr)
 }
 
 /*
-**int_fast64_t determines what data type is the in the given argument.
+** length_field_d determines what data type is the in the given argument for d.
 ** Type casts to 'char' for 'hh'. Type casts to 'short' for 'h'.
 */
 
@@ -671,8 +522,6 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 		ft_itoa_min_l(num, temp_str);
 	else if(pr->length.ll == true)
 		ft_itoa_min_ll(num, temp_str);
-//	else if(pr->length.L == true)
-//		ft_itoa_min_L(num, temp_str);
 	else
 		ft_itoa_min_int(num, temp_str);
 
@@ -682,8 +531,6 @@ char *ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[])
 
 void ft_bzero_buffers(char str[], char temp_str[])
 {
-//	ft_bzero_no_len(str);
-//	ft_bzero_no_len(temp_str);
 	ft_bzero(str, ft_strlen(str));
 	ft_bzero(temp_str, ft_strlen(temp_str));
 }
@@ -752,7 +599,6 @@ void	d_append_buffer(t_printf *pr, char s[], char t_s[])
 ** printf("|%5hhd|\n",  127) will give output of |  127|
 */
 
-//void print_d(t_printf *pr)
 void collect_d(t_printf *pr)
 {
 	int_fast64_t n;
@@ -782,7 +628,7 @@ void collect_d(t_printf *pr)
 
 
 /*
-** Function length_field_uoxX determines what data type is in the given argument.
+** Function length_field_uoxX determines what data type is in given argument.
 ** Type casts to 'unsigned char' for 'hh'.
 ** Type casts to 'unsigned short' for 'h'.
 */
@@ -830,8 +676,6 @@ void	u_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-
-//void print_u(t_printf *pr)
 void collect_u(t_printf *pr)
 {
 	uint_fast64_t n;
@@ -839,8 +683,7 @@ void collect_u(t_printf *pr)
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	
 	ft_bzero_buffers(s, t_s);
-//	ft_bzero_no_len(&pr->var); // Commenting
-	ft_bzero(&pr->var, sizeof(&pr->var)); // Adding
+	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uoxX(pr);
 	if(pr->flag.plus == true)
@@ -858,9 +701,8 @@ void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 	int len;
 
 	len = ft_strlen(t_s);
-//	if(pr->flag.hash == true && pr->precision_field >= 0) // Commenting
 
-	if(s[0] == '0') // Works
+	if(s[0] == '0')
 		pr->var.precision = ft_pad(pr->precision_field, len + 1);
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
@@ -891,7 +733,6 @@ void check_flags_for_o(t_printf *pr, char s[])
 		ft_strcpy(s, " ");
 }
 
-//void print_o(t_printf *pr)
 void collect_o(t_printf *pr)
 {
 	uint_fast64_t n;
@@ -899,8 +740,7 @@ void collect_o(t_printf *pr)
 	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	
 	ft_bzero_buffers(s, t_s);
-//	ft_bzero_no_len(&pr->var); Commenting
-	ft_bzero(&pr->var, sizeof(&pr->var)); // Adding
+	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uoxX(pr);
 	check_flags_for_o(pr, s);
@@ -917,201 +757,6 @@ void collect_o(t_printf *pr)
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
 	o_append_buffer(pr, s, t_s);
 }
-
-/*
-void x_append_buffer(t_printf *pr, char str[])//, int re_width, int re_precision)
-{
-	if(pr->flag.minus == false)
-	{
-		if(pr->flag.zero == false)
-//		if(pr->flag.hash == false)
-		{
-			append_to_buffer_loop(pr, pr->var.width, " ");
-			if(pr->flag.hash == true)
-				append_to_buffer(pr, "0x");
-		}
-//		if(pr->precision_field > 0 && re_precision > 0)
-		if(pr->precision_field > 0 && pr->var.precision > 0)	
-			append_to_buffer_loop(pr, pr->var.precision, "0");
-		append_to_buffer(pr, str);
-	}
-	else if(pr->flag.minus == true)
-	{
-		if(pr->flag.hash == true)
-			append_to_buffer(pr, "0x");
-		if(pr->precision_field > 0 && pr->var.precision > 0)
-			append_to_buffer_loop(pr, pr->var.precision, "0");
-		append_to_buffer(pr, str);
-		append_to_buffer_loop(pr, pr->var.width, " ");
-	}
-}
-
-void print_xX(t_printf *pr)
-{
-	uint_fast64_t n;
-//	char str[16];
-//	char temp_str1[16];
-	char s[pr->precision_field + pr->width_field + 32];
-	char t_s[pr->precision_field + pr->width_field + 32];
-
-	ft_bzero_buffers(s, t_s);
-	ft_bzero_no_len(&pr->var);
-	n = 0;
-	n = length_field_uoxX(pr);
-	
-	ft_hex(n, 'x', t_s);
-	if(pr->flag.hash == true)
-		pr->var.width = ft_pad(pr->width_field, ft_strlen(t_s) + 2);
-	else
-		pr->var.width = ft_pad(pr->width_field, ft_strlen(t_s));
-	pr->var.precision = ft_pad(pr->precision_field, ft_strlen(t_s));
-//	if(pr->flag.zero == true && pr->flag.minus == false)
-	if(pr->flag.hash == true && pr->flag.minus == false)
-	{
-		append_to_buffer(pr, "0x");
-		append_to_buffer_loop(pr, pr->var.width, "0");
-	}
-	if(n == 0 && pr->precision_field != 0)
-		ft_strcpy(s, "0");
-	else if(n == 0 && pr->precision_field == 0)
-		ft_strcpy(s, NULL);
-	else if(pr->precision_field != 0)
-		ft_strcpy(s, t_s);
-	x_append_buffer(pr, s);//, re_width, re_precision);
-}
-*/
-
-/*
-void print_xX_append(t_printf *pr, char *str, int re_width, int re_precision, uint64_t pointer_value)
-{
-	if(pr->flag.minus == false)
-	{
-//		if(pointer_value == 0 && pr->flag.zero == false) // Added
-//			append_to_buffer_loop(pr, re_width, " ");   //  Added
-		if(pr->flag.zero == false)
-		{
-//			append_to_buffer_loop(pr, re_width, " "); // commenting
-//			append_to_buffer(pr, "0x");
-			append_to_buffer(pr, "2b");
-		}
-		if(pr->precision_field > 0 && re_precision > 0)
-			append_to_buffer_loop(pr, re_precision, "0");
-		append_to_buffer(pr, str);
-	}
-	else if(pr->flag.minus == true)
-	{
-//		append_to_buffer(pr, "0x");
-		if(pr->flag.hash == true)        // Added
-			append_to_buffer(pr, "3c");  // Added
-		if(pr->precision_field > 0 && re_precision > 0)
-			append_to_buffer_loop(pr, re_precision, "0");
-		append_to_buffer(pr, str);
-		append_to_buffer_loop(pr, re_width, " ");
-	}
-	pointer_value++;
-	pointer_value--;
-}
-*/
-/*
-void print_xX(t_printf *pr)
-{
-	uint_fast64_t pointer_value;
-	char str[16];
-	char temp_str1[16];
-	int re_width;
-	int re_precision;
-
-//	pointer_value = (int_fast64_t)va_arg(pr->arguments, void *);
-	pointer_value = length_field_uoxX(pr);
-//	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
-	ft_hex(pointer_value, 'x', temp_str1);
-	re_width = 0;
-	if(pr->flag.hash == true) // Added
-		re_width = ft_pad(pr->width_field, ft_strlen(temp_str1) + 2);
-	else // Added
-		re_width = ft_pad(pr->width_field, ft_strlen(temp_str1)); // Added
-	re_precision = ft_pad(pr->precision_field, ft_strlen(temp_str1));
-//	if(pr->flag.zero == true && pr->flag.minus == false) // commenting
-	if(pr->flag.minus == false && pointer_value == 0) // Added
-	{
-//		append_to_buffer(pr, "0x");
-		if(pr->flag.hash == true)				// Added
-			append_to_buffer(pr, "1a");			// Added
-		append_to_buffer_loop(pr, re_width, "0");
-	}
-	if(pointer_value == 0 && pr->precision_field != 0)
-		ft_strcpy(str, "0");
-	else if(pointer_value == 0 && pr->precision_field == 0)
-		ft_strcpy(str, NULL);
-	else if(pr->precision_field != 0)
-		ft_strcpy(str, temp_str1);
-	print_xX_append(pr, str, re_width, re_precision, pointer_value);
-}
-*/
-/*
-void print_xX(t_printf *pr)
-{
-	uint_fast64_t pointer_value;
-	char str[16];
-	char temp_str1[16];
-	int re_width;
-	int re_precision;
-	int len;
-
-	pointer_value = length_field_uoxX(pr);
-	ft_hex(pointer_value, 'x', temp_str1);
-	len = ft_strlen(temp_str1);
-	if(pr->flag.hash == true && pointer_value != 0)
-		re_precision = ft_pad(pr->precision_field, len + 2);
-	else
-		re_precision = ft_pad(pr->precision_field, len);
-	re_width = ft_pad(pr->width_field, len + re_precision);
-
-	
-//	if(pr->flag.hash == true && pointer_value != 0)
-//		re_width = ft_pad(pr->width_field, ft_strlen(temp_str1) + 2);
-//	else
-//		re_width = ft_pad(pr->width_field, ft_strlen(temp_str1));
-//	re_precision = ft_pad(pr->precision_field, ft_strlen(temp_str1));
-
-	if(pr->flag.zero == true && pr->flag.minus == false)
-	{
-		if(pr->flag.hash == true && pointer_value != 0)
-			append_to_buffer(pr, "0x");
-		append_to_buffer_loop(pr, re_width, "0");
-	}
-	if(pointer_value == 0 && pr->precision_field != -1)
-		ft_strcpy(str, "0");
-	else if(pointer_value == 0 && pr->precision_field == -1)
-		ft_strcpy(str, NULL);
-	else
-		ft_strcpy(str, temp_str1);
-//	else if(pr->precision_field != 0)
-//		ft_strcpy(str, temp_str1);
-	if(pr->flag.minus == false)
-	{
-		if(pr->flag.zero == false)
-		{
-			append_to_buffer_loop(pr, re_width, "a"); // space
-			if(pr->flag.hash == true && pointer_value != 0)
-				append_to_buffer(pr, "0x");
-		}
-		if(pr->precision_field > 0 && re_precision > 0)
-			append_to_buffer_loop(pr, re_precision, "0");
-		append_to_buffer(pr, str);
-	}
-	else if(pr->flag.minus == true)
-	{
-		if(pr->flag.hash == true && pointer_value != 0)
-			append_to_buffer(pr, "0x");
-		if(pr->precision_field > 0 && re_precision > 0)
-			append_to_buffer_loop(pr, re_precision, "0");
-		append_to_buffer(pr, str);
-		append_to_buffer_loop(pr, re_width, "b"); //space
-	}
-
-}
-*/
 
 void check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n)
 {
@@ -1408,34 +1053,37 @@ void collect_b(t_printf *pr)
 */
 
 /*
-** This function can be used in place of dispatch table
 **void collect_data(t_printf *pr)
 **{
 **	if(pr->type_field == 0)
-**		print_c(pr);
+**		collect_c(pr);
 **	else if(pr->type_field == 1)
-**		print_s(pr);
+**		collect_s(pr);
 **	else if(pr->type_field == 2)
-**		print_p(pr);
+**		collect_p(pr);
 **	else if(pr->type_field == 3 || pr->type_field == 4)
-**		print_d(pr);
+**		collect_d(pr);
 **	else if(pr->type_field == 5)
-**		print_o(pr);
+**		collect_o(pr);
 **	else if(pr->type_field == 6)
-**		print_u(pr);
+**		collect_u(pr);
 **	else if(pr->type_field == 7 || pr->type_field == 8)
-**		print_xX(pr);
+**		collect_xX(pr);
 **	else if(pr->type_field == 9)
-**		print_f(pr);
+**		collect_f(pr);
 **	else if(pr->type_field == 10)
-**		print_b(pr);
+**		collect_b(pr);
 **	else if(pr->type_field == 11)
-**		print_percent(pr);
+**		collect_percent(pr);
 **}
 */
 
+/*
+** Above commented function that uses if and else if statements can also be
+** used to instead of the disptach table. But I implemented dispatch table to
+** learn how it works, which is pretty similar to if and else if statements.
+*/
 
-//void start_printing(t_printf *pr)
 void collect_data(t_printf *pr)
 
 {
@@ -1449,7 +1097,6 @@ void start_parsing(t_printf *pr)
 	if(pr->string[pr->i] == '\0')
 		return;
 	start_collecting_flags(pr);
-//	start_printing(pr);
 	collect_data(pr);
 }
 
