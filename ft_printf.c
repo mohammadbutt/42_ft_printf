@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 23:03:40 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 11:05:01 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,30 +222,6 @@ void start_collecting_flags(t_printf *pr)
 	collect_precision(pr);
 	collect_length(pr);
 	collect_type_field(pr);
-}
-
-void collect_c(t_printf *pr)
-{
-	int c;
-	int repeat;
-
-	c = va_arg(pr->arguments, int);
-	repeat = 0;
-	if (pr->width_field > 0)
-		repeat = pr->width_field - 1;
-	if (pr->flag.minus == false)
-	{
-		if (pr->flag.zero == true)
-			append_to_buffer_loop(pr, repeat, "0");
-		else if (pr->flag.zero == false)
-			append_to_buffer_loop(pr, repeat, " ");
-		pr->buffer[pr->buffer_i++] = c;
-	}
-	else if (pr->flag.minus == true)
-	{
-		pr->buffer[pr->buffer_i++] = c;
-		append_to_buffer_loop(pr, repeat, " ");
-	}
 }
 
 void collect_percent(t_printf *pr)
