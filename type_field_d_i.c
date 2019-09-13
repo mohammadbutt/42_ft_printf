@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:38:52 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:39:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:39:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@
 ** Type casts to 'char' for 'hh'. Type casts to 'short' for 'h'.
 */
 
-int_fast64_t length_field_d(t_printf *pr)
+int_fast64_t	length_field_d(t_printf *pr)
 {
 	int_fast64_t num;
 
 	num = 0;
 	if (pr->length.hh == true)
-		num = (char) va_arg(pr->arguments, int);
+		num = (char)va_arg(pr->arguments, int);
 	else if (pr->length.h == true)
-		num = (short) va_arg(pr->arguments, int);
+		num = (short)va_arg(pr->arguments, int);
 	else if (pr->length.l == true)
 		num = va_arg(pr->arguments, long);
 	else if (pr->length.ll == true)
@@ -35,19 +35,18 @@ int_fast64_t length_field_d(t_printf *pr)
 	return (num);
 }
 
-
 /*
 ** s = str, t_s = temp_str
 */
 
-void	d_append_buffer(t_printf *pr, char s[], char t_s[])
+void			d_append_buffer(t_printf *pr, char s[], char t_s[])
 {
 	int len;
 
 	len = ft_strlen(t_s);
 	pr->var.precision = ft_pad(pr->precision_field, len);
 	if (s[0] == '-')
-		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision +1);
+		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision + 1);
 	else
 		pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
 	if (pr->flag.plus == true || pr->flag.space == true)
@@ -99,11 +98,11 @@ void	d_append_buffer(t_printf *pr, char s[], char t_s[])
 ** printf("|%5hhd|\n",  127) will give output of |  127|
 */
 
-void collect_d(t_printf *pr)
+void			collect_d(t_printf *pr)
 {
-	int_fast64_t n;
-	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
-	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
+	int_fast64_t	n;
+	char			s[ft_abs(pr->precision_field) + pr->width_field + 32];
+	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 
 	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
@@ -126,4 +125,3 @@ void collect_d(t_printf *pr)
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
 	d_append_buffer(pr, s, t_s);
 }
-

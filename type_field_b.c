@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:54:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:04:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:33:54 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	b_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-void check_flags_for_b(t_printf *pr, char s[])
+void	check_flags_for_b(t_printf *pr, char s[])
 {
 	if (pr->flag.hash == true)
 		ft_strcpy(s, "0");
@@ -48,11 +48,11 @@ void check_flags_for_b(t_printf *pr, char s[])
 		ft_strcpy(s, " ");
 }
 
-void collect_b(t_printf *pr)
+void	collect_b(t_printf *pr)
 {
-	uint_fast64_t n;
-	char s[ft_abs(pr->precision_field) + pr->width_field + 128];
-	char t_s[ft_abs(pr->precision_field) + pr->width_field + 128];
+	uint_fast64_t	n;
+	char			s[ft_abs(pr->precision_field) + pr->width_field + 128];
+	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 128];
 
 	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 128);
 	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 128);
@@ -73,4 +73,3 @@ void collect_b(t_printf *pr)
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
 	o_append_buffer(pr, s, t_s);
 }
-

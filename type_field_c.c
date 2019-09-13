@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 10:59:14 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:05:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:34:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void collect_c(t_printf *pr)
+void	collect_c(t_printf *pr)
 {
 	int c;
 	int repeat;

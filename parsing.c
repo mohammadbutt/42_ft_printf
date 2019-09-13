@@ -6,14 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:04:22 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 12:17:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:27:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-void initialize_flag_and_field_values(t_printf *pr)
+void	initialize_flag_and_field_values(t_printf *pr)
 {
 	pr->width_field = 0;
 	pr->precision_field = -1;
@@ -23,7 +22,7 @@ void initialize_flag_and_field_values(t_printf *pr)
 	ft_bzero(&pr->length, sizeof(pr->length));
 }
 
-void start_collecting_flags(t_printf *pr)
+void	start_collecting_flags(t_printf *pr)
 {
 	while (collect_flags(pr) != -1)
 		pr->i++;
@@ -73,13 +72,12 @@ void start_collecting_flags(t_printf *pr)
 ** learn how it works, which is pretty similar to if and else if statements.
 */
 
-void collect_data(t_printf *pr)
-
+void	collect_data(t_printf *pr)
 {
 	ft_dispatch_table[pr->type_field](pr);
 }
 
-void start_parsing(t_printf *pr)
+void	start_parsing(t_printf *pr)
 {
 	pr->i++;
 	initialize_flag_and_field_values(pr);
