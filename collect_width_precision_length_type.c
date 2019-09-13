@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:31:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 12:38:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:01:37 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Collect_width function collects width_field for each conversion
 */
 
-void collect_width(t_printf *pr)
+void	collect_width(t_printf *pr)
 {
 	if (ft_isdigit(pr->string[pr->i]) == 1)
 	{
@@ -31,7 +31,7 @@ void collect_width(t_printf *pr)
 	}
 }
 
-void collect_precision(t_printf *pr)
+void	collect_precision(t_printf *pr)
 {
 	int current_i;
 	int next_i;
@@ -57,7 +57,7 @@ void collect_precision(t_printf *pr)
 	}
 }
 
-void collect_length(t_printf *pr)
+void	collect_length(t_printf *pr)
 {
 	char current;
 	char next;
@@ -108,11 +108,11 @@ void collect_length(t_printf *pr)
 **	}
 */
 
-void collect_type_field(t_printf *pr)
+void	collect_type_field(t_printf *pr)
 {
-	char *str;
-	char c;
-	int j;
+	char	*str;
+	char	c;
+	int		j;
 
 	j = 0;
 	str = FT_VALID_TYPE;

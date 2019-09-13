@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:18:08 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 12:24:04 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 18:53:49 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 ** Function will return -1 if the character is not '#' '0' '-' '+' ' '.
 */
 
-int collect_flags(t_printf *pr)
+int		collect_flags(t_printf *pr)
 {
 	if (pr->string[pr->i] == '#')
 		return (pr->flag.hash = true);
 	else if (pr->string[pr->i] == '0')
-		return(pr->flag.zero = true);
+		return (pr->flag.zero = true);
 	else if (pr->string[pr->i] == '-')
 		return (pr->flag.minus = true);
 	else if (pr->string[pr->i] == '+')
@@ -42,11 +42,10 @@ int collect_flags(t_printf *pr)
 ** we set flag_zero to false.
 */
 
-void cancel_flags(t_printf *pr)
+void	cancel_flags(t_printf *pr)
 {
 	if (pr->flag.plus == true)
 		pr->flag.space = false;
 	if (pr->flag.minus == true)
 		pr->flag.zero = false;
 }
-

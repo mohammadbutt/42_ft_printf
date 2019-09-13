@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:15:04 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:20:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 18:52:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** RETURN VALUE: Concatenated destination string
 */
 
-void append_to_buffer(t_printf *pr, char *source)
+void	append_to_buffer(t_printf *pr, char *source)
 {
 	int i;
 
@@ -39,7 +39,7 @@ void append_to_buffer(t_printf *pr, char *source)
 ** appended at the end of the buffer and buffer_index will be incremented
 */
 
-void append_to_buffer_loop(t_printf *pr, int x_times, char *str)
+void	append_to_buffer_loop(t_printf *pr, int x_times, char *str)
 {
 	if (str[1] != '\0')
 		while (x_times--)
