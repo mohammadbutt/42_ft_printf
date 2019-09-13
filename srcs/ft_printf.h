@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 10:32:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 11:34:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 # define FT_PRINTF_H
 
 # include "./mini_libft/mini_libft.h"
-# include <unistd.h> /*write(2)*/
-# include <stdlib.h> /*malloc(3), free(3), exit(3), uint64_t,and uint_fast64_t*/
-# include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
-# include <stdbool.h> /*bool data type*/
-# include <stdio.h>
-# include <string.h>
-# include <limits.h> /*For different macros like CHAR_MIN, SHRT_MIN, LONG_MIN*/
+# include <unistd.h>
+# include <stdlib.h>
+# include <stdarg.h>
+# include <stdbool.h>
+# include <limits.h>
 //# include "forbidden.h"
+
+/*
+** <unistd.h>	write(2)
+** <stdlib.h>	malloc(3), free(3), exit(3), uint64_t,and uint_fast64_t
+** <stdarg.h>	va_start, va_arg, va_copy, va_end(3)
+** <stdbool.h> 	bool data type
+** <limits.h>	For MIN MAX macros such as: CHAR_MIN, SHRT_MIN, LONG_MIN
+*/
 
 /*
 ** One megabyte = 1024 * 1024 bytes
