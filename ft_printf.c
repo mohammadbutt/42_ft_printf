@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:13:52 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:19:18 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** 0 is returned which means there would be no padding.
 */
 
-int ft_pad(int precision_or_width, int string_length)
+int	ft_pad(int precision_or_width, int string_length)
 {
 	int padding;
 
@@ -33,9 +33,10 @@ int ft_pad(int precision_or_width, int string_length)
 	return (padding);
 }
 
-int ft_printf_driver(va_list args, const char *str)
+int	ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr;
+
 	ft_bzero(&pr, sizeof(pr));
 	va_copy(pr.arguments, args);
 	pr.string = str;
@@ -55,15 +56,14 @@ int ft_printf_driver(va_list args, const char *str)
 	return (write(1, pr.buffer, pr.buffer_i));
 }
 
-int ft_printf(const char *str, ...)
+int	ft_printf(const char *str, ...)
 {
-	va_list args;
-	int ft_printf_return;
+	va_list	args;
+	int		ft_printf_return;
 
 	ft_printf_return = 0;
 	va_start(args, str);
 	ft_printf_return = ft_printf_driver(args, str);
-	
 	va_end(args);
 	return (ft_printf_return);
 }
