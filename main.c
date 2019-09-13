@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 23:11:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 21:17:36 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -2113,7 +2113,7 @@ int main(void)
 	printf("ft_printf: %d vs %d :printf #124\n", ft_printf("|%#04.4x|\t", u), printf("|%#04.4x|\t", u));
 */
 
-/*
+
 	printf("----------------------------------------------------------------------\n");
 	printf("---------------------------Unit Test for floats-----------------------\n");
 	printf("----------------------------------------------------------------------\n");
@@ -2831,20 +2831,20 @@ int main(void)
 	
 	num2 = 1.025978542436587568678;
 
-	printf("\n|%d|\n",    printf("   printf:155:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
-    printf("\n|%d|\n", ft_printf("ft_printf:155:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+	printf("\n|%d|\n",    printf("   printf:155:(%%.19Lf, %Lf)        |%.19Lf|", num2, num2));
+    printf("\n|%d|\n", ft_printf("ft_printf:155:(%%.19Lf, %Lf)        |%.19Lf|", num2, num2));
 	printf("\n\n");
 
 	num2 = 1.025978548534310422034;
 
-	printf("\n|%d|\n",    printf("   printf:156:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
-    printf("\n|%d|\n", ft_printf("ft_printf:156:(%%.20Lf, %Lf)        |%.20Lf|", num2, num2));
+	printf("\n|%d|\n",    printf("   printf:156:(%%.20Lf, %Lf)        |%.19Lf|", num2, num2));
+    printf("\n|%d|\n", ft_printf("ft_printf:156:(%%.19Lf, %Lf)        |%.19Lf|", num2, num2));
 	printf("\n\n");
 
 	printf("\n|%d|\n",    printf("   printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
     printf("\n|%d|\n", ft_printf("ft_printf:157:(%%.20Lf, %ld)        |%.20ld|", 0xfffffd00L, 0xfffffd00L));
 	printf("\n\n");
-*/
+
 
 	printf("---------------------------Testing Binary-----------------------\n");
 

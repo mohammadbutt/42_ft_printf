@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:07:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:42:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 21:21:19 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ void	collect_f(t_printf *pr)
 	nbr = 0;
 	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 64);
 	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 64);
-	if (pr->length.L == true)
+	if (pr->length.uppercase_l == true)
 		nbr = va_arg(pr->arguments, long double);
-	else if (pr->length.L == false)
+	else if (pr->length.uppercase_l == false)
 		nbr = va_arg(pr->arguments, double);
 	if (nbr < 0)
 		ft_strcpy(s, "-");

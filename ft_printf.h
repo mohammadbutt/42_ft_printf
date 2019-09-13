@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 21:01:16 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 21:23:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,7 @@ typedef struct	s_length
 	bool		h : 1;
 	bool		l : 1;
 	bool		ll : 1;
-	bool		L : 1;
+	bool		uppercase_l : 1;
 }				t_length;
 
 typedef struct	s_printf

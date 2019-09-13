@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:31:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:13:00 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 21:20:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	collect_length(t_printf *pr)
 		else if (current == 'l')
 			pr->length.l = true;
 		else if (current == 'L')
-			pr->length.L = true;
+			pr->length.uppercase_l = true;
 		pr->i++;
 	}
 }
