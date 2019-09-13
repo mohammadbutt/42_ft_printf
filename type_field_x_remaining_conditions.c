@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:09:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:13:56 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:26:11 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_printf.h>
 
-void x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[])
+void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[])
 {
 	if (pr->flag.hash == false)
 	{
@@ -33,11 +33,11 @@ void x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[])
 	}
 }
 
-void x_width_y_precision_n(t_printf *pr, uint_fast64_t n)
+void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n)
 {
-	char str[pr->width_field + 32];
-	char str_hex[pr->width_field + 32];
-	int total_length;
+	char	str[pr->width_field + 32];
+	char	str_hex[pr->width_field + 32];
+	int		total_length;
 
 	ft_bzero(str, pr->width_field + 32);
 	ft_bzero(str_hex, pr->width_field + 32);
@@ -46,7 +46,6 @@ void x_width_y_precision_n(t_printf *pr, uint_fast64_t n)
 		ft_hex(n, 'x', str);
 	else if (pr->type_field == 8)
 		ft_hex(n, 'X', str);
-
 	check_flags_for_x(pr, str_hex, n);
 	total_length = ft_strlen(str) + ft_strlen(str_hex);
 	pr->var.width = ft_pad(pr->width_field, total_length);
@@ -61,7 +60,7 @@ void x_width_y_precision_n(t_printf *pr, uint_fast64_t n)
 		x_width_y_precision_n2(pr, str, str_hex);
 }
 
-void x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[])
+void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[])
 {
 	if (pr->flag.minus == true)
 	{
@@ -87,19 +86,18 @@ void x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[])
 	}
 }
 
-void x_width_y_precision_y(t_printf *pr, uint_fast64_t n)
+void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n)
 {
-	char str[pr->width_field + ft_abs(pr->precision_field) + 32];
-	char str_hex[pr->width_field + ft_abs(pr->precision_field) + 32];
-	int l_s;
-	int l_s_h;
+	char	str[pr->width_field + ft_abs(pr->precision_field) + 32];
+	char	str_hex[pr->width_field + ft_abs(pr->precision_field) + 32];
+	int		l_s;
+	int		l_s_h;
 
 	ft_bzero(str, pr->width_field + ft_abs(pr->precision_field) + 32);
 	ft_bzero(str_hex, pr->width_field + ft_abs(pr->precision_field) + 32);
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	(pr->type_field == 7) && (ft_hex(n, 'x', str));
 	(pr->type_field == 8) && (ft_hex(n, 'X', str));
-
 	check_flags_for_x(pr, str_hex, n);
 	l_s_h = ft_strlen(str_hex);
 	l_s = ft_strlen(str);

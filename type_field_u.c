@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:26:13 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:33:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:22:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@
 ** Type casts to 'unsigned short' for 'h'.
 */
 
-uint_fast64_t length_field_uox(t_printf *pr)
+uint_fast64_t	length_field_uox(t_printf *pr)
 {
 	uint_fast64_t num;
 
 	num = 0;
 	if (pr->length.hh == true)
-		num = (unsigned char) va_arg(pr->arguments, unsigned int);
+		num = (unsigned char)va_arg(pr->arguments, unsigned int);
 	else if (pr->length.h == true)
-		num = (unsigned short) va_arg(pr->arguments, unsigned int);
+		num = (unsigned short)va_arg(pr->arguments, unsigned int);
 	else if (pr->length.l == true)
 		num = va_arg(pr->arguments, unsigned long);
 	else if (pr->length.ll == true)
@@ -36,7 +36,7 @@ uint_fast64_t length_field_uox(t_printf *pr)
 	return (num);
 }
 
-void	u_append_buffer(t_printf *pr, char s[], char t_s[])
+void			u_append_buffer(t_printf *pr, char s[], char t_s[])
 {
 	int len;
 
@@ -61,11 +61,11 @@ void	u_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-void collect_u(t_printf *pr)
+void			collect_u(t_printf *pr)
 {
-	uint_fast64_t n;
-	char s[ft_abs(pr->precision_field) + pr->width_field + 32];
-	char t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
+	uint_fast64_t	n;
+	char			s[ft_abs(pr->precision_field) + pr->width_field + 32];
+	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 
 	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
