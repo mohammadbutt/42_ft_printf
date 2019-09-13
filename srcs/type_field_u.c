@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:26:13 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 20:22:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 10:58:56 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ void			u_append_buffer(t_printf *pr, char s[], char t_s[])
 	if (pr->flag.plus == true || pr->flag.space == true)
 		if (pr->var.width > 0)
 			pr->var.width--;
+/*
+// Commenting below to use ft_strcat_loop
 	if (pr->flag.zero == true && pr->var.width >= 0)
 		while (pr->var.width--)
 			ft_strcat(s, "0");
@@ -57,6 +59,18 @@ void			u_append_buffer(t_printf *pr, char s[], char t_s[])
 	if (pr->var.precision >= 0)
 		while (pr->var.precision--)
 			ft_strcat(s, "0");
+*/
+// Adding below to use ft_strcat_loop
+	if (pr->flag.zero == true && pr->var.width >= 0)
+		ft_strcat_loop(s, pr->var.width, "0");
+	else if (pr->flag.zero == false && pr->flag.minus == false)
+		append_to_buffer_loop(pr, pr->var.width, " ");
+	else if (pr->flag.minus == true)
+		ft_strcat_loop(t_s, pr->var.width, " ");
+	if (pr->var.precision >= 0)
+		ft_strcat_loop(s, pr->var.precision, "0");
+// Adding above to use ft_strcat_loop
+
 	ft_strcat(s, t_s);
 	append_to_buffer(pr, s);
 }
