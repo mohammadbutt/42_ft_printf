@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:07:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:15:23 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:42:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void f_append_buffer(t_printf *pr, char s[], char t_s[])
+void	f_append_buffer(t_printf *pr, char s[], char t_s[])
 {
 	int len;
 
@@ -37,11 +37,11 @@ void f_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
-void collect_f(t_printf *pr)
+void	collect_f(t_printf *pr)
 {
-	long double nbr;
-	char s[ft_abs(pr->precision_field) + pr->width_field + 64];
-	char t_s[ft_abs(pr->precision_field) + pr->width_field + 64];
+	long double	nbr;
+	char		s[ft_abs(pr->precision_field) + pr->width_field + 64];
+	char		t_s[ft_abs(pr->precision_field) + pr->width_field + 64];
 
 	nbr = 0;
 	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 64);
