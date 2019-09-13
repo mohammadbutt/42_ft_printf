@@ -6,11 +6,18 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:54:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:33:54 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:56:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/*
+** For flags pr->flag.plus, pr->flag.space, and pr->flag.hash:
+** true = 1
+** false = 0
+** Placing 1 instead of true due to norminette
+*/
 
 void	b_append_buffer(t_printf *pr, char s[], char t_s[])
 {
@@ -22,7 +29,7 @@ void	b_append_buffer(t_printf *pr, char s[], char t_s[])
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-	if (pr->flag.plus == true || pr->flag.space == true || pr->flag.hash == true)
+	if (pr->flag.plus == 1 || pr->flag.space == 1 || pr->flag.hash == 1)
 		if (pr->var.width > 0)
 			pr->var.width--;
 	if (pr->flag.zero == true && pr->var.width >= 0)
