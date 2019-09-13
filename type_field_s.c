@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:57:44 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 20:11:31 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:20:09 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,29 +56,31 @@ void	s_append_buffer(t_printf *pr, char *str, int repeat)
 ** or end of the string.
 ** NOTE: Since we dont know how long a string will be that is entered by the
 ** user, 1 megabyte of memory is allocated which is equal to 1,048,576.
+**
+** s = str
 */
 
 void	collect_s(t_printf *pr)
 {
 	char	*temp_s;
-	char	str[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
+	char	s[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
 	int		repeat;
 	int		width;
 	int		precision;
 
 	width = pr->width_field;
 	precision = pr->precision_field;
-	ft_bzero(str, width + ft_abs(precision) + FT_ONE_MEGABYTE);
+	ft_bzero(s, width + ft_abs(precision) + FT_ONE_MEGABYTE);
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
 	if (temp_s == NULL)
 		temp_s = "(null)";
 	if (pr->precision_field > 0)
-		ft_strncpy(str, temp_s, pr->precision_field);
+		ft_strncpy(s, temp_s, pr->precision_field);
 	else if (pr->precision_field == -1)
-		ft_strcpy(str, temp_s);
+		ft_strcpy(s, temp_s);
 	else if (pr->precision_field == 0)
-		(ft_strcpy(str, NULL));
-	repeat = ft_pad(pr->width_field, ft_strlen(str));
-	s_append_buffer(pr, str, repeat);
+		(ft_strcpy(s, NULL));
+	repeat = ft_pad(pr->width_field, ft_strlen(s));
+	s_append_buffer(pr, s, repeat);
 }
