@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:31:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:05:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 19:13:00 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ void	collect_width(t_printf *pr)
 
 void	collect_precision(t_printf *pr)
 {
-	int i;
-	int next_i;
+	int current;
+	int next;
 
-	i = pr->i;
-	next_i = pr->i + 1;
-	if (pr->string[i] == '.' && ft_isdigit(pr->string[next_i]) == 1)
+	current = pr->i;
+	next = pr->i + 1;
+	if (pr->string[current] == '.' && ft_isdigit(pr->string[next]) == 1)
 	{
 		pr->i++;
 		pr->precision_field = ft_atoi(&pr->string[pr->i]);
 		while (ft_isdigit(pr->string[pr->i]) == 1)
 			pr->i++;
 	}
-	else if (pr->string[i] == '.' && pr->string[next_i] == '*')
+	else if (pr->string[current] == '.' && pr->string[next] == '*')
 	{
 		pr->precision_field = va_arg(pr->arguments, int);
 		pr->i = pr->i + 2;
 	}
-	else if (pr->string[i] == '.' && ft_isdigit(pr->string[next_i]) != 1)
+	else if (pr->string[current] == '.' && ft_isdigit(pr->string[next]) != 1)
 	{
 		pr->i++;
 		pr->precision_field = 0;
