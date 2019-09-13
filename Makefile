@@ -6,14 +6,15 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/09/13 13:01:38 by mbutt            ###   ########.fr        #
+#    Updated: 2019/09/13 15:37:54 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-CYAN:=\033[1;36m
-YELLOW:=\033[1;33m
-GREEN:=\033[1;32m
 NC:=\033[0m
+GREEN:=\033[1;32m
+ORANGE:=\033[0;33m
+YELLOW:=\033[1;33m
+CYAN:=\033[1;36m
 
 NAME = libftprintf.a
 CC = gcc
@@ -66,11 +67,11 @@ $(NAME):
 
 clean:
 	rm -rf $(OBJ)
-	@echo "${YELLOW}Removed object files.${NC}"
+	@echo "${ORANGE}Removed object files.${NC}"
 
 fclean:
 	rm -rf $(NAME) $(OBJ)
-	@echo "${YELLOW}Removed object files.${NC}"
+	@echo "${ORANGE}Removed object files.${NC}"
 	@echo "${YELLOW}Removed static library.${NC}"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:31:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 21:20:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 15:30:25 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ void	collect_width(t_printf *pr)
 	{
 		pr->width_field = va_arg(pr->arguments, int);
 		pr->i++;
+		if (pr->width_field < 0)
+		{
+			pr->flag.zero = false;
+			pr->flag.minus = true;
+			pr->width_field = -1 * pr->width_field;
+		}
 	}
 }
 

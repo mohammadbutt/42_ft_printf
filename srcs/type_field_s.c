@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:57:44 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 20:20:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 15:28:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ void	s_append_buffer(t_printf *pr, char *str, int repeat)
 void	collect_s(t_printf *pr)
 {
 	char	*temp_s;
-	char	s[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
+	char	s[pr->width_field + ft_abs(pr->precision_field) + FT_MEMORY];
 	int		repeat;
 	int		width;
 	int		precision;
 
 	width = pr->width_field;
 	precision = pr->precision_field;
-	ft_bzero(s, width + ft_abs(precision) + FT_ONE_MEGABYTE);
+	ft_bzero(s, width + ft_abs(precision) + FT_MEMORY);
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
 	if (temp_s == NULL)
