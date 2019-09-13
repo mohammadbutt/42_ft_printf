@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/23 17:52:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:46:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 17:57:52 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_bzero(void *s, size_t len)
 {
-	unsigned char *str;
-	size_t	i;
+	unsigned char	*str;
+	size_t			i;
 
 	str = s;
 	i = 0;
@@ -29,14 +29,14 @@ void	ft_bzero(void *s, size_t len)
 ** in the size/length of the string.
 */
 
-void ft_bzero_no_len(void *s)
+void	ft_bzero_no_len(void *s)
 {
-	unsigned char *str;
-	size_t i;
-	
+	unsigned char	*str;
+	size_t			i;
+
 	str = s;
 	i = 0;
-	if(str)
-		while(str[i])
+	if (str)
+		while (str[i])
 			str[i++] = 0;
 }
