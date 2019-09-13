@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/08/22 21:41:24 by mbutt            ###   ########.fr        #
+#    Updated: 2019/09/12 21:49:30 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,11 @@ NAME = libftprintf.a
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -I. -c
 
-//SRC = *.c
-SRC = $(filter-out main.c, $(wildcard *.c))
-MINI_LIBFT = mini_libft/*.c
+#SRC = $(filter-out main.c, $(wildcard *.c)) // Changing path to srcs
+#MINI_LIBFT = mini_libft/*.c				 // Changing path to srcs
+
+SRC = $(filter-out srcs/main.c, $(wildcard srcs/*.c))
+MINI_LIBFT = srcs/mini_libft/*.c
 OBJ = *.o
 
 all: $(NAME)
