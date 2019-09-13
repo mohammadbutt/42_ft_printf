@@ -6,13 +6,13 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:39:47 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 22:46:03 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:04:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void p_append_buffer(t_printf *pr, char *str, int re_width, int re_precision)
+void	p_append_buffer(t_printf *pr, char *str, int re_width, int re_precision)
 {
 	if (pr->flag.minus == false)
 	{
@@ -48,21 +48,21 @@ void p_append_buffer(t_printf *pr, char *str, int re_width, int re_precision)
 ** logic and computational power.
 */
 
-void collect_p(t_printf *pr)
+void	collect_p(t_printf *pr)
 {
-	uint_fast64_t pointer_value;
-	char str[ft_abs(pr->precision_field) + pr->width_field + 32];
-	char temp_str1[ft_abs(pr->precision_field) + pr->width_field + 32];
-	int re_width;
-	int re_precision;
+	uint_fast64_t	pointer_value;
+	char			str[ft_abs(pr->precision_field) + pr->width_field + 32];
+	char			temp_s[ft_abs(pr->precision_field) + pr->width_field + 32];
+	int				re_width;
+	int				re_precision;
 
 	ft_bzero(str, ft_abs(pr->precision_field) + pr->width_field + 32);
-	ft_bzero(temp_str1, ft_abs(pr->precision_field) + pr->width_field + 32);
+	ft_bzero(temp_s, ft_abs(pr->precision_field) + pr->width_field + 32);
 	pointer_value = 0;
 	pointer_value = (uint_fast64_t)va_arg(pr->arguments, void *);
-	ft_itoa_base(pointer_value, FT_HEX, temp_str1);
-	re_width = ft_pad(pr->width_field, ft_strlen(temp_str1) + 2);
-	re_precision = ft_pad(pr->precision_field, ft_strlen(temp_str1));
+	ft_itoa_base(pointer_value, FT_HEX, temp_s);
+	re_width = ft_pad(pr->width_field, ft_strlen(temp_s) + 2);
+	re_precision = ft_pad(pr->precision_field, ft_strlen(temp_s));
 	if (pr->flag.zero == true && pr->flag.minus == false)
 	{
 		append_to_buffer(pr, "0x");
@@ -73,7 +73,6 @@ void collect_p(t_printf *pr)
 	else if (pointer_value == 0 && pr->precision_field == 0)
 		ft_strcpy(str, NULL);
 	else if (pr->precision_field != 0)
-		ft_strcpy(str, temp_str1);
+		ft_strcpy(str, temp_s);
 	p_append_buffer(pr, str, re_width, re_precision);
 }
-
