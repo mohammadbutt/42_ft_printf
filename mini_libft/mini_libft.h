@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/09 15:50:24 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 16:28:48 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 17:52:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,20 @@ int					ft_isdigit1(char c);
 int					ft_strlen(char *str);
 int_fast32_t		ft_strlen_fast(char *str);
 
+/*
+** ft_itoa_base.c
+*/
+
+int 				ft_numlen(int_fast64_t value, int base);
+char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
+int					ft_numlen_u(uint_fast64_t value, int base);
+char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
+
+/*
+** utility.c
+*/
 
 int_fast64_t		ft_abs(int_fast64_t num);
-char 				*ft_itoa_base(int_fast64_t value, int base, char str[]);
-char				*ft_itoa_base_u(uint_fast64_t value, int base, char str[]);
 int					ft_numlen_uint64(uint_fast64_t nbr);
 uint_fast64_t		ft_pow10(uint_fast64_t num);
 void				ft_swap(char *a, char *b);
