@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:57:44 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/11 23:03:45 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:11:31 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 ** Note: If the minus flag is true then the 0 zero flag is ignored.
 */
 
-void s_append_buffer(t_printf *pr, char *str, int repeat)
+void	s_append_buffer(t_printf *pr, char *str, int repeat)
 {
 	if (pr->flag.minus == false)
 	{
@@ -58,17 +58,17 @@ void s_append_buffer(t_printf *pr, char *str, int repeat)
 ** user, 1 megabyte of memory is allocated which is equal to 1,048,576.
 */
 
-void collect_s(t_printf *pr)
+void	collect_s(t_printf *pr)
 {
-	char *temp_s;
-	char str[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
-	int repeat;
-	int width;
-	int precision;
+	char	*temp_s;
+	char	str[pr->width_field + ft_abs(pr->precision_field) + FT_ONE_MEGABYTE];
+	int		repeat;
+	int		width;
+	int		precision;
 
 	width = pr->width_field;
 	precision = pr->precision_field;
-	ft_bzero(str,width + precision + FT_ONE_MEGABYTE);
+	ft_bzero(str, width + ft_abs(precision) + FT_ONE_MEGABYTE);
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
 	if (temp_s == NULL)
@@ -82,4 +82,3 @@ void collect_s(t_printf *pr)
 	repeat = ft_pad(pr->width_field, ft_strlen(str));
 	s_append_buffer(pr, str, repeat);
 }
-

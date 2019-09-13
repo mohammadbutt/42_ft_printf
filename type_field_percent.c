@@ -6,18 +6,17 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:07:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 11:13:28 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:05:40 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void collect_percent(t_printf *pr)
+void	collect_percent(t_printf *pr)
 {
 	int repeat;
 
 	repeat = 0;
-
 	if (pr->width_field > 0)
 		repeat = pr->width_field - 1;
 	if (pr->flag.minus == false)
