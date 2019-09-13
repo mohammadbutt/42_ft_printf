@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:25:34 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 11:12:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 11:53:55 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,6 @@ int main(void)
 
 int main(void)
 {
-/*
 	char *str     = "Test";
 	char num1_min = -128;
 	char num1_max = 127;
@@ -123,9 +122,9 @@ int main(void)
 
 	long long num4_min = -9223372036854775807;
 	long long num4_max = 9223372036854775807;
-*/
 
-/*
+
+
 	printf("w01:|%hhd|\n", num1_min);
 	printf("w02:|%hhd|\n\n", num1_max);
 
@@ -147,14 +146,14 @@ int main(void)
 
 	printf("pw13:|%-7.5hhd|\n", num1_min);
 	printf("pw14:|%-7.5hhd|\n\n", num1_max);
-*/
+
 
 
 
 //	ft_printf("ft_printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 //	   printf("   printf:1:||%s||%c||%d%p%p|%05%|\n",str, 'c', 1234, NULL, str);
 
-/*
+
 	ft_printf("ft_printf:1:|%hhd|\n", num1_min);
 	   printf("   printf:1:|%hhd|\n", num1_min);
 	ft_printf("ft_printf:1:|%hhd|\n", num1_max);   
@@ -219,10 +218,10 @@ int main(void)
 	   printf("   printf:9:|% .d|\n", 0);
 
 
-//	ft_printf("ft_printf:6:|%+5hhd|\n", num1_min);
-//	   printf("   printf:6:|%+5hhd|\n", num1_min);
-//	ft_printf("ft_printf:6:|%+5hhd|\n", num1_max);   
-//	   printf("   printf:6:|%+5hhd|\n\n", num1_max);
+	ft_printf("ft_printf:6:|%+5hhd|\n", num1_min);
+	   printf("   printf:6:|%+5hhd|\n", num1_min);
+	ft_printf("ft_printf:6:|%+5hhd|\n", num1_max);   
+	   printf("   printf:6:|%+5hhd|\n\n", num1_max);
 
 
 
@@ -250,7 +249,7 @@ int main(void)
 	   printf("   printf:4:|%lld|\n", num4_min);
 	ft_printf("ft_printf:4:|%lld|\n", num4_max);
 	   printf("   printf:4:|%lld|\n\n", num4_max);
-*/
+
 
 /*
 	printf("--------------------Unit test for o-----------------------\n");

@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/09/13 10:14:51 by mbutt            ###   ########.fr        #
+#    Updated: 2019/09/13 13:01:38 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,8 @@ clean:
 	@echo "${YELLOW}Removed object files.${NC}"
 
 fclean:
-	rm -rf $(NAME)
+	rm -rf $(NAME) $(OBJ)
+	@echo "${YELLOW}Removed object files.${NC}"
 	@echo "${YELLOW}Removed static library.${NC}"
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:26:13 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 11:16:46 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/13 13:02:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,6 @@ void			collect_u(t_printf *pr)
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uox(pr);
-	if (pr->flag.plus == true)
-		ft_strcpy(s, "+");
-	else if (pr->flag.space == true)
-		ft_strcpy(s, " ");
 	ft_itoa_base_u(n, FT_DECIMAL, t_s);
 	(pr->precision_field != -1) && (pr->flag.zero = false);
 	(pr->precision_field == 0 && n == 0) && (ft_strcpy(t_s, NULL));
