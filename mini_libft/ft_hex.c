@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/31 18:27:57 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:50:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 18:07:48 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,17 @@
 ** hexadecimal.
 */
 
-int ft_hex_numlen(uint_fast64_t value, int base)
+int		ft_hex_numlen(uint_fast64_t value, int base)
 {
-	int i;
-	uint_fast64_t u_value;
+	int				i;
+	uint_fast64_t	u_value;
 
 	i = 0;
-	u_value = (uint_fast64_t) value;
+	u_value = (uint_fast64_t)value;
 	if (value == 0)
 		return (0);
-	if(u_value)
-		while(base && u_value)
+	if (u_value)
+		while (base && u_value)
 		{
 			u_value = u_value / base;
 			i++;
@@ -36,25 +36,25 @@ int ft_hex_numlen(uint_fast64_t value, int base)
 	return (i);
 }
 
-char *ft_hex(uint_fast64_t value, char c, char str[])
+char	*ft_hex(uint_fast64_t value, char c, char str[])
 {
-	int base;
-	int len;
-	uint_fast64_t u_value;
-	char placeholder[17];
+	int				base;
+	int				len;
+	uint_fast64_t	u_value;
+	char			placeholder[17];
 
-	if(value == 0)
+	if (value == 0)
 		return (ft_strcpy(str, "0"));
-	if(c == 'x')
+	if (c == 'x')
 		ft_strcpy(placeholder, "0123456789abcdef");
-	else if(c == 'X')
+	else if (c == 'X')
 		ft_strcpy(placeholder, "0123456789ABCDEF");
 	base = 16;
 	len = ft_hex_numlen(value, base);
-	u_value = (uint_fast64_t) value;
+	u_value = (uint_fast64_t)value;
 	str[len] = '\0';
 	len--;
-	while(base && u_value)
+	while (base && u_value)
 	{
 		str[len] = placeholder[u_value % base];
 		u_value = u_value / base;
