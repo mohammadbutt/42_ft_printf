@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:04:22 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:27:06 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 20:46:04 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	start_collecting_flags(t_printf *pr)
 
 void	collect_data(t_printf *pr)
 {
-	ft_dispatch_table[pr->type_field](pr);
+	g_ft_dispatch_table[pr->type_field](pr);
 }
 
 void	start_parsing(t_printf *pr)

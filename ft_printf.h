@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 15:41:08 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/12 21:01:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include "./mini_libft/mini_libft.h"
 # include <unistd.h> /*write(2)*/
-# include <stdlib.h> /*malloc(3), free(3), exit(3), uint64_t, and uint_fast64_t*/
+# include <stdlib.h> /*malloc(3), free(3), exit(3), uint64_t,and uint_fast64_t*/
 # include <stdarg.h> /*va_start, va_arg, va_copy, va_end(3)*/
 # include <stdbool.h> /*bool data type*/
 # include <stdio.h>
 # include <string.h>
-# include <limits.h> /*Ford different macros like CHAR_MIN, SHRT_MIN, LONG_MIN*/
+# include <limits.h> /*For different macros like CHAR_MIN, SHRT_MIN, LONG_MIN*/
 //# include "forbidden.h"
 
 /*
@@ -88,14 +88,14 @@
 ** Background Colors
 */
 
-#define ON_BLACK "\033[40m"
-#define ON_RED "\033[41m"
-#define ON_GREEN "\033[42m"
-#define ON_YELLOW "\033[43m"
-#define ON_BLUE "\033[44m"
-#define ON_PURPLE "\033[45m"
-#define ON_CYAN "\033[46m"
-#define ON_WHITE "\033[47m"
+# define ON_BLACK "\033[40m"
+# define ON_RED "\033[41m"
+# define ON_GREEN "\033[42m"
+# define ON_YELLOW "\033[43m"
+# define ON_BLUE "\033[44m"
+# define ON_PURPLE "\033[45m"
+# define ON_CYAN "\033[46m"
+# define ON_WHITE "\033[47m"
 
 /*
 ** Colon ':' in structs is called a bit field
@@ -115,71 +115,70 @@
 ** bits that can be used.
 */
 
-typedef struct s_variables
+typedef struct	s_variables
 {
-	int i;
-	int width;
-	int precision;
-} t_variables;
+	int			i;
+	int			width;
+	int			precision;
+}				t_variables;
 
-typedef struct s_flag
+typedef struct	s_flag
 {
-	bool hash : 1;
-	bool zero : 1;
-	bool minus : 1;
-	bool plus : 1;
-	bool space : 1;
-} t_flag;
+	bool		hash : 1;
+	bool		zero : 1;
+	bool		minus : 1;
+	bool		plus : 1;
+	bool		space : 1;
+}				t_flag;
 
-typedef struct s_length
+typedef struct	s_length
 {
-	bool hh : 1;
-	bool h : 1;
-	bool l : 1;
-	bool ll : 1;
-	bool L : 1;
-} t_length;
+	bool		hh : 1;
+	bool		h : 1;
+	bool		l : 1;
+	bool		ll : 1;
+	bool		L : 1;
+}				t_length;
 
-typedef struct s_printf
+typedef struct	s_printf
 {
 	t_variables var;
-	t_flag flag;
-	t_length length;
-	char buffer[FT_ONE_MEGABYTE];
-	va_list arguments;
-	const char *string;
-	int i;
-	int buffer_i;
-	int	width_field;
-	int	precision_field;
-	int length_field;
-	int  type_field;
-	int return_of_printf;
+	t_flag		flag;
+	t_length	length;
+	char		buffer[FT_ONE_MEGABYTE];
+	va_list		arguments;
+	const char	*string;
+	int			i;
+	int			buffer_i;
+	int			width_field;
+	int			precision_field;
+	int			length_field;
+	int			type_field;
+	int			return_of_printf;
 
-}	t_printf;
+}				t_printf;
 
 /*
 ** append_to_buffer.c
 */
 
-void	append_to_buffer(t_printf *pr, char *source);
-void	append_to_buffer_loop(t_printf *pr, int x_times, char *str);
-
+void			append_to_buffer(t_printf *pr, char *source);
+void			append_to_buffer_loop(t_printf *pr, int x_times, char *str);
 
 /*
 ** type_field_b.c
 */
 
-void	b_append_buffer(t_printf *pr, char s[], char t_s[]);
-void 	check_flags_for_b(t_printf *pr, char s[]);
-void	collect_b(t_printf *pr);
+void			b_append_buffer(t_printf *pr, char s[], char t_s[]);
+void			check_flags_for_b(t_printf *pr, char s[]);
+void			collect_b(t_printf *pr);
 
 /*
 ** type_field_f.c
 */
 
-void	collect_f(t_printf *pr);
-void	f_append_buffer(t_printf *pr, char s[], char t_s[]);
+void			collect_f(t_printf *pr);
+void			f_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 /*
 ** type_field_d_i.c
@@ -191,29 +190,30 @@ void			d_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 /*
 ** type_field_p.c
+** In p_append_buffer, last parameter, int p, p stands for precision
 */
 
-void	collect_p(t_printf *pr);
-void	p_append_buffer(t_printf *pr, char *str, int width, int precision);
+void			collect_p(t_printf *pr);
+void			p_append_buffer(t_printf *pr, char *str, int width, int p);
 
 /*
 ** type_field_s.c
 */
 
-void	collect_s(t_printf *pr);
-void	s_append_buffer(t_printf *pr, char *str, int repeat);
+void			collect_s(t_printf *pr);
+void			s_append_buffer(t_printf *pr, char *str, int repeat);
 
 /*
 ** type_field_c.c
 */
 
-void	collect_c(t_printf *pr);
+void			collect_c(t_printf *pr);
 
 /*
 ** type_field_percent.c
 */
 
-void	collect_percent(t_printf *pr);
+void			collect_percent(t_printf *pr);
 
 /*
 ** type_field_u.c
@@ -227,72 +227,73 @@ void			u_append_buffer(t_printf *pr, char s[], char t_s[]);
 ** type_field_o.c
 */
 
-void	collect_o(t_printf *pr);
-void 	check_flags_for_o(t_printf *pr, char s[]);
-void	o_append_buffer(t_printf *pr, char s[], char t_s[]);
+void			collect_o(t_printf *pr);
+void			check_flags_for_o(t_printf *pr, char s[]);
+void			o_append_buffer(t_printf *pr, char s[], char t_s[]);
 
 /*
 ** type_field_x.c
 */
-void 	collect_x(t_printf *pr);
-void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
-void 	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
+void			collect_x(t_printf *pr);
+void			x_width_n_precision_n(t_printf *pr, uint_fast64_t n);
+void			x_width_n_precision_y(t_printf *pr, uint_fast64_t n);
+void			check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n);
 
 /*
 ** type_field_x_remaining_conditions.c
+** s = str
 */
-void	x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
-void	x_width_y_precision_n2(t_printf *pr, char str[], char str_hex[]);
-void	x_width_y_precision_y2(t_printf *pr, char str[], char str_hex[]);
+void			x_width_y_precision_n(t_printf *pr, uint_fast64_t n);
+void			x_width_y_precision_y(t_printf *pr, uint_fast64_t n);
+void			x_width_y_precision_n2(t_printf *pr, char s[], char str_hex[]);
+void			x_width_y_precision_y2(t_printf *pr, char s[], char str_hex[]);
 
 /*
 ** parsing.c
 */
 
-void	initialize_flag_and_field_values(t_printf *pr);
-void	start_collecting_flags(t_printf *pr);
-void	collect_data(t_printf *pr);
-void	start_parsing(t_printf *pr);
+void			initialize_flag_and_field_values(t_printf *pr);
+void			start_collecting_flags(t_printf *pr);
+void			collect_data(t_printf *pr);
+void			start_parsing(t_printf *pr);
 
 /*
 ** collect_and_cancel_flags.c
 */
 
-int 	collect_flags(t_printf *pr);
-void 	cancel_flags(t_printf *pr);
+int				collect_flags(t_printf *pr);
+void			cancel_flags(t_printf *pr);
 
 /*
 ** collect_width_precision_length_type.c
 */
 
-void	collect_width(t_printf *pr);
-void	collect_precision(t_printf *pr);
-void	collect_length(t_printf *pr);
-void	collect_type_field(t_printf *pr);
+void			collect_width(t_printf *pr);
+void			collect_precision(t_printf *pr);
+void			collect_length(t_printf *pr);
+void			collect_type_field(t_printf *pr);
 
 /*
 ** ft_itoa_min_handler.c
 */
 
-char	*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_hh(char num, char temp_str[]);
-char 	*ft_itoa_min_h(short num, char temp_str[]);
-char	*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
-char	*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
+char			*ft_itoa_min(t_printf *pr, int_fast64_t num, char temp_str[]);
+char			*ft_itoa_min_hh(char num, char temp_str[]);
+char			*ft_itoa_min_h(short num, char temp_str[]);
+char			*ft_itoa_min_l(int_fast64_t num, char temp_str[]);
+char			*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 
 /*
 ** ft_printf.c
 */
 
-int		ft_pad(int precision_or_width, int string_length);
-int		ft_printf_driver(va_list args, const char *str);
-int		ft_printf(const char *str, ...);
+int				ft_pad(int precision_or_width, int string_length);
+int				ft_printf_driver(va_list args, const char *str);
+int				ft_printf(const char *str, ...);
 
-typedef void ft_print_functions(t_printf *pr);
+typedef void	t_ft_print_functions(t_printf *pr);
 
-static ft_print_functions *ft_dispatch_table[] =
+static	t_ft_print_functions *g_ft_dispatch_table[] =
 {
 	collect_c,
 	collect_s,
