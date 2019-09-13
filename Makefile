@@ -25,34 +25,34 @@ CFLAGS = -Wall -Wextra -Werror -I. -c
 #SRC = $(filter-out srcs/main.c, $(wildcard srcs/*.c)) // Not using wildcard
 #MINI_LIBFT = srcs/mini_libft/*.c                      // Including files  manually
 
-SRC = srcs/append_to_buffer.c  					\
-	  srcs/collect_and_cancel_flags.c			\
-	  srcs/collect_width_precision_length_type.c\
-	  srcs/ft_itoa_min_handler.c				\
-	  srcs/ft_printf.c							\
-	  srcs/parsing.c							\
-	  srcs/type_field_b.c						\
-	  srcs/type_field_c.c						\
-	  srcs/type_field_d_i.c						\
-	  srcs/type_field_f.c						\
-	  srcs/type_field_o.c						\
-	  srcs/type_field_p.c						\
-	  srcs/type_field_percent.c					\
-	  srcs/type_field_s.c						\
-	  srcs/type_field_u.c						\
-	  srcs/type_field_x.c						\
+SRC = srcs/append_to_buffer.c  				\
+	  srcs/collect_and_cancel_flags.c		\
+	  srcs/collect_width_precision_length_type.c	\
+	  srcs/ft_itoa_min_handler.c			\
+	  srcs/ft_printf.c				\
+	  srcs/parsing.c				\
+	  srcs/type_field_b.c				\
+	  srcs/type_field_c.c				\
+	  srcs/type_field_d_i.c				\
+	  srcs/type_field_f.c				\
+	  srcs/type_field_o.c				\
+	  srcs/type_field_p.c				\
+	  srcs/type_field_percent.c			\
+	  srcs/type_field_s.c				\
+	  srcs/type_field_u.c				\
+	  srcs/type_field_x.c				\
 	  srcs/type_field_x_remaining_conditions.c	\
 
-MINI_LIBFT = srcs/mini_libft/ft_atoi.c		\
-			 srcs/mini_libft/ft_bzero.c		\
-			 srcs/mini_libft/ft_ftoa.c		\
-			 srcs/mini_libft/ft_hex.c		\
+MINI_LIBFT = srcs/mini_libft/ft_atoi.c			\
+			 srcs/mini_libft/ft_bzero.c	\
+			 srcs/mini_libft/ft_ftoa.c	\
+			 srcs/mini_libft/ft_hex.c	\
 			 srcs/mini_libft/ft_isdigit.c	\
 			 srcs/mini_libft/ft_itoa_base.c	\
 			 srcs/mini_libft/ft_strcat.c	\
 			 srcs/mini_libft/ft_strcpy.c	\
 			 srcs/mini_libft/ft_strlen.c	\
-			 srcs/mini_libft/utility.c		\
+			 srcs/mini_libft/utility.c	\
 
 OBJ = *.o
 
