@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 15:27:41 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/15 20:44:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -295,6 +295,7 @@ char			*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 */
 
 int				ft_pad(int precision_or_width, int string_length);
+void			pr_struct_to_zero(t_printf *pr);
 int				ft_printf_driver(va_list args, const char *str);
 int				ft_printf(const char *str, ...);
 

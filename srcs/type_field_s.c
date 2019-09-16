@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:57:44 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 15:28:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/15 20:41:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,6 @@ void	collect_s(t_printf *pr)
 
 	width = pr->width_field;
 	precision = pr->precision_field;
-	ft_bzero(s, width + ft_abs(precision) + FT_MEMORY);
 	repeat = 0;
 	temp_s = va_arg(pr->arguments, char *);
 	if (temp_s == NULL)

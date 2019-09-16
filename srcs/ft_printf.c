@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 19:19:18 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/15 20:45:06 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 ** 0 is returned which means there would be no padding.
 */
 
-int	ft_pad(int precision_or_width, int string_length)
+int		ft_pad(int precision_or_width, int string_length)
 {
 	int padding;
 
@@ -33,11 +33,25 @@ int	ft_pad(int precision_or_width, int string_length)
 	return (padding);
 }
 
-int	ft_printf_driver(va_list args, const char *str)
+void	pr_struct_to_zero(t_printf *pr)
+{
+	ft_bzero(&pr->var, sizeof(pr->var));
+	ft_bzero(&pr->flag, sizeof(pr->flag));
+	ft_bzero(&pr->length, sizeof(pr->length));
+	pr->i = 0;
+	pr->buffer_i = 0;
+	pr->width_field = 0;
+	pr->precision_field = 0;
+	pr->length_field = 0;
+	pr->type_field = 0;
+	pr->return_of_printf = 0;
+}
+
+int		ft_printf_driver(va_list args, const char *str)
 {
 	t_printf pr;
 
-	ft_bzero(&pr, sizeof(pr));
+	pr_struct_to_zero(&pr);
 	va_copy(pr.arguments, args);
 	pr.string = str;
 	while (pr.string[pr.i])
@@ -56,7 +70,7 @@ int	ft_printf_driver(va_list args, const char *str)
 	return (write(1, pr.buffer, pr.buffer_i));
 }
 
-int	ft_printf(const char *str, ...)
+int		ft_printf(const char *str, ...)
 {
 	va_list	args;
 	int		ft_printf_return;
