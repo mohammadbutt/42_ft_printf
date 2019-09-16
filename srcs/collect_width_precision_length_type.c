@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 12:31:32 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 15:30:25 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/15 20:00:59 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	collect_width(t_printf *pr)
 		while (ft_isdigit(pr->string[pr->i]) == 1)
 			pr->i++;
 	}
-	else if (pr->string[pr->i] == '*')
+	else if (pr->string[pr->i] == '*' && ft_isdigit(pr->string[pr->i + 1]) != 1)
 	{
 		pr->width_field = va_arg(pr->arguments, int);
 		pr->i++;
@@ -34,6 +34,12 @@ void	collect_width(t_printf *pr)
 			pr->flag.minus = true;
 			pr->width_field = -1 * pr->width_field;
 		}
+	}
+	else if (pr->string[pr->i] == '*' && ft_isdigit(pr->string[pr->i + 1]) == 1)
+	{
+		pr->width_field = va_arg(pr->arguments, int);
+		pr->width_field = ft_atoi(&pr->string[pr->i + 1]);
+		pr->i = pr->i + 2;
 	}
 }
 
@@ -55,6 +61,8 @@ void	collect_precision(t_printf *pr)
 	{
 		pr->precision_field = va_arg(pr->arguments, int);
 		pr->i = pr->i + 2;
+		if (pr->precision_field < 0)
+			pr->precision_field = -1;
 	}
 	else if (pr->string[current] == '.' && ft_isdigit(pr->string[next]) != 1)
 	{
