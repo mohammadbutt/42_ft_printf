@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 13:52:09 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:07:17 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,8 @@ int		ft_pad(int precision_or_width, int string_length)
 
 void	pr_struct_to_zero(t_printf *pr)
 {
-	ft_bzero(&pr->var, sizeof(pr->var));
-	ft_bzero(&pr->flag, sizeof(pr->flag));
-	ft_bzero(&pr->length, sizeof(pr->length));
 	pr->i = 0;
 	pr->buffer_i = 0;
-	pr->width_field = 0;
-	pr->precision_field = 0;
-	pr->length_field = 0;
-	pr->type_field = 0;
-	pr->return_of_printf = 0;
 }
 
 int		ft_printf_driver(va_list args, const char *str)

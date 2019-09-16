@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 14:02:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 15:07:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,8 +160,6 @@ typedef struct	s_printf
 	int			precision_field;
 	int			length_field;
 	int			type_field;
-	int			return_of_printf;
-
 }				t_printf;
 
 /*
