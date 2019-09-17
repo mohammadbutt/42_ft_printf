@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/07 15:21:17 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 15:07:12 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/17 14:33:02 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@
 
 # define FT_ONE_MEGABYTE 1048576
 # define FT_ONE_KILOBYTE 1024
+# define FT_32_KILOBYTE 32768
 # define FT_MEMORY FT_ONE_MEGABYTE
 # define FT_VALID_TYPE "cspdiouxXfb%"
 # define FT_HEX 16
@@ -160,6 +161,7 @@ typedef struct	s_printf
 	int			precision_field;
 	int			length_field;
 	int			type_field;
+	int			refresh_buffer_i;
 }				t_printf;
 
 /*
@@ -293,6 +295,7 @@ char			*ft_itoa_min_ll(int_fast64_t num, char temp_str[]);
 
 int				ft_pad(int precision_or_width, int string_length);
 void			pr_struct_to_zero(t_printf *pr);
+void			refresh_buffer(t_printf *pr);
 int				ft_printf_driver(va_list args, const char *str);
 int				ft_printf(const char *str, ...);
 

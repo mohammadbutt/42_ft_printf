@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/08/08 12:54:07 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 15:07:17 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/17 14:32:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,14 @@ void	pr_struct_to_zero(t_printf *pr)
 {
 	pr->i = 0;
 	pr->buffer_i = 0;
+	pr->refresh_buffer_i = 0;
+}
+
+void	refresh_buffer(t_printf *pr)
+{
+	pr->refresh_buffer_i += write(1, pr->buffer, pr->buffer_i);
+	pr->buffer_i = 0;
+	pr->buffer[pr->buffer_i] = 0;
 }
 
 int		ft_printf_driver(va_list args, const char *str)
@@ -52,14 +60,20 @@ int		ft_printf_driver(va_list args, const char *str)
 		{
 			start_parsing(&pr);
 			if (pr.string[pr.i] == '\0')
-				return (write(1, pr.buffer, pr.buffer_i));
+			{
+				pr.refresh_buffer_i += write(1, pr.buffer, pr.buffer_i);
+				return (pr.refresh_buffer_i);
+			}
 		}
 		else
 			pr.buffer[pr.buffer_i++] = pr.string[pr.i];
+		if (pr.buffer_i >= FT_32_KILOBYTE)
+			refresh_buffer(&pr);
 		pr.i++;
 	}
 	va_end(pr.arguments);
-	return (write(1, pr.buffer, pr.buffer_i));
+	pr.refresh_buffer_i += write(1, pr.buffer, pr.buffer_i);
+	return (pr.refresh_buffer_i);
 }
 
 int		ft_printf(const char *str, ...)
