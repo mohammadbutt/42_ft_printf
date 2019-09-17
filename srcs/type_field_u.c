@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:26:13 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 13:02:07 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:43:12 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,8 @@ void			u_append_buffer(t_printf *pr, char s[], char t_s[])
 	len = ft_strlen(t_s);
 	pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-	if (pr->flag.plus == true || pr->flag.space == true)
-		if (pr->var.width > 0)
-			pr->var.width--;
+	if (pr->flag.plus == true && pr->var.width > 0)
+		pr->var.width--;
 	if (pr->flag.zero == true && pr->var.width >= 0)
 		ft_strcat_loop(s, pr->var.width, "0");
 	else if (pr->flag.zero == false && pr->flag.minus == false)
@@ -64,8 +63,8 @@ void			collect_u(t_printf *pr)
 	char			s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 
-	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
-	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	s[0] = 0;
+	t_s[0] = 0;
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uox(pr);

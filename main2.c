@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 12:43:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 19:11:57 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:47:32 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,78 @@ int main(void)
 	   printf("   printf|%0-5p|\n", p9);
 	ft_printf("ft_printf|%0-5p|\n\n", p9);
 
+	printf("Passes above\n");
+	printf("-----------------------\n");
+	printf("Testing pointer %%u\n");
+
+	unsigned int u1 = 1;
+	unsigned int u2 = 22;
+	unsigned int u3 = 333;
+	unsigned int u4 = 4444;
+	unsigned int u5 = 55555;
+	unsigned int u6 = 666666;
+	unsigned int u7 = -7777777;
+	unsigned int u8 = -88888888;
+	unsigned int u9 = -999999999;
+	   
+	   printf("   printf|%*u|\n", -18, u1);
+	ft_printf("ft_printf|%*u|\n\n", -18, u1);
+	  
+	   printf("   printf|% *u|\n", -18, u2);
+	ft_printf("ft_printf|% *u|\n\n", -18, u2);
+
+	   printf("   printf|%0*u|\n", -18, u3);
+	ft_printf("ft_printf|%0*u|\n\n", -18, u3);
+
+	   printf("   printf|%0-5u|\n", u4);
+	ft_printf("ft_printf|%0-5u|\n\n", u4);
+
+ 	   printf("   printf|%*u|\n", 18, u5);
+	ft_printf("ft_printf|%*u|\n\n", 18, u5);
+
+ 	   printf("   printf|% u|\n", u5);
+	ft_printf("ft_printf|% u|\n\n", u5);
+	  
+	   printf("   printf|% *u|\n", 18, u6);
+	ft_printf("ft_printf|% *u|\n\n", 18, u6);
+
+	   printf("   printf|%0*u|\n", 18, u7);
+	ft_printf("ft_printf|%0*u|\n\n", 18, u7);
+
+	   printf("   printf|%0-5u|\n", u8);
+	ft_printf("ft_printf|%0-5u|\n\n", u8);
+
+	   printf("   printf|%0-5u|\n", u9);
+	ft_printf("ft_printf|%0-5u|\n\n", u9);
+
+	   printf("   printf|%-18u|\n", -18, u1);
+	ft_printf("ft_printf|%-18u|\n\n", -18, u1);
+	  
+	   printf("   printf|% -18u|\n", -18, u2);
+	ft_printf("ft_printf|% -18u|\n\n", -18, u2);
+
+	   printf("   printf|%0-18u|\n", -18, u3);
+	ft_printf("ft_printf|%0-18u|\n\n", -18, u3);
+
+	   printf("   printf|%0-5u|\n", u4);
+	ft_printf("ft_printf|%0-5u|\n\n", u4);
+
+ 	   printf("   printf|%18u|\n", 18, u5);
+	ft_printf("ft_printf|%18u|\n\n", 18, u5);
+
+ 	   printf("   printf|% u|\n", u5);
+	ft_printf("ft_printf|% u|\n\n", u5);
+	  
+	   printf("   printf|% 18u|\n", 18, u6);
+	ft_printf("ft_printf|% 18u|\n\n", 18, u6);
+
+	   printf("   printf|%018u|\n", 18, u7);
+	ft_printf("ft_printf|%018u|\n\n", 18, u7);
+
+	   printf("   printf|% -18u|\n", u8);
+	ft_printf("ft_printf|% -18u|\n\n", u8);
+
+	   printf("   printf|% -18u|\n", u9);
+	ft_printf("ft_printf|% -18u|\n\n", u9);
 
 }

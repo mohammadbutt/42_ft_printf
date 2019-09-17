@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:57:44 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/15 20:41:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:17:26 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ void	collect_s(t_printf *pr)
 	int		width;
 	int		precision;
 
+	s[0] = 0;
 	width = pr->width_field;
 	precision = pr->precision_field;
 	repeat = 0;
