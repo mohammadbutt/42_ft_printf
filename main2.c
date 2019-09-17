@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 12:43:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 16:11:27 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:10:29 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,16 @@ int main(void)
 	int n8 = 1111;
 	int n9 = -2222;
 
+	double f1 = 1;
+	double f2 = 22.1;
+	double f3 = 334.12;
+	double f4 = 4456.345;
+	double f5 = 54123.9876;
+	double f6 = 661233.98765;
+	double f7 = 7712345.789456;
+	double f8 = -5678.987674321;
+	double f9 = -0.0000521;
+
 
 	   printf("   printf|%*d|\n", -5, 12);
 	ft_printf("ft_printf|%*d|\n\n", -5, 12);
@@ -57,7 +67,6 @@ int main(void)
 	   printf("   printf|%-5c|\n", 'a');
 	ft_printf("ft_printf|%-5c|\n\n", 'a');
 
-
 	   printf("   printf|%*s|\n", -8, s1);
 	ft_printf("ft_printf|%*s|\n\n", -8, s1);
 	  
@@ -69,11 +78,6 @@ int main(void)
 
 	   printf("   printf|%0-5s|\n", s4);
 	ft_printf("ft_printf|%0-5s|\n\n", s4);
-
-
-	printf("Passes above\n");
-	printf("-----------------------\n");
-	printf("Doesn't pass below\n\n");
 
 	   printf("   printf{%.*d}\n", -5, 42);
 	ft_printf("ft_printf{%.*d}\n\n", -5, 42);
@@ -88,4 +92,34 @@ int main(void)
 	   printf("   printf:|%d%d%d%d%d%d%d%d%d%d%d%d%d%d|\n", n1, n2, n3, n4, n5, n6, n7, n8, n9, n7, n6, n5, n4, n3);
 	ft_printf("ft_printf:|%d%d%d%d%d%d%d%d%d%d%d%d%d%d|\n", n1, n2, n3, n4, n5, n6, n7, n8, n9, n7, n6, n5, n4, n3);
 
+	printf("Passes above\n");
+	printf("-----------------------\n");
+	printf("Testing floats\n");
+
+	   printf("   printf|%*f|\n", -8, f1);
+	ft_printf("ft_printf|%*f|\n\n", -8, f1);
+	  
+	   printf("   printf|% *f|\n", -8, f2);
+	ft_printf("ft_printf|% *f|\n\n", -8, f2);
+
+	   printf("   printf|%0*f|\n", -8, f3);
+	ft_printf("ft_printf|%0*f|\n\n", -8, f3);
+
+	   printf("   printf|%0-5f|\n", f4);
+	ft_printf("ft_printf|%0-5f|\n\n", f4);
+
+ 	   printf("   printf|%*f|\n", 8, f5);
+	ft_printf("ft_printf|%*f|\n\n", 8, f5);
+	  
+	   printf("   printf|% *f|\n", 8, f6);
+	ft_printf("ft_printf|% *f|\n\n", 8, f6);
+
+	   printf("   printf|%0*f|\n", 8, f7);
+	ft_printf("ft_printf|%0*f|\n\n", 8, f7);
+
+	   printf("   printf|%0-5f|\n", f8);
+	ft_printf("ft_printf|%0-5f|\n\n", f8);
+
+	   printf("   printf|%0-5f|\n", f9);
+	ft_printf("ft_printf|%0-5f|\n\n", f9);
 }

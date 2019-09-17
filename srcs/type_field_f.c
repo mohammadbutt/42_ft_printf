@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:07:00 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 11:13:58 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:10:16 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	collect_f(t_printf *pr)
 	char		t_s[ft_abs(pr->precision_field) + pr->width_field + 64];
 
 	nbr = 0;
-	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 64);
-	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 64);
+	s[0] = 0;
+	t_s[0] = 0;
 	if (pr->length.uppercase_l == true)
 		nbr = va_arg(pr->arguments, long double);
 	else if (pr->length.uppercase_l == false)
