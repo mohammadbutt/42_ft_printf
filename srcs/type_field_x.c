@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 15:00:55 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 20:24:14 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:06:05 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n)
 	char str[32];
 	char str_hex[32];
 
-	ft_bzero(str, 32);
-	ft_bzero(str_hex, 32);
+	str[0] = 0;
+	str_hex[0] = 0;
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	if (pr->type_field == 7)
 		ft_hex(n, 'x', str);
@@ -42,8 +42,8 @@ void	x_width_n_precision_y(t_printf *pr, uint_fast64_t n)
 	char str[ft_abs(pr->precision_field) + 32];
 	char str_hex[ft_abs(pr->precision_field) + 32];
 
-	ft_bzero(str, ft_abs(pr->precision_field) + 32);
-	ft_bzero(str_hex, ft_abs(pr->precision_field) + 32);
+	str[0] = 0;
+	str_hex[0] = 0;
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	if (pr->type_field == 7)
 		ft_hex(n, 'x', str);

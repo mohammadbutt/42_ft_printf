@@ -6,14 +6,14 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:54:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/13 11:14:51 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:28:07 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
 /*
-** For flags pr->flag.plus, pr->flag.space, and pr->flag.hash:
+** For flags pr->flag.plus, and pr->flag.hash:
 ** true = 1
 ** false = 0
 ** Placing 1 instead of true due to norminette
@@ -29,7 +29,7 @@ void	b_append_buffer(t_printf *pr, char s[], char t_s[])
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-	if (pr->flag.plus == 1 || pr->flag.space == 1 || pr->flag.hash == 1)
+	if (pr->flag.plus == 1 || pr->flag.hash == 1)
 		if (pr->var.width > 0)
 			pr->var.width--;
 	if (pr->flag.zero == true && pr->var.width >= 0)
@@ -48,8 +48,6 @@ void	check_flags_for_b(t_printf *pr, char s[])
 {
 	if (pr->flag.hash == true)
 		ft_strcpy(s, "0");
-	else if (pr->flag.space == true)
-		ft_strcpy(s, " ");
 }
 
 void	collect_b(t_printf *pr)
@@ -58,8 +56,8 @@ void	collect_b(t_printf *pr)
 	char			s[ft_abs(pr->precision_field) + pr->width_field + 128];
 	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 128];
 
-	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 128);
-	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 128);
+	s[0] = 0;
+	t_s[0] = 0;
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uox(pr);

@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 12:43:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 19:47:32 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 20:28:23 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ int main(void)
 
 	printf("Passes above\n");
 	printf("-----------------------\n");
-	printf("Testing pointer %%u\n");
+	printf("Testing unsigned  %%u\n");
 
 	unsigned int u1 = 1;
 	unsigned int u2 = 22;
@@ -285,5 +285,231 @@ int main(void)
 
 	   printf("   printf|% -18u|\n", u9);
 	ft_printf("ft_printf|% -18u|\n\n", u9);
+
+	printf("----Passes above tests----\n");
+	printf("Testing hex, %%xX\n\n");
+	unsigned int x1 = 1;
+	unsigned int x2 = 22;
+	unsigned int x3 = 333;
+	unsigned int x4 = 4444;
+	unsigned int x5 = 55555;
+	unsigned int x6 = 666666;
+	unsigned int x7 = -7777777;
+	unsigned int x8 = -88888888;
+	unsigned int x9 = -999999999;
+	   
+	   printf("   printf|%*x|\n", -18, x1);
+	ft_printf("ft_printf|%*x|\n\n", -18, x1);
+	  
+	   printf("   printf|% *x|\n", -18, x2);
+	ft_printf("ft_printf|% *x|\n\n", -18, x2);
+
+	   printf("   printf|%0*x|\n", -18, x3);
+	ft_printf("ft_printf|%0*x|\n\n", -18, x3);
+
+	   printf("   printf|%0-5x|\n", x4);
+	ft_printf("ft_printf|%0-5x|\n\n", x4);
+
+ 	   printf("   printf|%*x|\n", 18, x5);
+	ft_printf("ft_printf|%*x|\n\n", 18, x5);
+
+ 	   printf("   printf|% x|\n", x5);
+	ft_printf("ft_printf|% x|\n\n", x5);
+	  
+	   printf("   printf|% *x|\n", 18, x6);
+	ft_printf("ft_printf|% *x|\n\n", 18, x6);
+
+	   printf("   printf|%0*x|\n", 18, x7);
+	ft_printf("ft_printf|%0*x|\n\n", 18, x7);
+
+	   printf("   printf|%0-5x|\n", x8);
+	ft_printf("ft_printf|%0-5x|\n\n", x8);
+
+	   printf("   printf|%0-5x|\n", x9);
+	ft_printf("ft_printf|%0-5x|\n\n", x9);
+
+	   printf("   printf|%-18x|\n", -18, x1);
+	ft_printf("ft_printf|%-18x|\n\n", -18, x1);
+	  
+	   printf("   printf|% -18x|\n", -18, x2);
+	ft_printf("ft_printf|% -18x|\n\n", -18, x2);
+
+	   printf("   printf|%0-18x|\n", -18, x3);
+	ft_printf("ft_printf|%0-18x|\n\n", -18, x3);
+
+	   printf("   printf|%0-5x|\n", x4);
+	ft_printf("ft_printf|%0-5x|\n\n", x4);
+
+ 	   printf("   printf|%18x|\n", 18, x5);
+	ft_printf("ft_printf|%18x|\n\n", 18, x5);
+
+ 	   printf("   printf|% x|\n", x5);
+	ft_printf("ft_printf|% x|\n\n", x5);
+	  
+	   printf("   printf|% 18x|\n", 18, x6);
+	ft_printf("ft_printf|% 18x|\n\n", 18, x6);
+
+	   printf("   printf|%018x|\n", 18, x7);
+	ft_printf("ft_printf|%018x|\n\n", 18, x7);
+
+	   printf("   printf|% -18x|\n", x8);
+	ft_printf("ft_printf|% -18x|\n\n", x8);
+
+	   printf("   printf|% -18x|\n", x9);
+	ft_printf("ft_printf|% -18x|\n\n", x9);
+
+	   printf("   printf|%#*x|\n", -18, x1);
+	ft_printf("ft_printf|%#*x|\n\n", -18, x1);
+	  
+	   printf("   printf|%# *x|\n", -18, x2);
+	ft_printf("ft_printf|%# *x|\n\n", -18, x2);
+
+	   printf("   printf|%#0*x|\n", -18, x3);
+	ft_printf("ft_printf|%#0*x|\n\n", -18, x3);
+
+	   printf("   printf|%#0-5x|\n", x4);
+	ft_printf("ft_printf|%#0-5x|\n\n", x4);
+
+ 	   printf("   printf|%#*x|\n", 18, x5);
+	ft_printf("ft_printf|%#*x|\n\n", 18, x5);
+
+ 	   printf("   printf|%# x|\n", x5);
+	ft_printf("ft_printf|%# x|\n\n", x5);
+	  
+	   printf("   printf|%# *x|\n", 18, x6);
+	ft_printf("ft_printf|%# *x|\n\n", 18, x6);
+
+	   printf("   printf|%#0*x|\n", 18, x7);
+	ft_printf("ft_printf|%#0*x|\n\n", 18, x7);
+
+	   printf("   printf|%#0-5x|\n", x8);
+	ft_printf("ft_printf|%#0-5x|\n\n", x8);
+
+	   printf("   printf|%#0-5x|\n", x9);
+	ft_printf("ft_printf|%#0-5x|\n\n", x9);
+
+	   printf("   printf|%#-18x|\n", -18, x1);
+	ft_printf("ft_printf|%#-18x|\n\n", -18, x1);
+	  
+	   printf("   printf|%# -18x|\n", -18, x2);
+	ft_printf("ft_printf|%# -18x|\n\n", -18, x2);
+
+	   printf("   printf|%#0-18x|\n", -18, x3);
+	ft_printf("ft_printf|%#0-18x|\n\n", -18, x3);
+
+	   printf("   printf|%#0-5x|\n", x4);
+	ft_printf("ft_printf|%#0-5x|\n\n", x4);
+
+ 	   printf("   printf|%#18x|\n", 18, x5);
+	ft_printf("ft_printf|%#18x|\n\n", 18, x5);
+
+ 	   printf("   printf|%# x|\n", x5);
+	ft_printf("ft_printf|%# x|\n\n", x5);
+	  
+	   printf("   printf|%# 18x|\n", 18, x6);
+	ft_printf("ft_printf|%# 18x|\n\n", 18, x6);
+
+	   printf("   printf|%#018x|\n", 18, x7);
+	ft_printf("ft_printf|%#018x|\n\n", 18, x7);
+
+	   printf("   printf|%# -18x|\n", x8);
+	ft_printf("ft_printf|%# -18x|\n\n", x8);
+
+	   printf("   printf|%# -18x|\n", x9);
+	ft_printf("ft_printf|%# -18x|\n\n", x9);
+
+	ft_printf("Passes above tests\n");
+	ft_printf("Testing binary, %%b\n\n");
+
+
+	unsigned int b1 = 1;
+	unsigned int b2 = 22;
+	unsigned int b3 = 333;
+	unsigned int b4 = 4444;
+	unsigned int b5 = 55555;
+	unsigned int b6 = 666666;
+	unsigned int b7 = -7777777;
+	unsigned int b8 = -88888888;
+	unsigned int b9 = -999999999;
+	   
+	ft_printf("ft_printf|%*b|\n\n", -18, b1);
+	  
+	ft_printf("ft_printf|% *b|\n\n", -18, b2);
+
+	ft_printf("ft_printf|%0*b|\n\n", -18, b3);
+
+	ft_printf("ft_printf|%0-5b|\n\n", b4);
+
+	ft_printf("ft_printf|%*b|\n\n", 18, b5);
+
+	ft_printf("ft_printf|% b|\n\n", b5);
+	  
+	ft_printf("ft_printf|% *b|\n\n", 18, b6);
+
+	ft_printf("ft_printf|%0*b|\n\n", 18, b7);
+
+	ft_printf("ft_printf|%0-5b|\n\n", b8);
+
+	ft_printf("ft_printf|%0-5b|\n\n", b9);
+
+	ft_printf("ft_printf|%-18b|\n\n", -18, b1);
+	  
+	ft_printf("ft_printf|% -18b|\n\n", -18, b2);
+
+	ft_printf("ft_printf|%0-18b|\n\n", -18, b3);
+
+	ft_printf("ft_printf|%0-5b|\n\n", b4);
+
+	ft_printf("ft_printf|%18b|\n\n", 18, b5);
+
+	ft_printf("ft_printf|% b|\n\n", b5);
+	  
+	ft_printf("ft_printf|% 18b|\n\n", 18, b6);
+
+	ft_printf("ft_printf|%018b|\n\n", 18, b7);
+
+	ft_printf("ft_printf|% -18b|\n\n", b8);
+
+	ft_printf("ft_printf|% -18b|\n\n", b9);
+
+	ft_printf("ft_printf|%#*b|\n\n", -18, b1);
+	  
+	ft_printf("ft_printf|%# *b|\n\n", -18, b2);
+
+	ft_printf("ft_printf|%#0*b|\n\n", -18, b3);
+
+	ft_printf("ft_printf|%#0-5b|\n\n", b4);
+
+	ft_printf("ft_printf|%#*b|\n\n", 18, b5);
+
+	ft_printf("ft_printf|%# b|\n\n", b5);
+	  
+	ft_printf("ft_printf|%# *b|\n\n", 18, b6);
+
+	ft_printf("ft_printf|%#0*b|\n\n", 18, b7);
+
+	ft_printf("ft_printf|%#0-5b|\n\n", b8);
+
+	ft_printf("ft_printf|%#0-5b|\n\n", b9);
+
+	ft_printf("ft_printf|%#-18b|\n\n", -18, b1);
+	  
+	ft_printf("ft_printf|%# -18b|\n\n", -18, b2);
+
+	ft_printf("ft_printf|%#0-18b|\n\n", -18, b3);
+
+	ft_printf("ft_printf|%#0-5b|\n\n", b4);
+
+	ft_printf("ft_printf|%#18b|\n\n", 18, b5);
+
+	ft_printf("ft_printf|%# b|\n\n", b5);
+	  
+	ft_printf("ft_printf|%# 18b|\n\n", 18, b6);
+
+	ft_printf("ft_printf|%#018b|\n\n", 18, b7);
+
+	ft_printf("ft_printf|%# -18b|\n\n", b8);
+
+	ft_printf("ft_printf|%# -18b|\n\n", b9);
 
 }
