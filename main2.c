@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 12:43:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 18:10:29 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:44:21 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,50 @@ int main(void)
 
 	   printf("   printf|%0-5f|\n", f9);
 	ft_printf("ft_printf|%0-5f|\n\n", f9);
+
+	printf("Passes above\n");
+	printf("-----------------------\n");
+	printf("Testing octal %%o\n");
+
+	unsigned int o1 = 1;
+	unsigned int o2 = 22;
+	unsigned int o3 = 333;
+	unsigned int o4 = 4444;
+	unsigned int o5 = 55555;
+	unsigned int o6 = 666666;
+	unsigned int o7 = -7777777;
+	unsigned int o8 = -88888888;
+	unsigned int o9 = -999999999;
+	   
+	   printf("   printf|%*o|\n", -8, o1);
+	ft_printf("ft_printf|%*o|\n\n", -8, o1);
+	  
+	   printf("   printf|% *o|\n", -8, o2);
+	ft_printf("ft_printf|% *o|\n\n", -8, o2);
+
+	   printf("   printf|%0*o|\n", -8, o3);
+	ft_printf("ft_printf|%0*o|\n\n", -8, o3);
+
+	   printf("   printf|%0-5o|\n", o4);
+	ft_printf("ft_printf|%0-5o|\n\n", o4);
+
+ 	   printf("   printf|%*o|\n", 8, o5);
+	ft_printf("ft_printf|%*o|\n\n", 8, o5);
+
+ 	   printf("   printf|% o|\n", o5);
+	ft_printf("ft_printf|% o|\n\n", o5);
+	  
+	   printf("   printf|% *o|\n", 8, o6);
+	ft_printf("ft_printf|% *o|\n\n", 8, o6);
+
+	   printf("   printf|%0*o|\n", 8, o7);
+	ft_printf("ft_printf|%0*o|\n\n", 8, o7);
+
+	   printf("   printf|%0-5o|\n", o8);
+	ft_printf("ft_printf|%0-5o|\n\n", o8);
+
+	   printf("   printf|%0-5o|\n", o9);
+	ft_printf("ft_printf|%0-5o|\n\n", o9);
+
+
 }

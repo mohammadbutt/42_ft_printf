@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/12 11:45:15 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 13:51:42 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 18:50:35 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 	else
 		pr->var.precision = ft_pad(pr->precision_field, len);
 	pr->var.width = ft_pad(pr->width_field, len + pr->var.precision);
-	if (pr->flag.plus == 1 || pr->flag.space == 1 || pr->flag.hash == 1)
+	if (pr->flag.plus == 1 || pr->flag.hash == 1)
 		if (pr->var.width > 0)
 			pr->var.width--;
 	if (pr->flag.zero == true && pr->var.width >= 0)
@@ -44,12 +44,15 @@ void	o_append_buffer(t_printf *pr, char s[], char t_s[])
 	append_to_buffer(pr, s);
 }
 
+/*
+** Even though flag ' ' results in undefined behavior with 'o' conversion
+** specifier, no space is placed with 'o' conversion/type_field.
+*/
+
 void	check_flags_for_o(t_printf *pr, char s[])
 {
 	if (pr->flag.hash == true)
 		ft_strcpy(s, "0");
-	else if (pr->flag.space == true)
-		ft_strcpy(s, " ");
 }
 
 void	collect_o(t_printf *pr)
@@ -58,8 +61,8 @@ void	collect_o(t_printf *pr)
 	char			s[ft_abs(pr->precision_field) + pr->width_field + 32];
 	char			t_s[ft_abs(pr->precision_field) + pr->width_field + 32];
 
-	ft_bzero(s, ft_abs(pr->precision_field) + pr->width_field + 32);
-	ft_bzero(t_s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	s[0] = 0;
+	t_s[0] = 0;
 	ft_bzero(&pr->var, sizeof(&pr->var));
 	n = 0;
 	n = length_field_uox(pr);
