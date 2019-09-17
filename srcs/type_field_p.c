@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 22:39:47 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/12 20:04:05 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:06:58 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	collect_p(t_printf *pr)
 	int				re_width;
 	int				re_precision;
 
-	ft_bzero(str, ft_abs(pr->precision_field) + pr->width_field + 32);
-	ft_bzero(temp_s, ft_abs(pr->precision_field) + pr->width_field + 32);
+	str[0] = 0;
+	temp_s[0] = 0;
 	pointer_value = 0;
 	pointer_value = (uint_fast64_t)va_arg(pr->arguments, void *);
 	ft_itoa_base(pointer_value, FT_HEX, temp_s);

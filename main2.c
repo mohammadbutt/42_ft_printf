@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 12:43:38 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/16 18:44:21 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/16 19:11:57 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,51 @@ int main(void)
 
 	   printf("   printf|%0-5o|\n", o9);
 	ft_printf("ft_printf|%0-5o|\n\n", o9);
+
+
+	printf("Passes above\n");
+	printf("-----------------------\n");
+	printf("Testing pointer %%p\n");
+
+	unsigned int *p1 = 1;
+	unsigned int *p2 = 22;
+	unsigned int *p3 = 333;
+	unsigned int *p4 = 4444;
+	unsigned int *p5 = 55555;
+	unsigned int *p6 = 666666;
+	unsigned int *p7 = -7777777;
+	unsigned int *p8 = -88888888;
+	unsigned int *p9 = -999999999;
+	   
+	   printf("   printf|%*p|\n", -18, p1);
+	ft_printf("ft_printf|%*p|\n\n", -18, p1);
+	  
+	   printf("   printf|% *p|\n", -18, p2);
+	ft_printf("ft_printf|% *p|\n\n", -18, p2);
+
+	   printf("   printf|%0*p|\n", -18, p3);
+	ft_printf("ft_printf|%0*p|\n\n", -18, p3);
+
+	   printf("   printf|%0-5p|\n", p4);
+	ft_printf("ft_printf|%0-5p|\n\n", p4);
+
+ 	   printf("   printf|%*p|\n", 18, p5);
+	ft_printf("ft_printf|%*p|\n\n", 18, p5);
+
+ 	   printf("   printf|% p|\n", p5);
+	ft_printf("ft_printf|% p|\n\n", p5);
+	  
+	   printf("   printf|% *p|\n", 18, p6);
+	ft_printf("ft_printf|% *p|\n\n", 18, p6);
+
+	   printf("   printf|%0*p|\n", 18, p7);
+	ft_printf("ft_printf|%0*p|\n\n", 18, p7);
+
+	   printf("   printf|%0-5p|\n", p8);
+	ft_printf("ft_printf|%0-5p|\n\n", p8);
+
+	   printf("   printf|%0-5p|\n", p9);
+	ft_printf("ft_printf|%0-5p|\n\n", p9);
 
 
 }
