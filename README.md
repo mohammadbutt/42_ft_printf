@@ -1,6 +1,6 @@
 # ft_printf - Purpose of the project is to recode printf(3)
 
-Huge thanks to [Eic(Phat Truong)](https://github.com/nkone). His counsel and suggestions allowed me to make this printf much faster.
+Huge thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions allowing me to optimize the program.
 
 #### Project file: [ft_printf](https://github.com/mohammadbutt/42_ft_printf/blob/master/ft_printf.en.pdf)
 
