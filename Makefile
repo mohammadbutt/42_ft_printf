@@ -6,7 +6,7 @@
 #    By: mbutt <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/08/07 15:20:38 by mbutt             #+#    #+#              #
-#    Updated: 2019/09/13 15:37:54 by mbutt            ###   ########.fr        #
+#    Updated: 2019/09/17 23:05:07 by mbutt            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,8 +61,8 @@ all: $(NAME)
 
 $(NAME):
 	@echo "${CYAN}Compiling Makefile.${NC}"
-	$(CC) $(CFLAGS) $(SRC) $(MINI_LIBFT)
-	ar rc $(NAME) $(OBJ)
+	@$(CC) $(CFLAGS) $(SRC) $(MINI_LIBFT)
+	@ar rc $(NAME) $(OBJ)
 	@echo "${GREEN}Generated libftprintf.a static library succesfully.${NC}"
 
 clean:
