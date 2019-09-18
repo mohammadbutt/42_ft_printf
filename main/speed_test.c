@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 13:31:40 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/17 20:39:26 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/09/18 11:10:28 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,15 @@ int main(int argc, char **argv)
     intmax_t    im = 9223372036854775807;
 
     time = clock();
-    
+   
+     if(argc == 1)
+	 {
+		 printf(YELLOW"Useage to run speed test:\n");
+		 printf("Type ./a.out 1 for ft_printf. Or 2 for printf as shown below:\n");
+		 printf(BCYAN"./a.out 1\n");
+		 printf("./a.out 2\n");
+		 return(0);
+	 }	
 
 	if(argv[1][0] == '1')
 	{
