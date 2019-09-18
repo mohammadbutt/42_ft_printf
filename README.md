@@ -1,3 +1,4 @@
+# Remeaning Readme to be updated soon
 # ft_printf - Purpose of the project is to recode printf(3)
 
 Huge thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions that allowed me to optimize the program.
