@@ -20,6 +20,21 @@ void	check_flags_for_x(t_printf *pr, char s[], uint_fast64_t n)
 		ft_strcpy(s, "0X");
 }
 
+/*
+** %x, type field x is handled differently from other type fields.
+** There are 4 different conditions that handle x, hex:
+** 1. There's no width and no precision. x_width_n_precision_n
+** 2. There's no width, but there's precision. x_width_n_precision_y
+** 3. There's width, but no precision. x_width_y_precision_n
+** 4. There's width and precision. x_width_y_precision_y
+**
+** 4 seperate functions were created because after having split type field x
+** into 4 conditions like this, code became much more manageable, organized,
+** and easy to follow/debug. If the program behaved differently when there was
+** precision, but no width, I knew right away which part of the program
+** needed to be fixed without affecting the behavior of other parts of x.
+*/
+
 void	x_width_n_precision_n(t_printf *pr, uint_fast64_t n)
 {
 	char str[32];
