@@ -38,7 +38,7 @@ Original printf prints 111,107 times                                            
 :---------------------------------------------------------------------------------------------------------:|:-------------------------:
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
-ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, which is 9.4% faster than the original printf
+ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, making ft_printf 9.4% faster than the original printf.
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
 - Manage the following conversions: `diouxX` with the following flags: `hh, h, l`, and `ll`.
