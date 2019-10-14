@@ -73,7 +73,7 @@ In addition to searching for the width in a numerical form, an asterik `*` is al
 
 ft_printf("%*d", 2, 10):
 
-2 will take the plae of `*`
+2 will take the place of `*`. But these are searched in if else statement, if a numerical number is found in the string then the asterik will not be searched. But if a numerical number is not found, then the asterik will be searched for and the numerical value that is asscoaited with it.
 
 
 ---
