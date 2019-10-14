@@ -44,7 +44,9 @@ ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, m
 
 ### What is variadic function?
 Variadic functions are slightly different from regular functions because for a regular function there are specific number of arguments, and the number of arguments can not be more or less than what the function was desgined for. This is where a variadic function is different from a regular function because in a varadic function a user can pass in any number of arguments. Variadic function has the following format:
+```
 int		ft_printf(const char *str, ...)
+```
 
 ### Parsing - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
 After setting up the variadic function, parsing is performed to collect information 
@@ -52,6 +54,8 @@ After setting up the variadic function, parsing is performed to collect informat
 
 
 
+---
+---
 ---
 ---
 ---
