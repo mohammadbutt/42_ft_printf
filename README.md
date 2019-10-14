@@ -31,6 +31,7 @@ gcc your_filename.c libftprintf.a
 ```
 
 # Program Installation and Usage Demo
+![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
 
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
