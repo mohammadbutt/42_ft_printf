@@ -34,9 +34,9 @@ gcc your_filename.c libftprintf.a
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
 
 # Speed Comparison
-Original printf                                                                                                      |  ft_printf
-:-------------------------------------------------------------------------------------------------------------------:|:-------------------------:
-![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/new_speed_test/speed_test_printf_720p_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/new_speed_test/speed_test_ft_printf_720p_24fps.gif)
+Original printf                                                                                            |  ft_printf
+:---------------------------------------------------------------------------------------------------------:|:-------------------------:
+![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
