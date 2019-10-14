@@ -34,10 +34,11 @@ gcc your_filename.c libftprintf.a
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
 
 # Speed Comparison
-Original printf                                                                                            |  ft_printf
+Original printf prints 111,107 times                                                                                            |  ft_printf prints 121,581 times
 :---------------------------------------------------------------------------------------------------------:|:-------------------------:
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
+ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, which is 9.4% faster than the original printf
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
 - Manage the following conversions: `diouxX` with the following flags: `hh, h, l`, and `ll`.
