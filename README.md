@@ -49,6 +49,7 @@ int		ft_printf(const char *str, ...)
 ```
 ### Parsing - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
 Information is collected in a systematic way, so when the program detects a percentage sign, parsing is performed. Informatoin is collected in the following manner:
+
 %[flags][width][precision][length][type field]
 
 
