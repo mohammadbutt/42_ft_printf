@@ -33,6 +33,11 @@ gcc your_filename.c libftprintf.a
 # Program Installation and Usage Demo
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
 
+# Speed Comparison
+Original printf                                                                                                      |  ft_printf
+:-------------------------------------------------------------------------------------------------------------------:|:-------------------------:
+![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/new_speed_test/speed_test_printf_720p_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/new_speed_test/speed_test_ft_printf_720p_24fps.gif)
+
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
 - Manage the following conversions: `diouxX` with the following flags: `hh, h, l`, and `ll`.
