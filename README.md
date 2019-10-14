@@ -53,7 +53,25 @@ Parsing is done in a systematic way. Below is what that system looks like:
 
 % [flags] [width] [precision] [length] [type field]
 
-Anything that comes after a percentage symbol can be considered one argument. After encountering a percentage sign, the program moves forward to collect `flags`. Flags are hastag, zero, minus, plus, single space, `#` `0` `-` `+` ` `. Then after having collected a percentage sign parsing moves 
+Anything that comes after a percentage symbol can be considered one argument. It is important to collect all of the information as is as much as possible and to not manipulate any of the information when parsing is performed because each type field handles information in a different way. Only exception I made was for collecting flags, which is explained more below.
+
+### Collecting Flags - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_and_cancel_flags.c)
+
+After encountering a percentage sign, the program moves forward to collect `flags`. Flags are hastag, zero, minus, plus, and single space, `#` `0` `-` `+` ` `. These flags are stored as `bool`, boolean, data type because we only want to know if a flag exists or not, true or false.
+
+Right after collecting flags, two flags are canceled off because all type fields will ignore them in the same way.
+
+1. flag ` `, space, is ignored when flag `+` is present, so when both space and plus signs are present, flag space is set to false.
+
+2. Flag `0`, zero is ignored when flag `-` is present, so when both zero and minus sign are present, flag zero is set to false.
+
+### Collecting Width - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+
+After collecting flags, width is collected, width would be any numerical digit that appears. Since these numbers are present in a string, they are not really considered numbers. Custom atoi is used to turn the ascii numbers/string into an actual integer and then a while loop is used to traverse through those ascii numbers.
+
+In addition to searching for the width in a numerical form, an asterik `*` is also searched, an asterik also represents a number. Below is what this looks like:
+
+ft_printf("%**d", 0, 10)
 
 
 ---
