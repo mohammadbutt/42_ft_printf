@@ -82,6 +82,13 @@ ft_printf("%*d", 2, 10);
 
 
 
+### Collecting length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+
+
+### Collecting type field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+
+
+
 ---
 ---
 ---
