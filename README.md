@@ -1,8 +1,6 @@
 # ft_printf - Program that outputs data entered by a user
 ### Purpose of the project is to recode printf(3)
 
-Huge thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions that allowed me to optimize the program.
-
 #### Project file: [ft_printf](https://github.com/mohammadbutt/42_ft_printf/blob/master/ft_printf.en.pdf)
 
 Allowed C functions: write(2), malloc(3), free(3), exit(3).
@@ -16,6 +14,7 @@ Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va
 * [**Program Installation and Usage Demo**](#Program-Installation-and-Usage-Demo)
 * [**Speed Comparison video**](#Speed-Comparison)
 * [Project Summary](#Project-Summary)
+* [Acknowledgements](#Acknowledgements)
 * [Resources And Referenes](#Resources-and-References)
 
 
@@ -88,6 +87,14 @@ ft_printf("%*d", 2, 10);
 ### Collecting type field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
 
+
+### Acknowledgements
+
+Thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions that allowed me to optimize the program.
+
+Thanks to [Kevin](https://github.com/MrColour) for his suggestion to flush out the buffer.
+
+Thanks to [Marco Paland](https://github.com/mpaland/printf) - his implementation of floats was a big help.
 
 ---
 ---
