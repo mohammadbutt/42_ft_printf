@@ -13,11 +13,24 @@ Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va
 # Table of Contents
 * [Cloning Repository](#cloning-repository)
 * [Installing ft_printf](#installing-ft_printf)
-* [Program Demo](#Program-demo)
+* [Program Installation and Usage Demo](#Program-Installation-and-Usage-Demo)
 * [Speed Comparison video](#Speed-Comparison)
 * [Project Summary](#Project-Summary)
 * [Resources And Referenes](#Resources-and-References)
 
+
+# Cloning Repository
+```
+https://github.com/mohammadbutt/42_ft_printf.git
+```
+
+# Installing ft_printf
+```
+make
+gcc your_filename.c libftprintf.a
+```
+
+# Program Installation and Usgae Demo
 
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
