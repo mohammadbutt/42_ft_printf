@@ -34,7 +34,7 @@ gcc your_filename.c libftprintf.a
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
 
 # Speed Comparison
-Original printf prints 111,107 times                                                                                            |  ft_printf prints 121,581 times
+Original printf prints 111,107 times                                                                                            |  ft_printf prints 121,581 times, 9.4% faster
 :---------------------------------------------------------------------------------------------------------:|:-------------------------:
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
