@@ -53,7 +53,7 @@ Parsing is done in a systematic way. Below is what that system looks like:
 
 % [flags] [width] [precision] [length] [type field]
 
-Anything that comes after a percentage symbol can be considered one argument. After encountering a percentage sign, the program moves forward to collect `flags` Then after having collected a percentage sign parsing moves 
+Anything that comes after a percentage symbol can be considered one argument. After encountering a percentage sign, the program moves forward to collect `flags`. Flags are hastag, zero, minus, plus, single space, `#` `0` `-` `+` ` `. Then after having collected a percentage sign parsing moves 
 
 
 ---
