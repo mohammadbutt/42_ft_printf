@@ -30,7 +30,7 @@ make
 gcc your_filename.c libftprintf.a
 ```
 
-# Program Installation and Usgae Demo
+# Program Installation and Usage Demo
 
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
