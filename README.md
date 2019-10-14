@@ -1,5 +1,5 @@
-# ft_printf - Purpose of the project is to recode printf(3)
-# Remeaning Readme to be updated soon
+# ft_printf - Program that outputs data entered by a user
+### Purpose of the project is to recode printf(3)
 
 Huge thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions that allowed me to optimize the program.
 
@@ -7,7 +7,17 @@ Huge thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and 
 
 Allowed C functions: write(2), malloc(3), free(3), exit(3).
 
-Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
+Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va_end(3).
+
+---
+# Table of Contents
+* [Cloning Repository](#cloning-repository)
+* [Installing ft_printf](#installing-ft_printf)
+* [Program Demo](#Program-demo)
+* [Speed Comparison video](#Speed-Comparison)
+* [Project Summary](#Project-Summary)
+* [Resources And Referenes](#Resources-and-References)
+
 
 ### Mandatory parts of the project:
 - Manage the following conversions: `csp`.
