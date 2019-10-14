@@ -38,6 +38,14 @@ Original printf prints 111,107 times                                            
 :---------------------------------------------------------------------------------------------------------:|:-------------------------:
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
+# Project Summary
+
+### What is variadic function?
+Variadic functions are slightly different from regular functions because for a regular function there are specific number of arguments, and the number of arguments can not be more or less than what the function was desgined for. This is where a variadic function is different from a regular function because in a varadic function a user can pass in any number of arguments. Variadic function has the following format:
+int		ft_printf(const char *str, ...)
+
+### Parsing - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
+After setting up the variadic function, parsing is performed to collect information 
 
 ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, making ft_printf 9.4% faster than the original printf.
 ### Mandatory parts of the project:
