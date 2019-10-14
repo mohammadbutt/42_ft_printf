@@ -106,7 +106,7 @@ Things to learn:
 
 ### Project summary: 
 
-# Resources and Referenes
+# Resources and References
 1. [Variadic functions - simple_printf](https://en.cppreference.com/w/c/variadic)
 2. [Linux man stdarg](http://man7.org/linux/man-pages/man3/stdarg.3.html)
 3. [printf format syntax - wikipedia](https://en.wikipedia.org/wiki/Printf_format_string#Syntax)
