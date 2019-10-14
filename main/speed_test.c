@@ -6,7 +6,7 @@
 /*   By: mbutt <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/13 13:31:40 by mbutt             #+#    #+#             */
-/*   Updated: 2019/09/30 12:31:34 by mbutt            ###   ########.fr       */
+/*   Updated: 2019/10/13 21:53:51 by mbutt            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int main(int argc, char **argv)
 
 	if(argv[1][0] == '1')
 	{
-		while ((double)time / CLOCKS_PER_SEC < 15)
+		while ((double)time / CLOCKS_PER_SEC < 3)
     	{
         	time = clock();
         	ft_printf("\n");
@@ -55,12 +55,11 @@ int main(int argc, char **argv)
         	ft_printf("%c\n", c);
 			index++;
 		}
-		ft_printf(BGREEN"ft_printf printed the loop %d times in %lu seconds\n", index, time/1000000);
-		ft_printf(BGREEN"ft_printf finished running speed test\n");
+		ft_printf(BGREEN"ft_printf printed %d times in %lu seconds\n", index, time/1000000);
 	}
 	if(argv[1][0] == '2')
 	{
-		while ((double)time / CLOCKS_PER_SEC < 15)
+		while ((double)time / CLOCKS_PER_SEC < 3)
     	{
         	time = clock();
         	printf("\n");
@@ -78,8 +77,7 @@ int main(int argc, char **argv)
         	printf("%c\n", c);
 			index++;
 		}
-		printf(BYELLOW"printf printed the loop %d times in %lu seconds\n", index, time/1000000);
-		printf(BYELLOW"printf finished running speed test\n");
+		printf(BYELLOW"printf printed %d times in %lu seconds\n", index, time/1000000);
 	}
     return (0);
 }
