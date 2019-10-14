@@ -69,9 +69,12 @@ Right after collecting flags, two flags are canceled off because all type fields
 
 After collecting flags, width is collected, width would be any numerical digit that appears. Since these numbers are present in a string, they are not really considered numbers. Custom atoi is used to turn the ascii numbers/string into an actual integer and then a while loop is used to traverse through those ascii numbers.
 
-In addition to searching for the width in a numerical form, an asterik `*` is also searched, an asterik also represents a number. Below is what this looks like:
+In addition to searching for the width in a numerical form, an asterik `*` is also searched, an asterik also represents a number. Below is what both methods look like:
 
-ft_printf("%*d", 2, 10):
+ft_printf("%2d", 10);
+
+ft_printf("%*d", 2, 10);
+
 
 2 will take the place of `*`. But these are searched in if else statement, if a numerical number is found in the string then the asterik will not be searched. But if a numerical number is not found, then the asterik will be searched for and the numerical value that is asscoaited with it.
 
