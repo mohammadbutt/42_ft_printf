@@ -71,7 +71,7 @@ After collecting flags, width is collected, width would be any numerical digit t
 
 In addition to searching for the width in a numerical form, an asterik `*` is also searched, an asterik also represents a number. Below is what this looks like:
 
-ft_printf("%**d", 0, 10)
+ft_printf("%*d", 0, 10)
 
 
 ---
