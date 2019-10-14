@@ -48,11 +48,12 @@ Variadic functions are slightly different from regular functions because for a r
 int		ft_printf(const char *str, ...)
 ```
 ### Parsing - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
-Information is collected in a systematic way, so when the program detects a percentage sign, parsing is performed. Informatoin is collected in the following manner:
+
+Parsing is done in a systematic way. Below is what that system looks like:
 
 % [flags] [width] [precision] [length] [type field]
 
-
+Anything that comes after a percentage symbol can be considered one argument. After encountering a percentage sign, the program moves forward to collect `flags` Then after having collected a percentage sign parsing moves 
 
 
 ---
