@@ -89,7 +89,7 @@ By default, value for precision is set to -1 because if there is a period, but t
 
 ### Collecting length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
-There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a particular flag exists than it's value is set to to true. Below is a detailed length field table:
+There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a particular flag exists than it's value is set to to true. `hh` `h`, `ll`, and `l` are valid length fields for `d`, `i`, `o`, `u`, `x`, and `X` typed fields. `L` length fields is the only valid length field for `f`, floats, type field. Below is a detailed length field table with value range and compatability of length field with type field:
 
 #### Length field table
 
