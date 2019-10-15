@@ -77,7 +77,7 @@ ft_printf("%*d", 2, 10);
 
 2 will take the place of `*`. But these are searched in an if else statement. If a numerical number is found in the string then the asterik will not be searched. But if a numerical number is not found, then the asterik will be searched and the numerical value that is asscoaited with it.
 
-### Collecting precision - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+### Collecting Precision - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
 
 Precision is collected similar to how width is collected, but precision is collected once the program comes across a period, '.'. Numbers that come after a period are also in a string format, so custom atoi is used to convert the ascii into integers.
@@ -87,11 +87,11 @@ In addition to searching for the width in a numerical form, if there is an aster
 By default, value for precision is set to -1 because if there is a period, but there is no numerical value or asterik after it, then that will have a precision of 0.
 
 
-### Collecting length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+### Collecting Length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
 There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a particular flag exists than it's value is set to to true. `hh` `h`, `ll`, and `l` are valid length fields for `d`, `i`, `o`, `u`, `x`, and `X` typed fields. `L` length fields is the only valid length field for `f`, floats, type field. Below is a detailed length field table with value range and compatability of length field with type field:
 
-#### Length field table
+##### Length field table
 
 |Character |Type field |Size       |Description                                                                    | Value Range        |
 |----------|------------|------------|-------------------------------------------------------------------------------|------------------- |
@@ -101,9 +101,8 @@ There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, The
 |   `ll`   | `d` `i` `u` `o` `x` `X` |8 bytes or 64 bits   | For integer types, `d` `i`, expects `long long`, `long long int` or `int long long` argument. <br> <br> For unsigned types, `u` `o` `x` `X`, expects `unsigned long long`, `unsigned long long int`, or `unsigned int long long` argument.| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
 |    `L`   | `f`|16 bytes or 128 bits |For floating point type, `f`, expects `long double` or `double long` argument   | (264-1)* 2 <sup>16320</sup> or 18,446,744,073,709,551,615 * 2  <sup>16320</sup>|
 
+### Collecting Type Field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
-
-### Collecting type field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
 
 
