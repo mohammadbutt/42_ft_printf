@@ -103,7 +103,7 @@ There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, The
 
 ### Collecting Type Field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
-
+Type field tells the program what type of data are we working with. For this project, I only handled the typed fields, "cspdiouxXfb%". These are defined under FT_VALID_TYPE macro in the header file. `c` prints one single character, `s` prints a string, `p` prints the memory address of a pointer. `d` and `i` print the digit/integer value. `o` converts an integer value into an octal value and then prints it in octal. `u` prints an unsigned value. `x` and `X` convert an integer value into hexadecimal and then prints it in hexadecimal. `f` prints a value in floats/decimal form. Original printf does not have `b`. I created this additional type field to add an extra feature to the program. `b` converts an integer into  binary and then prints the binary values of the number. `%`
 
 
 ### Acknowledgements
