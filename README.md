@@ -89,7 +89,18 @@ By default, value for precision is set to -1 because if there is a period, but t
 
 ### Collecting length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
-There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a flag exists than it's value is set to to true. 
+There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a flag exists than it's value is set to to true. Below is a detailed table of the length field:
+
+### Length Field
+
+|Character |Type field |Size       |Description                                                                    | Value Range        |
+|----------|------------|------------|-------------------------------------------------------------------------------|------------------- |
+|   `hh`   |`d` `i` `u` `o` `x` `X` |1 byte or 8 bits     | For integer types, `d` `i`, expects `int` argument which is converted to `char`. <br> <br>For unsigned types, `u` `o` `x` `X`, which is converted to `unsigned char`.                | -128 to 127        |
+|   `h`    |`d` `i` `u` `o` `x` `X` | 2 bytes or 16 bits   | For integer types, `d` `i`, expects `int` argument which is converted to `short`. <br> <br> For unsigned types, `u` `o` `x` `X`, which is converted to `unsigned short`.              | -32,768 to 32,767  |
+|   `l`    |`d` `i` `u` `o` `x` `X` |8 bytes or 64 bits   | For integer types, `d` `i`, expects `long` or `long int` `int long` argument. <br> <br>For unsinged types, `u` `o` `x` `X`, expects `unsigned long`, `unsigned long int`, or `unsigned int long ` argument.                  |-9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
+|   `ll`   | `d` `i` `u` `o` `x` `X` |8 bytes or 64 bits   | For integer types, `d` `i`, expects `long long`, `long long int` or `int long long` argument. <br> <br> For unsigned types, `u` `o` `x` `X`, expects `unsigned long long`, `unsigned long long int`, or `unsigned int long long` argument.| -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807|
+|    `L`   | `f`|16 bytes or 128 bits |For floating point type, `f`, expects `long double` or `double long` argument   | (264-1)* 2 <sup>16320</sup> or 18,446,744,073,709,551,615 * 2  <sup>16320</sup>|
+
 
 
 ### Collecting type field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
