@@ -32,7 +32,11 @@ gcc your_filename.c libftprintf.a
 
 # How is ft_printf better than printf?
 
+ft_printf is better than printf for two reasons:
 
+1. ft_printf is roughly 10% faster than the original printf.
+
+2. Original printf uses malloc(3), but ft_printf does not use malloc, which makes ft_printf threadsafe. If a program uses ft_printf, ft_printf will manipulate shared data structures in a way that ensures all threads behave properly and fulfill their design specifications without unintended interaction.
 
 # Program Installation and Usage Demo
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/installation_and_useage_1080p_24fps.gif)
