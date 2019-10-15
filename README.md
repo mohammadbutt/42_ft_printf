@@ -80,8 +80,16 @@ ft_printf("%*d", 2, 10);
 ### Collecting precision - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
 
 
+Precision is collected similar to how width is collected, but precision is collected once the program comes across a period, '.'. Numbers that come after a period are also in a string format, so custom atoi is used to convert the ascii into integers.
+
+In addition to searching for the width in a numerical form, if there is an asterik `*` after the period '.', then asterik represents a numerical value from the argument section.
+
+By default, value for precision is set to -1 because if there is a period, but there is no numerical value or asterik after it, then that will have a precision of 0.
+
 
 ### Collecting length - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+
+There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, These are also stored as `bool`, or boolean data type because only thing that we want to know is if a particular flag exists or not. By default all the flags are set to false. But if a flag exists than we set that equal to true. 
 
 
 ### Collecting type field - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
