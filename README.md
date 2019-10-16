@@ -86,15 +86,16 @@ Right after collecting flags, two flags are canceled off because all type fields
 Also, bit field is used to mark these flags as true or false, so instead of using an enitire byte, which is made up of 8 bits, only 1 bit is used. Below is a little explanation on this:
 
 ```
-1 bool data type uses 1 byte. 1 byte = 8 bits. This means a bool will ask for 1 byte of memory which will have 8 bits as shown below:
-  _ _ _ _ _ _ _ _
- |_|_|_|_|_|_|_|_|
+1 bool data type uses 1 byte. 1 byte = 8 bits. This means a bool will ask for 1 byte of memory
+which will have 8 bits as shown below:
+ _ _ _ _ _ _ _ _
+|_|_|_|_|_|_|_|_|
 
- Unless specified this entire 1 byte will be reserved and used for a single variable.
+Unless specified this entire 1 byte will be reserved and used for a single variable.
  
- We can ask for one single bit from a byte and it will look as following:
-  _
- |_|
+We can ask for one single bit from a byte and it will look as following:
+ _
+|_|
 
 ```
 
