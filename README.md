@@ -23,7 +23,7 @@ Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va
   * [Collecting Length](#Collecting-Length---Source-Code)
     * [Length field table](#Length-field-table)
   * [Collecting Type Field](#Collecting-Type-Field---Source-Code)
-  * [Collect Data](#Collect-Data---Source-Code)
+  * [Collecting Remaining Data](#Collect-Remaining-Data---Source-Code)
   
 * [Acknowledgements](#Acknowledgements)
 * [Resources And Referenes](#Resources-and-References)
@@ -124,7 +124,7 @@ There are 5 differenct types of length fiels, `hh`, `h`, `ll`, `l`, and `L`, The
 
 Type field tells the program what type of data are we working with. For this project, I only handled the typed fields, "cspdiouxXfb%". These are defined under FT_VALID_TYPE macro in the header file. `c` prints one single character, `s` prints a string, `p` prints the memory address of a pointer. `d` and `i` print the digit/integer value. `o` converts an integer value into an octal value and then prints it in octal. `u` prints an unsigned value. `x` and `X` convert an integer value into hexadecimal and then prints it in hexadecimal. `f` prints a value in floats/decimal form. Original printf does not have `b`. I created this additional type field to add an extra feature to the program. `b` converts an integer into  binary and then prints the binary values of the number. `%` place a percentage sign after a number, since, the percentage sign signals the program into start the parsin process, there is no other way to exit out of it. So if no other type field appears, but the percentage sign appears twice then it will place the percentage sign.
 
-### Collect Data - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
+### Collecting Remaining Data - [Source Code](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
 
 Once all this information is gathered, each typed field is worked one at a time to reproduce the accurate behavior of printf. A dispatch table is used, see the function `void	collect_data(t_printf *pr)` in the linked source code link, to determine which type field is in the string, but it is also perfectly fine to not use a dispatch table. I had initially implementd if statements to structure my entire program, once my whole program was working, I just simply replaced it with the dispatch table since I already had already extracted the index of each type field from FT_VALID_TYPE macro.
 
