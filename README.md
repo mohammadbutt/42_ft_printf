@@ -118,6 +118,8 @@ Type field tells the program what type of data are we working with. For this pro
 
 Once all this information is gathered, each typed field is worked one at a time to reproduce the accurate behavior of printf. A dispatch table is used, see the function `void	collect_data(t_printf *pr)` in the linked source code link, to determine which type field is in the string, but it is also perfectly fine to not use a dispatch table. I had initially implementd if statements to structure my entire program, once my whole program was working, I just simply replaced it with the dispatch table since I already had already extracted the index of each type field from FT_VALID_TYPE macro.
 
+If you would like to know more how each type field was traveresed and parsed, you can look at the source code in srcs folder, open any of the files named `typed_field_*.c`. Some of the files are documented, so I hope the documentation in each file and this project summary helps.
+
 ### Acknowledgements
 
 Thanks to [Eic(Phat Truong)](https://github.com/nkone) for his counsel and suggestions that allowed me to optimize the program.
