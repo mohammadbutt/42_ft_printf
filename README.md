@@ -15,7 +15,7 @@ Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va
 * [**Program Installation and Usage Demo**](#Program-Installation-and-Usage-Demo)
 * [**Speed Comparison video**](#Speed-Comparison)
 * [Project Summary](#Project-Summary)
-  * [What is variadic function?](#What-is-variadic-function?)
+  * [What is variadic function?](#What-is-variadic-function)
   * [Parsing](#Parsing---Source-Code)
   * [Collecting Flags](#Collecting-Flags---Source-Code)
   * [Collecting Width](#Collecting-Width---Source-Code)
