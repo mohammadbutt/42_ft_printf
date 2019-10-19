@@ -1,6 +1,30 @@
 # ft_printf - Program that outputs data entered by a user
 # Below are links to source code:
 * [append_to_buffer.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/append_to_buffer.c)
+* [collect_and_cancel_flags.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_and_cancel_flags.c)
+* [collect_width_precision_length_type.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_width_precision_length_type.c)
+* [forbidden.h ](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/forbidden.h)
+* [ft_itoa_min_handler.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/ft_itoa_min_handler.c)
+* [ft_printf.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/ft_printf.c)
+* [ft_printf.h](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/ft_printf.h)
+* [parsing.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/parsing.c)
+* [type_field_b.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_b.c)
+* [type_field_c.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_c.c)
+* [type_field_d_i.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_d_i.c)
+* [type_field_f.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_f.c)
+* [type_field_o.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_o.c)
+* [type_field_p.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_p.c)
+* [type_field_percent.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_percent.c)
+* [type_field_s.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_s.c)
+* [type_field_u.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_u.c)
+* [type_field_x.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_x.c)
+* [type_field_x_remaining_conditions.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_x_remaining_conditions.c)
+* mini_libft
+  * [ft_atoi.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_atoi.c)
+
+
+
+
 ### Purpose of the project is to recode printf(3)
 
 #### Project file: [ft_printf](https://github.com/mohammadbutt/42_ft_printf/blob/master/ft_printf.en.pdf)
