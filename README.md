@@ -21,9 +21,16 @@
 * [type_field_x_remaining_conditions.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/type_field_x_remaining_conditions.c)
 * mini_libft
   * [ft_atoi.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_atoi.c)
-
-
-
+  * [ft_bzero.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_bzero.c)
+  * [ft_ftoa.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_ftoa.c)
+  * [ft_hex.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_hex.c)
+  * [ft_isdigit.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_isdigit.c)
+  * [ft_itoa_base.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_itoa_base.c)
+  * [ft_strcat.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_strcat.c)
+  * [ft_strcpy.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_strcpy.c)
+  * [ft_strlen.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/ft_strlen.c)
+  * [mini_libft.h](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/mini_libft.h)
+  * [utility.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/mini_libft/utility.c)
 
 ### Purpose of the project is to recode printf(3)
 
