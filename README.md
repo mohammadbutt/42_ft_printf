@@ -1,4 +1,6 @@
 # ft_printf - Program that outputs data entered by a user
+# Below are links to source code:
+* [append_to_buffer.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/append_to_buffer.c)
 ### Purpose of the project is to recode printf(3)
 
 #### Project file: [ft_printf](https://github.com/mohammadbutt/42_ft_printf/blob/master/ft_printf.en.pdf)
