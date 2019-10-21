@@ -1,4 +1,4 @@
-# ft_printf - Program that outputs data entered by a user
+# ft_printf - Unix-like command that formats and prints data
 # Below are links to source code:
 * [append_to_buffer.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/append_to_buffer.c)
 * [collect_and_cancel_flags.c](https://github.com/mohammadbutt/42_ft_printf/blob/master/srcs/collect_and_cancel_flags.c)
