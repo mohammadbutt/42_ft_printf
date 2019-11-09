@@ -10,7 +10,7 @@ Further allowed C Functions in stdarg(3): va_start(3), va_arg(3), va_copy(3), va
 
 ---
 # Table of Contents - Click a section to jump to it
-* [Cloning Repository](#Cloning-RepositorY)
+* [Cloning Repository](#cloning-repository)
 * [Installing ft_printf](#installing-ft_printf)
 * [**How is ft_printf better than printf**](#How-is-ft_printf-better-than-printf)
 * [**Program Installation and Usage Demo**](#Program-Installation-and-Usage-Demo)
