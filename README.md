@@ -57,7 +57,7 @@ Original printf prints 111,107 times                                            
 :---------------------------------------------------------------------------------------------------------:|:-------------------------:
 ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/printf_speed_test_720p_3sec_24fps.gif)  |  ![](https://github.com/mohammadbutt/42_ft_printf/blob/master/Media/ft_printf_speed_test_720p_3sec_24fps.gif)
 
-ft_printf prints roughly 10,474 more lines than original printf per 3 seconds, making ft_printf 9.4% faster than the original printf.
+ft_printf prints roughly 10,474 more lines per 3 seconds than original printf, making ft_printf 9.4% faster than the original printf. Since the original printf is compiled with 02 flag, ft_printf is also compiled with -02 flag. Original printf handles few more flags that my ft_printf is not programmed to handle. Having done this project, I only have a great deal of appreciation for original printf, because it can be a incredibly complicated program to recreate if not structured properly.
 
 # Project Summary
 
