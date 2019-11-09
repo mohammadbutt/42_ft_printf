@@ -1,4 +1,4 @@
-# ft_printf: Unix-like command that formats and prints data
+# ft_printf: Unix and Unix-like command to format and print data
 
 ### Purpose of the project is to recode printf(3)
 
